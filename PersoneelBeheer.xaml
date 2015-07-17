@@ -7,7 +7,7 @@
         <local:ISIS_KlantenDataSet x:Key="iSIS_KlantenDataSet"/>
         <CollectionViewSource x:Key="personeelViewSource" Source="{Binding Personeel, Source={StaticResource iSIS_KlantenDataSet}}"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid DataContext="{StaticResource personeelViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -130,7 +130,7 @@
                 <Button Name="ButtonSave" Content="Save" Click="ButtonSave_Click"></Button>
             </StackPanel>
         </Grid>
-        <DataGrid x:Name="personeelDataGrid" Grid.Row="2" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="200" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="personeelDataGrid" Grid.Row="2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToHeader"/>

@@ -122,7 +122,7 @@ namespace ISIS
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            if (_PersoneelViewSource.View.CurrentPosition < _entities.Klanten.Local.Count() - 1)
+            if (_PersoneelViewSource.View.CurrentPosition < _entities.Personeel.Local.Count() - 1)
                 _PersoneelViewSource.View.MoveCurrentToNext();
         }
 
@@ -139,7 +139,7 @@ namespace ISIS
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            _entities.Klanten.Remove((Klanten)_PersoneelViewSource.View.CurrentItem);
+            _entities.Personeel.Remove((Personeel)_PersoneelViewSource.View.CurrentItem);
             _unsavedChanges = true;
             //_entities.SaveChanges();
             //Refresh();

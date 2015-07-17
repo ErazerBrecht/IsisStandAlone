@@ -97,13 +97,13 @@
     <Compile Include="Personeel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersooneelBeheer.xaml.cs">
-      <DependentUpon>PersooneelBeheer.xaml</DependentUpon>
+    <Compile Include="PersoneelBeheer.xaml.cs">
+      <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="PersooneelBeheer.xaml">
+    <Page Include="PersoneelBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
