@@ -21,7 +21,7 @@ namespace ISIS
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         ISIS_KlantenEntities _entities;
         CollectionViewSource _klantenViewSource;

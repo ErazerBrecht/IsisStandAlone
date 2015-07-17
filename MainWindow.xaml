@@ -1,4 +1,5 @@
-﻿<Window
+﻿<Controls:MetroWindow
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ISIS" x:Class="ISIS.MainWindow"
@@ -156,4 +157,4 @@
         </Grid>
 
     </Grid>
-</Window>
+</Controls:MetroWindow>
