@@ -55,7 +55,7 @@ namespace ISIS
             _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
-            ButtonAdd.IsEnabled = true;
+            ButtonAdd.Content = "Add";
             GridInformation.DataContext = _klantenViewSource;
         }
 
@@ -137,18 +137,25 @@ namespace ISIS
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Confirm the action
             _entities.Klanten.Remove((Klanten)_klantenViewSource.View.CurrentItem);
-            _entities.SaveChanges();
-            Refresh();
+            _unsavedChanges = true;
+            //_entities.SaveChanges();
+            //Refresh();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            _addClient = new Klanten();
-            StackPanelInfo.DataContext = _addClient;
-
-            ButtonAdd.IsEnabled = false;
+            if (ButtonAdd.Content.ToString() == "Add")
+            {
+                _addClient = new Klanten();
+                GridInformation.DataContext = _addClient;
+                ButtonAdd.Content = "Cancel";
+            }
+            else
+            {
+                GridInformation.DataContext = _klantenViewSource;
+                ButtonAdd.Content = "Add";
+            }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)

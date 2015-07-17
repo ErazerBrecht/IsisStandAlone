@@ -15,12 +15,14 @@
         </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource klantenViewSource}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid Name="GridInformation">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition></RowDefinition>
-                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -32,7 +34,7 @@
                 <Button Name="ButtonNext" Content="--&gt;" Margin="20,10,0,10" Padding="10,2,10,2" Click="ButtonNext_Click"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Name="StackPanelInfo" Margin="10">
+            <StackPanel Grid.Row="1" Margin="10">
                 <GroupBox Header="Algemene gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -45,7 +47,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Text="ID:  "></TextBlock>
                         <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ID, Mode=TwoWay}"></TextBox>
 
@@ -134,30 +136,26 @@
                 </Grid>
                 <Button Name="ButtonSave" Content="Save" Click="ButtonSave_Click"></Button>
             </StackPanel>
-            
-            <DataGrid x:Name="klantenDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="iDColumn" Width="1*" Header="ID" Binding="{Binding ID}"/>
-                    <DataGridTextColumn x:Name="naamColumn" Width="2*" Header="Naam" Binding="{Binding Naam}"/>
-                    <DataGridTextColumn x:Name="voornaamColumn" Width="2*" Header="Voornaam" Binding="{Binding Voornaam}"/>
-                    <DataGridTextColumn x:Name="straatColumn" Width="3*" Header="Straat" Binding="{Binding Straat}"/>
-                    <DataGridTextColumn x:Name="nummerColumn" Width="1*" Header="Nummer" Binding="{Binding Nummer}"/>
-                    <DataGridTextColumn x:Name="postcodeColumn" Width="1*" Header="Postcode" Binding="{Binding Postcode}"/>
-                    <DataGridTextColumn x:Name="gemeenteColumn" Width="2*" Header="Gemeente" Binding="{Binding Gemeente}"/>
-                    <DataGridTextColumn x:Name="telefoonColumn" Width="2*" Header="Telefoon" Binding="{Binding Telefoon}"/>
-                    <DataGridTextColumn x:Name="gsmColumn" Width="2*" Header="Gsm" Binding="{Binding Gsm}"/>
-                    <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding AndereNaam}"/>
-                    <DataGridTextColumn x:Name="datumColumn" Width="2*" Header="Datum" Binding="{Binding Datum}"/>
-                    <DataGridTextColumn x:Name="betalingswijzeColumn" Width="SizeToHeader" Header="Betalingswijze" Binding="{Binding Betalingswijze}"/>
-                    <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding SoortKlant}"/>
-                    <DataGridTextColumn x:Name="actiefColumn" Width="1*" Header="Actief" Binding="{Binding Actief}"/>
-                    <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding LaatsteActiviteit}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-
-
         </Grid>
-
+        <DataGrid x:Name="klantenDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn" Width="1*" Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn x:Name="naamColumn" Width="2*" Header="Naam" Binding="{Binding Naam}"/>
+                <DataGridTextColumn x:Name="voornaamColumn" Width="2*" Header="Voornaam" Binding="{Binding Voornaam}"/>
+                <DataGridTextColumn x:Name="straatColumn" Width="3*" Header="Straat" Binding="{Binding Straat}"/>
+                <DataGridTextColumn x:Name="nummerColumn" Width="1*" Header="Nummer" Binding="{Binding Nummer}"/>
+                <DataGridTextColumn x:Name="postcodeColumn" Width="1*" Header="Postcode" Binding="{Binding Postcode}"/>
+                <DataGridTextColumn x:Name="gemeenteColumn" Width="2*" Header="Gemeente" Binding="{Binding Gemeente}"/>
+                <DataGridTextColumn x:Name="telefoonColumn" Width="2*" Header="Telefoon" Binding="{Binding Telefoon}"/>
+                <DataGridTextColumn x:Name="gsmColumn" Width="2*" Header="Gsm" Binding="{Binding Gsm}"/>
+                <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding AndereNaam}"/>
+                <DataGridTextColumn x:Name="datumColumn" Width="2*" Header="Datum" Binding="{Binding Datum}"/>
+                <DataGridTextColumn x:Name="betalingswijzeColumn" Width="SizeToHeader" Header="Betalingswijze" Binding="{Binding Betalingswijze}"/>
+                <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding SoortKlant}"/>
+                <DataGridTextColumn x:Name="actiefColumn" Width="1*" Header="Actief" Binding="{Binding Actief}"/>
+                <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding LaatsteActiviteit}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+
 </Controls:MetroWindow>
