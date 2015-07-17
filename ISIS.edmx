@@ -25,7 +25,7 @@
           <Property Name="Actief" Type="integer" />
           <Property Name="LaatsteActiviteit" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
-        <EntityType Name="Stijkers">
+        <EntityType Name="Personeel">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -45,7 +45,7 @@
         </EntityType>
         <EntityContainer Name="ISIS_KlantenModelStoreContainer">
           <EntitySet Name="Klanten" EntityType="Self.Klanten" store:Type="Tables" />
-          <EntitySet Name="Stijkers" EntityType="Self.Stijkers" store:Type="Tables" />
+          <EntitySet Name="Personeel" EntityType="Self.Personeel" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -71,28 +71,28 @@
           <Property Name="SoortKlant" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="LaatsteActiviteit" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Stijkers">
+        <EntityContainer Name="ISIS_KlantenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Klanten" EntityType="Self.Klanten" />
+          <EntitySet Name="Personeel" EntityType="ISIS_KlantenModel.Personeel" />
+        </EntityContainer>
+        <EntityType Name="Personeel">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
-          <Property Name="Naam" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Voornaam" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Straat" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Nummer" Type="Int64" />
           <Property Name="Postcode" Type="Int64" />
           <Property Name="Gemeente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Telefoon" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Gsm" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="RSZ" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RSZ" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Actief" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Nota" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Voornaam" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="LaatsteWijziging" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Nota" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="ISIS_KlantenEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Klanten" EntityType="Self.Klanten" />
-          <EntitySet Name="Stijkers" EntityType="Self.Stijkers" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -120,22 +120,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stijkers">
-            <EntityTypeMapping TypeName="ISIS_KlantenModel.Stijkers">
-              <MappingFragment StoreEntitySet="Stijkers">
-                <ScalarProperty Name="LaatsteWijziging" ColumnName="LaatsteWijziging" />
-                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="Straat" ColumnName="Straat" />
-                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
-                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
-                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
-                <ScalarProperty Name="RSZ" ColumnName="RSZ" />
-                <ScalarProperty Name="Actief" ColumnName="Actief" />
+          <EntitySetMapping Name="Personeel">
+            <EntityTypeMapping TypeName="ISIS_KlantenModel.Personeel">
+              <MappingFragment StoreEntitySet="Personeel">
                 <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="LaatsteWijziging" ColumnName="LaatsteWijziging" />
+                <ScalarProperty Name="Actief" ColumnName="Actief" />
+                <ScalarProperty Name="RSZ" ColumnName="RSZ" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,10 +12,11 @@ namespace ISIS
     using System;
     using System.Collections.Generic;
     
-    public partial class Stijkers
+    public partial class Personeel
     {
         public long ID { get; set; }
         public string Naam { get; set; }
+        public string Voornaam { get; set; }
         public string Straat { get; set; }
         public Nullable<long> Nummer { get; set; }
         public Nullable<long> Postcode { get; set; }
@@ -24,8 +25,7 @@ namespace ISIS
         public string Gsm { get; set; }
         public string RSZ { get; set; }
         public string Actief { get; set; }
-        public string Nota { get; set; }
-        public string Voornaam { get; set; }
         public string LaatsteWijziging { get; set; }
+        public string Nota { get; set; }
     }
 }

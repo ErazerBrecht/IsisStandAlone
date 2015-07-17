@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="ISIS_KlantenDataSet" targetNamespace="http://tempuri.org/ISIS_KlantenDataSet.xsd" xmlns:mstns="http://tempuri.org/ISIS_KlantenDataSet.xsd" xmlns="http://tempuri.org/ISIS_KlantenDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="ISIS_KlantenDataSet1" targetNamespace="http://tempuri.org/ISIS_KlantenDataSet1.xsd" xmlns:mstns="http://tempuri.org/ISIS_KlantenDataSet1.xsd" xmlns="http://tempuri.org/ISIS_KlantenDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -136,15 +136,17 @@
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StijkersTableAdapter" GeneratorDataComponentClassName="StijkersTableAdapter" Name="Stijkers" UserDataComponentName="StijkersTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PersoneelTableAdapter" GeneratorDataComponentClassName="PersoneelTableAdapter" Name="Personeel" UserDataComponentName="PersoneelTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ISIS_KlantenConnectionString (Settings)" DbObjectName="main.Stijkers" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ISIS_KlantenConnectionString (Settings)" DbObjectName="main.Personeel" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [main].[sqlite_default_schema].[Stijkers] WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Straat = 1 AND [Straat] IS NULL) OR ([Straat] = @Original_Straat)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ([RSZ] = @Original_RSZ) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_Laatste_wijziging = 1 AND [Laatste wijziging] IS NULL) OR ([Laatste wijziging] = @Original_Laatste_wijziging)) AND ((@IsNull_Nota = 1 AND [Nota] IS NULL) OR ([Nota] = @Original_Nota)))</CommandText>
+                    <CommandText>DELETE FROM [main].[sqlite_default_schema].[Personeel] WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ((@IsNull_Straat = 1 AND [Straat] IS NULL) OR ([Straat] = @Original_Straat)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ([RSZ] = @Original_RSZ) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_LaatsteWijziging = 1 AND [LaatsteWijziging] IS NULL) OR ([LaatsteWijziging] = @Original_LaatsteWijziging)) AND ((@IsNull_Nota = 1 AND [Nota] IS NULL) OR ([Nota] = @Original_Nota)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Naam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Naam" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Voornaam" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Voornaam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Straat" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Straat" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nummer" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Nummer" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -160,8 +162,8 @@
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_RSZ" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="RSZ" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Actief" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Actief" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Laatste_wijziging" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Laatste_wijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LaatsteWijziging" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LaatsteWijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nota" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Nota" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
@@ -169,10 +171,11 @@
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [main].[sqlite_default_schema].[Stijkers] ([ID], [Naam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [RSZ], [Actief], [Laatste wijziging], [Nota]) VALUES (@ID, @Naam, @Straat, @Nummer, @Postcode, @Gemeente, @Telefoon, @Gsm, @RSZ, @Actief, @Laatste_wijziging, @Nota)</CommandText>
+                    <CommandText>INSERT INTO [main].[sqlite_default_schema].[Personeel] ([ID], [Naam], [Voornaam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [RSZ], [Actief], [LaatsteWijziging], [Nota]) VALUES (@ID, @Naam, @Voornaam, @Straat, @Nummer, @Postcode, @Gemeente, @Telefoon, @Gsm, @RSZ, @Actief, @LaatsteWijziging, @Nota)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Naam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Naam" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Voornaam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Straat" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Nummer" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="Nummer" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Postcode" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="Postcode" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -181,23 +184,24 @@
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Gsm" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Gsm" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@RSZ" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="RSZ" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Actief" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Laatste_wijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LaatsteWijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nota" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [ID], [Naam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [RSZ], [Actief], [Laatste wijziging], [Nota] FROM [Stijkers]</CommandText>
+                    <CommandText>SELECT [ID], [Naam], [Voornaam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [RSZ], [Actief], [LaatsteWijziging], [Nota] FROM [Personeel]</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [main].[sqlite_default_schema].[Stijkers] SET [ID] = @ID, [Naam] = @Naam, [Straat] = @Straat, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Telefoon] = @Telefoon, [Gsm] = @Gsm, [RSZ] = @RSZ, [Actief] = @Actief, [Laatste wijziging] = @Laatste_wijziging, [Nota] = @Nota WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Straat = 1 AND [Straat] IS NULL) OR ([Straat] = @Original_Straat)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ([RSZ] = @Original_RSZ) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_Laatste_wijziging = 1 AND [Laatste wijziging] IS NULL) OR ([Laatste wijziging] = @Original_Laatste_wijziging)) AND ((@IsNull_Nota = 1 AND [Nota] IS NULL) OR ([Nota] = @Original_Nota)))</CommandText>
+                    <CommandText>UPDATE [main].[sqlite_default_schema].[Personeel] SET [ID] = @ID, [Naam] = @Naam, [Voornaam] = @Voornaam, [Straat] = @Straat, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Telefoon] = @Telefoon, [Gsm] = @Gsm, [RSZ] = @RSZ, [Actief] = @Actief, [LaatsteWijziging] = @LaatsteWijziging, [Nota] = @Nota WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ((@IsNull_Straat = 1 AND [Straat] IS NULL) OR ([Straat] = @Original_Straat)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ([RSZ] = @Original_RSZ) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_LaatsteWijziging = 1 AND [LaatsteWijziging] IS NULL) OR ([LaatsteWijziging] = @Original_LaatsteWijziging)) AND ((@IsNull_Nota = 1 AND [Nota] IS NULL) OR ([Nota] = @Original_Nota)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Naam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Naam" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Voornaam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Straat" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Nummer" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="Nummer" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Postcode" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="Postcode" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -206,10 +210,12 @@
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Gsm" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Gsm" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@RSZ" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="RSZ" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Actief" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Laatste_wijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LaatsteWijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Nota" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int64" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Naam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Naam" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Voornaam" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Voornaam" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Voornaam" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Straat" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Straat" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Straat" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nummer" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Nummer" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -225,8 +231,8 @@
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_RSZ" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="RSZ" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Actief" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Actief" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Actief" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Laatste_wijziging" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Laatste_wijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Laatste wijziging" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LaatsteWijziging" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LaatsteWijziging" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="LaatsteWijziging" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Nota" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Nota" Precision="0" ProviderType="String" Scale="0" Size="0" SourceColumn="Nota" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
@@ -237,6 +243,7 @@
             <Mappings>
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
               <Mapping SourceColumn="Naam" DataSetColumn="Naam" />
+              <Mapping SourceColumn="Voornaam" DataSetColumn="Voornaam" />
               <Mapping SourceColumn="Straat" DataSetColumn="Straat" />
               <Mapping SourceColumn="Nummer" DataSetColumn="Nummer" />
               <Mapping SourceColumn="Postcode" DataSetColumn="Postcode" />
@@ -245,7 +252,7 @@
               <Mapping SourceColumn="Gsm" DataSetColumn="Gsm" />
               <Mapping SourceColumn="RSZ" DataSetColumn="RSZ" />
               <Mapping SourceColumn="Actief" DataSetColumn="Actief" />
-              <Mapping SourceColumn="Laatste wijziging" DataSetColumn="Laatste wijziging" />
+              <Mapping SourceColumn="LaatsteWijziging" DataSetColumn="LaatsteWijziging" />
               <Mapping SourceColumn="Nota" DataSetColumn="Nota" />
             </Mappings>
             <Sources />
@@ -255,7 +262,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="ISIS_KlantenDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ISIS_KlantenDataSet" msprop:Generator_UserDSName="ISIS_KlantenDataSet">
+  <xs:element name="ISIS_KlantenDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ISIS_KlantenDataSet1" msprop:Generator_UserDSName="ISIS_KlantenDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Klanten" msprop:Generator_TableClassName="KlantenDataTable" msprop:Generator_TableVarName="tableKlanten" msprop:Generator_TablePropName="Klanten" msprop:Generator_RowDeletingName="KlantenRowDeleting" msprop:Generator_RowChangingName="KlantenRowChanging" msprop:Generator_RowEvHandlerName="KlantenRowChangeEventHandler" msprop:Generator_RowDeletedName="KlantenRowDeleted" msprop:Generator_UserTableName="Klanten" msprop:Generator_RowChangedName="KlantenRowChanged" msprop:Generator_RowEvArgName="KlantenRowChangeEvent" msprop:Generator_RowClassName="KlantenRow">
@@ -345,11 +352,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Stijkers" msprop:Generator_TableClassName="StijkersDataTable" msprop:Generator_TableVarName="tableStijkers" msprop:Generator_TablePropName="Stijkers" msprop:Generator_RowDeletingName="StijkersRowDeleting" msprop:Generator_RowChangingName="StijkersRowChanging" msprop:Generator_RowEvHandlerName="StijkersRowChangeEventHandler" msprop:Generator_RowDeletedName="StijkersRowDeleted" msprop:Generator_UserTableName="Stijkers" msprop:Generator_RowChangedName="StijkersRowChanged" msprop:Generator_RowEvArgName="StijkersRowChangeEvent" msprop:Generator_RowClassName="StijkersRow">
+        <xs:element name="Personeel" msprop:Generator_TableClassName="PersoneelDataTable" msprop:Generator_TableVarName="tablePersoneel" msprop:Generator_TablePropName="Personeel" msprop:Generator_RowDeletingName="PersoneelRowDeleting" msprop:Generator_RowChangingName="PersoneelRowChanging" msprop:Generator_RowEvHandlerName="PersoneelRowChangeEventHandler" msprop:Generator_RowDeletedName="PersoneelRowDeleted" msprop:Generator_UserTableName="Personeel" msprop:Generator_RowChangedName="PersoneelRowChanged" msprop:Generator_RowEvArgName="PersoneelRowChangeEvent" msprop:Generator_RowClassName="PersoneelRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
               <xs:element name="Naam" msprop:Generator_ColumnVarNameInTable="columnNaam" msprop:Generator_ColumnPropNameInRow="Naam" msprop:Generator_ColumnPropNameInTable="NaamColumn" msprop:Generator_UserColumnName="Naam">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Voornaam" msprop:Generator_ColumnVarNameInTable="columnVoornaam" msprop:Generator_ColumnPropNameInRow="Voornaam" msprop:Generator_ColumnPropNameInTable="VoornaamColumn" msprop:Generator_UserColumnName="Voornaam" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -400,7 +414,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Laatste_x0020_wijziging" msprop:Generator_ColumnVarNameInTable="columnLaatste_wijziging" msprop:Generator_ColumnPropNameInRow="Laatste_wijziging" msprop:Generator_ColumnPropNameInTable="Laatste_wijzigingColumn" msprop:Generator_UserColumnName="Laatste wijziging" minOccurs="0">
+              <xs:element name="LaatsteWijziging" msprop:Generator_ColumnVarNameInTable="columnLaatsteWijziging" msprop:Generator_ColumnPropNameInRow="LaatsteWijziging" msprop:Generator_ColumnPropNameInTable="LaatsteWijzigingColumn" msprop:Generator_UserColumnName="LaatsteWijziging" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -423,8 +437,8 @@
       <xs:selector xpath=".//mstns:Klanten" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
-    <xs:unique name="Stijkers_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Stijkers" />
+    <xs:unique name="Personeel_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Personeel" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>
