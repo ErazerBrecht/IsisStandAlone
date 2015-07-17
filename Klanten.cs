@@ -46,7 +46,18 @@ namespace ISIS
         public string Gemeente { get; set; }
         public string Telefoon { get; set; }
         public string Gsm { get; set; }
-        public string AndereNaam { get; set; }
+        private string _andereNaam;
+
+        public string AndereNaam
+        {
+            get { return _andereNaam; }
+            set 
+            { 
+                _andereNaam = value;
+                NoticeMe("AndereNaam");
+            }
+        }
+        
         public string Datum { get; set; }
         public string Betalingswijze { get; set; }
         public string SoortKlant { get; set; }
