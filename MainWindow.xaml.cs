@@ -39,6 +39,11 @@ namespace ISIS
             Refresh();
         }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = CheckChanges();
+        }
+
         private void Refresh()
         {
             _unsavedChanges = false;
@@ -47,11 +52,37 @@ namespace ISIS
                 _entities.Dispose();
 
             _entities = new ISIS_KlantenEntities();
-            //_entities.Schoolresultaten.Local.CollectionChanged += Local_CollectionChanged;
+            _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
             ButtonAdd.IsEnabled = true;
             GridInformation.DataContext = _klantenViewSource;
+        }
+
+        void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (Klanten item in e.OldItems)
+                {
+                    //Removed items => Delete event
+                    item.PropertyChanged -= EntityViewModelPropertyChanged;
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (Klanten item in e.NewItems)
+                {
+                    //Added items => Add event
+                    item.PropertyChanged += EntityViewModelPropertyChanged;
+                }
+            }
+        }
+
+        public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            //This will get called when the property of an object inside the collection changes
+            _unsavedChanges = true;
         }
 
         private bool CheckChanges()

@@ -11,12 +11,35 @@ namespace ISIS
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Klanten
+    using System.ComponentModel;
+
+    public partial class Klanten : INotifyPropertyChanged
     {
+        //TODO: Change everything to full properties
         public long ID { get; set; }
-        public string Naam { get; set; }
-        public string Voornaam { get; set; }
+
+        private string _naam;
+        public string Naam
+        {
+            get { return _naam; }
+            set 
+            { 
+                _naam = value;
+                NoticeMe("Naam");
+            }
+        }
+
+        private string _voornaam;
+        public string Voornaam
+        {
+            get { return _voornaam; }
+            set 
+            { 
+                _voornaam = value;
+                NoticeMe("Voornaam");
+            }
+        }
+        
         public string Straat { get; set; }
         public long Nummer { get; set; }
         public long Postcode { get; set; }
@@ -29,5 +52,15 @@ namespace ISIS
         public string Soort_klant { get; set; }
         public Nullable<long> Actief { get; set; }
         public string Laatste_activiteit { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NoticeMe(string p)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(p));
+            }
+        }
     }
 }
