@@ -10,9 +10,9 @@
             <Setter Property="MaxLines" Value="1" />
         </Style>
         </Window.Resources>
-    <Grid>
+    <Grid DataContext="{StaticResource klantenViewSource}">
 
-        <Grid DataContext="{StaticResource klantenViewSource}">
+        <Grid Name="GridInformation">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition></RowDefinition>
@@ -124,11 +124,11 @@
                 </GroupBox>
 
                 <Grid Margin="0,50,0,10" >
-                    <Button HorizontalAlignment="Left"  Width="125" Content="Refresh" Name="ButtonCancel"></Button>
-                    <Button HorizontalAlignment="Center"   Width="125" Content="Delete" Name="ButtonDelete"></Button>
-                    <Button HorizontalAlignment="Right"  Width="125" Content="Add" Name="ButtonAdd"></Button>
+                    <Button HorizontalAlignment="Left"  Width="125" Content="Refresh" Name="ButtonCancel" Click="ButtonCancel_Click"></Button>
+                    <Button HorizontalAlignment="Center"   Width="125" Content="Delete" Name="ButtonDelete" Click="ButtonDelete_Click"></Button>
+                    <Button HorizontalAlignment="Right"  Width="125" Content="Add" Name="ButtonAdd" Click="ButtonAdd_Click"></Button>
                 </Grid>
-                <Button Content="Save"></Button>
+                <Button Name="ButtonSave" Content="Save" Click="ButtonSave_Click"></Button>
             </StackPanel>
             
             <DataGrid x:Name="klantenDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">

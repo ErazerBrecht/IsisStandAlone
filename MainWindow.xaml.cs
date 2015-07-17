@@ -51,7 +51,40 @@ namespace ISIS
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
             ButtonAdd.IsEnabled = true;
-            //StackPanelInfo.DataContext = _schoolresultatenViewSource;
+            GridInformation.DataContext = _klantenViewSource;
+        }
+
+        private bool CheckChanges()
+        {
+            if (_unsavedChanges == true)
+            {
+                MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "ISIS", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Save();
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    Refresh();
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void Save()
+        {
+            if (_addClient != null)
+            {
+                _entities.Klanten.Add(_addClient);
+            }
+
+            _entities.SaveChanges();
+            _unsavedChanges = false;
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
@@ -64,6 +97,33 @@ namespace ISIS
         {
             if (_klantenViewSource.View.CurrentPosition > 0)
                 _klantenViewSource.View.MoveCurrentToPrevious();
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            CheckChanges();
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Confirm the action
+            _entities.Klanten.Remove((Klanten)_klantenViewSource.View.CurrentItem);
+            _entities.SaveChanges();
+            Refresh();
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            _addClient = new Klanten();
+            StackPanelInfo.DataContext = _addClient;
+
+            ButtonAdd.IsEnabled = false;
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+            Refresh();
         }
     }
 }
