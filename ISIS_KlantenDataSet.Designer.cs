@@ -332,17 +332,17 @@ namespace ISIS {
             
             private global::System.Data.DataColumn columnGsm;
             
-            private global::System.Data.DataColumn columnAndere_naam;
+            private global::System.Data.DataColumn columnAndereNaam;
             
             private global::System.Data.DataColumn columnDatum;
             
             private global::System.Data.DataColumn columnBetalingswijze;
             
-            private global::System.Data.DataColumn columnSoort_klant;
+            private global::System.Data.DataColumn columnSoortKlant;
             
             private global::System.Data.DataColumn columnActief;
             
-            private global::System.Data.DataColumn columnLaatste_activiteit;
+            private global::System.Data.DataColumn columnLaatsteActiviteit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -451,9 +451,9 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Andere_naamColumn {
+            public global::System.Data.DataColumn AndereNaamColumn {
                 get {
-                    return this.columnAndere_naam;
+                    return this.columnAndereNaam;
                 }
             }
             
@@ -475,9 +475,9 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Soort_klantColumn {
+            public global::System.Data.DataColumn SoortKlantColumn {
                 get {
-                    return this.columnSoort_klant;
+                    return this.columnSoortKlant;
                 }
             }
             
@@ -491,9 +491,9 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Laatste_activiteitColumn {
+            public global::System.Data.DataColumn LaatsteActiviteitColumn {
                 get {
-                    return this.columnLaatste_activiteit;
+                    return this.columnLaatsteActiviteit;
                 }
             }
             
@@ -534,7 +534,7 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KlantenRow AddKlantenRow(long ID, string Naam, string Voornaam, string Straat, long Nummer, long Postcode, string Gemeente, string Telefoon, string Gsm, string Andere_naam, string Datum, string Betalingswijze, string Soort_klant, long Actief, string Laatste_activiteit) {
+            public KlantenRow AddKlantenRow(long ID, string Naam, string Voornaam, string Straat, long Nummer, long Postcode, string Gemeente, string Telefoon, string Gsm, string AndereNaam, string Datum, string Betalingswijze, string SoortKlant, long Actief, string LaatsteActiviteit) {
                 KlantenRow rowKlantenRow = ((KlantenRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -546,12 +546,12 @@ namespace ISIS {
                         Gemeente,
                         Telefoon,
                         Gsm,
-                        Andere_naam,
+                        AndereNaam,
                         Datum,
                         Betalingswijze,
-                        Soort_klant,
+                        SoortKlant,
                         Actief,
-                        Laatste_activiteit};
+                        LaatsteActiviteit};
                 rowKlantenRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowKlantenRow);
                 return rowKlantenRow;
@@ -590,12 +590,12 @@ namespace ISIS {
                 this.columnGemeente = base.Columns["Gemeente"];
                 this.columnTelefoon = base.Columns["Telefoon"];
                 this.columnGsm = base.Columns["Gsm"];
-                this.columnAndere_naam = base.Columns["Andere naam"];
+                this.columnAndereNaam = base.Columns["AndereNaam"];
                 this.columnDatum = base.Columns["Datum"];
                 this.columnBetalingswijze = base.Columns["Betalingswijze"];
-                this.columnSoort_klant = base.Columns["Soort klant"];
+                this.columnSoortKlant = base.Columns["SoortKlant"];
                 this.columnActief = base.Columns["Actief"];
-                this.columnLaatste_activiteit = base.Columns["Laatste activiteit"];
+                this.columnLaatsteActiviteit = base.Columns["LaatsteActiviteit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -619,18 +619,18 @@ namespace ISIS {
                 base.Columns.Add(this.columnTelefoon);
                 this.columnGsm = new global::System.Data.DataColumn("Gsm", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGsm);
-                this.columnAndere_naam = new global::System.Data.DataColumn("Andere naam", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAndere_naam);
+                this.columnAndereNaam = new global::System.Data.DataColumn("AndereNaam", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAndereNaam);
                 this.columnDatum = new global::System.Data.DataColumn("Datum", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDatum);
                 this.columnBetalingswijze = new global::System.Data.DataColumn("Betalingswijze", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBetalingswijze);
-                this.columnSoort_klant = new global::System.Data.DataColumn("Soort klant", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSoort_klant);
+                this.columnSoortKlant = new global::System.Data.DataColumn("SoortKlant", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSoortKlant);
                 this.columnActief = new global::System.Data.DataColumn("Actief", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActief);
-                this.columnLaatste_activiteit = new global::System.Data.DataColumn("Laatste activiteit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLaatste_activiteit);
+                this.columnLaatsteActiviteit = new global::System.Data.DataColumn("LaatsteActiviteit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLaatsteActiviteit);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -646,11 +646,11 @@ namespace ISIS {
                 this.columnGemeente.MaxLength = 2147483647;
                 this.columnTelefoon.MaxLength = 2147483647;
                 this.columnGsm.MaxLength = 2147483647;
-                this.columnAndere_naam.MaxLength = 2147483647;
+                this.columnAndereNaam.MaxLength = 2147483647;
                 this.columnDatum.MaxLength = 2147483647;
                 this.columnBetalingswijze.MaxLength = 2147483647;
-                this.columnSoort_klant.MaxLength = 2147483647;
-                this.columnLaatste_activiteit.MaxLength = 2147483647;
+                this.columnSoortKlant.MaxLength = 2147483647;
+                this.columnLaatsteActiviteit.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1330,17 +1330,17 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Andere_naam {
+            public string AndereNaam {
                 get {
                     try {
-                        return ((string)(this[this.tableKlanten.Andere_naamColumn]));
+                        return ((string)(this[this.tableKlanten.AndereNaamColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Andere naam\' in table \'Klanten\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AndereNaam\' in table \'Klanten\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKlanten.Andere_naamColumn] = value;
+                    this[this.tableKlanten.AndereNaamColumn] = value;
                 }
             }
             
@@ -1378,17 +1378,17 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Soort_klant {
+            public string SoortKlant {
                 get {
                     try {
-                        return ((string)(this[this.tableKlanten.Soort_klantColumn]));
+                        return ((string)(this[this.tableKlanten.SoortKlantColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Soort klant\' in table \'Klanten\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SoortKlant\' in table \'Klanten\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKlanten.Soort_klantColumn] = value;
+                    this[this.tableKlanten.SoortKlantColumn] = value;
                 }
             }
             
@@ -1410,17 +1410,17 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Laatste_activiteit {
+            public string LaatsteActiviteit {
                 get {
                     try {
-                        return ((string)(this[this.tableKlanten.Laatste_activiteitColumn]));
+                        return ((string)(this[this.tableKlanten.LaatsteActiviteitColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Laatste activiteit\' in table \'Klanten\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LaatsteActiviteit\' in table \'Klanten\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKlanten.Laatste_activiteitColumn] = value;
+                    this[this.tableKlanten.LaatsteActiviteitColumn] = value;
                 }
             }
             
@@ -1462,14 +1462,14 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAndere_naamNull() {
-                return this.IsNull(this.tableKlanten.Andere_naamColumn);
+            public bool IsAndereNaamNull() {
+                return this.IsNull(this.tableKlanten.AndereNaamColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAndere_naamNull() {
-                this[this.tableKlanten.Andere_naamColumn] = global::System.Convert.DBNull;
+            public void SetAndereNaamNull() {
+                this[this.tableKlanten.AndereNaamColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1498,14 +1498,14 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSoort_klantNull() {
-                return this.IsNull(this.tableKlanten.Soort_klantColumn);
+            public bool IsSoortKlantNull() {
+                return this.IsNull(this.tableKlanten.SoortKlantColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSoort_klantNull() {
-                this[this.tableKlanten.Soort_klantColumn] = global::System.Convert.DBNull;
+            public void SetSoortKlantNull() {
+                this[this.tableKlanten.SoortKlantColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1522,14 +1522,14 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLaatste_activiteitNull() {
-                return this.IsNull(this.tableKlanten.Laatste_activiteitColumn);
+            public bool IsLaatsteActiviteitNull() {
+                return this.IsNull(this.tableKlanten.LaatsteActiviteitColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLaatste_activiteitNull() {
-                this[this.tableKlanten.Laatste_activiteitColumn] = global::System.Convert.DBNull;
+            public void SetLaatsteActiviteitNull() {
+                this[this.tableKlanten.LaatsteActiviteitColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2035,16 +2035,16 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Gemeente", "Gemeente");
             tableMapping.ColumnMappings.Add("Telefoon", "Telefoon");
             tableMapping.ColumnMappings.Add("Gsm", "Gsm");
-            tableMapping.ColumnMappings.Add("Andere naam", "Andere naam");
+            tableMapping.ColumnMappings.Add("AndereNaam", "AndereNaam");
             tableMapping.ColumnMappings.Add("Datum", "Datum");
             tableMapping.ColumnMappings.Add("Betalingswijze", "Betalingswijze");
-            tableMapping.ColumnMappings.Add("Soort klant", "Soort klant");
+            tableMapping.ColumnMappings.Add("SoortKlant", "SoortKlant");
             tableMapping.ColumnMappings.Add("Actief", "Actief");
-            tableMapping.ColumnMappings.Add("Laatste activiteit", "Laatste activiteit");
+            tableMapping.ColumnMappings.Add("LaatsteActiviteit", "LaatsteActiviteit");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [main].[sqlite_default_schema].[Klanten] WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ([Straat] = @Original_Straat) AND ([Nummer] = @Original_Nummer) AND ([Postcode] = @Original_Postcode) AND ([Gemeente] = @Original_Gemeente) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ((@IsNull_Andere_naam = 1 AND [Andere naam] IS NULL) OR ([Andere naam] = @Original_Andere_naam)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ((@IsNull_Betalingswijze = 1 AND [Betalingswijze] IS NULL) OR ([Betalingswijze] = @Original_Betalingswijze)) AND ((@IsNull_Soort_klant = 1 AND [Soort klant] IS NULL) OR ([Soort klant] = @Original_Soort_klant)) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_Laatste_activiteit = 1 AND [Laatste activiteit] IS NULL) OR ([Laatste activiteit] = @Original_Laatste_activiteit)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [main].[sqlite_default_schema].[Klanten] WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ([Straat] = @Original_Straat) AND ([Nummer] = @Original_Nummer) AND ([Postcode] = @Original_Postcode) AND ([Gemeente] = @Original_Gemeente) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ((@IsNull_AndereNaam = 1 AND [AndereNaam] IS NULL) OR ([AndereNaam] = @Original_AndereNaam)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ((@IsNull_Betalingswijze = 1 AND [Betalingswijze] IS NULL) OR ([Betalingswijze] = @Original_Betalingswijze)) AND ((@IsNull_SoortKlant = 1 AND [SoortKlant] IS NULL) OR ([SoortKlant] = @Original_SoortKlant)) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_LaatsteActiviteit = 1 AND [LaatsteActiviteit] IS NULL) OR ([LaatsteActiviteit] = @Original_LaatsteActiviteit)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_ID";
@@ -2128,17 +2128,17 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Andere_naam";
+            param.ParameterName = "@IsNull_AndereNaam";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Andere_naam";
+            param.ParameterName = "@Original_AndereNaam";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
@@ -2170,17 +2170,17 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Soort_klant";
+            param.ParameterName = "@IsNull_SoortKlant";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Soort_klant";
+            param.ParameterName = "@Original_SoortKlant";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
@@ -2199,22 +2199,22 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Laatste_activiteit";
+            param.ParameterName = "@IsNull_LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Laatste_activiteit";
+            param.ParameterName = "@Original_LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [main].[sqlite_default_schema].[Klanten] ([ID], [Naam], [Voornaam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [Andere naam], [Datum], [Betalingswijze], [Soort klant], [Actief], [Laatste activiteit]) VALUES (@ID, @Naam, @Voornaam, @Straat, @Nummer, @Postcode, @Gemeente, @Telefoon, @Gsm, @Andere_naam, @Datum, @Betalingswijze, @Soort_klant, @Actief, @Laatste_activiteit)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [main].[sqlite_default_schema].[Klanten] ([ID], [Naam], [Voornaam], [Straat], [Nummer], [Postcode], [Gemeente], [Telefoon], [Gsm], [AndereNaam], [Datum], [Betalingswijze], [SoortKlant], [Actief], [LaatsteActiviteit]) VALUES (@ID, @Naam, @Voornaam, @Straat, @Nummer, @Postcode, @Gemeente, @Telefoon, @Gsm, @AndereNaam, @Datum, @Betalingswijze, @SoortKlant, @Actief, @LaatsteActiviteit)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ID";
@@ -2265,9 +2265,9 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Gsm";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Andere_naam";
+            param.ParameterName = "@AndereNaam";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Datum";
@@ -2280,9 +2280,9 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Betalingswijze";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Soort_klant";
+            param.ParameterName = "@SoortKlant";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Actief";
@@ -2291,13 +2291,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Actief";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Laatste_activiteit";
+            param.ParameterName = "@LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::System.Data.SQLite.SQLiteCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [main].[sqlite_default_schema].[Klanten] SET [ID] = @ID, [Naam] = @Naam, [Voornaam] = @Voornaam, [Straat] = @Straat, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Telefoon] = @Telefoon, [Gsm] = @Gsm, [Andere naam] = @Andere_naam, [Datum] = @Datum, [Betalingswijze] = @Betalingswijze, [Soort klant] = @Soort_klant, [Actief] = @Actief, [Laatste activiteit] = @Laatste_activiteit WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ([Straat] = @Original_Straat) AND ([Nummer] = @Original_Nummer) AND ([Postcode] = @Original_Postcode) AND ([Gemeente] = @Original_Gemeente) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ((@IsNull_Andere_naam = 1 AND [Andere naam] IS NULL) OR ([Andere naam] = @Original_Andere_naam)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ((@IsNull_Betalingswijze = 1 AND [Betalingswijze] IS NULL) OR ([Betalingswijze] = @Original_Betalingswijze)) AND ((@IsNull_Soort_klant = 1 AND [Soort klant] IS NULL) OR ([Soort klant] = @Original_Soort_klant)) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_Laatste_activiteit = 1 AND [Laatste activiteit] IS NULL) OR ([Laatste activiteit] = @Original_Laatste_activiteit)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [main].[sqlite_default_schema].[Klanten] SET [ID] = @ID, [Naam] = @Naam, [Voornaam] = @Voornaam, [Straat] = @Straat, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Telefoon] = @Telefoon, [Gsm] = @Gsm, [AndereNaam] = @AndereNaam, [Datum] = @Datum, [Betalingswijze] = @Betalingswijze, [SoortKlant] = @SoortKlant, [Actief] = @Actief, [LaatsteActiviteit] = @LaatsteActiviteit WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Voornaam = 1 AND [Voornaam] IS NULL) OR ([Voornaam] = @Original_Voornaam)) AND ([Straat] = @Original_Straat) AND ([Nummer] = @Original_Nummer) AND ([Postcode] = @Original_Postcode) AND ([Gemeente] = @Original_Gemeente) AND ((@IsNull_Telefoon = 1 AND [Telefoon] IS NULL) OR ([Telefoon] = @Original_Telefoon)) AND ((@IsNull_Gsm = 1 AND [Gsm] IS NULL) OR ([Gsm] = @Original_Gsm)) AND ((@IsNull_AndereNaam = 1 AND [AndereNaam] IS NULL) OR ([AndereNaam] = @Original_AndereNaam)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ((@IsNull_Betalingswijze = 1 AND [Betalingswijze] IS NULL) OR ([Betalingswijze] = @Original_Betalingswijze)) AND ((@IsNull_SoortKlant = 1 AND [SoortKlant] IS NULL) OR ([SoortKlant] = @Original_SoortKlant)) AND ((@IsNull_Actief = 1 AND [Actief] IS NULL) OR ([Actief] = @Original_Actief)) AND ((@IsNull_LaatsteActiviteit = 1 AND [LaatsteActiviteit] IS NULL) OR ([LaatsteActiviteit] = @Original_LaatsteActiviteit)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@ID";
@@ -2348,9 +2348,9 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Gsm";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Andere_naam";
+            param.ParameterName = "@AndereNaam";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Datum";
@@ -2363,9 +2363,9 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Betalingswijze";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Soort_klant";
+            param.ParameterName = "@SoortKlant";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Actief";
@@ -2374,9 +2374,9 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceColumn = "Actief";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Laatste_activiteit";
+            param.ParameterName = "@LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
             param.ParameterName = "@Original_ID";
@@ -2460,17 +2460,17 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Andere_naam";
+            param.ParameterName = "@IsNull_AndereNaam";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Andere_naam";
+            param.ParameterName = "@Original_AndereNaam";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Andere naam";
+            param.SourceColumn = "AndereNaam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
@@ -2502,17 +2502,17 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Soort_klant";
+            param.ParameterName = "@IsNull_SoortKlant";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Soort_klant";
+            param.ParameterName = "@Original_SoortKlant";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Soort klant";
+            param.SourceColumn = "SoortKlant";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
@@ -2531,17 +2531,17 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@IsNull_Laatste_activiteit";
+            param.ParameterName = "@IsNull_LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.Int32;
             param.DbType = global::System.Data.DbType.Int32;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::System.Data.SQLite.SQLiteParameter();
-            param.ParameterName = "@Original_Laatste_activiteit";
+            param.ParameterName = "@Original_LaatsteActiviteit";
             param.DbType = global::System.Data.DbType.String;
-            param.SourceColumn = "Laatste activiteit";
+            param.SourceColumn = "LaatsteActiviteit";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -2560,8 +2560,8 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [ID], [Naam], [Voornaam], [Straat], [Nummer], [Postcode], [Gemeente], [Tel" +
-                "efoon], [Gsm], [Andere naam], [Datum], [Betalingswijze], [Soort klant], [Actief]" +
-                ", [Laatste activiteit] FROM [Klanten]";
+                "efoon], [Gsm], [AndereNaam], [Datum], [Betalingswijze], [SoortKlant], [Actief], " +
+                "[LaatsteActiviteit] FROM [Klanten]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2622,7 +2622,7 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_ID, string Original_Naam, string Original_Voornaam, string Original_Straat, long Original_Nummer, long Original_Postcode, string Original_Gemeente, string Original_Telefoon, string Original_Gsm, string Original_Andere_naam, string Original_Datum, string Original_Betalingswijze, string Original_Soort_klant, global::System.Nullable<long> Original_Actief, string Original_Laatste_activiteit) {
+        public virtual int Delete(long Original_ID, string Original_Naam, string Original_Voornaam, string Original_Straat, long Original_Nummer, long Original_Postcode, string Original_Gemeente, string Original_Telefoon, string Original_Gsm, string Original_AndereNaam, string Original_Datum, string Original_Betalingswijze, string Original_SoortKlant, global::System.Nullable<long> Original_Actief, string Original_LaatsteActiviteit) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_ID));
             if ((Original_Naam == null)) {
                 throw new global::System.ArgumentNullException("Original_Naam");
@@ -2668,13 +2668,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Gsm));
             }
-            if ((Original_Andere_naam == null)) {
+            if ((Original_AndereNaam == null)) {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_Andere_naam));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_AndereNaam));
             }
             if ((Original_Datum == null)) {
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
@@ -2692,13 +2692,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_Betalingswijze));
             }
-            if ((Original_Soort_klant == null)) {
+            if ((Original_SoortKlant == null)) {
                 this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_Soort_klant));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_SoortKlant));
             }
             if ((Original_Actief.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
@@ -2708,13 +2708,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
-            if ((Original_Laatste_activiteit == null)) {
+            if ((Original_LaatsteActiviteit == null)) {
                 this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((string)(Original_Laatste_activiteit));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((string)(Original_LaatsteActiviteit));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2736,7 +2736,7 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(long ID, string Naam, string Voornaam, string Straat, long Nummer, long Postcode, string Gemeente, string Telefoon, string Gsm, string Andere_naam, string Datum, string Betalingswijze, string Soort_klant, global::System.Nullable<long> Actief, string Laatste_activiteit) {
+        public virtual int Insert(long ID, string Naam, string Voornaam, string Straat, long Nummer, long Postcode, string Gemeente, string Telefoon, string Gsm, string AndereNaam, string Datum, string Betalingswijze, string SoortKlant, global::System.Nullable<long> Actief, string LaatsteActiviteit) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((long)(ID));
             if ((Naam == null)) {
                 throw new global::System.ArgumentNullException("Naam");
@@ -2776,11 +2776,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Gsm));
             }
-            if ((Andere_naam == null)) {
+            if ((AndereNaam == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Andere_naam));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(AndereNaam));
             }
             if ((Datum == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
@@ -2794,11 +2794,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = ((string)(Betalingswijze));
             }
-            if ((Soort_klant == null)) {
+            if ((SoortKlant == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Soort_klant));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(SoortKlant));
             }
             if ((Actief.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = ((long)(Actief.Value));
@@ -2806,11 +2806,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((Laatste_activiteit == null)) {
+            if ((LaatsteActiviteit == null)) {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(Laatste_activiteit));
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(LaatsteActiviteit));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2842,12 +2842,12 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                     string Gemeente, 
                     string Telefoon, 
                     string Gsm, 
-                    string Andere_naam, 
+                    string AndereNaam, 
                     string Datum, 
                     string Betalingswijze, 
-                    string Soort_klant, 
+                    string SoortKlant, 
                     global::System.Nullable<long> Actief, 
-                    string Laatste_activiteit, 
+                    string LaatsteActiviteit, 
                     long Original_ID, 
                     string Original_Naam, 
                     string Original_Voornaam, 
@@ -2857,12 +2857,12 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                     string Original_Gemeente, 
                     string Original_Telefoon, 
                     string Original_Gsm, 
-                    string Original_Andere_naam, 
+                    string Original_AndereNaam, 
                     string Original_Datum, 
                     string Original_Betalingswijze, 
-                    string Original_Soort_klant, 
+                    string Original_SoortKlant, 
                     global::System.Nullable<long> Original_Actief, 
-                    string Original_Laatste_activiteit) {
+                    string Original_LaatsteActiviteit) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(ID));
             if ((Naam == null)) {
                 throw new global::System.ArgumentNullException("Naam");
@@ -2902,11 +2902,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Gsm));
             }
-            if ((Andere_naam == null)) {
+            if ((AndereNaam == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Andere_naam));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(AndereNaam));
             }
             if ((Datum == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
@@ -2920,11 +2920,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Betalingswijze));
             }
-            if ((Soort_klant == null)) {
+            if ((SoortKlant == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Soort_klant));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(SoortKlant));
             }
             if ((Actief.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(Actief.Value));
@@ -2932,11 +2932,11 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((Laatste_activiteit == null)) {
+            if ((LaatsteActiviteit == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Laatste_activiteit));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(LaatsteActiviteit));
             }
             this.Adapter.UpdateCommand.Parameters[15].Value = ((long)(Original_ID));
             if ((Original_Naam == null)) {
@@ -2983,13 +2983,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_Gsm));
             }
-            if ((Original_Andere_naam == null)) {
+            if ((Original_AndereNaam == null)) {
                 this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Andere_naam));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_AndereNaam));
             }
             if ((Original_Datum == null)) {
                 this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
@@ -3007,13 +3007,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(Original_Betalingswijze));
             }
-            if ((Original_Soort_klant == null)) {
+            if ((Original_SoortKlant == null)) {
                 this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((string)(Original_Soort_klant));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((string)(Original_SoortKlant));
             }
             if ((Original_Actief.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
@@ -3023,13 +3023,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
-            if ((Original_Laatste_activiteit == null)) {
+            if ((Original_LaatsteActiviteit == null)) {
                 this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_Laatste_activiteit));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_LaatsteActiviteit));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3060,12 +3060,12 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                     string Gemeente, 
                     string Telefoon, 
                     string Gsm, 
-                    string Andere_naam, 
+                    string AndereNaam, 
                     string Datum, 
                     string Betalingswijze, 
-                    string Soort_klant, 
+                    string SoortKlant, 
                     global::System.Nullable<long> Actief, 
-                    string Laatste_activiteit, 
+                    string LaatsteActiviteit, 
                     long Original_ID, 
                     string Original_Naam, 
                     string Original_Voornaam, 
@@ -3075,13 +3075,13 @@ namespace ISIS.ISIS_KlantenDataSetTableAdapters {
                     string Original_Gemeente, 
                     string Original_Telefoon, 
                     string Original_Gsm, 
-                    string Original_Andere_naam, 
+                    string Original_AndereNaam, 
                     string Original_Datum, 
                     string Original_Betalingswijze, 
-                    string Original_Soort_klant, 
+                    string Original_SoortKlant, 
                     global::System.Nullable<long> Original_Actief, 
-                    string Original_Laatste_activiteit) {
-            return this.Update(Original_ID, Naam, Voornaam, Straat, Nummer, Postcode, Gemeente, Telefoon, Gsm, Andere_naam, Datum, Betalingswijze, Soort_klant, Actief, Laatste_activiteit, Original_ID, Original_Naam, Original_Voornaam, Original_Straat, Original_Nummer, Original_Postcode, Original_Gemeente, Original_Telefoon, Original_Gsm, Original_Andere_naam, Original_Datum, Original_Betalingswijze, Original_Soort_klant, Original_Actief, Original_Laatste_activiteit);
+                    string Original_LaatsteActiviteit) {
+            return this.Update(Original_ID, Naam, Voornaam, Straat, Nummer, Postcode, Gemeente, Telefoon, Gsm, AndereNaam, Datum, Betalingswijze, SoortKlant, Actief, LaatsteActiviteit, Original_ID, Original_Naam, Original_Voornaam, Original_Straat, Original_Nummer, Original_Postcode, Original_Gemeente, Original_Telefoon, Original_Gsm, Original_AndereNaam, Original_Datum, Original_Betalingswijze, Original_SoortKlant, Original_Actief, Original_LaatsteActiviteit);
         }
     }
     

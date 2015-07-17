@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ISIS_KlantenModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS_Klanten.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ISIS_KlantenModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS_Klanten.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Klanten">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,12 +18,12 @@
           <Property Name="Gemeente" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="Telefoon" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Gsm" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Andere naam" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="AndereNaam" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Datum" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Betalingswijze" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="Soort klant" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="SoortKlant" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Actief" Type="integer" />
-          <Property Name="Laatste activiteit" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="LaatsteActiviteit" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Stijkers">
           <Key>
@@ -46,8 +46,7 @@
           <EntitySet Name="Klanten" EntityType="Self.Klanten" store:Type="Tables" />
           <EntitySet Name="Stijkers" EntityType="Self.Stijkers" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ISIS_KlantenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -64,12 +63,12 @@
           <Property Name="Gemeente" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telefoon" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Gsm" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Andere_naam" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Datum" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Betalingswijze" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Soort_klant" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Actief" Type="Int64" />
-          <Property Name="Laatste_activiteit" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="AndereNaam" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="SoortKlant" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LaatsteActiviteit" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Stijkers">
           <Key>
@@ -101,6 +100,9 @@
           <EntitySetMapping Name="Klanten">
             <EntityTypeMapping TypeName="ISIS_KlantenModel.Klanten">
               <MappingFragment StoreEntitySet="Klanten">
+                <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
+                <ScalarProperty Name="SoortKlant" ColumnName="SoortKlant" />
+                <ScalarProperty Name="AndereNaam" ColumnName="AndereNaam" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Naam" ColumnName="Naam" />
                 <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
@@ -110,12 +112,9 @@
                 <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
                 <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
                 <ScalarProperty Name="Gsm" ColumnName="Gsm" />
-                <ScalarProperty Name="Andere_naam" ColumnName="Andere naam" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Betalingswijze" ColumnName="Betalingswijze" />
-                <ScalarProperty Name="Soort_klant" ColumnName="Soort klant" />
                 <ScalarProperty Name="Actief" ColumnName="Actief" />
-                <ScalarProperty Name="Laatste_activiteit" ColumnName="Laatste activiteit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -146,12 +146,12 @@
                     <DataGridTextColumn x:Name="gemeenteColumn" Width="2*" Header="Gemeente" Binding="{Binding Gemeente}"/>
                     <DataGridTextColumn x:Name="telefoonColumn" Width="2*" Header="Telefoon" Binding="{Binding Telefoon}"/>
                     <DataGridTextColumn x:Name="gsmColumn" Width="2*" Header="Gsm" Binding="{Binding Gsm}"/>
-                    <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding Andere naam}"/>
+                    <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding AndereNaam}"/>
                     <DataGridTextColumn x:Name="datumColumn" Width="2*" Header="Datum" Binding="{Binding Datum}"/>
                     <DataGridTextColumn x:Name="betalingswijzeColumn" Width="SizeToHeader" Header="Betalingswijze" Binding="{Binding Betalingswijze}"/>
-                    <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding Soort klant}"/>
+                    <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding SoortKlant}"/>
                     <DataGridTextColumn x:Name="actiefColumn" Width="1*" Header="Actief" Binding="{Binding Actief}"/>
-                    <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding Laatste activiteit}"/>
+                    <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding LaatsteActiviteit}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

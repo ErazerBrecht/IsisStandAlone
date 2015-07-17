@@ -46,12 +46,12 @@ namespace ISIS
         public string Gemeente { get; set; }
         public string Telefoon { get; set; }
         public string Gsm { get; set; }
-        public string Andere_naam { get; set; }
+        public string AndereNaam { get; set; }
         public string Datum { get; set; }
         public string Betalingswijze { get; set; }
-        public string Soort_klant { get; set; }
+        public string SoortKlant { get; set; }
         public Nullable<long> Actief { get; set; }
-        public string Laatste_activiteit { get; set; }
+        public string LaatsteActiviteit { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
