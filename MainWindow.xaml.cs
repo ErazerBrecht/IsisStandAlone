@@ -24,5 +24,16 @@ namespace ISIS
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            ISIS.ISIS_KlantenDataSet iSIS_KlantenDataSet = ((ISIS.ISIS_KlantenDataSet)(this.FindResource("iSIS_KlantenDataSet")));
+            // Load data into the table Klanten. You can modify this code as needed.
+            ISIS.ISIS_KlantenDataSetTableAdapters.KlantenTableAdapter iSIS_KlantenDataSetKlantenTableAdapter = new ISIS.ISIS_KlantenDataSetTableAdapters.KlantenTableAdapter();
+            iSIS_KlantenDataSetKlantenTableAdapter.Fill(iSIS_KlantenDataSet.Klanten);
+            System.Windows.Data.CollectionViewSource klantenViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klantenViewSource")));
+            klantenViewSource.View.MoveCurrentToFirst();
+        }
     }
 }
