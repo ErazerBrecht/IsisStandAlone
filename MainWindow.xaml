@@ -1,12 +1,10 @@
-﻿<Controls:MetroWindow
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+﻿<Controls:MetroWindow x:Class="ISIS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:ISIS" x:Class="ISIS.MainWindow"
-        Title="MainWindow" Height="900" MinWidth="960" FontSize="21" Loaded="Window_Loaded" Closing="Window_Closing">
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:ISIS"
+        Title="MainWindow" Height="900" MinWidth="960" Closing="MetroWindow_Closing">
     <Window.Resources>
-        <local:ISIS_KlantenDataSet x:Key="iSIS_KlantenDataSet"/>
-        <CollectionViewSource x:Key="klantenViewSource" Source="{Binding Klanten, Source={StaticResource iSIS_KlantenDataSet}}"/>
         <Style TargetType="TextBox">
             <Setter Property="MaxLines" Value="1" />
         </Style>
@@ -14,158 +12,11 @@
             <Setter Property="FontSize" Value="16"></Setter>
         </Style>
     </Window.Resources>
-    
-    <TabControl>
-        <TabItem Header="Berekenen">
-            
-        </TabItem>
-        <TabItem Header="Klantenbeheer">
-            <Grid DataContext="{StaticResource klantenViewSource}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Name="GridInformation">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2"  HorizontalAlignment="Center">
-                        <Button Name="ButtonPrevious" Content="&lt;--" Margin="0,10,0,10" Padding="10,2,10,2" Click="ButtonPrevious_Click"></Button>
-                        <Button Name="ButtonNext" Content="--&gt;" Margin="20,10,0,10" Padding="10,2,10,2" Click="ButtonNext_Click"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="1" Margin="10">
-                        <GroupBox Header="Algemene gegevens">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="ID:  "></TextBlock>
-                                <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ID, Mode=TwoWay}"></TextBox>
-
-                                <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Naam:  "></TextBlock>
-                                <TextBox Grid.Row="1" Margin="0,10,0,0" Grid.Column="1" Text="{Binding Naam, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Row="1" Margin="15,10,0,0" Grid.Column="2" Text="Voornaam:  "></TextBlock>
-                                <TextBox  Grid.Row="1" Margin="0,10,0,0" Grid.Column="3" Text="{Binding Voornaam, Mode=TwoWay}"></TextBox>
-                            </Grid>
-                        </GroupBox>
-
-                        <GroupBox Header="Adres" Margin="0,25,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="6*"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Straat:  "></TextBlock>
-                                <TextBox Grid.Column="1" Text="{Binding Straat, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
-                                <TextBox Grid.Column="3" Text="{Binding Nummer, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
-                                <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Gemeente, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Postcode:  "></TextBlock>
-                                <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Postcode, Mode=TwoWay}"></TextBox>
-                            </Grid>
-                        </GroupBox>
-
-                        <GroupBox Header="Overige gegevens" Margin="0,25,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Telefoon:  "></TextBlock>
-                                <TextBox Grid.Column="1" Text="{Binding Telefoon, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
-                                <TextBox Grid.Column="3" Text="{Binding Gsm, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
-                                <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Andere naam, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Datum toegevoegd:  "></TextBlock>
-                                <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Datum, Mode=TwoWay}"></TextBox>
-                            </Grid>
-                        </GroupBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                        <GroupBox Header="Overige gegevens">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Betalingswijze:  "></TextBlock>
-                                <TextBox Grid.Column="1" Text="{Binding Betalingswijze, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Soort klant:  "></TextBlock>
-                                <TextBox Grid.Column="3" Text="{Binding Soort klant, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
-                                <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBox>
-                                <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Laatste activiteit:  "></TextBlock>
-                                <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Laatste activiteit, Mode=TwoWay}"></TextBox>
-                            </Grid>
-                        </GroupBox>
-
-                        <Grid Margin="0,50,0,10" >
-                            <Button HorizontalAlignment="Left"  Width="125" Content="Refresh" Name="ButtonCancel" Click="ButtonCancel_Click"></Button>
-                            <Button HorizontalAlignment="Center"   Width="125" Content="Delete" Name="ButtonDelete" Click="ButtonDelete_Click"></Button>
-                            <Button HorizontalAlignment="Right"  Width="125" Content="Add" Name="ButtonAdd" Click="ButtonAdd_Click"></Button>
-                        </Grid>
-                        <Button Name="ButtonSave" Content="Save" Click="ButtonSave_Click"></Button>
-                    </StackPanel>
-                </Grid>
-                <DataGrid x:Name="klantenDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="iDColumn" Width="1*" Header="ID" Binding="{Binding ID}"/>
-                        <DataGridTextColumn x:Name="naamColumn" Width="2*" Header="Naam" Binding="{Binding Naam}"/>
-                        <DataGridTextColumn x:Name="voornaamColumn" Width="2*" Header="Voornaam" Binding="{Binding Voornaam}"/>
-                        <DataGridTextColumn x:Name="straatColumn" Width="3*" Header="Straat" Binding="{Binding Straat}"/>
-                        <DataGridTextColumn x:Name="nummerColumn" Width="1*" Header="Nummer" Binding="{Binding Nummer}"/>
-                        <DataGridTextColumn x:Name="postcodeColumn" Width="1*" Header="Postcode" Binding="{Binding Postcode}"/>
-                        <DataGridTextColumn x:Name="gemeenteColumn" Width="2*" Header="Gemeente" Binding="{Binding Gemeente}"/>
-                        <DataGridTextColumn x:Name="telefoonColumn" Width="2*" Header="Telefoon" Binding="{Binding Telefoon}"/>
-                        <DataGridTextColumn x:Name="gsmColumn" Width="2*" Header="Gsm" Binding="{Binding Gsm}"/>
-                        <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding AndereNaam}"/>
-                        <DataGridTextColumn x:Name="datumColumn" Width="2*" Header="Datum" Binding="{Binding Datum}"/>
-                        <DataGridTextColumn x:Name="betalingswijzeColumn" Width="SizeToHeader" Header="Betalingswijze" Binding="{Binding Betalingswijze}"/>
-                        <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding SoortKlant}"/>
-                        <DataGridTextColumn x:Name="actiefColumn" Width="1*" Header="Actief" Binding="{Binding Actief}"/>
-                        <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding LaatsteActiviteit}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </TabItem>
-    </TabControl>
-    
-   
-
+    <Grid>
+        <TabControl>
+            <TabItem Header="Klantenbeheer">
+                <local:KlantenBeheer></local:KlantenBeheer>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Controls:MetroWindow>
