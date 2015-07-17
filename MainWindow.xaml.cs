@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace ISIS
 {
@@ -20,6 +23,11 @@ namespace ISIS
     /// </summary>
     public partial class MainWindow : Window
     {
+        ISIS_KlantenEntities _entities;
+        CollectionViewSource _klantenViewSource;
+        Klanten _addClient;
+        bool _unsavedChanges;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,13 +35,35 @@ namespace ISIS
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            _klantenViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klantenViewSource")));
+            Refresh();
+        }
 
-            ISIS.ISIS_KlantenDataSet iSIS_KlantenDataSet = ((ISIS.ISIS_KlantenDataSet)(this.FindResource("iSIS_KlantenDataSet")));
-            // Load data into the table Klanten. You can modify this code as needed.
-            ISIS.ISIS_KlantenDataSetTableAdapters.KlantenTableAdapter iSIS_KlantenDataSetKlantenTableAdapter = new ISIS.ISIS_KlantenDataSetTableAdapters.KlantenTableAdapter();
-            iSIS_KlantenDataSetKlantenTableAdapter.Fill(iSIS_KlantenDataSet.Klanten);
-            System.Windows.Data.CollectionViewSource klantenViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klantenViewSource")));
-            klantenViewSource.View.MoveCurrentToFirst();
+        private void Refresh()
+        {
+            _unsavedChanges = false;
+
+            if (_entities != null)
+                _entities.Dispose();
+
+            _entities = new ISIS_KlantenEntities();
+            //_entities.Schoolresultaten.Local.CollectionChanged += Local_CollectionChanged;
+            _entities.Klanten.Load();
+            _klantenViewSource.Source = _entities.Klanten.Local;
+            ButtonAdd.IsEnabled = true;
+            //StackPanelInfo.DataContext = _schoolresultatenViewSource;
+        }
+
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (_klantenViewSource.View.CurrentPosition < _entities.Klanten.Local.Count() - 1)
+                _klantenViewSource.View.MoveCurrentToNext();
+        }
+
+        private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            if (_klantenViewSource.View.CurrentPosition > 0)
+                _klantenViewSource.View.MoveCurrentToPrevious();
         }
     }
 }
