@@ -56,6 +56,8 @@
       <Private>True</Private>
       <HintPath>packages\System.Data.SQLite.Linq.1.0.97.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,6 +75,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ISIS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Klanten.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stijkers.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,6 +93,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ISIS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISIS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ISIS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISIS.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -104,6 +127,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ISIS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ISIS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ISIS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ISIS.edmx</DependentUpon>
+      <LastGenOutput>ISIS.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ISIS.edmx.diagram">
+      <DependentUpon>ISIS.edmx</DependentUpon>
+    </None>
+    <None Include="ISIS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ISIS.edmx</DependentUpon>
+      <LastGenOutput>ISIS.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -113,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.97.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.97.0\build\net451\System.Data.SQLite.Core.targets')" />
