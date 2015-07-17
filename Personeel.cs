@@ -11,8 +11,9 @@ namespace ISIS
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
-    public partial class Personeel
+    public partial class Personeel : INotifyPropertyChanged
     {
         public long ID { get; set; }
         public string Naam { get; set; }
@@ -27,5 +28,15 @@ namespace ISIS
         public string Actief { get; set; }
         public string LaatsteWijziging { get; set; }
         public string Nota { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NoticeMe(string p)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(p));
+            }
+        }
     }
 }

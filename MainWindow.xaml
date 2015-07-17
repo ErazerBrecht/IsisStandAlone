@@ -17,6 +17,9 @@
             <TabItem Header="Klantenbeheer">
                 <local:KlantenBeheer></local:KlantenBeheer>
             </TabItem>
+            <TabItem Header="Personeelbeheer">
+                <local:PersoneelBeheer></local:PersoneelBeheer>
+            </TabItem>
         </TabControl>
     </Grid>
 </Controls:MetroWindow>

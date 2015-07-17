@@ -94,12 +94,19 @@
     <Compile Include="Klanten.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Personeel.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersooneelBeheer.xaml.cs">
+      <DependentUpon>PersooneelBeheer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Stijkers.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
+    <Page Include="PersooneelBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="KlantenBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
