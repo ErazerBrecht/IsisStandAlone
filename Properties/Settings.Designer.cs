@@ -22,5 +22,15 @@ namespace ISIS.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"F:\\Dropbox\\ISIS Rijkevorsel\\ISIS\\bin\\Debug\\ISIS_Klanten.sqlite\"")]
+        public string ISIS_KlantenConnectionString {
+            get {
+                return ((string)(this["ISIS_KlantenConnectionString"]));
+            }
+        }
     }
 }

@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ISIS_KlantenDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISIS_KlantenDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Klanten.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -143,6 +148,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ISIS.edmx</DependentUpon>
       <LastGenOutput>ISIS.cs</LastGenOutput>
+    </None>
+    <None Include="ISIS_KlantenDataSet.xsc">
+      <DependentUpon>ISIS_KlantenDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ISIS_KlantenDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ISIS_KlantenDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ISIS_KlantenDataSet.xss">
+      <DependentUpon>ISIS_KlantenDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
