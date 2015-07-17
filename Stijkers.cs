@@ -24,7 +24,8 @@ namespace ISIS
         public string Gsm { get; set; }
         public string RSZ { get; set; }
         public string Actief { get; set; }
-        public string Laatste_wijziging { get; set; }
         public string Nota { get; set; }
+        public string Voornaam { get; set; }
+        public string LaatsteWijziging { get; set; }
     }
 }
