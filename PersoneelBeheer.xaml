@@ -131,6 +131,6 @@
 
             </StackPanel>
         </Grid>
-        <DataGrid x:Name="strijkersDataGrid" Grid.Row="2" AutoGenerateColumns="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"/>
+        <DataGrid x:Name="strijkersDataGrid" Grid.Row="2" AutoGenerateColumns="True" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"/>
     </Grid>
 </UserControl>
