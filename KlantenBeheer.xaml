@@ -4,8 +4,8 @@
         xmlns:local="clr-namespace:ISIS" x:Class="ISIS.KlantenBeheer"
         FontSize="21" Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        <local:ISIS_KlantenDataSet x:Key="iSIS_KlantenDataSet"/>
-        <CollectionViewSource x:Key="klantenViewSource" Source="{Binding Klanten, Source={StaticResource iSIS_KlantenDataSet}}"/>
+        <local:ISIS_DataDataSet x:Key="iSIS_DataDataSet"/>
+        <CollectionViewSource x:Key="klantenViewSource" Source="{Binding Klanten, Source={StaticResource iSIS_DataDataSet}}"/>
     </UserControl.Resources>
     <Grid DataContext="{StaticResource klantenViewSource}">
         <Grid.RowDefinitions>
@@ -91,14 +91,14 @@
                         <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
                         <TextBox Grid.Column="3" Text="{Binding Gsm, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Andere naam, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding AndereNaam, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Datum toegevoegd:  "></TextBlock>
                         <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Datum, Mode=TwoWay}"></TextBox>
                     </Grid>
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{StaticResource klantenViewSource}">
                 <GroupBox Header="Overige gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -114,11 +114,11 @@
                         <TextBlock Text="Betalingswijze:  "></TextBlock>
                         <TextBox Grid.Column="1" Text="{Binding Betalingswijze, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Soort klant:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding Soort klant, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="3" Text="{Binding SoortKlant, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Laatste activiteit, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding LaatsteActiviteit, Mode=TwoWay}"></TextBox>
                     </Grid>
                 </GroupBox>
 
@@ -128,26 +128,11 @@
                     <Button HorizontalAlignment="Right"  Width="125" Content="Add" Name="ButtonAdd" Click="ButtonAdd_Click"></Button>
                 </Grid>
                 <Button Name="ButtonSave" Content="Save" Click="ButtonSave_Click"></Button>
+
             </StackPanel>
+            
         </Grid>
-        <DataGrid x:Name="klantenDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn" Width="1*" Header="ID" Binding="{Binding ID}"/>
-                <DataGridTextColumn x:Name="naamColumn" Width="2*" Header="Naam" Binding="{Binding Naam}"/>
-                <DataGridTextColumn x:Name="voornaamColumn" Width="2*" Header="Voornaam" Binding="{Binding Voornaam}"/>
-                <DataGridTextColumn x:Name="straatColumn" Width="3*" Header="Straat" Binding="{Binding Straat}"/>
-                <DataGridTextColumn x:Name="nummerColumn" Width="1*" Header="Nummer" Binding="{Binding Nummer}"/>
-                <DataGridTextColumn x:Name="postcodeColumn" Width="1*" Header="Postcode" Binding="{Binding Postcode}"/>
-                <DataGridTextColumn x:Name="gemeenteColumn" Width="2*" Header="Gemeente" Binding="{Binding Gemeente}"/>
-                <DataGridTextColumn x:Name="telefoonColumn" Width="2*" Header="Telefoon" Binding="{Binding Telefoon}"/>
-                <DataGridTextColumn x:Name="gsmColumn" Width="2*" Header="Gsm" Binding="{Binding Gsm}"/>
-                <DataGridTextColumn x:Name="andere_naamColumn" Width="2*" Header="Andere naam" Binding="{Binding AndereNaam}"/>
-                <DataGridTextColumn x:Name="datumColumn" Width="2*" Header="Datum" Binding="{Binding Datum}"/>
-                <DataGridTextColumn x:Name="betalingswijzeColumn" Width="SizeToHeader" Header="Betalingswijze" Binding="{Binding Betalingswijze}"/>
-                <DataGridTextColumn x:Name="soort_klantColumn" Width="1*" Header="Soort klant" Binding="{Binding SoortKlant}"/>
-                <DataGridTextColumn x:Name="actiefColumn" Width="1*" Header="Actief" Binding="{Binding Actief}"/>
-                <DataGridTextColumn x:Name="laatste_activiteitColumn" Width="2*" Header="Laatste activiteit" Binding="{Binding LaatsteActiviteit}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+
+        <DataGrid x:Name="klantenDataGrid" AutoGenerateColumns="True" ColumnWidth="Auto" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected"/>
     </Grid>
 </UserControl>

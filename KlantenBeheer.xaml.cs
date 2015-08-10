@@ -23,7 +23,7 @@ namespace ISIS
     /// </summary>
     public partial class KlantenBeheer : System.Windows.Controls.UserControl
     {
-        ISIS_KlantenEntities _entities;
+        ISIS_DataEntities _entities;
         CollectionViewSource _klantenViewSource;
         Klanten _addClient;
         bool _unsavedChanges;
@@ -39,6 +39,13 @@ namespace ISIS
             Refresh();
             var window = Window.GetWindow(this);
             window.Closing += window_Closing;
+            // Do not load your data at design time.
+            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            // {
+            // 	//Load your data here and assign the result to the CollectionViewSource.
+            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
+            // 	myCollectionViewSource.Source = your data
+            // }
         }
 
         void window_Closing(object sender, CancelEventArgs e)
@@ -53,7 +60,7 @@ namespace ISIS
             if (_entities != null)
                 _entities.Dispose();
 
-            _entities = new ISIS_KlantenEntities();
+            _entities = new ISIS_DataEntities();
             _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;

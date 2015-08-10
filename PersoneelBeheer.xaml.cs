@@ -23,9 +23,9 @@ namespace ISIS
     /// </summary>
     public partial class PersoneelBeheer : System.Windows.Controls.UserControl
     {
-        ISIS_KlantenEntities _entities;
+        ISIS_DataEntities _entities;
         CollectionViewSource _PersoneelViewSource;
-        Personeel _addPersoneel;
+        Strijkers _addPersoneel;
         bool _unsavedChanges;
 
         public PersoneelBeheer()
@@ -35,10 +35,17 @@ namespace ISIS
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            _PersoneelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("personeelViewSource")));
+            _PersoneelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("strijkersViewSource")));
             Refresh();
             var window = Window.GetWindow(this);
             window.Closing += window_Closing;
+            // Do not load your data at design time.
+            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+            // {
+            // 	//Load your data here and assign the result to the CollectionViewSource.
+            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
+            // 	myCollectionViewSource.Source = your data
+            // }
         }
 
         void window_Closing(object sender, CancelEventArgs e)
@@ -53,19 +60,19 @@ namespace ISIS
             if (_entities != null)
                 _entities.Dispose();
 
-            _entities = new ISIS_KlantenEntities();
-            _entities.Personeel.Local.CollectionChanged += Local_CollectionChanged;
-            _entities.Personeel.Load();
-            _PersoneelViewSource.Source = _entities.Personeel.Local;
+            _entities = new ISIS_DataEntities();
+            //_entities.Strijkers.Local.CollectionChanged += Local_CollectionChanged;
+            _entities.Strijkers.Load();
+            _PersoneelViewSource.Source = _entities.Strijkers.Local;
             ButtonAdd.Content = "Add";
             GridInformation.DataContext = _PersoneelViewSource;
         }
 
-        void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        /*void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Personeel item in e.OldItems)
+                foreach (Strijkers item in e.OldItems)
                 {
                     //Removed items => Delete event
                     item.PropertyChanged -= EntityViewModelPropertyChanged;
@@ -73,13 +80,13 @@ namespace ISIS
             }
             else if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                foreach (Personeel item in e.NewItems)
+                foreach (Strijkers item in e.NewItems)
                 {
                     //Added items => Add event
                     item.PropertyChanged += EntityViewModelPropertyChanged;
                 }
             }
-        }
+        }*/
 
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -113,7 +120,7 @@ namespace ISIS
         {
             if (_addPersoneel != null)
             {
-                _entities.Personeel.Add(_addPersoneel);
+                _entities.Strijkers.Add(_addPersoneel);
             }
 
             _entities.SaveChanges();
@@ -122,7 +129,7 @@ namespace ISIS
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            if (_PersoneelViewSource.View.CurrentPosition < _entities.Personeel.Local.Count() - 1)
+            if (_PersoneelViewSource.View.CurrentPosition < _entities.Strijkers.Local.Count() - 1)
                 _PersoneelViewSource.View.MoveCurrentToNext();
         }
 
@@ -139,7 +146,7 @@ namespace ISIS
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            _entities.Personeel.Remove((Personeel)_PersoneelViewSource.View.CurrentItem);
+            _entities.Strijkers.Remove((Strijkers)_PersoneelViewSource.View.CurrentItem);
             _unsavedChanges = true;
             //_entities.SaveChanges();
             //Refresh();
@@ -149,7 +156,7 @@ namespace ISIS
         {
             if (ButtonAdd.Content.ToString() == "Add")
             {
-                _addPersoneel = new Personeel();
+                _addPersoneel = new Strijkers();
                 GridInformation.DataContext = _addPersoneel;
                 ButtonAdd.Content = "Cancel";
             }

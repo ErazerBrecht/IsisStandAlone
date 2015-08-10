@@ -13,10 +13,10 @@ namespace ISIS
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ISIS_KlantenEntities : DbContext
+    public partial class ISIS_DataEntities : DbContext
     {
-        public ISIS_KlantenEntities()
-            : base("name=ISIS_KlantenEntities")
+        public ISIS_DataEntities()
+            : base("name=ISIS_DataEntities")
         {
         }
     
@@ -26,6 +26,6 @@ namespace ISIS
         }
     
         public virtual DbSet<Klanten> Klanten { get; set; }
-        public virtual DbSet<Personeel> Personeel { get; set; }
+        public virtual DbSet<Strijkers> Strijkers { get; set; }
     }
 }

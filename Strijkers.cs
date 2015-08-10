@@ -11,32 +11,19 @@ namespace ISIS
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
-    public partial class Personeel : INotifyPropertyChanged
+    public partial class Strijkers
     {
-        public long ID { get; set; }
+        public int ID { get; set; }
         public string Naam { get; set; }
-        public string Voornaam { get; set; }
-        public string Straat { get; set; }
-        public Nullable<long> Nummer { get; set; }
-        public Nullable<long> Postcode { get; set; }
+        public string Adres { get; set; }
+        public Nullable<int> Nummer { get; set; }
+        public Nullable<int> Postcode { get; set; }
         public string Gemeente { get; set; }
-        public string Telefoon { get; set; }
-        public string Gsm { get; set; }
+        public Nullable<int> Tel { get; set; }
         public string RSZ { get; set; }
         public string Actief { get; set; }
         public string LaatsteWijziging { get; set; }
         public string Nota { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NoticeMe(string p)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(p));
-            }
-        }
     }
 }

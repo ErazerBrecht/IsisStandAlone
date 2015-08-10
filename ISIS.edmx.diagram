@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b14970dce0104d42b6a2a23981ce0ae9" Name="Diagram1">
-        <EntityTypeShape EntityType="ISIS_KlantenModel.Klanten" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ISIS_KlantenModel.Personeel" Width="1.5" PointX="5.375" PointY="0.75" />
+      <Diagram DiagramId="6a5a00ff8926444aa954a364b204bba7" Name="Diagram1">
+        <EntityTypeShape EntityType="ISIS_DataModel.Klanten" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISIS_DataModel.Strijkers" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

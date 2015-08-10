@@ -12,18 +12,17 @@ namespace ISIS
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-
+    
     public partial class Klanten : INotifyPropertyChanged
     {
-        //TODO: Change everything to full properties
-        public long ID { get; set; }
-
+        public int ID { get; set; }
+        public string Gebruikersnummer { get; set; }
         private string _naam;
         public string Naam
         {
             get { return _naam; }
-            set 
-            { 
+            set
+            {
                 _naam = value;
                 NoticeMe("Naam");
             }
@@ -33,36 +32,39 @@ namespace ISIS
         public string Voornaam
         {
             get { return _voornaam; }
-            set 
-            { 
+            set
+            {
                 _voornaam = value;
                 NoticeMe("Voornaam");
             }
         }
-        
+
         public string Straat { get; set; }
-        public long Nummer { get; set; }
-        public long Postcode { get; set; }
+        public Nullable<int> Nummer { get; set; }
+        public Nullable<int> Postcode { get; set; }
         public string Gemeente { get; set; }
         public string Telefoon { get; set; }
         public string Gsm { get; set; }
+        public string Email { get; set; }
         private string _andereNaam;
 
         public string AndereNaam
         {
             get { return _andereNaam; }
-            set 
-            { 
+            set
+            {
                 _andereNaam = value;
                 NoticeMe("AndereNaam");
             }
         }
-        
         public string Datum { get; set; }
         public string Betalingswijze { get; set; }
         public string SoortKlant { get; set; }
-        public Nullable<long> Actief { get; set; }
+        public Nullable<int> Actief { get; set; }
         public string LaatsteActiviteit { get; set; }
+        public Nullable<int> Strijkbox { get; set; }
+        public Nullable<int> Waarborg { get; set; }
+        public string Bericht { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
