@@ -93,7 +93,7 @@
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding AndereNaam, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="E-mail:  "></TextBlock>
-                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Email, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Email}"></TextBox>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -121,9 +121,9 @@
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Bericht:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBlock>
                     </Grid>
                 </GroupBox>
 
@@ -149,17 +149,17 @@
                 <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="telefoonColumn" Binding="{Binding Telefoon}" Header="Telefoon" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm}" Header="Gsm" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm}" Header="Gsm" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam}" Header="Andere Naam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="datumColumn" Binding="{Binding Datum , StringFormat=dd-MM-yyyy}" Header="Datum" Width="SizeToCells"/>
                 <DataGridComboBoxColumn x:Name="betalingswijzeColumn" SelectedItemBinding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToCells"/>
                 <DataGridComboBoxColumn x:Name="soortKlantColumn" SelectedItemBinding="{Binding SoortKlant}" Header="Soort Klant" Width="SizeToCells" />
-                <DataGridTextColumn x:Name="actiefColumn" Binding="{Binding Actief}" Header="Actief" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="laatsteActiviteitColumn" IsReadOnly="True" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="strijkboxColumn" Binding="{Binding Strijkbox}" Header="Strijkbox" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="waarborgColumn" Binding="{Binding Waarborg}" Header="Waarborg" Width="SizeToCells"/>
-                <DataGridComboBoxColumn x:Name="berichtColumn" SelectedItemBinding="{Binding Bericht}" Header="Bericht" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="actiefColumn" Binding="{Binding Actief}" Header="Actief" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="laatsteActiviteitColumn" IsReadOnly="True" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="strijkboxColumn" Binding="{Binding Strijkbox}" Header="Strijkbox" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="waarborgColumn" Binding="{Binding Waarborg}" Header="Waarborg" Width="SizeToHeader"/>
+                <DataGridComboBoxColumn x:Name="berichtColumn" SelectedItemBinding="{Binding Bericht}" Header="Bericht" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
