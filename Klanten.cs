@@ -45,21 +45,21 @@ namespace ISIS
         public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private string _anderenaam;
         public string AndereNaam { get { return _anderenaam; } set { _anderenaam = value; OnPropertyChanged("AndereNaam");} }
-    private string _datum;
-        public string Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum");} }
     private string _betalingswijze;
         public string Betalingswijze { get { return _betalingswijze; } set { _betalingswijze = value; OnPropertyChanged("Betalingswijze");} }
     private string _soortklant;
         public string SoortKlant { get { return _soortklant; } set { _soortklant = value; OnPropertyChanged("SoortKlant");} }
     private Nullable<int> _actief;
         public Nullable<int> Actief { get { return _actief; } set { _actief = value; OnPropertyChanged("Actief");} }
-    private string _laatsteactiviteit;
-        public string LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
     private Nullable<int> _strijkbox;
         public Nullable<int> Strijkbox { get { return _strijkbox; } set { _strijkbox = value; OnPropertyChanged("Strijkbox");} }
     private Nullable<int> _waarborg;
         public Nullable<int> Waarborg { get { return _waarborg; } set { _waarborg = value; OnPropertyChanged("Waarborg");} }
     private string _bericht;
         public string Bericht { get { return _bericht; } set { _bericht = value; OnPropertyChanged("Bericht");} }
+    private Nullable<System.DateTime> _datum;
+        public Nullable<System.DateTime> Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum");} }
+    private Nullable<System.DateTime> _laatsteactiviteit;
+        public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
     }
 }

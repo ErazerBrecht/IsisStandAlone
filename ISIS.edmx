@@ -10,25 +10,25 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Gebruikersnummer" Type="text" />
-          <Property Name="Naam" Type="text" Nullable="false" />
-          <Property Name="Voornaam" Type="text" />
-          <Property Name="Straat" Type="text" />
+          <Property Name="Gebruikersnummer" Type="nchar" MaxLength="13" />
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="50" />
+          <Property Name="Straat" Type="varchar" MaxLength="50" />
           <Property Name="Nummer" Type="int" />
           <Property Name="Postcode" Type="int" />
-          <Property Name="Gemeente" Type="text" />
+          <Property Name="Gemeente" Type="varchar" MaxLength="50" />
           <Property Name="Telefoon" Type="varchar" MaxLength="15" />
           <Property Name="Gsm" Type="varchar" MaxLength="15" />
-          <Property Name="Email" Type="text" />
-          <Property Name="AndereNaam" Type="text" />
-          <Property Name="Datum" Type="text" />
-          <Property Name="Betalingswijze" Type="text" />
-          <Property Name="SoortKlant" Type="text" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="AndereNaam" Type="varchar" MaxLength="50" />
+          <Property Name="Betalingswijze" Type="varchar" MaxLength="12" />
+          <Property Name="SoortKlant" Type="varchar" MaxLength="50" />
           <Property Name="Actief" Type="int" />
-          <Property Name="LaatsteActiviteit" Type="text" />
           <Property Name="Strijkbox" Type="int" />
           <Property Name="Waarborg" Type="int" />
-          <Property Name="Bericht" Type="text" />
+          <Property Name="Bericht" Type="varchar" MaxLength="4" />
+          <Property Name="Datum" Type="date" />
+          <Property Name="LaatsteActiviteit" Type="date" />
         </EntityType>
         <EntityType Name="Strijkers">
           <Key>
@@ -55,32 +55,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ISIS_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Klanten">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Gebruikersnummer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Naam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Voornaam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Straat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Nummer" Type="Int32" />
-          <Property Name="Postcode" Type="Int32" />
-          <Property Name="Gemeente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Telefoon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Gsm" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="AndereNaam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Datum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Betalingswijze" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SoortKlant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Actief" Type="Int32" />
-          <Property Name="LaatsteActiviteit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Strijkbox" Type="Int32" />
-          <Property Name="Waarborg" Type="Int32" />
-          <Property Name="Bericht" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
+      <Schema Namespace="ISIS_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm"> 
         <EntityType Name="Strijkers">
           <Key>
             <PropertyRef Name="ID" />
@@ -100,41 +75,40 @@
           <Property Name="UrenTewerkstelling" Type="Int32" />
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Klanten" EntityType="Self.Klanten" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" />
+          <EntitySet Name="Klantens" EntityType="ISIS_DataModel.Klanten" />
         </EntityContainer>
+        <EntityType Name="Klanten">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Gebruikersnummer" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Straat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nummer" Type="Int32" />
+          <Property Name="Postcode" Type="Int32" />
+          <Property Name="Gemeente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Gsm" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AndereNaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Betalingswijze" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="SoortKlant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Actief" Type="Int32" />
+          <Property Name="Strijkbox" Type="Int32" />
+          <Property Name="Waarborg" Type="Int32" />
+          <Property Name="Bericht" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Datum" Type="DateTime" Precision="0" />
+          <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ISIS_DataModelStoreContainer" CdmEntityContainer="ISIS_DataEntities">
-          <EntitySetMapping Name="Klanten">
-            <EntityTypeMapping TypeName="ISIS_DataModel.Klanten">
-              <MappingFragment StoreEntitySet="Klanten">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Gebruikersnummer" ColumnName="Gebruikersnummer" />
-                <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
-                <ScalarProperty Name="Straat" ColumnName="Straat" />
-                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
-                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
-                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="AndereNaam" ColumnName="AndereNaam" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="Betalingswijze" ColumnName="Betalingswijze" />
-                <ScalarProperty Name="SoortKlant" ColumnName="SoortKlant" />
-                <ScalarProperty Name="Actief" ColumnName="Actief" />
-                <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
-                <ScalarProperty Name="Strijkbox" ColumnName="Strijkbox" />
-                <ScalarProperty Name="Waarborg" ColumnName="Waarborg" />
-                <ScalarProperty Name="Bericht" ColumnName="Bericht" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="ISIS_DataModelStoreContainer" CdmEntityContainer="ISIS_DataEntities">    
           <EntitySetMapping Name="Strijkers">
             <EntityTypeMapping TypeName="ISIS_DataModel.Strijkers">
               <MappingFragment StoreEntitySet="Strijkers">
@@ -154,6 +128,32 @@
                 </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Klantens">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Klanten">
+              <MappingFragment StoreEntitySet="Klanten">
+                <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Bericht" ColumnName="Bericht" />
+                <ScalarProperty Name="Waarborg" ColumnName="Waarborg" />
+                <ScalarProperty Name="Strijkbox" ColumnName="Strijkbox" />
+                <ScalarProperty Name="Actief" ColumnName="Actief" />
+                <ScalarProperty Name="SoortKlant" ColumnName="SoortKlant" />
+                <ScalarProperty Name="Betalingswijze" ColumnName="Betalingswijze" />
+                <ScalarProperty Name="AndereNaam" ColumnName="AndereNaam" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Gebruikersnummer" ColumnName="Gebruikersnummer" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -168,7 +168,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
