@@ -64,7 +64,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Straat:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding Straat, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="1" Text="{Binding Adres, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
                         <TextBox Grid.Column="3" Text="{Binding Nummer, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
@@ -87,13 +87,11 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Telefoon:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding Telefoon, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding Gsm, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Andere naam, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Datum, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="1" Text="{Binding Tel, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="E-mail:  "></TextBlock>
+                        <TextBox Grid.Column="3" Text="{Binding Email, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" Text="Bankrekening:  "></TextBlock>
+                        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Margin="15,10,0,0" Grid.Row="1" Text="{Binding Path=Bankrekening, Mode=TwoWay}"></TextBox>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -111,14 +109,14 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Betalingswijze:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding Betalingswijze, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Soort klant:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding Soort klant, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Laatste activiteit}"></TextBlock>
+                        <TextBlock Text="Login:  "></TextBlock>
+                        <TextBox Grid.Column="1" Text="{Binding Login, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Uren tewerkstelling:  "></TextBlock>
+                        <TextBox Grid.Column="3" Text="{Binding UrenTewerkstelling, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="RNSZ  "></TextBlock>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding RNSZ, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Indienst vanaf  "></TextBlock>
+                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Path=IndienstVanaf, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
                 </GroupBox>
 
@@ -132,17 +130,20 @@
         </Grid>
         <DataGrid x:Name="strijkersDataGrid" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="naamColumn1" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="adresColumn" Binding="{Binding Adres}" Header="Adres" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="nummerColumn1" Binding="{Binding Nummer}" Header="Nummer" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="postcodeColumn1" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="gemeenteColumn1" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel}" Header="Tel" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="rSZColumn" Binding="{Binding RSZ}" Header="RSZ" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="actiefColumn1" Binding="{Binding Actief}" Header="Actief" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="laatsteWijzigingColumn" Binding="{Binding LaatsteWijziging}" Header="Laatste Wijziging" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="notaColumn" Binding="{Binding Nota}" Header="Nota" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="adresColumn1" Binding="{Binding Adres}" Header="Adres" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer}" Header="Nummer" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel}" Header="Tel" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="rNSZColumn" Binding="{Binding RNSZ}" Header="RNSZ" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login}" Header="Login" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="bankrekeningColumn" Binding="{Binding Bankrekening}" Header="Bankrekening" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="indienst_VanafColumn" Binding="{Binding IndienstVanaf, StringFormat=dd-MM-yyyy}" Header="Indienst Vanaf" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="urenTewerkstellingColumn" Binding="{Binding UrenTewerkstelling}" Header="Uren Tewerkstelling" Width="SizeToHeader"/>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

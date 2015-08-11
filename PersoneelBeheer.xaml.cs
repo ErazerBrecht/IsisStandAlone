@@ -39,13 +39,6 @@ namespace ISIS
             Refresh();
             var window = Window.GetWindow(this);
             window.Closing += window_Closing;
-            // Do not load your data at design time.
-            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-            // {
-            // 	//Load your data here and assign the result to the CollectionViewSource.
-            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
-            // 	myCollectionViewSource.Source = your data
-            // }
         }
 
         void window_Closing(object sender, CancelEventArgs e)
@@ -61,14 +54,14 @@ namespace ISIS
                 _entities.Dispose();
 
             _entities = new ISIS_DataEntities();
-            //_entities.Strijkers.Local.CollectionChanged += Local_CollectionChanged;
+            _entities.Strijkers.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Strijkers.Load();
             _PersoneelViewSource.Source = _entities.Strijkers.Local;
             ButtonAdd.Content = "Add";
             GridInformation.DataContext = _PersoneelViewSource;
         }
 
-        /*void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
@@ -86,7 +79,7 @@ namespace ISIS
                     item.PropertyChanged += EntityViewModelPropertyChanged;
                 }
             }
-        }*/
+        }
 
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
