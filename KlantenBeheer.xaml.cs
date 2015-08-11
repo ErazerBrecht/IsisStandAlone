@@ -157,6 +157,16 @@ namespace ISIS
             if (ButtonAdd.Content.ToString() == "Add")
             {
                 _addClient = new Klanten();
+
+                int tempId = 1;
+
+                while(_entities.Klanten.Any(k => k.ID == tempId))
+                {
+                    tempId++;
+                }
+
+                _addClient.ID = tempId;
+                _addClient.Datum = DateTime.Now;
                 GridInformation.DataContext = _addClient;
                 ButtonAdd.Content = "Cancel";
             }
