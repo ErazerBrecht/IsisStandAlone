@@ -887,13 +887,17 @@ namespace ISIS {
             
             private global::System.Data.DataColumn columnTel;
             
-            private global::System.Data.DataColumn columnRSZ;
+            private global::System.Data.DataColumn columnRNSZ;
             
-            private global::System.Data.DataColumn columnActief;
+            private global::System.Data.DataColumn columnLogin;
             
-            private global::System.Data.DataColumn columnLaatsteWijziging;
+            private global::System.Data.DataColumn columnBankrekening;
             
-            private global::System.Data.DataColumn columnNota;
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnIndienstVanaf;
+            
+            private global::System.Data.DataColumn columnUrenTewerkstelling;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -986,33 +990,49 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RSZColumn {
+            public global::System.Data.DataColumn RNSZColumn {
                 get {
-                    return this.columnRSZ;
+                    return this.columnRNSZ;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ActiefColumn {
+            public global::System.Data.DataColumn LoginColumn {
                 get {
-                    return this.columnActief;
+                    return this.columnLogin;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LaatsteWijzigingColumn {
+            public global::System.Data.DataColumn BankrekeningColumn {
                 get {
-                    return this.columnLaatsteWijziging;
+                    return this.columnBankrekening;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NotaColumn {
+            public global::System.Data.DataColumn EmailColumn {
                 get {
-                    return this.columnNota;
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IndienstVanafColumn {
+                get {
+                    return this.columnIndienstVanaf;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UrenTewerkstellingColumn {
+                get {
+                    return this.columnUrenTewerkstelling;
                 }
             }
             
@@ -1053,7 +1073,7 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public StrijkersRow AddStrijkersRow(int ID, string Naam, string Adres, int Nummer, int Postcode, string Gemeente, int Tel, string RSZ, string Actief, string LaatsteWijziging, string Nota) {
+            public StrijkersRow AddStrijkersRow(int ID, string Naam, string Adres, int Nummer, int Postcode, string Gemeente, int Tel, string RNSZ, string Login, string Bankrekening, string Email, System.DateTime IndienstVanaf, int UrenTewerkstelling) {
                 StrijkersRow rowStrijkersRow = ((StrijkersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -1063,10 +1083,12 @@ namespace ISIS {
                         Postcode,
                         Gemeente,
                         Tel,
-                        RSZ,
-                        Actief,
-                        LaatsteWijziging,
-                        Nota};
+                        RNSZ,
+                        Login,
+                        Bankrekening,
+                        Email,
+                        IndienstVanaf,
+                        UrenTewerkstelling};
                 rowStrijkersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStrijkersRow);
                 return rowStrijkersRow;
@@ -1103,10 +1125,12 @@ namespace ISIS {
                 this.columnPostcode = base.Columns["Postcode"];
                 this.columnGemeente = base.Columns["Gemeente"];
                 this.columnTel = base.Columns["Tel"];
-                this.columnRSZ = base.Columns["RSZ"];
-                this.columnActief = base.Columns["Actief"];
-                this.columnLaatsteWijziging = base.Columns["LaatsteWijziging"];
-                this.columnNota = base.Columns["Nota"];
+                this.columnRNSZ = base.Columns["RNSZ"];
+                this.columnLogin = base.Columns["Login"];
+                this.columnBankrekening = base.Columns["Bankrekening"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnIndienstVanaf = base.Columns["IndienstVanaf"];
+                this.columnUrenTewerkstelling = base.Columns["UrenTewerkstelling"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1126,14 +1150,18 @@ namespace ISIS {
                 base.Columns.Add(this.columnGemeente);
                 this.columnTel = new global::System.Data.DataColumn("Tel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTel);
-                this.columnRSZ = new global::System.Data.DataColumn("RSZ", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRSZ);
-                this.columnActief = new global::System.Data.DataColumn("Actief", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnActief);
-                this.columnLaatsteWijziging = new global::System.Data.DataColumn("LaatsteWijziging", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLaatsteWijziging);
-                this.columnNota = new global::System.Data.DataColumn("Nota", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNota);
+                this.columnRNSZ = new global::System.Data.DataColumn("RNSZ", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRNSZ);
+                this.columnLogin = new global::System.Data.DataColumn("Login", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLogin);
+                this.columnBankrekening = new global::System.Data.DataColumn("Bankrekening", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankrekening);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnIndienstVanaf = new global::System.Data.DataColumn("IndienstVanaf", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndienstVanaf);
+                this.columnUrenTewerkstelling = new global::System.Data.DataColumn("UrenTewerkstelling", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUrenTewerkstelling);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -1142,11 +1170,10 @@ namespace ISIS {
                 this.columnNaam.MaxLength = 2147483647;
                 this.columnAdres.MaxLength = 2147483647;
                 this.columnGemeente.MaxLength = 2147483647;
-                this.columnRSZ.AllowDBNull = false;
-                this.columnRSZ.MaxLength = 2147483647;
-                this.columnActief.MaxLength = 2147483647;
-                this.columnLaatsteWijziging.MaxLength = 2147483647;
-                this.columnNota.MaxLength = 2147483647;
+                this.columnRNSZ.MaxLength = 20;
+                this.columnLogin.MaxLength = 6;
+                this.columnBankrekening.MaxLength = 19;
+                this.columnEmail.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1932,60 +1959,97 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RSZ {
+            public string RNSZ {
                 get {
-                    return ((string)(this[this.tableStrijkers.RSZColumn]));
+                    try {
+                        return ((string)(this[this.tableStrijkers.RNSZColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RNSZ\' in table \'Strijkers\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableStrijkers.RSZColumn] = value;
+                    this[this.tableStrijkers.RNSZColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Actief {
+            public string Login {
                 get {
                     try {
-                        return ((string)(this[this.tableStrijkers.ActiefColumn]));
+                        return ((string)(this[this.tableStrijkers.LoginColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Actief\' in table \'Strijkers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Login\' in table \'Strijkers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStrijkers.ActiefColumn] = value;
+                    this[this.tableStrijkers.LoginColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string LaatsteWijziging {
+            public string Bankrekening {
                 get {
                     try {
-                        return ((string)(this[this.tableStrijkers.LaatsteWijzigingColumn]));
+                        return ((string)(this[this.tableStrijkers.BankrekeningColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LaatsteWijziging\' in table \'Strijkers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bankrekening\' in table \'Strijkers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStrijkers.LaatsteWijzigingColumn] = value;
+                    this[this.tableStrijkers.BankrekeningColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Nota {
+            public string Email {
                 get {
                     try {
-                        return ((string)(this[this.tableStrijkers.NotaColumn]));
+                        return ((string)(this[this.tableStrijkers.EmailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nota\' in table \'Strijkers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'Strijkers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStrijkers.NotaColumn] = value;
+                    this[this.tableStrijkers.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime IndienstVanaf {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableStrijkers.IndienstVanafColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IndienstVanaf\' in table \'Strijkers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStrijkers.IndienstVanafColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int UrenTewerkstelling {
+                get {
+                    try {
+                        return ((int)(this[this.tableStrijkers.UrenTewerkstellingColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UrenTewerkstelling\' in table \'Strijkers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStrijkers.UrenTewerkstellingColumn] = value;
                 }
             }
             
@@ -2051,38 +2115,74 @@ namespace ISIS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActiefNull() {
-                return this.IsNull(this.tableStrijkers.ActiefColumn);
+            public bool IsRNSZNull() {
+                return this.IsNull(this.tableStrijkers.RNSZColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetActiefNull() {
-                this[this.tableStrijkers.ActiefColumn] = global::System.Convert.DBNull;
+            public void SetRNSZNull() {
+                this[this.tableStrijkers.RNSZColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLaatsteWijzigingNull() {
-                return this.IsNull(this.tableStrijkers.LaatsteWijzigingColumn);
+            public bool IsLoginNull() {
+                return this.IsNull(this.tableStrijkers.LoginColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLaatsteWijzigingNull() {
-                this[this.tableStrijkers.LaatsteWijzigingColumn] = global::System.Convert.DBNull;
+            public void SetLoginNull() {
+                this[this.tableStrijkers.LoginColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNotaNull() {
-                return this.IsNull(this.tableStrijkers.NotaColumn);
+            public bool IsBankrekeningNull() {
+                return this.IsNull(this.tableStrijkers.BankrekeningColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNotaNull() {
-                this[this.tableStrijkers.NotaColumn] = global::System.Convert.DBNull;
+            public void SetBankrekeningNull() {
+                this[this.tableStrijkers.BankrekeningColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tableStrijkers.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEmailNull() {
+                this[this.tableStrijkers.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIndienstVanafNull() {
+                return this.IsNull(this.tableStrijkers.IndienstVanafColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIndienstVanafNull() {
+                this[this.tableStrijkers.IndienstVanafColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUrenTewerkstellingNull() {
+                return this.IsNull(this.tableStrijkers.UrenTewerkstellingColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUrenTewerkstellingNull() {
+                this[this.tableStrijkers.UrenTewerkstellingColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3077,61 +3177,99 @@ SELECT ID, Gebruikersnummer, Naam, Voornaam, Straat, Nummer, Postcode, Gemeente,
             tableMapping.ColumnMappings.Add("Postcode", "Postcode");
             tableMapping.ColumnMappings.Add("Gemeente", "Gemeente");
             tableMapping.ColumnMappings.Add("Tel", "Tel");
-            tableMapping.ColumnMappings.Add("RSZ", "RSZ");
-            tableMapping.ColumnMappings.Add("Actief", "Actief");
-            tableMapping.ColumnMappings.Add("LaatsteWijziging", "LaatsteWijziging");
-            tableMapping.ColumnMappings.Add("Nota", "Nota");
+            tableMapping.ColumnMappings.Add("RNSZ", "RNSZ");
+            tableMapping.ColumnMappings.Add("Login", "Login");
+            tableMapping.ColumnMappings.Add("Bankrekening", "Bankrekening");
+            tableMapping.ColumnMappings.Add("Email", "Email");
+            tableMapping.ColumnMappings.Add("IndienstVanaf", "IndienstVanaf");
+            tableMapping.ColumnMappings.Add("UrenTewerkstelling", "UrenTewerkstelling");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Strijkers] WHERE (([ID] = @Original_ID) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Tel = 1 AND [Tel] IS NULL) OR ([Tel] = @Original_Tel)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Strijkers] WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Adres = 1 AND [Adres] IS NULL) OR ([Adres] = @Original_Adres)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Tel = 1 AND [Tel] IS NULL) OR ([Tel] = @Original_Tel)) AND ((@IsNull_Bankrekening = 1 AND [Bankrekening] IS NULL) OR ([Bankrekening] = @Original_Bankrekening)) AND ((@IsNull_Login = 1 AND [Login] IS NULL) OR ([Login] = @Original_Login)) AND ([RNSZ] = @Original_RNSZ) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ((@IsNull_IndienstVanaf = 1 AND [IndienstVanaf] IS NULL) OR ([IndienstVanaf] = @Original_IndienstVanaf)) AND ((@IsNull_UrenTewerkstelling = 1 AND [UrenTewerkstelling] IS NULL) OR ([UrenTewerkstelling] = @Original_UrenTewerkstelling)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Naam", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Adres", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Adres", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Gemeente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gemeente", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Bankrekening", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Bankrekening", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Login", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Login", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RNSZ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RNSZ", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IndienstVanaf", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IndienstVanaf", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Strijkers] ([ID], [Naam], [Adres], [Nummer], [Postcode], [Gemeente], [Tel], [RSZ], [Actief], [LaatsteWijziging], [Nota]) VALUES (@ID, @Naam, @Adres, @Nummer, @Postcode, @Gemeente, @Tel, @RSZ, @Actief, @LaatsteWijziging, @Nota);
-SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWijziging, Nota FROM Strijkers WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Strijkers] ([ID], [Naam], [Adres], [Nummer], [Postcode], [Gemeente], [Tel], [Bankrekening], [Login], [RNSZ], [Email], [IndienstVanaf], [UrenTewerkstelling]) VALUES (@ID, @Naam, @Adres, @Nummer, @Postcode, @Gemeente, @Tel, @Bankrekening, @Login, @RNSZ, @Email, @IndienstVanaf, @UrenTewerkstelling);
+SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, Bankrekening, Login, RNSZ, Email, IndienstVanaf, UrenTewerkstelling FROM Strijkers WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Naam", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Adres", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Naam", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Adres", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gemeente", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gemeente", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RSZ", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RSZ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Actief", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Actief", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LaatsteWijziging", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LaatsteWijziging", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nota", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nota", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Bankrekening", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Login", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RNSZ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RNSZ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IndienstVanaf", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Strijkers] SET [ID] = @ID, [Naam] = @Naam, [Adres] = @Adres, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Tel] = @Tel, [RSZ] = @RSZ, [Actief] = @Actief, [LaatsteWijziging] = @LaatsteWijziging, [Nota] = @Nota WHERE (([ID] = @Original_ID) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Tel = 1 AND [Tel] IS NULL) OR ([Tel] = @Original_Tel)));
-SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWijziging, Nota FROM Strijkers WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Strijkers] SET [ID] = @ID, [Naam] = @Naam, [Adres] = @Adres, [Nummer] = @Nummer, [Postcode] = @Postcode, [Gemeente] = @Gemeente, [Tel] = @Tel, [Bankrekening] = @Bankrekening, [Login] = @Login, [RNSZ] = @RNSZ, [Email] = @Email, [IndienstVanaf] = @IndienstVanaf, [UrenTewerkstelling] = @UrenTewerkstelling WHERE (([ID] = @Original_ID) AND ([Naam] = @Original_Naam) AND ((@IsNull_Adres = 1 AND [Adres] IS NULL) OR ([Adres] = @Original_Adres)) AND ((@IsNull_Nummer = 1 AND [Nummer] IS NULL) OR ([Nummer] = @Original_Nummer)) AND ((@IsNull_Postcode = 1 AND [Postcode] IS NULL) OR ([Postcode] = @Original_Postcode)) AND ((@IsNull_Gemeente = 1 AND [Gemeente] IS NULL) OR ([Gemeente] = @Original_Gemeente)) AND ((@IsNull_Tel = 1 AND [Tel] IS NULL) OR ([Tel] = @Original_Tel)) AND ((@IsNull_Bankrekening = 1 AND [Bankrekening] IS NULL) OR ([Bankrekening] = @Original_Bankrekening)) AND ((@IsNull_Login = 1 AND [Login] IS NULL) OR ([Login] = @Original_Login)) AND ([RNSZ] = @Original_RNSZ) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ((@IsNull_IndienstVanaf = 1 AND [IndienstVanaf] IS NULL) OR ([IndienstVanaf] = @Original_IndienstVanaf)) AND ((@IsNull_UrenTewerkstelling = 1 AND [UrenTewerkstelling] IS NULL) OR ([UrenTewerkstelling] = @Original_UrenTewerkstelling)));
+SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, Bankrekening, Login, RNSZ, Email, IndienstVanaf, UrenTewerkstelling FROM Strijkers WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Naam", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Adres", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Naam", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Adres", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gemeente", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gemeente", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RSZ", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RSZ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Actief", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Actief", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LaatsteWijziging", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LaatsteWijziging", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nota", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nota", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Bankrekening", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Login", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RNSZ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RNSZ", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IndienstVanaf", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Naam", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Naam", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Adres", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Adres", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Adres", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nummer", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nummer", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Postcode", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Postcode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Gemeente", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gemeente", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gemeente", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Bankrekening", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Bankrekening", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Bankrekening", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Login", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Login", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Login", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RNSZ", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RNSZ", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IndienstVanaf", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IndienstVanaf", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IndienstVanaf", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UrenTewerkstelling", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UrenTewerkstelling", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3147,8 +3285,8 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWijz" +
-                "iging, Nota FROM dbo.Strijkers";
+            this._commandCollection[0].CommandText = "SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, Bankrekening, Login, RNS" +
+                "Z, Email, IndienstVanaf, UrenTewerkstelling FROM Strijkers";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3209,31 +3347,99 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_Nummer, global::System.Nullable<int> Original_Postcode, global::System.Nullable<int> Original_Tel) {
+        public virtual int Delete(int Original_ID, string Original_Naam, string Original_Adres, global::System.Nullable<int> Original_Nummer, global::System.Nullable<int> Original_Postcode, string Original_Gemeente, global::System.Nullable<int> Original_Tel, string Original_Bankrekening, string Original_Login, string Original_RNSZ, string Original_Email, global::System.Nullable<global::System.DateTime> Original_IndienstVanaf, global::System.Nullable<int> Original_UrenTewerkstelling) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            if ((Original_Nummer.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Nummer.Value));
+            if ((Original_Naam == null)) {
+                throw new global::System.ArgumentNullException("Original_Naam");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Naam));
+            }
+            if ((Original_Adres == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Adres));
+            }
+            if ((Original_Nummer.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Nummer.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             if ((Original_Postcode.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Postcode.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_Postcode.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Gemeente == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Gemeente));
             }
             if ((Original_Tel.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Tel.Value));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_Tel.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Bankrekening == null)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_Bankrekening));
+            }
+            if ((Original_Login == null)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_Login));
+            }
+            if ((Original_RNSZ == null)) {
+                throw new global::System.ArgumentNullException("Original_RNSZ");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_RNSZ));
+            }
+            if ((Original_Email == null)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_Email));
+            }
+            if ((Original_IndienstVanaf.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((System.DateTime)(Original_IndienstVanaf.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            if ((Original_UrenTewerkstelling.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_UrenTewerkstelling.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3255,7 +3461,7 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID, string Naam, string Adres, global::System.Nullable<int> Nummer, global::System.Nullable<int> Postcode, string Gemeente, global::System.Nullable<int> Tel, string RSZ, string Actief, string LaatsteWijziging, string Nota) {
+        public virtual int Insert(int ID, string Naam, string Adres, global::System.Nullable<int> Nummer, global::System.Nullable<int> Postcode, string Gemeente, global::System.Nullable<int> Tel, string Bankrekening, string Login, string RNSZ, string Email, global::System.Nullable<global::System.DateTime> IndienstVanaf, global::System.Nullable<int> UrenTewerkstelling) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID));
             if ((Naam == null)) {
                 throw new global::System.ArgumentNullException("Naam");
@@ -3293,29 +3499,41 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((RSZ == null)) {
-                throw new global::System.ArgumentNullException("RSZ");
+            if ((Bankrekening == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(RSZ));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Bankrekening));
             }
-            if ((Actief == null)) {
+            if ((Login == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Actief));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Login));
             }
-            if ((LaatsteWijziging == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((RNSZ == null)) {
+                throw new global::System.ArgumentNullException("RNSZ");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(LaatsteWijziging));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(RNSZ));
             }
-            if ((Nota == null)) {
+            if ((Email == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Nota));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Email));
+            }
+            if ((IndienstVanaf.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(IndienstVanaf.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((UrenTewerkstelling.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((int)(UrenTewerkstelling.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3337,7 +3555,33 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int ID, string Naam, string Adres, global::System.Nullable<int> Nummer, global::System.Nullable<int> Postcode, string Gemeente, global::System.Nullable<int> Tel, string RSZ, string Actief, string LaatsteWijziging, string Nota, int Original_ID, global::System.Nullable<int> Original_Nummer, global::System.Nullable<int> Original_Postcode, global::System.Nullable<int> Original_Tel) {
+        public virtual int Update(
+                    int ID, 
+                    string Naam, 
+                    string Adres, 
+                    global::System.Nullable<int> Nummer, 
+                    global::System.Nullable<int> Postcode, 
+                    string Gemeente, 
+                    global::System.Nullable<int> Tel, 
+                    string Bankrekening, 
+                    string Login, 
+                    string RNSZ, 
+                    string Email, 
+                    global::System.Nullable<global::System.DateTime> IndienstVanaf, 
+                    global::System.Nullable<int> UrenTewerkstelling, 
+                    int Original_ID, 
+                    string Original_Naam, 
+                    string Original_Adres, 
+                    global::System.Nullable<int> Original_Nummer, 
+                    global::System.Nullable<int> Original_Postcode, 
+                    string Original_Gemeente, 
+                    global::System.Nullable<int> Original_Tel, 
+                    string Original_Bankrekening, 
+                    string Original_Login, 
+                    string Original_RNSZ, 
+                    string Original_Email, 
+                    global::System.Nullable<global::System.DateTime> Original_IndienstVanaf, 
+                    global::System.Nullable<int> Original_UrenTewerkstelling) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID));
             if ((Naam == null)) {
                 throw new global::System.ArgumentNullException("Naam");
@@ -3375,54 +3619,134 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((RSZ == null)) {
-                throw new global::System.ArgumentNullException("RSZ");
+            if ((Bankrekening == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(RSZ));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Bankrekening));
             }
-            if ((Actief == null)) {
+            if ((Login == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Actief));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Login));
             }
-            if ((LaatsteWijziging == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((RNSZ == null)) {
+                throw new global::System.ArgumentNullException("RNSZ");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(LaatsteWijziging));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(RNSZ));
             }
-            if ((Nota == null)) {
+            if ((Email == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Nota));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Email));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_ID));
-            if ((Original_Nummer.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Nummer.Value));
+            if ((IndienstVanaf.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(IndienstVanaf.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((UrenTewerkstelling.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(UrenTewerkstelling.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            if ((Original_Naam == null)) {
+                throw new global::System.ArgumentNullException("Original_Naam");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Naam));
+            }
+            if ((Original_Adres == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Adres));
+            }
+            if ((Original_Nummer.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_Nummer.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             if ((Original_Postcode.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Postcode.Value));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_Postcode.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Gemeente == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Gemeente));
             }
             if ((Original_Tel.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_Tel.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_Tel.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Bankrekening == null)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_Bankrekening));
+            }
+            if ((Original_Login == null)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Login));
+            }
+            if ((Original_RNSZ == null)) {
+                throw new global::System.ArgumentNullException("Original_RNSZ");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_RNSZ));
+            }
+            if ((Original_Email == null)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_Email));
+            }
+            if ((Original_IndienstVanaf.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((System.DateTime)(Original_IndienstVanaf.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            if ((Original_UrenTewerkstelling.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(Original_UrenTewerkstelling.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3444,8 +3768,33 @@ SELECT ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWij
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Naam, string Adres, global::System.Nullable<int> Nummer, global::System.Nullable<int> Postcode, string Gemeente, global::System.Nullable<int> Tel, string RSZ, string Actief, string LaatsteWijziging, string Nota, int Original_ID, global::System.Nullable<int> Original_Nummer, global::System.Nullable<int> Original_Postcode, global::System.Nullable<int> Original_Tel) {
-            return this.Update(Original_ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, RSZ, Actief, LaatsteWijziging, Nota, Original_ID, Original_Nummer, Original_Postcode, Original_Tel);
+        public virtual int Update(
+                    string Naam, 
+                    string Adres, 
+                    global::System.Nullable<int> Nummer, 
+                    global::System.Nullable<int> Postcode, 
+                    string Gemeente, 
+                    global::System.Nullable<int> Tel, 
+                    string Bankrekening, 
+                    string Login, 
+                    string RNSZ, 
+                    string Email, 
+                    global::System.Nullable<global::System.DateTime> IndienstVanaf, 
+                    global::System.Nullable<int> UrenTewerkstelling, 
+                    int Original_ID, 
+                    string Original_Naam, 
+                    string Original_Adres, 
+                    global::System.Nullable<int> Original_Nummer, 
+                    global::System.Nullable<int> Original_Postcode, 
+                    string Original_Gemeente, 
+                    global::System.Nullable<int> Original_Tel, 
+                    string Original_Bankrekening, 
+                    string Original_Login, 
+                    string Original_RNSZ, 
+                    string Original_Email, 
+                    global::System.Nullable<global::System.DateTime> Original_IndienstVanaf, 
+                    global::System.Nullable<int> Original_UrenTewerkstelling) {
+            return this.Update(Original_ID, Naam, Adres, Nummer, Postcode, Gemeente, Tel, Bankrekening, Login, RNSZ, Email, IndienstVanaf, UrenTewerkstelling, Original_ID, Original_Naam, Original_Adres, Original_Nummer, Original_Postcode, Original_Gemeente, Original_Tel, Original_Bankrekening, Original_Login, Original_RNSZ, Original_Email, Original_IndienstVanaf, Original_UrenTewerkstelling);
         }
     }
     

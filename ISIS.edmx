@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ISIS_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ISIS_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Klanten">
           <Key>
             <PropertyRef Name="ID" />
@@ -35,23 +35,24 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Naam" Type="text" Nullable="false" />
-          <Property Name="Adres" Type="text" />
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="50" />
           <Property Name="Nummer" Type="int" />
           <Property Name="Postcode" Type="int" />
-          <Property Name="Gemeente" Type="text" />
+          <Property Name="Gemeente" Type="varchar" MaxLength="50" />
           <Property Name="Tel" Type="int" />
-          <Property Name="RSZ" Type="text" Nullable="false" />
-          <Property Name="Actief" Type="text" />
-          <Property Name="LaatsteWijziging" Type="text" />
-          <Property Name="Nota" Type="text" />
+          <Property Name="RNSZ" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Login" Type="varchar" MaxLength="6" />
+          <Property Name="Bankrekening" Type="nchar" MaxLength="19" />
+          <Property Name="IndienstVanaf" Type="date" />
+          <Property Name="UrenTewerkstelling" Type="int" />
         </EntityType>
         <EntityContainer Name="ISIS_DataModelStoreContainer">
           <EntitySet Name="Klanten" EntityType="Self.Klanten" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ISIS_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -85,16 +86,18 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Naam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nummer" Type="Int32" />
           <Property Name="Postcode" Type="Int32" />
-          <Property Name="Gemeente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tel" Type="Int32" />
-          <Property Name="RSZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Actief" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LaatsteWijziging" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Nota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RNSZ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Bankrekening" Type="String" MaxLength="19" FixedLength="true" Unicode="true" />
+          <Property Name="IndienstVanaf" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UrenTewerkstelling" Type="Int32" />
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Klanten" EntityType="Self.Klanten" />
@@ -135,6 +138,12 @@
           <EntitySetMapping Name="Strijkers">
             <EntityTypeMapping TypeName="ISIS_DataModel.Strijkers">
               <MappingFragment StoreEntitySet="Strijkers">
+                <ScalarProperty Name="UrenTewerkstelling" ColumnName="UrenTewerkstelling" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IndienstVanaf" ColumnName="IndienstVanaf" />
+                <ScalarProperty Name="Bankrekening" ColumnName="Bankrekening" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="RNSZ" ColumnName="RNSZ" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Naam" ColumnName="Naam" />
                 <ScalarProperty Name="Adres" ColumnName="Adres" />
@@ -142,11 +151,7 @@
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
                 <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
                 <ScalarProperty Name="Tel" ColumnName="Tel" />
-                <ScalarProperty Name="RSZ" ColumnName="RSZ" />
-                <ScalarProperty Name="Actief" ColumnName="Actief" />
-                <ScalarProperty Name="LaatsteWijziging" ColumnName="LaatsteWijziging" />
-                <ScalarProperty Name="Nota" ColumnName="Nota" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

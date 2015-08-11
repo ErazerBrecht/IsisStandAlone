@@ -35,13 +35,17 @@ namespace ISIS
         public string Gemeente { get { return _gemeente; } set { _gemeente = value; OnPropertyChanged("Gemeente");} }
     private Nullable<int> _tel;
         public Nullable<int> Tel { get { return _tel; } set { _tel = value; OnPropertyChanged("Tel");} }
-    private string _rsz;
-        public string RSZ { get { return _rsz; } set { _rsz = value; OnPropertyChanged("RSZ");} }
-    private string _actief;
-        public string Actief { get { return _actief; } set { _actief = value; OnPropertyChanged("Actief");} }
-    private string _laatstewijziging;
-        public string LaatsteWijziging { get { return _laatstewijziging; } set { _laatstewijziging = value; OnPropertyChanged("LaatsteWijziging");} }
-    private string _nota;
-        public string Nota { get { return _nota; } set { _nota = value; OnPropertyChanged("Nota");} }
+    private string _rnsz;
+        public string RNSZ { get { return _rnsz; } set { _rnsz = value; OnPropertyChanged("RNSZ");} }
+    private string _login;
+        public string Login { get { return _login; } set { _login = value; OnPropertyChanged("Login");} }
+    private string _bankrekening;
+        public string Bankrekening { get { return _bankrekening; } set { _bankrekening = value; OnPropertyChanged("Bankrekening");} }
+    private Nullable<System.DateTime> _indienstvanaf;
+        public Nullable<System.DateTime> IndienstVanaf { get { return _indienstvanaf; } set { _indienstvanaf = value; OnPropertyChanged("IndienstVanaf");} }
+    private string _email;
+        public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
+    private Nullable<int> _urentewerkstelling;
+        public Nullable<int> UrenTewerkstelling { get { return _urentewerkstelling; } set { _urentewerkstelling = value; OnPropertyChanged("UrenTewerkstelling");} }
     }
 }
