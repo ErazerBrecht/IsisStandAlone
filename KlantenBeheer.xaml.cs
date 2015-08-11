@@ -212,5 +212,23 @@ namespace ISIS
             ComboBoxBericht.ItemsSource = data;
             berichtColumn.ItemsSource = data;
         }
+
+        private void TextBoxID_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //Check if ID already exists, if this is the case give error and add red border!
+            int tempId = Convert.ToInt32(TextBoxID.Text);
+            if ((_entities.Klanten.Any(k => k.ID == tempId)))
+            {
+                MessageBox.Show("De gekozen ID bestaat al!");
+                TextBoxID.BorderBrush = new SolidColorBrush(Colors.Red);
+                TextBoxID.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                TextBoxID.ClearValue(TextBox.BorderBrushProperty);
+                TextBoxID.ClearValue(TextBox.BorderThicknessProperty);
+            }
+
+        }
     }
 }
