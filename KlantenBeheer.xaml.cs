@@ -183,5 +183,24 @@ namespace ISIS
             ComboBoxSoortKlant.ItemsSource = data;
             soortKlantColumn.ItemsSource = data;
         }
+
+        private void ComboBoxBetalingswijze_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+            data.Add("Papier");
+            data.Add("Elektronisch");
+            ComboBoxBetalingswijze.ItemsSource = data;
+            betalingswijzeColumn.ItemsSource = data;
+        }
+
+        private void ComboBoxBericht_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+            data.Add("Neen");
+            data.Add("SMS");
+            data.Add("E-mail");
+            ComboBoxBericht.ItemsSource = data;
+            berichtColumn.ItemsSource = data;
+        }
     }
 }
