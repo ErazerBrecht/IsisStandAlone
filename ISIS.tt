@@ -24,16 +24,25 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     BeginNamespace(code);
 #>
 <#=codeStringGenerator.UsingDirectives(inHeader: false)#>
+using System.ComponentModel;
 <#=codeStringGenerator.EntityClassOpening(entity)#>
 {
+	public event PropertyChangedEventHandler PropertyChanged;
+	protected virtual void OnPropertyChanged(string propertyName)
+	{
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+	}
 <#
     var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(entity);
     var collectionNavigationProperties = typeMapper.GetCollectionNavigationProperties(entity);
     var complexProperties = typeMapper.GetComplexProperties(entity);
 
+
     if (propertiesWithDefaultValues.Any() || collectionNavigationProperties.Any() || complexProperties.Any())
     {
 #>
+
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public <#=code.Escape(entity)#>()
     {
@@ -68,11 +77,12 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     if (simpleProperties.Any())
     {
         foreach (var edmProperty in simpleProperties)
-        {
+{
 #>
+<#=codeStringGenerator.Private(edmProperty)#>
     <#=codeStringGenerator.Property(edmProperty)#>
 <#
-        }
+}
     }
 
     if (complexProperties.Any())
@@ -81,11 +91,12 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
 
 <#
         foreach(var complexProperty in complexProperties)
-        {
+{
 #>
+<#=codeStringGenerator.Private(complexProperty)#>
     <#=codeStringGenerator.Property(complexProperty)#>
 <#
-        }
+}
     }
 
     var navigationProperties = typeMapper.GetNavigationProperties(entity);
@@ -285,13 +296,24 @@ public class CodeStringGenerator
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} {1} {2} {{ {3}get; {4}set; }}",
+            "{0} {1} {2} {{ {3}{6} {4}{5} }}",
             Accessibility.ForProperty(edmProperty),
             _typeMapper.GetTypeName(edmProperty.TypeUsage),
             _code.Escape(edmProperty),
             _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
-            _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+            _code.SpaceAfter(Accessibility.ForSetter(edmProperty)),
+			"set { _"+_code.Escape(edmProperty).ToLower()+" = value; OnPropertyChanged(\""+_code.Escape(edmProperty)+"\");}", 
+			"get { return _"+_code.Escape(edmProperty).ToLower()+"; }");
     }
+
+	public string Private(EdmProperty edmProperty) {
+    return string.Format(
+        CultureInfo.InvariantCulture,
+        "{0} {1} _{2};",
+        "private",
+        _typeMapper.GetTypeName(edmProperty.TypeUsage),
+        _code.Escape(edmProperty).ToLower());
+}
 
     public string NavigationProperty(NavigationProperty navProp)
     {
@@ -315,11 +337,11 @@ public class CodeStringGenerator
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} {1}partial class {2}{3}",
+            "{0} {1}partial class {2}{3} : {4}",
             Accessibility.ForType(entity),
             _code.SpaceAfter(_code.AbstractOption(entity)),
             _code.Escape(entity),
-            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)), "INotifyPropertyChanged");
     }
     
     public string EnumOpening(SimpleType enumType)

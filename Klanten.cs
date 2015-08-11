@@ -11,69 +11,55 @@ namespace ISIS
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
+    using System.ComponentModel;
     public partial class Klanten : INotifyPropertyChanged
     {
-        public int ID { get; set; }
-        public string Gebruikersnummer { get; set; }
-        private string _naam;
-        public string Naam
-        {
-            get { return _naam; }
-            set
-            {
-                _naam = value;
-                NoticeMe("Naam");
-            }
-        }
-
-        private string _voornaam;
-        public string Voornaam
-        {
-            get { return _voornaam; }
-            set
-            {
-                _voornaam = value;
-                NoticeMe("Voornaam");
-            }
-        }
-
-        public string Straat { get; set; }
-        public Nullable<int> Nummer { get; set; }
-        public Nullable<int> Postcode { get; set; }
-        public string Gemeente { get; set; }
-        public string Telefoon { get; set; }
-        public string Gsm { get; set; }
-        public string Email { get; set; }
-        private string _andereNaam;
-
-        public string AndereNaam
-        {
-            get { return _andereNaam; }
-            set
-            {
-                _andereNaam = value;
-                NoticeMe("AndereNaam");
-            }
-        }
-        public string Datum { get; set; }
-        public string Betalingswijze { get; set; }
-        public string SoortKlant { get; set; }
-        public Nullable<int> Actief { get; set; }
-        public string LaatsteActiviteit { get; set; }
-        public Nullable<int> Strijkbox { get; set; }
-        public Nullable<int> Waarborg { get; set; }
-        public string Bericht { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NoticeMe(string p)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(p));
-            }
-        }
+    	public event PropertyChangedEventHandler PropertyChanged;
+    	protected virtual void OnPropertyChanged(string propertyName)
+    	{
+    			PropertyChangedEventHandler handler = PropertyChanged;
+    			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    	}
+    private int _id;
+        public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
+    private string _gebruikersnummer;
+        public string Gebruikersnummer { get { return _gebruikersnummer; } set { _gebruikersnummer = value; OnPropertyChanged("Gebruikersnummer");} }
+    private string _naam;
+        public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
+    private string _voornaam;
+        public string Voornaam { get { return _voornaam; } set { _voornaam = value; OnPropertyChanged("Voornaam");} }
+    private string _straat;
+        public string Straat { get { return _straat; } set { _straat = value; OnPropertyChanged("Straat");} }
+    private Nullable<int> _nummer;
+        public Nullable<int> Nummer { get { return _nummer; } set { _nummer = value; OnPropertyChanged("Nummer");} }
+    private Nullable<int> _postcode;
+        public Nullable<int> Postcode { get { return _postcode; } set { _postcode = value; OnPropertyChanged("Postcode");} }
+    private string _gemeente;
+        public string Gemeente { get { return _gemeente; } set { _gemeente = value; OnPropertyChanged("Gemeente");} }
+    private string _telefoon;
+        public string Telefoon { get { return _telefoon; } set { _telefoon = value; OnPropertyChanged("Telefoon");} }
+    private string _gsm;
+        public string Gsm { get { return _gsm; } set { _gsm = value; OnPropertyChanged("Gsm");} }
+    private string _email;
+        public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
+    private string _anderenaam;
+        public string AndereNaam { get { return _anderenaam; } set { _anderenaam = value; OnPropertyChanged("AndereNaam");} }
+    private string _datum;
+        public string Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum");} }
+    private string _betalingswijze;
+        public string Betalingswijze { get { return _betalingswijze; } set { _betalingswijze = value; OnPropertyChanged("Betalingswijze");} }
+    private string _soortklant;
+        public string SoortKlant { get { return _soortklant; } set { _soortklant = value; OnPropertyChanged("SoortKlant");} }
+    private Nullable<int> _actief;
+        public Nullable<int> Actief { get { return _actief; } set { _actief = value; OnPropertyChanged("Actief");} }
+    private string _laatsteactiviteit;
+        public string LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
+    private Nullable<int> _strijkbox;
+        public Nullable<int> Strijkbox { get { return _strijkbox; } set { _strijkbox = value; OnPropertyChanged("Strijkbox");} }
+    private Nullable<int> _waarborg;
+        public Nullable<int> Waarborg { get { return _waarborg; } set { _waarborg = value; OnPropertyChanged("Waarborg");} }
+    private string _bericht;
+        public string Bericht { get { return _bericht; } set { _bericht = value; OnPropertyChanged("Bericht");} }
     }
 }

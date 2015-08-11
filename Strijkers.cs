@@ -12,18 +12,36 @@ namespace ISIS
     using System;
     using System.Collections.Generic;
     
-    public partial class Strijkers
+    using System.ComponentModel;
+    public partial class Strijkers : INotifyPropertyChanged
     {
-        public int ID { get; set; }
-        public string Naam { get; set; }
-        public string Adres { get; set; }
-        public Nullable<int> Nummer { get; set; }
-        public Nullable<int> Postcode { get; set; }
-        public string Gemeente { get; set; }
-        public Nullable<int> Tel { get; set; }
-        public string RSZ { get; set; }
-        public string Actief { get; set; }
-        public string LaatsteWijziging { get; set; }
-        public string Nota { get; set; }
+    	public event PropertyChangedEventHandler PropertyChanged;
+    	protected virtual void OnPropertyChanged(string propertyName)
+    	{
+    			PropertyChangedEventHandler handler = PropertyChanged;
+    			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    	}
+    private int _id;
+        public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
+    private string _naam;
+        public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
+    private string _adres;
+        public string Adres { get { return _adres; } set { _adres = value; OnPropertyChanged("Adres");} }
+    private Nullable<int> _nummer;
+        public Nullable<int> Nummer { get { return _nummer; } set { _nummer = value; OnPropertyChanged("Nummer");} }
+    private Nullable<int> _postcode;
+        public Nullable<int> Postcode { get { return _postcode; } set { _postcode = value; OnPropertyChanged("Postcode");} }
+    private string _gemeente;
+        public string Gemeente { get { return _gemeente; } set { _gemeente = value; OnPropertyChanged("Gemeente");} }
+    private Nullable<int> _tel;
+        public Nullable<int> Tel { get { return _tel; } set { _tel = value; OnPropertyChanged("Tel");} }
+    private string _rsz;
+        public string RSZ { get { return _rsz; } set { _rsz = value; OnPropertyChanged("RSZ");} }
+    private string _actief;
+        public string Actief { get { return _actief; } set { _actief = value; OnPropertyChanged("Actief");} }
+    private string _laatstewijziging;
+        public string LaatsteWijziging { get { return _laatstewijziging; } set { _laatstewijziging = value; OnPropertyChanged("LaatsteWijziging");} }
+    private string _nota;
+        public string Nota { get { return _nota; } set { _nota = value; OnPropertyChanged("Nota");} }
     }
 }
