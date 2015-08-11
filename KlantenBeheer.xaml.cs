@@ -172,5 +172,16 @@ namespace ISIS
             Save();
             Refresh();
         }
+
+        private void ComboBoxSoortKlant_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+            data.Add("Winkel Rijkevorsel");
+            data.Add("Winkel Heist");
+            data.Add("Ophaling Brecht");
+            data.Add("Bedrijven Ecover");
+            ComboBoxSoortKlant.ItemsSource = data;
+            soortKlantColumn.ItemsSource = data;
+        }
     }
 }

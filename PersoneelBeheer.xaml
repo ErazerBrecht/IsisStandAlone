@@ -132,17 +132,17 @@
         </Grid>
         <DataGrid x:Name="strijkersDataGrid" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="naamColumn1" Binding="{Binding Naam}" Header="Naam" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="adresColumn" Binding="{Binding Adres}" Header="Adres" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nummerColumn1" Binding="{Binding Nummer}" Header="Nummer" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="postcodeColumn1" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gemeenteColumn1" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel}" Header="Tel" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="rSZColumn" Binding="{Binding RSZ}" Header="RSZ" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="actiefColumn1" Binding="{Binding Actief}" Header="Actief" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="laatsteWijzigingColumn" Binding="{Binding LaatsteWijziging}" Header="Laatste Wijziging" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="notaColumn" Binding="{Binding Nota}" Header="Nota" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="naamColumn1" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="adresColumn" Binding="{Binding Adres}" Header="Adres" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="nummerColumn1" Binding="{Binding Nummer}" Header="Nummer" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="postcodeColumn1" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="gemeenteColumn1" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel}" Header="Tel" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="rSZColumn" Binding="{Binding RSZ}" Header="RSZ" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="actiefColumn1" Binding="{Binding Actief}" Header="Actief" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="laatsteWijzigingColumn" Binding="{Binding LaatsteWijziging}" Header="Laatste Wijziging" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="notaColumn" Binding="{Binding Nota}" Header="Nota" Width="SizeToCells"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
