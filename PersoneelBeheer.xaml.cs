@@ -57,7 +57,7 @@ namespace ISIS
             _entities.Strijkers.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Strijkers.Load();
             _PersoneelViewSource.Source = _entities.Strijkers.Local;
-            ButtonAdd.Content = "Add";
+            ButtonAdd.Content = "Toevoegen";
             GridInformation.DataContext = _PersoneelViewSource;
         }
 
@@ -147,16 +147,16 @@ namespace ISIS
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (ButtonAdd.Content.ToString() == "Add")
+            if (ButtonAdd.Content.ToString() == "Toevoegen")
             {
                 _addPersoneel = new Strijkers();
                 GridInformation.DataContext = _addPersoneel;
-                ButtonAdd.Content = "Cancel";
+                ButtonAdd.Content = "Annuleren";
             }
             else
             {
                 GridInformation.DataContext = _PersoneelViewSource;
-                ButtonAdd.Content = "Add";
+                ButtonAdd.Content = "Toevoegen";
             }
         }
 

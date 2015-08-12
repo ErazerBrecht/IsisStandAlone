@@ -65,7 +65,7 @@ namespace ISIS
             _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
-            ButtonAdd.Content = "Add";
+            ButtonAdd.Content = "Toevoegen";
             GridInformation.DataContext = _klantenViewSource;
         }
 
@@ -155,7 +155,7 @@ namespace ISIS
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (ButtonAdd.Content.ToString() == "Add")
+            if (ButtonAdd.Content.ToString() == "Toevoegen")
             {
                 _addClient = new Klanten();
 
@@ -170,12 +170,12 @@ namespace ISIS
                 _addClient.Datum = DateTime.Now;
                 GridInformation.DataContext = _addClient;
                 TextBoxID.IsReadOnly = false;
-                ButtonAdd.Content = "Cancel";
+                ButtonAdd.Content = "Annuleren";
             }
             else
             {
                 GridInformation.DataContext = _klantenViewSource;
-                ButtonAdd.Content = "Add";
+                ButtonAdd.Content = "Toevoegen";
                 TextBoxID.IsReadOnly = true;
                 RemoveBorderBrushID();
             }
