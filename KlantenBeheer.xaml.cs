@@ -256,5 +256,19 @@ namespace ISIS
             TextBoxID.ClearValue(TextBox.BorderThicknessProperty);
             ButtonSave.IsEnabled = true;
         }
+
+        private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int tempID;
+            if (int.TryParse(TextBoxSearch.Text, out tempID))
+            {
+               List<Klanten> tempList = _entities.Klanten.Local.Where(k => k.ID.ToString().Contains(TextBoxSearch.Text)).ToList();
+                TextBoxSearch.ItemsSource = tempList;
+                TextBoxSearch.IsDropDownOpen = true;
+            }
+
+            
+            
+        }
     }
 }
