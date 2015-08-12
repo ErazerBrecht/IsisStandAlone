@@ -147,7 +147,7 @@
                 <Button Name="ButtonSave" Content="Opslaan" Click="ButtonSave_Click"></Button>
                 <DockPanel Margin="0,46,0,0">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <ComboBox Name="TextBoxSearch" IsEditable="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged">
+                    <ComboBox Name="TextBoxSearch" IsEditable="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

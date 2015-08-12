@@ -273,5 +273,15 @@ namespace ISIS
                 TextBoxSearch.IsDropDownOpen = true;
             }           
         }
+
+        private void TextBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TextBoxSearch.SelectedItem is Klanten)
+            {
+                Klanten temp = (Klanten)TextBoxSearch.SelectedItem;
+                _klantenViewSource.View.MoveCurrentTo(temp);
+            }
+
+        }
     }
 }
