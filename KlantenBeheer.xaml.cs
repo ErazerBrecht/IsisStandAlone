@@ -266,9 +266,12 @@ namespace ISIS
                 TextBoxSearch.ItemsSource = tempList;
                 TextBoxSearch.IsDropDownOpen = true;
             }
-
-            
-            
+            else
+            {
+                List<Klanten> tempList = _entities.Klanten.Local.Where(k => k.Naam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower())).ToList();
+                TextBoxSearch.ItemsSource = tempList;
+                TextBoxSearch.IsDropDownOpen = true;
+            }           
         }
     }
 }
