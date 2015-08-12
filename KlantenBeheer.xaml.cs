@@ -231,7 +231,7 @@ namespace ISIS
                     TextBoxID.BorderThickness = new Thickness(2);
                     tooltip.PlacementTarget = TextBoxID;
                     tooltip.Placement = PlacementMode.Right;
-                    tooltip.VerticalOffset = 5;
+                    tooltip.VerticalOffset = 4;
                     tooltip.HorizontalOffset = -155;
                     TextBoxID.ToolTip = tooltip;
                     tooltip.IsOpen = true;               
