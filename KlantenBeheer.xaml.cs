@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using System.Windows.Controls.Primitives;
 
 namespace ISIS
 {
@@ -168,17 +169,21 @@ namespace ISIS
                 _addClient.ID = tempId;
                 _addClient.Datum = DateTime.Now;
                 GridInformation.DataContext = _addClient;
+                TextBoxID.IsReadOnly = false;
                 ButtonAdd.Content = "Cancel";
             }
             else
             {
                 GridInformation.DataContext = _klantenViewSource;
                 ButtonAdd.Content = "Add";
+                TextBoxID.IsReadOnly = true;
+                RemoveBorderBrushID();
             }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            TextBoxID.IsReadOnly = true;
             Save();
             Refresh();
         }
@@ -215,20 +220,41 @@ namespace ISIS
 
         private void TextBoxID_LostFocus(object sender, RoutedEventArgs e)
         {
-            //Check if ID already exists, if this is the case give error and add red border!
-            int tempId = Convert.ToInt32(TextBoxID.Text);
-            if ((_entities.Klanten.Any(k => k.ID == tempId)))
+            if (TextBoxID.IsReadOnly == false)
             {
-                MessageBox.Show("De gekozen ID bestaat al!");
-                TextBoxID.BorderBrush = new SolidColorBrush(Colors.Red);
-                TextBoxID.BorderThickness = new Thickness(2);
-            }
-            else
-            {
-                TextBoxID.ClearValue(TextBox.BorderBrushProperty);
-                TextBoxID.ClearValue(TextBox.BorderThicknessProperty);
+                ToolTip tooltip = new ToolTip { Content = "De gekozen ID bestaat al!" };
+                //Check if ID already exists, if this is the case give error and add red border!
+                int tempId = Convert.ToInt32(TextBoxID.Text);
+                if ((_entities.Klanten.Any(k => k.ID == tempId)))
+                {
+                    TextBoxID.BorderBrush = new SolidColorBrush(Colors.Red);
+                    TextBoxID.BorderThickness = new Thickness(2);
+                    tooltip.PlacementTarget = TextBoxID;
+                    tooltip.Placement = PlacementMode.Right;
+                    tooltip.VerticalOffset = 5;
+                    tooltip.HorizontalOffset = -155;
+                    TextBoxID.ToolTip = tooltip;
+                    tooltip.IsOpen = true;               
+                    ButtonSave.IsEnabled = false;
+                }
+                else
+                {
+                    RemoveBorderBrushID();
+                }
             }
 
+        }
+
+        private void RemoveBorderBrushID()
+        {
+            if (TextBoxID.ToolTip != null)
+            {
+                ToolTip t = (ToolTip)TextBoxID.ToolTip;
+                t.IsOpen = false;
+            }
+            TextBoxID.ClearValue(TextBox.BorderBrushProperty);
+            TextBoxID.ClearValue(TextBox.BorderThicknessProperty);
+            ButtonSave.IsEnabled = true;
         }
     }
 }
