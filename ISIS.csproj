@@ -109,6 +109,7 @@
     <Compile Include="Klanten.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="KlantenUitbreiding.cs" />
     <Compile Include="PersoneelBeheer.xaml.cs">
       <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
     </Compile>

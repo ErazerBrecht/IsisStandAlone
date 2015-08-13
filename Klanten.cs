@@ -12,10 +12,8 @@ namespace ISIS
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
 
-    public partial class Klanten : INotifyPropertyChanged, IDataErrorInfo
+    public partial class Klanten : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -45,7 +43,11 @@ namespace ISIS
         public string Naam
         {
             get { return _naam; }
-            set { _naam = value; OnPropertyChanged("Naam"); }
+            set
+            {
+                _naam = value;
+                OnPropertyChanged("Naam");
+            }
         }
 
         private string _voornaam;
@@ -91,62 +93,6 @@ namespace ISIS
         private Nullable<System.DateTime> _datum;
         public Nullable<System.DateTime> Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum"); } }
         private Nullable<System.DateTime> _laatsteactiviteit;
-        public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit"); } }
-
-        public string Error
-        {
-            get
-            {
-                return "";
-            }
-        }
-
-        public string this[string columnName]
-        {
-            get
-            {
-                string result = null;
-
-                if (columnName == "Naam")
-                {
-                    if (String.IsNullOrWhiteSpace(Naam))
-                    {
-                        result = "Naam must not be exmpty";
-                        CanSave = false;
-                    }
-                    else
-                    {
-                        CanSave = true;
-                    }
-                }
-                if (columnName == "ID")
-                {
-                    ISIS_DataEntities _viewModel = new ISIS_DataEntities();
-                    if ((_viewModel.Klanten.Any(k => k.ID == ID)))
-                    {
-                        result = "ID is al in gebruik!";
-                        CanSave = false;
-                    }
-                    else
-                    {
-                        CanSave = true;
-                    }
-                }
-
-                return result;
-            }
-        }
-
-        private bool _canSave;
-        public bool CanSave
-        {
-           get { return _canSave; }
-            set
-            {
-                _canSave = value;
-                OnPropertyChanged("CanSave");
-            }
-        }
-        
+        public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit"); } }       
     }
 }
