@@ -15,8 +15,7 @@ namespace ISIS
     
     public partial class ISIS_DataEntities : DbContext
     {
-        public ISIS_DataEntities()
-            : base("name=ISIS_DataEntities")
+        public ISIS_DataEntities(): base("name=ISIS_DataEntities")
         {
         }
     

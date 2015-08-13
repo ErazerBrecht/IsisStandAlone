@@ -92,7 +92,8 @@ namespace ISIS
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //This will get called when the property of an object inside the collection changes
-            _unsavedChanges = true;
+            if(e.PropertyName != "CanSave")     //There isn't actual data changed in that property
+                _unsavedChanges = true;
         }
 
         private bool CheckChanges()
@@ -169,21 +170,23 @@ namespace ISIS
                 _addClient.ID = tempId;
                 _addClient.Datum = DateTime.Now;
                 GridInformation.DataContext = _addClient;
-                TextBoxID.IsReadOnly = false;
+                TextBlockID.Visibility = Visibility.Hidden;
+                TextBoxID.Visibility = Visibility.Visible;
                 ButtonAdd.Content = "Annuleren";
             }
             else
             {
                 GridInformation.DataContext = _klantenViewSource;
                 ButtonAdd.Content = "Toevoegen";
-                TextBoxID.IsReadOnly = true;
-                RemoveBorderBrushID();
+                TextBlockID.Visibility = Visibility.Visible;
+                TextBoxID.Visibility = Visibility.Hidden;
             }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            TextBoxID.IsReadOnly = true;
+            TextBlockID.Visibility = Visibility.Visible;
+            TextBoxID.Visibility = Visibility.Hidden;
             Save();
             Refresh();
         }
@@ -216,45 +219,6 @@ namespace ISIS
             data.Add("E-mail");
             ComboBoxBericht.ItemsSource = data;
             berichtColumn.ItemsSource = data;
-        }
-
-        private void TextBoxID_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (TextBoxID.IsReadOnly == false)
-            {
-                ToolTip tooltip = new ToolTip { Content = "De gekozen ID bestaat al!" };
-                //Check if ID already exists, if this is the case give error and add red border!
-                int tempId = Convert.ToInt32(TextBoxID.Text);
-                if ((_entities.Klanten.Any(k => k.ID == tempId)))
-                {
-                    TextBoxID.BorderBrush = new SolidColorBrush(Colors.Red);
-                    TextBoxID.BorderThickness = new Thickness(2);
-                    tooltip.PlacementTarget = TextBoxID;
-                    tooltip.Placement = PlacementMode.Right;
-                    tooltip.VerticalOffset = 4;
-                    tooltip.HorizontalOffset = -155;
-                    TextBoxID.ToolTip = tooltip;
-                    tooltip.IsOpen = true;               
-                    ButtonSave.IsEnabled = false;
-                }
-                else
-                {
-                    RemoveBorderBrushID();
-                }
-            }
-
-        }
-
-        private void RemoveBorderBrushID()
-        {
-            if (TextBoxID.ToolTip != null)
-            {
-                ToolTip t = (ToolTip)TextBoxID.ToolTip;
-                t.IsOpen = false;
-            }
-            TextBoxID.ClearValue(TextBox.BorderBrushProperty);
-            TextBoxID.ClearValue(TextBox.BorderThicknessProperty);
-            ButtonSave.IsEnabled = true;
         }
 
         private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
