@@ -57,6 +57,10 @@ _ReSharper*/
 packages/
 *.nupkg
 
+#published files (installers)
+publish/
+*.pfx
+
 #ncrunch
 *ncrunch*
 *crunch*.local.xml
