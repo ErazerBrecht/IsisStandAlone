@@ -134,13 +134,19 @@ namespace ISIS
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             if (_klantenViewSource.View.CurrentPosition < _entities.Klanten.Local.Count() - 1)
+            {
                 _klantenViewSource.View.MoveCurrentToNext();
+                klantenDataGrid.ScrollIntoView(klantenDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
+            }
         }
 
         private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
         {
             if (_klantenViewSource.View.CurrentPosition > 0)
+            {
                 _klantenViewSource.View.MoveCurrentToPrevious();
+                klantenDataGrid.ScrollIntoView(klantenDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
+            }
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
