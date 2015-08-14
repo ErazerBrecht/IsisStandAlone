@@ -28,6 +28,7 @@ namespace ISIS
         CollectionViewSource _klantenViewSource;
         Klanten _addClient;
         bool _unsavedChanges;
+        int _oldLengthSearchBox = 0;
 
         public KlantenBeheer()
         {
@@ -65,6 +66,7 @@ namespace ISIS
             _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
+            TextBoxSearch.ItemsSource = _entities.Klanten.Local;
             ButtonAdd.Content = "Toevoegen";
             GridInformation.DataContext = _klantenViewSource;
         }
@@ -224,18 +226,36 @@ namespace ISIS
         private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             int tempID;
-            if (int.TryParse(TextBoxSearch.Text, out tempID))
+            var tempSearchList = new List<Klanten>();
+
+            //If text is getting longer search in items from the combobox self
+            //If not search in the list with all the items (in this situation you're deleting chars)
+            //Result: If you're adding chars, it will go faster because you need to search in a smaller list!
+            if (_oldLengthSearchBox < TextBoxSearch.Text.Length)
             {
-               List<Klanten> tempList = _entities.Klanten.Local.Where(k => k.ID.ToString().Contains(TextBoxSearch.Text)).ToList();
-                TextBoxSearch.ItemsSource = tempList;
-                TextBoxSearch.IsDropDownOpen = true;
+                tempSearchList = TextBoxSearch.Items.OfType<Klanten>().ToList();
             }
             else
             {
-                List<Klanten> tempList = _entities.Klanten.Local.Where(k => k.Naam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower())).ToList();
+                tempSearchList = _entities.Klanten.Local.ToList();
+            }
+
+            if (int.TryParse(TextBoxSearch.Text, out tempID))
+            {
+                List<Klanten> tempList = tempSearchList.Where(k => k.ID.ToString().Contains(TextBoxSearch.Text)).ToList();
                 TextBoxSearch.ItemsSource = tempList;
-                TextBoxSearch.IsDropDownOpen = true;
-            }           
+            }
+            else
+            {
+                //If the text contains off digits don't search after it in Naam and Voornaam (after all you will not find anything!)
+                if (!TextBoxSearch.Text.Any(char.IsDigit))
+                {
+                    List<Klanten> tempList = tempSearchList.Where(k => k.Naam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower())).ToList();
+                    TextBoxSearch.ItemsSource = tempList;
+                }
+            }
+            
+            _oldLengthSearchBox = TextBoxSearch.Text.Length;        //Save current textlength, in the future we can compare it to determine if the textlength became bigger or smaller!
         }
 
         private void TextBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -243,9 +263,27 @@ namespace ISIS
             if (TextBoxSearch.SelectedItem is Klanten)
             {
                 Klanten temp = (Klanten)TextBoxSearch.SelectedItem;
-                _klantenViewSource.View.MoveCurrentTo(temp);
+                _klantenViewSource.View.MoveCurrentTo(temp);         
             }
 
         }
+    }
+
+    public class SearchComboBox: ComboBox
+    {
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+
+            //Disables automatic selection when DropDownsOpen!
+            if (this.IsEditable &&
+                this.IsDropDownOpen == false &&
+                this.StaysOpenOnEdit)
+            {
+                this.IsDropDownOpen = true;
+            }
+        }
+
     }
 }

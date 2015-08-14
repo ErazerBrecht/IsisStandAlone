@@ -148,17 +148,8 @@
                 <Button Name="ButtonSave" Content="Opslaan" IsEnabled="{Binding CanSave}" Click="ButtonSave_Click"></Button>
                 <DockPanel Margin="0,46,0,0">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <ComboBox Name="TextBoxSearch" IsEditable="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding ID}" Margin="0,0,20,0"/>
-                                    <TextBlock Text="{Binding Naam}" Margin="0,0,4,0"/>
-                                    <TextBlock Text="{Binding Voornaam}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <local:SearchComboBox x:Name="TextBoxSearch" IsEditable="True" StaysOpenOnEdit="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged">
+                    </local:SearchComboBox>
                 </DockPanel>
 
 

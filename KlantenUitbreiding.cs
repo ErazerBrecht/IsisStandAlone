@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using System.ComponentModel;
 
 namespace ISIS
@@ -63,6 +62,11 @@ namespace ISIS
                 _canSave = value;
                 OnPropertyChanged("CanSave");
             }
+        }
+
+        public override string ToString()
+        {
+            return ID + "  " + Naam + "  " + Voornaam; ;
         }
     }
 }
