@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Windows;
 
 namespace ISIS
 {
@@ -48,6 +49,21 @@ namespace ISIS
                         CanSave = true;
                     }
                 }
+                if (columnName == "Gebruikersnummer")
+                {
+                    if (this.Betalingswijze == "Elektronisch")
+                    {
+                        if (String.IsNullOrWhiteSpace(Gebruikersnummer))
+                        {
+                            result = "U hebt gekozen voor elektronisch betalen, gelieve het gebruikersnummer in te vullen!";
+                            CanSave = false;
+                        }
+                        else
+                        {
+                            CanSave = true;
+                        }
+                    }
+                }
 
                 return result;
             }
@@ -61,6 +77,21 @@ namespace ISIS
             {
                 _canSave = value;
                 OnPropertyChanged("CanSave");
+            }
+        }
+
+        public Visibility ElektronischBetalen
+        {
+            get
+            {
+                if (this.Betalingswijze == "Elektronisch")
+                {
+                    if (Gebruikersnummer == null)
+                        this.Gebruikersnummer = "";
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Hidden;
             }
         }
 

@@ -98,6 +98,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Telefoon:  "></TextBlock>
                         <TextBox Grid.Column="1" Text="{Binding Telefoon, Mode=TwoWay}"></TextBox>
@@ -107,6 +108,11 @@
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding AndereNaam, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="E-mail:  "></TextBlock>
                         <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Email}"></TextBox>
+
+                        <TextBlock Text="Betalingswijze:  "  Grid.Row="2"  Margin="0,10,0,0"></TextBlock>
+                        <ComboBox SelectedItem="{Binding Betalingswijze, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Name="ComboBoxBetalingswijze"  Margin="0,10,0,0" Loaded="ComboBoxBetalingswijze_Loaded"/>
+                        <TextBlock Text="Gebruikersnummer:  " Visibility="{Binding ElektronischBetalen}"  Grid.Column="2"  Grid.Row="2" Margin="15,10,0,0"></TextBlock>
+                        <TextBox Grid.Column="3"  Grid.Row="2"  Margin="0,10,0,0" Visibility="{Binding ElektronischBetalen}" Text="{Binding Gebruikersnummer, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource errorTemplateSilverlightStyle}"></TextBox>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -125,14 +131,14 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Betalingswijze:  "></TextBlock>
-                        <ComboBox SelectedItem="{Binding Betalingswijze, Mode=TwoWay}" Grid.Column="1" Name="ComboBoxBetalingswijze" Loaded="ComboBoxBetalingswijze_Loaded"/>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
-                        <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay}" Grid.Column="3" Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded"/>
+                        <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
+                        <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay}"  Grid.Column="1" Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded"/>
+                        
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Bericht:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
+                        
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
@@ -157,10 +163,9 @@
 
         </Grid>
 
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" IsReadOnly="True" Header="ID" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="gebruikersnummerColumn" Binding="{Binding Gebruikersnummer}" Header="Gebruikersnummer" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam}" Header="Voornaam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat}" Header="Straat" Width="SizeToCells"/>
@@ -172,13 +177,13 @@
                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam}" Header="Andere Naam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="datumColumn" Binding="{Binding Datum , StringFormat=dd-MM-yyyy}" Header="Datum" Width="SizeToCells"/>
-                <DataGridComboBoxColumn x:Name="betalingswijzeColumn" SelectedItemBinding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToCells"/>
-                <DataGridComboBoxColumn x:Name="soortKlantColumn" SelectedItemBinding="{Binding SoortKlant}" Header="Soort Klant" Width="SizeToCells" />
+                <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="soortKlantColumn" Binding="{Binding SoortKlant}" Header="Soort Klant" Width="SizeToCells" />
                 <DataGridTextColumn x:Name="actiefColumn" Binding="{Binding Actief}" Header="Actief" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="laatsteActiviteitColumn" IsReadOnly="True" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="strijkboxColumn" Binding="{Binding Strijkbox}" Header="Strijkbox" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="waarborgColumn" Binding="{Binding Waarborg}" Header="Waarborg" Width="SizeToHeader"/>
-                <DataGridComboBoxColumn x:Name="berichtColumn" SelectedItemBinding="{Binding Bericht}" Header="Bericht" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="berichtColumn" Binding="{Binding Bericht}" Header="Bericht" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

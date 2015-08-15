@@ -53,7 +53,7 @@ namespace ISIS
         void window_Closing(object sender, CancelEventArgs e)
         {
             e.Cancel = CheckChanges();
-        }        
+        }
 
         private void Refresh()
         {
@@ -94,7 +94,7 @@ namespace ISIS
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //This will get called when the property of an object inside the collection changes
-            if(e.PropertyName != "CanSave")     //There isn't actual data changed in that property
+            if (e.PropertyName != "CanSave")     //There isn't actual data changed in that property
                 _unsavedChanges = true;
         }
 
@@ -170,7 +170,7 @@ namespace ISIS
 
                 int tempId = 1;
 
-                while(_entities.Klanten.Any(k => k.ID == tempId))
+                while (_entities.Klanten.Any(k => k.ID == tempId))
                 {
                     tempId++;
                 }
@@ -207,7 +207,6 @@ namespace ISIS
             data.Add("Ophaling Brecht");
             data.Add("Bedrijven Ecover");
             ComboBoxSoortKlant.ItemsSource = data;
-            soortKlantColumn.ItemsSource = data;
         }
 
         private void ComboBoxBetalingswijze_Loaded(object sender, RoutedEventArgs e)
@@ -216,7 +215,6 @@ namespace ISIS
             data.Add("Papier");
             data.Add("Elektronisch");
             ComboBoxBetalingswijze.ItemsSource = data;
-            betalingswijzeColumn.ItemsSource = data;
         }
 
         private void ComboBoxBericht_Loaded(object sender, RoutedEventArgs e)
@@ -226,7 +224,6 @@ namespace ISIS
             data.Add("SMS");
             data.Add("E-mail");
             ComboBoxBericht.ItemsSource = data;
-            berichtColumn.ItemsSource = data;
         }
 
         private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -260,7 +257,7 @@ namespace ISIS
                     TextBoxSearch.ItemsSource = tempList;
                 }
             }
-            
+
             _oldLengthSearchBox = TextBoxSearch.Text.Length;        //Save current textlength, in the future we can compare it to determine if the textlength became bigger or smaller!
         }
 
@@ -269,7 +266,7 @@ namespace ISIS
             if (TextBoxSearch.SelectedItem is Klanten)
             {
                 Klanten temp = (Klanten)TextBoxSearch.SelectedItem;
-                _klantenViewSource.View.MoveCurrentTo(temp);         
+                _klantenViewSource.View.MoveCurrentTo(temp);
             }
 
         }
