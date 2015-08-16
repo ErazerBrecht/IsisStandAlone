@@ -15,10 +15,10 @@
     <Grid>
         <TabControl>
             <TabItem Header="Klantenbeheer">
-                <local:KlantenBeheer></local:KlantenBeheer>
+                <local:KlantenBeheer x:Name="KlantenBeheerUserControl"></local:KlantenBeheer>
             </TabItem>
             <TabItem Header="Personeelbeheer">
-                <local:PersoneelBeheer></local:PersoneelBeheer>
+                <local:PersoneelBeheer x:Name="PersoneelBeheerUserControl"></local:PersoneelBeheer>
             </TabItem>
         </TabControl>
     </Grid>

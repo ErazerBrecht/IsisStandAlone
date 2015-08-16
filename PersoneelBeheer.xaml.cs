@@ -37,8 +37,6 @@ namespace ISIS
         {
             _PersoneelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("strijkersViewSource")));
             Refresh();
-            var window = Window.GetWindow(this);
-            window.Closing += window_Closing;
         }
 
         void window_Closing(object sender, CancelEventArgs e)
@@ -87,11 +85,11 @@ namespace ISIS
             _unsavedChanges = true;
         }
 
-        private bool CheckChanges()
+        public bool CheckChanges()
         {
             if (_unsavedChanges == true)
             {
-                MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "ISIS", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "Personeelbeheer", MessageBoxButton.YesNoCancel);
                 if (result == MessageBoxResult.Yes)
                 {
                     Save();

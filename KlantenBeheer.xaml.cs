@@ -40,8 +40,6 @@ namespace ISIS
         {
             _klantenViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klantenViewSource")));
             Refresh();
-            var window = Window.GetWindow(this);
-            window.Closing += window_Closing;
             SwitchToEditMode();
             // Do not load your data at design time.
             // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
@@ -50,11 +48,6 @@ namespace ISIS
             // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
             // 	myCollectionViewSource.Source = your data
             // }
-        }
-
-        void window_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = CheckChanges();
         }
 
         private void Refresh()
@@ -100,8 +93,17 @@ namespace ISIS
                 _unsavedChanges = true;
         }
 
-        private bool CheckChanges()
+        public bool CheckChanges()
         {
+            if(ButtonAdd.Content.ToString() ==  "Annuleren")
+            {
+                MessageBoxResult result = MessageBox.Show("U bent nog een nieuwe klant aan het aanmaken! Deze is nog niet opgeslagen!\nWilt u zeker verder gaan?", "Klantenbeheer", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.No)
+                {
+                    return true;
+                }
+            }
+
             if (_unsavedChanges == true)
             {
                 MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "ISIS", MessageBoxButton.YesNoCancel);
@@ -124,13 +126,17 @@ namespace ISIS
 
         private void Save()
         {
-            if (_addClient != null)
+            try
             {
-                _entities.Klanten.Add(_addClient);
+                _entities.SaveChanges();
+                _unsavedChanges = false;
+            }
+            catch
+            {
+                var error = _entities.GetValidationErrors();
+                MessageBox.Show("Opslagen is niet gelukt!\n\nWegens volgende reden:\n" + error.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
             }
 
-            _entities.SaveChanges();
-            _unsavedChanges = false;
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
@@ -184,7 +190,7 @@ namespace ISIS
             }
             else
             {
-                GridInformation.DataContext = _klantenViewSource;
+                _addClient = null;          //Clicked on cancel ("Annuleren") so the client doesn't have to be saved!
                 SwitchToEditMode();
             }
         }
@@ -192,6 +198,12 @@ namespace ISIS
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             SwitchToEditMode();
+
+            if (_addClient != null)
+            {
+                _entities.Klanten.Add(_addClient);
+            }
+
             Save();
             Refresh();
         }
@@ -205,10 +217,11 @@ namespace ISIS
 
         private void SwitchToEditMode()
         {
+            GridInformation.DataContext = _klantenViewSource;
             TextBoxID.IsReadOnly = true;
             //Get Klant that is currently bind to GridInformation (this equals to the currentitem of the klantenViewSource)
             //Because the ID textbox is now readonly disable data validation!
-            (((GridInformation.DataContext as CollectionViewSource).View.CurrentItem) as Klanten).CanValidateID = false;
+            (_klantenViewSource.View.CurrentItem as Klanten).CanValidateID = false;
             ButtonAdd.Content = "Toevoegen";
         }
 

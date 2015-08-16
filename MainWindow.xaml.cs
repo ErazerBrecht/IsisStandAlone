@@ -26,7 +26,10 @@ namespace ISIS
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-             
+            if (this.KlantenBeheerUserControl.CheckChanges())
+                e.Cancel = true;
+            else if (this.PersoneelBeheerUserControl.CheckChanges())
+                e.Cancel = true;
         }
     }
 }
