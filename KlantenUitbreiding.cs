@@ -29,24 +29,17 @@ namespace ISIS
                     if (String.IsNullOrWhiteSpace(Naam))
                     {
                         result = "Naam moet verplicht ingevuld worden!";
-                        CanSave = false;
-                    }
-                    else
-                    {
-                        CanSave = true;
                     }
                 }
                 if (columnName == "ID")
                 {
-                    ISIS_DataEntities _viewModel = new ISIS_DataEntities();
-                    if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                    if (CanValidateID == true)
                     {
-                        result = "ID is al in gebruik!";
-                        CanSave = false;
-                    }
-                    else
-                    {
-                        CanSave = true;
+                        ISIS_DataEntities _viewModel = new ISIS_DataEntities();
+                        if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                        {
+                            result = "ID is al in gebruik!";
+                        }
                     }
                 }
                 if (columnName == "Gebruikersnummer")
@@ -56,11 +49,6 @@ namespace ISIS
                         if (String.IsNullOrWhiteSpace(Gebruikersnummer))
                         {
                             result = "U hebt gekozen voor elektronisch betalen, gelieve het gebruikersnummer in te vullen!";
-                            CanSave = false;
-                        }
-                        else
-                        {
-                            CanSave = true;
                         }
                     }
                 }
@@ -69,14 +57,14 @@ namespace ISIS
             }
         }
 
-        private bool _canSave;
-        public bool CanSave
+        private bool _canValidateID;
+        public bool CanValidateID
         {
-            get { return _canSave; }
+            get { return _canValidateID; }
             set
             {
-                _canSave = value;
-                OnPropertyChanged("CanSave");
+                _canValidateID = value;
+                OnPropertyChanged("CanValidateID");
             }
         }
 

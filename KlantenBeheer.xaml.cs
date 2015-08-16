@@ -29,6 +29,7 @@ namespace ISIS
         Klanten _addClient;
         bool _unsavedChanges;
         int _oldLengthSearchBox = 0;
+        int _numberofErrors = 0;
 
         public KlantenBeheer()
         {
@@ -41,6 +42,7 @@ namespace ISIS
             Refresh();
             var window = Window.GetWindow(this);
             window.Closing += window_Closing;
+            SwitchToEditMode();
             // Do not load your data at design time.
             // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
             // {
@@ -94,7 +96,7 @@ namespace ISIS
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //This will get called when the property of an object inside the collection changes
-            if (e.PropertyName != "CanSave")     //There isn't actual data changed in that property
+            if (e.PropertyName != "CanValidateID")     //There isn't actual data changed in that property
                 _unsavedChanges = true;
         }
 
@@ -178,25 +180,36 @@ namespace ISIS
                 _addClient.ID = tempId;
                 _addClient.Datum = DateTime.Now;
                 GridInformation.DataContext = _addClient;
-                TextBlockID.Visibility = Visibility.Hidden;
-                TextBoxID.Visibility = Visibility.Visible;
-                ButtonAdd.Content = "Annuleren";
+                SwitchToAddMode();
             }
             else
             {
                 GridInformation.DataContext = _klantenViewSource;
-                ButtonAdd.Content = "Toevoegen";
-                TextBlockID.Visibility = Visibility.Visible;
-                TextBoxID.Visibility = Visibility.Hidden;
+                SwitchToEditMode();
             }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            TextBlockID.Visibility = Visibility.Visible;
-            TextBoxID.Visibility = Visibility.Hidden;
+            SwitchToEditMode();
             Save();
             Refresh();
+        }
+
+        private void SwitchToAddMode()
+        {
+            TextBoxID.IsReadOnly = false;
+            (GridInformation.DataContext as Klanten).CanValidateID = true;
+            ButtonAdd.Content = "Annuleren";
+        }
+
+        private void SwitchToEditMode()
+        {
+            TextBoxID.IsReadOnly = true;
+            //Get Klant that is currently bind to GridInformation (this equals to the currentitem of the klantenViewSource)
+            //Because the ID textbox is now readonly disable data validation!
+            (((GridInformation.DataContext as CollectionViewSource).View.CurrentItem) as Klanten).CanValidateID = false;
+            ButtonAdd.Content = "Toevoegen";
         }
 
         private void ComboBoxSoortKlant_Loaded(object sender, RoutedEventArgs e)
@@ -268,7 +281,21 @@ namespace ISIS
                 Klanten temp = (Klanten)TextBoxSearch.SelectedItem;
                 _klantenViewSource.View.MoveCurrentTo(temp);
             }
+        }
 
+        private void GridInformation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action.ToString() == "Added")
+            {
+                ButtonSave.IsEnabled = false;
+                _numberofErrors++;
+            }
+            else
+            {
+                _numberofErrors--;
+                if (_numberofErrors < 1)
+                    ButtonSave.IsEnabled = true;
+            }
         }
     }
 
