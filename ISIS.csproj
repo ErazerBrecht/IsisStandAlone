@@ -226,6 +226,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>ISIS_Data.mdf</DependentUpon>
     </Content>
+    <SplashScreen Include="Resources\SplatchScreen_ISIS.png" />
     <Resource Include="Resources\back.png" />
     <Resource Include="Resources\next.png" />
   </ItemGroup>
