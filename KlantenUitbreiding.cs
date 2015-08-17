@@ -24,33 +24,47 @@ namespace ISIS
             {
                 string result = null;
 
-                if (columnName == "Naam")
+                switch (columnName)
                 {
-                    if (String.IsNullOrWhiteSpace(Naam))
-                    {
-                        result = "Naam moet verplicht ingevuld worden!";
-                    }
-                }
-                if (columnName == "ID")
-                {
-                    if (CanValidateID == true)
-                    {
-                        ISIS_DataEntities _viewModel = new ISIS_DataEntities();
-                        if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                    case "Naam":
                         {
-                            result = "ID is al in gebruik!";
+                            if (String.IsNullOrWhiteSpace(Naam))
+                                result = "Naam moet verplicht ingevuld worden!";
+                            else if (Naam.Length > 50)
+                                result = "Naam mag maximum uit 50 karakters bestaan!";
+                            break;
                         }
-                    }
-                }
-                if (columnName == "Gebruikersnummer")
-                {
-                    if (this.Betalingswijze == "Elektronisch")
-                    {
-                        if (String.IsNullOrWhiteSpace(Gebruikersnummer))
+
+                    case "ID":
                         {
-                            result = "U hebt gekozen voor elektronisch betalen, gelieve het gebruikersnummer in te vullen!";
+                            if (CanValidateID == true)
+                            {
+                                ISIS_DataEntities _viewModel = new ISIS_DataEntities();
+                                if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                                {
+                                    result = "ID is al in gebruik!";
+                                }
+                            }
+                            break;
                         }
-                    }
+
+                    case "Telefoon":
+                        {
+                            if (!String.IsNullOrEmpty(Telefoon) && (!Telefoon.All(char.IsDigit) || Telefoon.Length != 9))
+                            {
+                                result = "Geen geldig telefoonnummer!";
+                            }
+                            break;
+                        }
+
+                    case "Gsm":
+                        {
+                            if (!String.IsNullOrEmpty(Gsm) && (!Gsm.All(char.IsDigit) || Gsm.Length != 10))
+                            {
+                              result = "Geen geldig gsmnummer!";
+                            }
+                            break;
+                        }
                 }
 
                 return result;
