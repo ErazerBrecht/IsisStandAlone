@@ -48,6 +48,32 @@ namespace ISIS
                             break;
                         }
 
+                    case "Straat":
+                        {
+                            if (String.IsNullOrWhiteSpace(Straat))
+                                result = "Straat moet verplicht ingevuld worden!";
+                            break;
+                        }
+
+                    case "Nummer":
+                        {
+                            if (String.IsNullOrWhiteSpace(Convert.ToString(Nummer)))
+                                result = "Nummer moet verplicht ingevuld worden!";
+                            break;
+                        }
+                    case "Gemeente":
+                        {
+                            if (String.IsNullOrWhiteSpace(Gemeente))
+                                result = "Gemeente moet verplicht ingevuld worden!";
+                            break;
+                        }
+                    case "Postcode":
+                        {
+                            if (String.IsNullOrWhiteSpace(Convert.ToString(Postcode)))
+                                result = "Gemeente moet verplicht ingevuld worden!";
+                            break;
+                        }
+
                     case "Telefoon":
                         {
                             if (!String.IsNullOrEmpty(Telefoon) && (!Telefoon.All(char.IsDigit) || Telefoon.Length != 9))
@@ -63,6 +89,30 @@ namespace ISIS
                             {
                               result = "Geen geldig gsmnummer!";
                             }
+                            break;
+                        }
+
+                    case "Betalingswijze":
+                        {
+                            if (String.IsNullOrWhiteSpace(Betalingswijze))
+                                result = "Betalingswijze moet verplicht gekozen worden!";
+                            break;
+                        }
+
+                    case "Gebruikersnummer":
+                        {
+                            if (Betalingswijze == "Elektronisch")
+                            {
+                                if (String.IsNullOrWhiteSpace(Gebruikersnummer))
+                                    result = "U hebt gekozen voor Elektronisch betalen dan is een Gebruikersnummer verplicht";
+                            }
+                            break;
+                        }
+
+                    case "SoortKlant":
+                        {
+                            if (String.IsNullOrWhiteSpace(SoortKlant))
+                                result = "Soort klant moet verplicht gekozen worden!";
                             break;
                         }
                 }

@@ -14,7 +14,7 @@
             <!-- Style I lend for ErrorHighlighting from a user (Fredrik Hedblad) on stackoverflow: http://stackoverflow.com/q/7434245/2961887 -->
             <ControlTemplate x:Key="errorTemplateSilverlightStyle">
                 <StackPanel Orientation="Horizontal">
-                    <Border BorderThickness="1" BorderBrush="#FFdc000c" CornerRadius="0.7"
+                    <Border BorderThickness="2.5" BorderBrush="#FFdc000c" CornerRadius="0.7"
                 VerticalAlignment="Top">
                         <Grid>
                             <Polygon x:Name="toolTipCorner"
