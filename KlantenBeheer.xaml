@@ -139,16 +139,18 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Grid.Column="1" Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded"/>
-                        
+                        <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
+                        <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
+
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Bericht:  " Height="28" VerticalAlignment="Top"></TextBlock>
-                        <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
-                        
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Tegoed: "></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Tegoed}"></TextBlock>
+
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
                         <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, StringFormat=dd-MM-yyyy, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
                 </GroupBox>
 

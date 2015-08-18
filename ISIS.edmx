@@ -29,6 +29,7 @@
           <Property Name="Bericht" Type="varchar" MaxLength="4" />
           <Property Name="Datum" Type="date" />
           <Property Name="LaatsteActiviteit" Type="date" />
+          <Property Name="Tegoed" Type="tinyint" />
         </EntityType>
         <EntityType Name="Strijkers">
           <Key>
@@ -102,6 +103,7 @@
           <Property Name="Bericht" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
+          <Property Name="Tegoed" Type="Byte" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -131,6 +133,7 @@
           <EntitySetMapping Name="Klantens">
             <EntityTypeMapping TypeName="ISIS_DataModel.Klanten">
               <MappingFragment StoreEntitySet="Klanten">
+                <ScalarProperty Name="Tegoed" ColumnName="Tegoed" />
                 <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Bericht" ColumnName="Bericht" />

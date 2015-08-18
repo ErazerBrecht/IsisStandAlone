@@ -15,7 +15,8 @@ namespace ISIS
     
     public partial class ISIS_DataEntities : DbContext
     {
-        public ISIS_DataEntities(): base("name=ISIS_DataEntities")
+        public ISIS_DataEntities()
+            : base("name=ISIS_DataEntities")
         {
         }
     
@@ -24,7 +25,7 @@ namespace ISIS
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Klanten> Klanten { get; set; }
         public virtual DbSet<Strijkers> Strijkers { get; set; }
+        public virtual DbSet<Klanten> Klanten { get; set; }
     }
 }

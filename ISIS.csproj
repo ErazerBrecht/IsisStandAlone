@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BerekenModule.xaml.cs">
+      <DependentUpon>BerekenModule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ISIS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +138,10 @@
     <Compile Include="Strijkers.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Page Include="BerekenModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PersoneelBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
