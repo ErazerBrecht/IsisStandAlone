@@ -4,9 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6a5a00ff8926444aa954a364b204bba7" Name="Diagram1" ZoomLevel="92">
-        <EntityTypeShape EntityType="ISIS_DataModel.Klanten" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="6a5a00ff8926444aa954a364b204bba7" Name="Diagram1" ZoomLevel="99">
+        <EntityTypeShape EntityType="ISIS_DataModel.Klant" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ISIS_DataModel.Strijkers" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ISIS_DataModel.Prestatie" Width="1.5" PointX="3" PointY="5.625" />
+        <AssociationConnector Association="ISIS_DataModel.fk_KlantenNummer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

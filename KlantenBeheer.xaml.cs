@@ -26,7 +26,7 @@ namespace ISIS
     {
         ISIS_DataEntities _entities;
         CollectionViewSource _klantenViewSource;
-        Klanten _addClient;
+        Klant _addClient;
         bool _unsavedChanges;
         int _oldLengthSearchBox = 0;
         int _numberofErrors = 0;
@@ -41,13 +41,6 @@ namespace ISIS
             _klantenViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("klantenViewSource")));
             Refresh();
             SwitchToEditMode();
-            // Do not load your data at design time.
-            // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
-            // {
-            // 	//Load your data here and assign the result to the CollectionViewSource.
-            // 	System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["Resource Key for CollectionViewSource"];
-            // 	myCollectionViewSource.Source = your data
-            // }
         }
 
         private void Refresh()
@@ -70,7 +63,7 @@ namespace ISIS
         {
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Klanten item in e.OldItems)
+                foreach (Klant item in e.OldItems)
                 {
                     //Removed items => Delete event
                     item.PropertyChanged -= EntityViewModelPropertyChanged;
@@ -78,7 +71,7 @@ namespace ISIS
             }
             else if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                foreach (Klanten item in e.NewItems)
+                foreach (Klant item in e.NewItems)
                 {
                     //Added items => Add event
                     item.PropertyChanged += EntityViewModelPropertyChanged;
@@ -164,7 +157,7 @@ namespace ISIS
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            _entities.Klanten.Remove((Klanten)_klantenViewSource.View.CurrentItem);
+            _entities.Klanten.Remove((Klant)_klantenViewSource.View.CurrentItem);
             _unsavedChanges = true;
             //_entities.SaveChanges();
             //Refresh();
@@ -174,7 +167,7 @@ namespace ISIS
         {
             if (ButtonAdd.Content.ToString() == "Toevoegen")
             {
-                _addClient = new Klanten();
+                _addClient = new Klant();
 
                 int tempId = 1;
 
@@ -211,7 +204,7 @@ namespace ISIS
         private void SwitchToAddMode()
         {
             TextBoxID.IsReadOnly = false;
-            (GridInformation.DataContext as Klanten).CanValidateID = true;
+            (GridInformation.DataContext as Klant).CanValidateID = true;
             ButtonAdd.Content = "Annuleren";
         }
 
@@ -221,7 +214,7 @@ namespace ISIS
             TextBoxID.IsReadOnly = true;
             //Get Klant that is currently bind to GridInformation (this equals to the currentitem of the klantenViewSource)
             //Because the ID textbox is now readonly disable data validation!
-            (_klantenViewSource.View.CurrentItem as Klanten).CanValidateID = false;
+            (_klantenViewSource.View.CurrentItem as Klant).CanValidateID = false;
             ButtonAdd.Content = "Toevoegen";
         }
 
@@ -255,14 +248,14 @@ namespace ISIS
         private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             int tempID;
-            var tempSearchList = new List<Klanten>();
+            var tempSearchList = new List<Klant>();
 
             //If text is getting longer search in items from the combobox self
             //If not search in the list with all the items (in this situation you're deleting chars)
             //Result: If you're adding chars, it will go faster because you need to search in a smaller list!
             if (_oldLengthSearchBox < TextBoxSearch.Text.Length)
             {
-                tempSearchList = TextBoxSearch.Items.OfType<Klanten>().ToList();
+                tempSearchList = TextBoxSearch.Items.OfType<Klant>().ToList();
             }
             else
             {
@@ -271,7 +264,7 @@ namespace ISIS
 
             if (int.TryParse(TextBoxSearch.Text, out tempID))
             {
-                List<Klanten> tempList = tempSearchList.Where(k => k.ID.ToString().Contains(TextBoxSearch.Text)).ToList();
+                List<Klant> tempList = tempSearchList.Where(k => k.ID.ToString().Contains(TextBoxSearch.Text)).ToList();
                 TextBoxSearch.ItemsSource = tempList;
             }
             else
@@ -279,7 +272,7 @@ namespace ISIS
                 //If the text contains off digits don't search after it in Naam and Voornaam (after all you will not find anything!)
                 if (!TextBoxSearch.Text.Any(char.IsDigit))
                 {
-                    List<Klanten> tempList = tempSearchList.Where(k => k.Naam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower())).ToList();
+                    List<Klant> tempList = tempSearchList.Where(k => k.Naam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(TextBoxSearch.Text.ToLower())).ToList();
                     TextBoxSearch.ItemsSource = tempList;
                 }
             }
@@ -289,9 +282,9 @@ namespace ISIS
 
         private void TextBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TextBoxSearch.SelectedItem is Klanten)
+            if (TextBoxSearch.SelectedItem is Klant)
             {
-                Klanten temp = (Klanten)TextBoxSearch.SelectedItem;
+                Klant temp = (Klant)TextBoxSearch.SelectedItem;
                 _klantenViewSource.View.MoveCurrentTo(temp);
             }
         }

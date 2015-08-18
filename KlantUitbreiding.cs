@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ISIS
 {
-    partial class Klanten : IDataErrorInfo
+    partial class Klant : IDataErrorInfo
     {
         public string Error
         {

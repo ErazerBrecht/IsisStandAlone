@@ -125,15 +125,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Klanten.cs">
+    <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="KlantenUitbreiding.cs" />
+    <Compile Include="KlantUitbreiding.cs" />
     <Compile Include="PersoneelBeheer.xaml.cs">
       <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prestatie.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Strijkers.cs">
       <DependentUpon>ISIS.tt</DependentUpon>

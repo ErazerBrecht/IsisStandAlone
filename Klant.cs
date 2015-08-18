@@ -13,7 +13,7 @@ namespace ISIS
     using System.Collections.Generic;
     
     using System.ComponentModel;
-    public partial class Klanten : INotifyPropertyChanged
+    public partial class Klant : INotifyPropertyChanged
     {
     	public event PropertyChangedEventHandler PropertyChanged;
     	protected virtual void OnPropertyChanged(string propertyName)
@@ -21,6 +21,13 @@ namespace ISIS
     			PropertyChangedEventHandler handler = PropertyChanged;
     			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
     	}
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Klant()
+        {
+            this.Prestaties = new HashSet<Prestatie>();
+        }
+    
     private int _id;
         public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
     private string _gebruikersnummer;
@@ -63,5 +70,8 @@ namespace ISIS
         public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
     private Nullable<byte> _tegoed;
         public Nullable<byte> Tegoed { get { return _tegoed; } set { _tegoed = value; OnPropertyChanged("Tegoed");} }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prestatie> Prestaties { get; set; }
     }
 }

@@ -31,6 +31,23 @@
           <Property Name="LaatsteActiviteit" Type="date" />
           <Property Name="Tegoed" Type="tinyint" />
         </EntityType>
+        <EntityType Name="Prestaties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="KlantenNummer" Type="int" Nullable="false" />
+          <Property Name="AantalHemden" Type="tinyint" />
+          <Property Name="ParameterHemden" Type="tinyint" />
+          <Property Name="AantalLakens1" Type="tinyint" />
+          <Property Name="ParameterLakens1" Type="tinyint" />
+          <Property Name="AantalLakens2" Type="tinyint" />
+          <Property Name="ParameterLakens2" Type="tinyint" />
+          <Property Name="AantalAndereStrijk" Type="tinyint" />
+          <Property Name="TijdAndereStrijk" Type="tinyint" />
+          <Property Name="ParameterAdministratie" Type="tinyint" />
+        </EntityType>
         <EntityType Name="Strijkers">
           <Key>
             <PropertyRef Name="ID" />
@@ -49,9 +66,26 @@
           <Property Name="IndienstVanaf" Type="date" />
           <Property Name="UrenTewerkstelling" Type="int" />
         </EntityType>
+        <Association Name="fk_KlantenNummer">
+          <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
+          <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klanten">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prestaties">
+              <PropertyRef Name="KlantenNummer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ISIS_DataModelStoreContainer">
           <EntitySet Name="Klanten" EntityType="Self.Klanten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prestaties" EntityType="Self.Prestaties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_KlantenNummer" Association="Self.fk_KlantenNummer">
+            <End Role="Klanten" EntitySet="Klanten" />
+            <End Role="Prestaties" EntitySet="Prestaties" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -77,9 +111,14 @@
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" />
-          <EntitySet Name="Klantens" EntityType="ISIS_DataModel.Klanten" />
+          <EntitySet Name="Klants" EntityType="ISIS_DataModel.Klant" />
+          <EntitySet Name="Prestaties1" EntityType="ISIS_DataModel.Prestatie" />
+          <AssociationSet Name="fk_KlantenNummer" Association="ISIS_DataModel.fk_KlantenNummer">
+            <End Role="Klanten" EntitySet="Klants" />
+            <End Role="Prestaty" EntitySet="Prestaties1" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Klanten">
+        <EntityType Name="Klant">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -104,7 +143,38 @@
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
           <Property Name="Tegoed" Type="Byte" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klanten" ToRole="Prestaty" />
         </EntityType>
+        <EntityType Name="Prestatie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
+          <Property Name="AantalHemden" Type="Byte" />
+          <Property Name="ParameterHemden" Type="Byte" />
+          <Property Name="AantalLakens1" Type="Byte" />
+          <Property Name="ParameterLakens1" Type="Byte" />
+          <Property Name="AantalLakens2" Type="Byte" />
+          <Property Name="ParameterLakens2" Type="Byte" />
+          <Property Name="AantalAndereStrijk" Type="Byte" />
+          <Property Name="TijdAndereStrijk" Type="Byte" />
+          <Property Name="ParameterAdministratie" Type="Byte" />
+          <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Prestaty" ToRole="Klanten" />
+        </EntityType>
+        <Association Name="fk_KlantenNummer">
+          <End Type="ISIS_DataModel.Klant" Role="Klanten" Multiplicity="1" />
+          <End Type="ISIS_DataModel.Prestatie" Role="Prestaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klanten">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prestaty">
+              <PropertyRef Name="KlantenNummer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -130,8 +200,8 @@
                 </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Klantens">
-            <EntityTypeMapping TypeName="ISIS_DataModel.Klanten">
+          <EntitySetMapping Name="Klants">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Klant">
               <MappingFragment StoreEntitySet="Klanten">
                 <ScalarProperty Name="Tegoed" ColumnName="Tegoed" />
                 <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
@@ -154,6 +224,24 @@
                 <ScalarProperty Name="Naam" ColumnName="Naam" />
                 <ScalarProperty Name="Gebruikersnummer" ColumnName="Gebruikersnummer" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prestaties1">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Prestatie">
+              <MappingFragment StoreEntitySet="Prestaties">
+                <ScalarProperty Name="ParameterAdministratie" ColumnName="ParameterAdministratie" />
+                <ScalarProperty Name="TijdAndereStrijk" ColumnName="TijdAndereStrijk" />
+                <ScalarProperty Name="AantalAndereStrijk" ColumnName="AantalAndereStrijk" />
+                <ScalarProperty Name="ParameterLakens2" ColumnName="ParameterLakens2" />
+                <ScalarProperty Name="AantalLakens2" ColumnName="AantalLakens2" />
+                <ScalarProperty Name="ParameterLakens1" ColumnName="ParameterLakens1" />
+                <ScalarProperty Name="AantalLakens1" ColumnName="AantalLakens1" />
+                <ScalarProperty Name="ParameterHemden" ColumnName="ParameterHemden" />
+                <ScalarProperty Name="AantalHemden" ColumnName="AantalHemden" />
+                <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
