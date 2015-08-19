@@ -145,5 +145,10 @@ namespace ISIS
         {
 
         }
+
+        private void DatePickerDatum_Loaded(object sender, RoutedEventArgs e)
+        {
+            DatePickerDatum.SelectedDate = DateTime.Now;
+        }
     }
 }
