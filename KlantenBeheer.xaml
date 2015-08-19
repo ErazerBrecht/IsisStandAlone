@@ -12,7 +12,6 @@
         </Style>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
-            <Setter Property="BorderThickness" Value="2.5"></Setter>
         </Style>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
