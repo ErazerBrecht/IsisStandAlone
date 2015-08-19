@@ -138,6 +138,7 @@
     <Compile Include="Prestatie.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="PrestatieUitbreiding.cs" />
     <Compile Include="Strijkers.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>

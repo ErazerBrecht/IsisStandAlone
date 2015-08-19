@@ -23,6 +23,7 @@ namespace ISIS
     {
         ISIS_DataEntities _entities;
         Klant _tempKlant;
+        Prestatie _tempPrestatie;
         int _oldLengthSearchBox = 0;
 
         public BerekenModule()
@@ -32,8 +33,11 @@ namespace ISIS
             _entities.Klanten.Load();
             _entities.Prestaties.Load();
             TextBoxSearch.ItemsSource = _entities.Klanten.Local;
+            _tempPrestatie = new Prestatie();
+            MainGrid.DataContext = _tempPrestatie;
         }
 
+        #region SearchBox
         private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             int tempID;
@@ -73,6 +77,73 @@ namespace ISIS
         {
             if (TextBoxSearch.SelectedItem is Klant)
                 _tempKlant = (Klant)TextBoxSearch.SelectedItem;
+        }
+        #endregion
+
+        #region Automatic Selection TextBox
+        private void SelectAddress(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                tb.SelectAll();
+            }
+        }
+
+        private void SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                if (!tb.IsKeyboardFocusWithin)
+                {
+                    e.Handled = true;
+                    tb.Focus();
+                }
+            }
+        }
+        #endregion
+
+        private void ButtonBereken_Click(object sender, RoutedEventArgs e)
+        {
+            //At the moment the parameters are hardcoded
+            //TODO: Make them changable in a seperate window
+            _tempPrestatie.ParameterHemden = 9;
+            _tempPrestatie.ParameterLakens1 = 10;
+            _tempPrestatie.ParameterLakens2 = 15;
+            _tempPrestatie.ParameterAndereStrijk = 1;
+
+            _tempPrestatie.TotaalStrijk = (_tempPrestatie.AantalHemden + _tempPrestatie.AantalLakens1 + _tempPrestatie.AantalLakens2 + _tempPrestatie.AantalAndereStrijk);
+
+            _tempPrestatie.TotaalHemden = _tempPrestatie.AantalHemden * _tempPrestatie.ParameterHemden;
+            _tempPrestatie.TotaalLakens1 = _tempPrestatie.AantalLakens1 * _tempPrestatie.ParameterLakens1;
+            _tempPrestatie.TotaalLakens2 = _tempPrestatie.AantalLakens2 * _tempPrestatie.ParameterLakens2;
+            _tempPrestatie.TotaalAndereStrijk = _tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk;
+
+            if (_tempPrestatie.TotaalStrijk < 20)
+                _tempPrestatie.TotaalAdministratie = 5;
+            else if (_tempPrestatie.TotaalStrijk >= 20)
+                _tempPrestatie.TotaalAdministratie = 10;
+            else if (_tempPrestatie.TotaalStrijk >= 40)
+                _tempPrestatie.TotaalAdministratie = 15;
+            else if (_tempPrestatie.TotaalStrijk >= 80)
+                _tempPrestatie.TotaalAdministratie = 20;
+
+            _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TotaalAdministratie;
+
+            TextBlockTegoed.DataContext = _tempKlant;
+
+            _tempPrestatie.TotaalBetalen = _tempPrestatie.TotaalMinuten - _tempKlant.Tegoed;
+            _tempPrestatie.TotaalDienstenChecks = Convert.ToInt32(Math.Ceiling(_tempPrestatie.TotaalBetalen / 60.0));
+            if (_tempPrestatie.TotaalDienstenChecks == 0)
+                _tempPrestatie.NieuwTegoed = _tempKlant.Tegoed - _tempPrestatie.TotaalMinuten;
+            else
+                _tempPrestatie.NieuwTegoed = (_tempPrestatie.TotaalDienstenChecks * 60) - _tempPrestatie.TotaalBetalen;
+        }
+
+        private void ButtonToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
