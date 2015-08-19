@@ -128,6 +128,9 @@
     <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="PrestatieBeheer.xaml.cs">
+      <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
     <Page Include="BerekenModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrestatieBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PersoneelBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>

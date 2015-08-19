@@ -17,6 +17,9 @@
             <TabItem Header="Berekenmodule">
                 <local:BerekenModule x:Name="BerekenModuleUserControl"></local:BerekenModule>
             </TabItem>
+            <TabItem Header="Prestatieoverzicht">
+                <local:PrestatieBeheer x:Name="PrestatieBeheerUserControl"></local:PrestatieBeheer>
+            </TabItem>
             <TabItem Header="Klantenbeheer">
                 <local:KlantenBeheer x:Name="KlantenBeheerUserControl"></local:KlantenBeheer>
             </TabItem>

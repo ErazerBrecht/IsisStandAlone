@@ -80,20 +80,6 @@ namespace ISIS
             }
         }
 
-        private int _totaalAdministratie;
-        public int TotaalAdministratie
-        {
-            get
-            {
-                return _totaalAdministratie;
-            }
-            set
-            {
-                _totaalAdministratie = value;
-                OnPropertyChanged("TotaalAdministratie");
-            }
-        }
-
         private int _totaalMinuten;
         public int TotaalMinuten
         {
