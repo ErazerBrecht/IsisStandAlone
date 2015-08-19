@@ -29,7 +29,7 @@
           <Property Name="Bericht" Type="varchar" MaxLength="4" />
           <Property Name="Datum" Type="date" />
           <Property Name="LaatsteActiviteit" Type="date" />
-          <Property Name="Tegoed" Type="tinyint" />
+          <Property Name="Tegoed" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Prestaties">
           <Key>
@@ -38,15 +38,16 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Datum" Type="date" Nullable="false" />
           <Property Name="KlantenNummer" Type="int" Nullable="false" />
-          <Property Name="AantalHemden" Type="tinyint" />
-          <Property Name="ParameterHemden" Type="tinyint" />
-          <Property Name="AantalLakens1" Type="tinyint" />
-          <Property Name="ParameterLakens1" Type="tinyint" />
-          <Property Name="AantalLakens2" Type="tinyint" />
-          <Property Name="ParameterLakens2" Type="tinyint" />
-          <Property Name="AantalAndereStrijk" Type="tinyint" />
-          <Property Name="TijdAndereStrijk" Type="tinyint" />
-          <Property Name="ParameterAdministratie" Type="tinyint" />
+          <Property Name="AantalHemden" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterHemden" Type="tinyint" Nullable="false" />
+          <Property Name="AantalLakens1" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="tinyint" Nullable="false" />
+          <Property Name="AantalLakens2" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="tinyint" Nullable="false" />
+          <Property Name="AantalAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="TijdAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Strijkers">
           <Key>
@@ -111,11 +112,11 @@
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" />
-          <EntitySet Name="Klants" EntityType="ISIS_DataModel.Klant" />
-          <EntitySet Name="Prestaties1" EntityType="ISIS_DataModel.Prestatie" />
+          <EntitySet Name="Klanten" EntityType="ISIS_DataModel.Klant" />
+          <EntitySet Name="Prestaties" EntityType="ISIS_DataModel.Prestatie" />
           <AssociationSet Name="fk_KlantenNummer" Association="ISIS_DataModel.fk_KlantenNummer">
-            <End Role="Klanten" EntitySet="Klants" />
-            <End Role="Prestaty" EntitySet="Prestaties1" />
+            <End Role="Klanten" EntitySet="Klanten" />
+            <End Role="Prestaty" EntitySet="Prestaties" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Klant">
@@ -142,7 +143,7 @@
           <Property Name="Bericht" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
-          <Property Name="Tegoed" Type="Byte" />
+          <Property Name="Tegoed" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klanten" ToRole="Prestaty" />
         </EntityType>
         <EntityType Name="Prestatie">
@@ -152,16 +153,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
-          <Property Name="AantalHemden" Type="Byte" />
-          <Property Name="ParameterHemden" Type="Byte" />
-          <Property Name="AantalLakens1" Type="Byte" />
-          <Property Name="ParameterLakens1" Type="Byte" />
-          <Property Name="AantalLakens2" Type="Byte" />
-          <Property Name="ParameterLakens2" Type="Byte" />
-          <Property Name="AantalAndereStrijk" Type="Byte" />
-          <Property Name="TijdAndereStrijk" Type="Byte" />
-          <Property Name="ParameterAdministratie" Type="Byte" />
+          <Property Name="AantalHemden" Type="Byte" Nullable="false" />
+          <Property Name="ParameterHemden" Type="Byte" Nullable="false" />
+          <Property Name="AantalLakens1" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="Byte" Nullable="false" />
+          <Property Name="AantalLakens2" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="Byte" Nullable="false" />
+          <Property Name="AantalAndereStrijk" Type="Byte" Nullable="false" />
+          <Property Name="TijdAndereStrijk" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Prestaty" ToRole="Klanten" />
+          <Property Name="ParameterAndereStrijk" Type="Byte" Nullable="false" />
+          <Property Name="TijdAdministratie" Type="Byte" Nullable="false" />
         </EntityType>
         <Association Name="fk_KlantenNummer">
           <End Type="ISIS_DataModel.Klant" Role="Klanten" Multiplicity="1" />
@@ -200,7 +202,7 @@
                 </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Klants">
+          <EntitySetMapping Name="Klanten">
             <EntityTypeMapping TypeName="ISIS_DataModel.Klant">
               <MappingFragment StoreEntitySet="Klanten">
                 <ScalarProperty Name="Tegoed" ColumnName="Tegoed" />
@@ -227,10 +229,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Prestaties1">
+          <EntitySetMapping Name="Prestaties">
             <EntityTypeMapping TypeName="ISIS_DataModel.Prestatie">
               <MappingFragment StoreEntitySet="Prestaties">
-                <ScalarProperty Name="ParameterAdministratie" ColumnName="ParameterAdministratie" />
+                <ScalarProperty Name="TijdAdministratie" ColumnName="TijdAdministratie" />
+                <ScalarProperty Name="ParameterAndereStrijk" ColumnName="ParameterAndereStrijk" />
                 <ScalarProperty Name="TijdAndereStrijk" ColumnName="TijdAndereStrijk" />
                 <ScalarProperty Name="AantalAndereStrijk" ColumnName="AantalAndereStrijk" />
                 <ScalarProperty Name="ParameterLakens2" ColumnName="ParameterLakens2" />
