@@ -52,8 +52,21 @@ namespace ISIS
         public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private string _anderenaam;
         public string AndereNaam { get { return _anderenaam; } set { _anderenaam = value; OnPropertyChanged("AndereNaam");} }
-    private string _betalingswijze;
-        public string Betalingswijze { get { return _betalingswijze; } set { _betalingswijze = value; OnPropertyChanged("Betalingswijze");} }
+
+        private string _betalingswijze;
+        public string Betalingswijze {
+            get
+            {
+                return _betalingswijze;
+            }
+            set
+            {
+                _betalingswijze = value;
+                OnPropertyChanged("Betalingswijze");
+                OnPropertyChanged("ElektronischBetalen");
+            }
+        }
+
     private string _soortklant;
         public string SoortKlant { get { return _soortklant; } set { _soortklant = value; OnPropertyChanged("SoortKlant");} }
     private Nullable<int> _actief;
@@ -68,8 +81,8 @@ namespace ISIS
         public Nullable<System.DateTime> Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum");} }
     private Nullable<System.DateTime> _laatsteactiviteit;
         public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
-    private Nullable<byte> _tegoed;
-        public Nullable<byte> Tegoed { get { return _tegoed; } set { _tegoed = value; OnPropertyChanged("Tegoed");} }
+    private byte _tegoed;
+        public byte Tegoed { get { return _tegoed; } set { _tegoed = value; OnPropertyChanged("Tegoed");} }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestatie> Prestaties { get; set; }
