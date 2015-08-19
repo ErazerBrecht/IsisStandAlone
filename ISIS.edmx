@@ -55,7 +55,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Adres" Type="varchar" MaxLength="50" />
+          <Property Name="Straat" Type="varchar" MaxLength="50" />
           <Property Name="Nummer" Type="int" />
           <Property Name="Postcode" Type="int" />
           <Property Name="Gemeente" Type="varchar" MaxLength="50" />
@@ -92,13 +92,12 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ISIS_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm"> 
-        <EntityType Name="Strijkers">
+        <EntityType Name="Strijker">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nummer" Type="Int32" />
           <Property Name="Postcode" Type="Int32" />
           <Property Name="Gemeente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -109,9 +108,10 @@
           <Property Name="IndienstVanaf" Type="DateTime" Precision="0" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UrenTewerkstelling" Type="Int32" />
+          <Property Name="Straat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Strijkers" EntityType="Self.Strijkers" />
+          <EntitySet Name="Strijkers" EntityType="ISIS_DataModel.Strijker" />
           <EntitySet Name="Klanten" EntityType="ISIS_DataModel.Klant" />
           <EntitySet Name="Prestaties" EntityType="ISIS_DataModel.Prestatie" />
           <AssociationSet Name="fk_KlantenNummer" Association="ISIS_DataModel.fk_KlantenNummer">
@@ -184,8 +184,9 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ISIS_DataModelStoreContainer" CdmEntityContainer="ISIS_DataEntities">    
           <EntitySetMapping Name="Strijkers">
-            <EntityTypeMapping TypeName="ISIS_DataModel.Strijkers">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Strijker">
               <MappingFragment StoreEntitySet="Strijkers">
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
                 <ScalarProperty Name="UrenTewerkstelling" ColumnName="UrenTewerkstelling" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IndienstVanaf" ColumnName="IndienstVanaf" />
@@ -194,7 +195,6 @@
                 <ScalarProperty Name="RNSZ" ColumnName="RNSZ" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="Adres" ColumnName="Adres" />
                 <ScalarProperty Name="Nummer" ColumnName="Nummer" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
                 <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />

@@ -99,7 +99,7 @@ namespace ISIS
 
             if (_unsavedChanges == true)
             {
-                MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "ISIS", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "KlantenBeheer", MessageBoxButton.YesNoCancel);
                 if (result == MessageBoxResult.Yes)
                 {
                     Save();
@@ -171,6 +171,7 @@ namespace ISIS
 
                 int tempId = 1;
 
+                //Search for first valid ID
                 while (_entities.Klanten.Any(k => k.ID == tempId))
                 {
                     tempId++;

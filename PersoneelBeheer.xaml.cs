@@ -25,8 +25,9 @@ namespace ISIS
     {
         ISIS_DataEntities _entities;
         CollectionViewSource _PersoneelViewSource;
-        Strijkers _addPersoneel;
+        Strijker _addPersoneel;
         bool _unsavedChanges;
+        int _numberofErrors = 0;
 
         public PersoneelBeheer()
         {
@@ -37,12 +38,8 @@ namespace ISIS
         {
             _PersoneelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("strijkersViewSource")));
             Refresh();
-        }
-
-        void window_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = CheckChanges();
-        }        
+            SwitchToEditMode();
+        }      
 
         private void Refresh()
         {
@@ -63,7 +60,7 @@ namespace ISIS
         {
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                foreach (Strijkers item in e.OldItems)
+                foreach (Strijker item in e.OldItems)
                 {
                     //Removed items => Delete event
                     item.PropertyChanged -= EntityViewModelPropertyChanged;
@@ -71,7 +68,7 @@ namespace ISIS
             }
             else if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                foreach (Strijkers item in e.NewItems)
+                foreach (Strijker item in e.NewItems)
                 {
                     //Added items => Add event
                     item.PropertyChanged += EntityViewModelPropertyChanged;
@@ -82,11 +79,21 @@ namespace ISIS
         public void EntityViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             //This will get called when the property of an object inside the collection changes
-            _unsavedChanges = true;
+            if (e.PropertyName != "CanValidateID")     //There isn't actual data changed in that property
+                _unsavedChanges = true;
         }
 
         public bool CheckChanges()
         {
+            if (ButtonAdd.Content.ToString() == "Annuleren")
+            {
+                MessageBoxResult result = MessageBox.Show("U bent nog een nieuw persooneelslid aan het aanmaken! Deze is nog niet opgeslagen!\nWilt u zeker verder gaan?", "Personeelbeheer", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.No)
+                {
+                    return true;
+                }
+            }
+
             if (_unsavedChanges == true)
             {
                 MessageBoxResult result = MessageBox.Show("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", "Personeelbeheer", MessageBoxButton.YesNoCancel);
@@ -109,25 +116,34 @@ namespace ISIS
 
         private void Save()
         {
-            if (_addPersoneel != null)
+            try
             {
-                _entities.Strijkers.Add(_addPersoneel);
+                _entities.SaveChanges();
+                _unsavedChanges = false;
             }
-
-            _entities.SaveChanges();
-            _unsavedChanges = false;
+            catch
+            {
+                var error = _entities.GetValidationErrors();
+                MessageBox.Show("Opslagen is niet gelukt!\n\nWegens volgende reden:\n" + error.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
+            }
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             if (_PersoneelViewSource.View.CurrentPosition < _entities.Strijkers.Local.Count() - 1)
+            {
                 _PersoneelViewSource.View.MoveCurrentToNext();
+                strijkersDataGrid.ScrollIntoView(strijkersDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
+            }
         }
 
         private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
         {
             if (_PersoneelViewSource.View.CurrentPosition > 0)
+            {
                 _PersoneelViewSource.View.MoveCurrentToPrevious();
+                strijkersDataGrid.ScrollIntoView(strijkersDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
+            }
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
@@ -137,7 +153,7 @@ namespace ISIS
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            _entities.Strijkers.Remove((Strijkers)_PersoneelViewSource.View.CurrentItem);
+            _entities.Strijkers.Remove((Strijker)_PersoneelViewSource.View.CurrentItem);
             _unsavedChanges = true;
             //_entities.SaveChanges();
             //Refresh();
@@ -147,21 +163,71 @@ namespace ISIS
         {
             if (ButtonAdd.Content.ToString() == "Toevoegen")
             {
-                _addPersoneel = new Strijkers();
+                _addPersoneel = new Strijker();
+
+                int tempId = 1;
+
+                //Search for first valid ID
+                while (_entities.Strijkers.Any(s => s.ID == tempId))
+                {
+                    tempId++;
+                }
+
+                _addPersoneel.ID = tempId;
+                _addPersoneel.IndienstVanaf = DateTime.Now;
                 GridInformation.DataContext = _addPersoneel;
-                ButtonAdd.Content = "Annuleren";
+                SwitchToAddMode();
             }
             else
             {
-                GridInformation.DataContext = _PersoneelViewSource;
-                ButtonAdd.Content = "Toevoegen";
+                _addPersoneel = null;       //Clicked on cancel ("Annuleren") so the employee doesn't have to be saved!
+                SwitchToEditMode();
             }
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            SwitchToEditMode();
+
+            if (_addPersoneel != null)
+            {
+                _entities.Strijkers.Add(_addPersoneel);
+            }
+
             Save();
             Refresh();
+        }
+
+        private void SwitchToAddMode()
+        {
+            TextBoxID.IsReadOnly = false;
+            (GridInformation.DataContext as Strijker).CanValidateID = true;
+            ButtonAdd.Content = "Annuleren";
+        }
+
+        private void SwitchToEditMode()
+        {
+            GridInformation.DataContext = _PersoneelViewSource;
+            TextBoxID.IsReadOnly = true;
+            //Get Klant that is currently bind to GridInformation (this equals to the currentitem of the klantenViewSource)
+            //Because the ID textbox is now readonly disable data validation!
+            (_PersoneelViewSource.View.CurrentItem as Strijker).CanValidateID = false;
+            ButtonAdd.Content = "Toevoegen";
+        }
+
+        private void GridInformation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action.ToString() == "Added")
+            {
+                ButtonSave.IsEnabled = false;
+                _numberofErrors++;
+            }
+            else
+            {
+                _numberofErrors--;
+                if (_numberofErrors < 1)
+                    ButtonSave.IsEnabled = true;
+            }
         }
     }
 }

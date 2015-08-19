@@ -13,7 +13,7 @@ namespace ISIS
     using System.Collections.Generic;
     
     using System.ComponentModel;
-    public partial class Strijkers : INotifyPropertyChanged
+    public partial class Strijker : INotifyPropertyChanged
     {
     	public event PropertyChangedEventHandler PropertyChanged;
     	protected virtual void OnPropertyChanged(string propertyName)
@@ -25,8 +25,6 @@ namespace ISIS
         public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
     private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
-    private string _adres;
-        public string Adres { get { return _adres; } set { _adres = value; OnPropertyChanged("Adres");} }
     private Nullable<int> _nummer;
         public Nullable<int> Nummer { get { return _nummer; } set { _nummer = value; OnPropertyChanged("Nummer");} }
     private Nullable<int> _postcode;
@@ -47,5 +45,7 @@ namespace ISIS
         public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private Nullable<int> _urentewerkstelling;
         public Nullable<int> UrenTewerkstelling { get { return _urentewerkstelling; } set { _urentewerkstelling = value; OnPropertyChanged("UrenTewerkstelling");} }
+    private string _straat;
+        public string Straat { get { return _straat; } set { _straat = value; OnPropertyChanged("Straat");} }
     }
 }

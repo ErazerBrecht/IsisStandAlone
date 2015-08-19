@@ -25,7 +25,7 @@ namespace ISIS
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Strijkers> Strijkers { get; set; }
+        public virtual DbSet<Strijker> Strijkers { get; set; }
         public virtual DbSet<Klant> Klanten { get; set; }
         public virtual DbSet<Prestatie> Prestaties { get; set; }
     }
