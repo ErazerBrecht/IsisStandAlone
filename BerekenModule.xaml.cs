@@ -25,6 +25,7 @@ namespace ISIS
         Klant _tempKlant;
         Prestatie _tempPrestatie;
         int _oldLengthSearchBox = 0;
+        bool _ableToSave;
 
         public BerekenModule()
         {
@@ -80,30 +81,6 @@ namespace ISIS
         }
         #endregion
 
-        #region Automatic Selection TextBox
-        private void SelectAddress(object sender, RoutedEventArgs e)
-        {
-            TextBox tb = (sender as TextBox);
-            if (tb != null)
-            {
-                tb.SelectAll();
-            }
-        }
-
-        private void SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
-        {
-            TextBox tb = (sender as TextBox);
-            if (tb != null)
-            {
-                if (!tb.IsKeyboardFocusWithin)
-                {
-                    e.Handled = true;
-                    tb.Focus();
-                }
-            }
-        }
-        #endregion
-
         private void ButtonBereken_Click(object sender, RoutedEventArgs e)
         {
             if (_tempKlant == null)
@@ -127,15 +104,15 @@ namespace ISIS
             _tempPrestatie.TotaalAndereStrijk = _tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk;
 
             if (_tempPrestatie.TotaalStrijk < 20)
-                _tempPrestatie.TotaalAdministratie = 5;
+                _tempPrestatie.TijdAdministratie = 5;
             else if (_tempPrestatie.TotaalStrijk >= 20)
-                _tempPrestatie.TotaalAdministratie = 10;
+                _tempPrestatie.TijdAdministratie = 10;
             else if (_tempPrestatie.TotaalStrijk >= 40)
-                _tempPrestatie.TotaalAdministratie = 15;
+                _tempPrestatie.TijdAdministratie = 15;
             else if (_tempPrestatie.TotaalStrijk >= 80)
-                _tempPrestatie.TotaalAdministratie = 20;
+                _tempPrestatie.TijdAdministratie = 20;
 
-            _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TotaalAdministratie;
+            _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;
 
             TextBlockTegoed.DataContext = _tempKlant;
 
@@ -145,11 +122,37 @@ namespace ISIS
                 _tempPrestatie.NieuwTegoed = _tempKlant.Tegoed - _tempPrestatie.TotaalMinuten;
             else
                 _tempPrestatie.NieuwTegoed = (_tempPrestatie.TotaalDienstenChecks * 60) - _tempPrestatie.TotaalBetalen;
+
+            _ableToSave = true;
         }
 
         private void ButtonToevoegen_Click(object sender, RoutedEventArgs e)
         {
+            if (!_ableToSave)
+            {
+                MessageBox.Show("U hebt nog niets berekend!");
+                return;
+            }
 
+            int tempId = 1;
+
+            //Search for first valid ID
+            while (_entities.Prestaties.Any(p => p.Id == tempId))
+            {
+                tempId++;
+            }
+
+            _tempPrestatie.Id = tempId;
+            _tempPrestatie.Datum = DatePickerDatum.SelectedDate.GetValueOrDefault();
+            _tempPrestatie.KlantenNummer = _tempKlant.ID;
+
+            _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
+            _tempKlant.LaatsteActiviteit = _tempPrestatie.Datum;
+
+            _entities.Klanten.Attach(_tempKlant);
+
+            _entities.Prestaties.Add(_tempPrestatie);
+            _entities.SaveChanges();
         }
 
         private void DatePickerDatum_Loaded(object sender, RoutedEventArgs e)

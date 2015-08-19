@@ -80,7 +80,7 @@
             <Border BorderThickness="0,3,0,0" BorderBrush="Black"  Grid.Row="8" Grid.Column="1" Margin="10" >
                 <TextBlock Text="{Binding TotaalStrijk}" HorizontalAlignment="Center"></TextBlock>
             </Border>
-            <TextBlock Grid.Row="8" Grid.Column="3" Margin="10" Text="{Binding TotaalAdministratie, StringFormat='= {0}'}" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Row="8" Grid.Column="3" Margin="10" Text="{Binding TijdAdministratie, StringFormat='= {0}'}" HorizontalAlignment="Center"></TextBlock>
 
             <TextBlock Grid.Row="9" Grid.Column="2" Text="Totaal minuten: " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
             <Border BorderThickness="0,3,0,0" BorderBrush="Black"  Grid.Row="9" Grid.Column="3" Margin="10,0,10,0" >
