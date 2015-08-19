@@ -145,7 +145,7 @@
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Tegoed: "></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Tegoed}"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding Tegoed}"></TextBlock>
 
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
                         <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
@@ -171,7 +171,7 @@
 
         </Grid>
 
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}"  IsReadOnly="False" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
@@ -186,7 +186,8 @@
                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="soortKlantColumn" Binding="{Binding SoortKlant}" Header="Soort Klant" Width="SizeToCells" />
-                <DataGridTextColumn x:Name="laatsteActiviteitColumn" IsReadOnly="True" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="laatsteActiviteitColumn" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tegoedColumn" Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
