@@ -106,6 +106,12 @@ namespace ISIS
 
         private void ButtonBereken_Click(object sender, RoutedEventArgs e)
         {
+            if (_tempKlant == null)
+            {
+                MessageBox.Show("Je hebt nog geen klant gekozen!");
+                return;
+            }
+
             //At the moment the parameters are hardcoded
             //TODO: Make them changable in a seperate window
             _tempPrestatie.ParameterHemden = 9;
