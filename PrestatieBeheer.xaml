@@ -8,16 +8,19 @@
         <CollectionViewSource x:Key="prestatiesViewSource" Source="{Binding Prestaties, Source={StaticResource iSIS_DataDataSet}}"/>
     </UserControl.Resources>
     <Grid DataContext="{StaticResource prestatiesViewSource}">
-        <DataGrid x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
+            <RadioButton IsChecked="True" Checked="RadioButton_Checked">Iedereen</RadioButton>
+            <RadioButton Margin="25,0,0,0" Checked="RadioButton_Checked">Per klant</RadioButton>
+            <local:SearchComboBox x:Name="TextBoxSearch" Margin="25,0,0,0" Width="200" IsEnabled="False" IsEditable="True" StaysOpenOnEdit="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged"></local:SearchComboBox>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="datumColumn" Header="Datum" Width="SizeToCells">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Datum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="datumColumn"  Binding="{Binding Datum}" Header="Datum" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="klantenNummerColumn" Binding="{Binding KlantenNummer}" Header="KlNr." Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="aantalHemdenColumn" Binding="{Binding AantalHemden}" Header="#Hemden" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="parameterHemdenColumn" Binding="{Binding ParameterHemden}" Header="Pm Hemden" Width="SizeToHeader"/>
