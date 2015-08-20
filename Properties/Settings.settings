@@ -18,5 +18,17 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ISIS_Data.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="ParameterHemden" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="ParameterLakens1" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ParameterLakens2" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="ParameterAndereStrijk" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

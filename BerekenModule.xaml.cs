@@ -24,6 +24,7 @@ namespace ISIS
         ISIS_DataEntities _entities;
         Klant _tempKlant;
         Prestatie _tempPrestatie;
+        Parameters _parameters;
         int _oldLengthSearchBox = 0;
         bool _ableToSave;
 
@@ -36,6 +37,12 @@ namespace ISIS
             TextBoxSearch.ItemsSource = _entities.Klanten.Local;
             _tempPrestatie = new Prestatie();
             MainGrid.DataContext = _tempPrestatie;
+            _parameters = new Parameters();
+            var elements = BerekenGrid.Children.Cast<FrameworkElement>().Where(c => Grid.GetColumn(c) == 2).ToList();       //Only elements in column 2 need _parameters as datacontext
+            foreach (var element in elements)
+            {
+                element.DataContext = _parameters;
+            }
         }
 
         #region SearchBox
@@ -89,12 +96,10 @@ namespace ISIS
                 return;
             }
 
-            //At the moment the parameters are hardcoded
-            //TODO: Make them changable in a seperate window
-            _tempPrestatie.ParameterHemden = 9;
-            _tempPrestatie.ParameterLakens1 = 10;
-            _tempPrestatie.ParameterLakens2 = 15;
-            _tempPrestatie.ParameterAndereStrijk = 1;
+            _tempPrestatie.ParameterHemden = _parameters.ParameterHemden;
+            _tempPrestatie.ParameterLakens1 = _parameters.ParameterLakens1;
+            _tempPrestatie.ParameterLakens2 = _parameters.ParameterLakens2;
+            _tempPrestatie.ParameterAndereStrijk = _parameters.ParameterAndereStrijk;
 
             _tempPrestatie.TotaalStrijk = (_tempPrestatie.AantalHemden + _tempPrestatie.AantalLakens1 + _tempPrestatie.AantalLakens2 + _tempPrestatie.AantalAndereStrijk);
 
@@ -178,6 +183,17 @@ namespace ISIS
         private void DatePickerDatum_Loaded(object sender, RoutedEventArgs e)
         {
             DatePickerDatum.SelectedDate = DateTime.Now;
+        }
+
+        private void ButtonChange_Click(object sender, RoutedEventArgs e)
+        {
+            if (_tempKlant == null)
+            {
+                MessageBox.Show("Je hebt nog geen klant gekozen!");
+                return;
+            }
+
+
         }
     }
 }

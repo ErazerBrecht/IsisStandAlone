@@ -43,5 +43,41 @@ namespace ISIS.Properties {
                 return ((string)(this["ISIS_DataConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public byte ParameterHemden {
+            get {
+                return ((byte)(this["ParameterHemden"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public byte ParameterLakens1 {
+            get {
+                return ((byte)(this["ParameterLakens1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public byte ParameterLakens2 {
+            get {
+                return ((byte)(this["ParameterLakens2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public byte ParameterAndereStrijk {
+            get {
+                return ((byte)(this["ParameterAndereStrijk"]));
+            }
+        }
     }
 }

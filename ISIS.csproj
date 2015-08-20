@@ -128,6 +128,7 @@
     <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Parameters.cs" />
     <Compile Include="PrestatieBeheer.xaml.cs">
       <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
