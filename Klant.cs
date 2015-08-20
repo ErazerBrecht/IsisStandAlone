@@ -52,21 +52,8 @@ namespace ISIS
         public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private string _anderenaam;
         public string AndereNaam { get { return _anderenaam; } set { _anderenaam = value; OnPropertyChanged("AndereNaam");} }
-
-        private string _betalingswijze;
-        public string Betalingswijze {
-            get
-            {
-                return _betalingswijze;
-            }
-            set
-            {
-                _betalingswijze = value;
-                OnPropertyChanged("Betalingswijze");
-                OnPropertyChanged("ElektronischBetalen");
-            }
-        }
-
+    private string _betalingswijze;
+        public string Betalingswijze { get { return _betalingswijze; } set { _betalingswijze = value; OnPropertyChanged("Betalingswijze"); OnPropertyChanged("ElektronischBetalen"); } }
     private string _soortklant;
         public string SoortKlant { get { return _soortklant; } set { _soortklant = value; OnPropertyChanged("SoortKlant");} }
     private Nullable<int> _actief;

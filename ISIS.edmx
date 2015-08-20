@@ -36,7 +36,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
           <Property Name="KlantenNummer" Type="int" Nullable="false" />
           <Property Name="AantalHemden" Type="tinyint" Nullable="false" />
           <Property Name="ParameterHemden" Type="tinyint" Nullable="false" />
@@ -151,7 +151,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
           <Property Name="AantalHemden" Type="Byte" Nullable="false" />
           <Property Name="ParameterHemden" Type="Byte" Nullable="false" />
