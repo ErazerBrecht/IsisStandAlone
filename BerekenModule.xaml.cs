@@ -134,6 +134,16 @@ namespace ISIS
                 return;
             }
 
+            //The second time you want to add a "prestatie" EF is following the first objct
+            //If you change the object EF will track the edits
+            //This will cause errors because the ID wil change (is normally not possible)
+            //But in our case it's a new "prestatie" so the ID should change
+            //To solve this we have to detach the object if EF is tracking it
+            Prestatie attachedPrestatie = _entities.Prestaties.Find(_tempPrestatie.Id);
+            if (attachedPrestatie != null)
+                _entities.Entry(attachedPrestatie).State = EntityState.Detached;
+
+
             int tempId = 1;
 
             //Search for first valid ID
@@ -149,6 +159,7 @@ namespace ISIS
             _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
             _tempKlant.LaatsteActiviteit = _tempPrestatie.Datum;
 
+
             //We query local context first to see if it's there.
             var attachedEntity = _entities.Klanten.Find(_tempKlant.ID);
 
@@ -161,6 +172,7 @@ namespace ISIS
 
             _entities.Prestaties.Add(_tempPrestatie);
             _entities.SaveChanges();
+
         }
 
         private void DatePickerDatum_Loaded(object sender, RoutedEventArgs e)
