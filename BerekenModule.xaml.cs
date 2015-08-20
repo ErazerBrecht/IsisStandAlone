@@ -149,7 +149,15 @@ namespace ISIS
             _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
             _tempKlant.LaatsteActiviteit = _tempPrestatie.Datum;
 
-            _entities.Klanten.Attach(_tempKlant);
+            //We query local context first to see if it's there.
+            var attachedEntity = _entities.Klanten.Find(_tempKlant.ID);
+
+            //We have it in the entity, need to update.
+            if (attachedEntity != null)
+            {
+                var attachedEntry = _entities.Entry(attachedEntity);
+                attachedEntry.CurrentValues.SetValues(_tempKlant);
+            }
 
             _entities.Prestaties.Add(_tempPrestatie);
             _entities.SaveChanges();
