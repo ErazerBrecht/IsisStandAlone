@@ -48,6 +48,7 @@
           <Property Name="TijdAndereStrijk" Type="tinyint" Nullable="false" />
           <Property Name="ParameterAndereStrijk" Type="tinyint" Nullable="false" />
           <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
+          <Property Name="TotaalDienstenChecks" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Strijkers">
           <Key>
@@ -164,6 +165,7 @@
           <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Prestaty" ToRole="Klanten" />
           <Property Name="ParameterAndereStrijk" Type="Byte" Nullable="false" />
           <Property Name="TijdAdministratie" Type="Byte" Nullable="false" />
+          <Property Name="TotaalDienstenChecks" Type="Byte" Nullable="false" />
         </EntityType>
         <Association Name="fk_KlantenNummer">
           <End Type="ISIS_DataModel.Klant" Role="Klanten" Multiplicity="1" />
@@ -232,6 +234,7 @@
           <EntitySetMapping Name="Prestaties">
             <EntityTypeMapping TypeName="ISIS_DataModel.Prestatie">
               <MappingFragment StoreEntitySet="Prestaties">
+                <ScalarProperty Name="TotaalDienstenChecks" ColumnName="TotaalDienstenChecks" />
                 <ScalarProperty Name="TijdAdministratie" ColumnName="TijdAdministratie" />
                 <ScalarProperty Name="ParameterAndereStrijk" ColumnName="ParameterAndereStrijk" />
                 <ScalarProperty Name="TijdAndereStrijk" ColumnName="TijdAndereStrijk" />

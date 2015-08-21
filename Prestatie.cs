@@ -47,6 +47,8 @@ namespace ISIS
         public byte ParameterAndereStrijk { get { return _parameteranderestrijk; } set { _parameteranderestrijk = value; OnPropertyChanged("ParameterAndereStrijk");} }
     private byte _tijdadministratie;
         public byte TijdAdministratie { get { return _tijdadministratie; } set { _tijdadministratie = value; OnPropertyChanged("TijdAdministratie");} }
+    private byte _totaaldienstenchecks;
+        public byte TotaalDienstenChecks { get { return _totaaldienstenchecks; } set { _totaaldienstenchecks = value; OnPropertyChanged("TotaalDienstenChecks");} }
     
         public virtual Klant Klanten { get; set; }
     }

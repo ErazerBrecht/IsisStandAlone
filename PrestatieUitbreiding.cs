@@ -108,20 +108,6 @@ namespace ISIS
             }
         }
 
-        private int _totaalDienstenChecks;
-        public int TotaalDienstenChecks
-        {
-            get
-            {
-                return _totaalDienstenChecks;
-            }
-            set
-            {
-                _totaalDienstenChecks = value;
-                OnPropertyChanged("TotaalDienstenChecks");
-            }
-        }
-
         private int _nieuwTegoed;
         public int NieuwTegoed
         {
