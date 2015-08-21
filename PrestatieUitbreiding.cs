@@ -11,6 +11,14 @@ namespace ISIS
         //Here I'll add properties that doesn't need to be saved in the database!
         //Because the value of these properties can be calculated out of the existing fields in the db!
 
+        public void AddParameters(Parameters p)
+        {
+            ParameterHemden = p.ParameterHemden;
+            ParameterLakens1 = p.ParameterLakens1;
+            ParameterLakens2 = p.ParameterLakens2;
+            ParameterAndereStrijk = p.ParameterAndereStrijk;
+        }
+
         private int _totaalStrijk;
         public int TotaalStrijk {
             get

@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace ISIS
 {
-    class Parameters : INotifyPropertyChanged
+    public class Parameters : INotifyPropertyChanged
     {
         public Parameters()
         {

@@ -35,13 +35,19 @@ namespace ISIS
             _entities.Klanten.Load();
             _entities.Prestaties.Load();
             TextBoxSearch.ItemsSource = _entities.Klanten.Local;
-            _tempPrestatie = new Prestatie();
-            MainGrid.DataContext = _tempPrestatie;
             _parameters = new Parameters();
-            var elements = BerekenGrid.Children.Cast<FrameworkElement>().Where(c => Grid.GetColumn(c) == 2).ToList();       //Only elements in column 2 need _parameters as datacontext
+            ChangeDataContextColumn(2, _parameters);
+            _tempPrestatie = new Prestatie();
+            _tempPrestatie.AddParameters(_parameters);
+            MainGrid.DataContext = _tempPrestatie;
+        }
+
+        private void ChangeDataContextColumn(int column, object datacontext)
+        {
+            var elements = BerekenGrid.Children.Cast<FrameworkElement>().Where(c => Grid.GetColumn(c) == column).ToList();
             foreach (var element in elements)
             {
-                element.DataContext = _parameters;
+                element.DataContext = datacontext;
             }
         }
 
@@ -84,7 +90,10 @@ namespace ISIS
         private void TextBoxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TextBoxSearch.SelectedItem is Klant)
+            {
                 _tempKlant = (Klant)TextBoxSearch.SelectedItem;
+                TextBlockTegoed.DataContext = _tempKlant;
+            }
         }
         #endregion
 
@@ -96,17 +105,7 @@ namespace ISIS
                 return;
             }
 
-            _tempPrestatie.ParameterHemden = _parameters.ParameterHemden;
-            _tempPrestatie.ParameterLakens1 = _parameters.ParameterLakens1;
-            _tempPrestatie.ParameterLakens2 = _parameters.ParameterLakens2;
-            _tempPrestatie.ParameterAndereStrijk = _parameters.ParameterAndereStrijk;
-
-            _tempPrestatie.TotaalStrijk = (_tempPrestatie.AantalHemden + _tempPrestatie.AantalLakens1 + _tempPrestatie.AantalLakens2 + _tempPrestatie.AantalAndereStrijk);
-
-            _tempPrestatie.TotaalHemden = _tempPrestatie.AantalHemden * _tempPrestatie.ParameterHemden;
-            _tempPrestatie.TotaalLakens1 = _tempPrestatie.AantalLakens1 * _tempPrestatie.ParameterLakens1;
-            _tempPrestatie.TotaalLakens2 = _tempPrestatie.AantalLakens2 * _tempPrestatie.ParameterLakens2;
-            _tempPrestatie.TotaalAndereStrijk = _tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk;
+            CalculateStrijk();
 
             if (_tempPrestatie.TotaalStrijk < 20)
                 _tempPrestatie.TijdAdministratie = 5;
@@ -117,12 +116,10 @@ namespace ISIS
             else if (_tempPrestatie.TotaalStrijk >= 80)
                 _tempPrestatie.TijdAdministratie = 20;
 
-            _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;
-
-            TextBlockTegoed.DataContext = _tempKlant;
+            _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;      
 
             _tempPrestatie.TotaalBetalen = _tempPrestatie.TotaalMinuten - _tempKlant.Tegoed;
-            _tempPrestatie.TotaalDienstenChecks = Convert.ToInt32(Math.Ceiling(_tempPrestatie.TotaalBetalen / 60.0));
+            _tempPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(_tempPrestatie.TotaalBetalen / 60.0));
             if (_tempPrestatie.TotaalDienstenChecks == 0)
                 _tempPrestatie.NieuwTegoed = _tempKlant.Tegoed - _tempPrestatie.TotaalMinuten;
             else
@@ -139,7 +136,7 @@ namespace ISIS
                 return;
             }
 
-            //The second time you want to add a "prestatie" EF is following the first objct
+            //The second time you want to add a "prestatie" EF is following the first object
             //If you change the object EF will track the edits
             //This will cause errors because the ID wil change (is normally not possible)
             //But in our case it's a new "prestatie" so the ID should change
@@ -149,34 +146,61 @@ namespace ISIS
                 _entities.Entry(attachedPrestatie).State = EntityState.Detached;
 
 
-            int tempId = 1;
-
-            //Search for first valid ID
-            while (_entities.Prestaties.Any(p => p.Id == tempId))
+            if (ButtonToevoegen.Content.ToString() == "Toevoegen")
             {
-                tempId++;
+                int tempId = 1;
+
+                //Search for first valid ID
+                while (_entities.Prestaties.Any(p => p.Id == tempId))
+                {
+                    tempId++;
+                }
+
+                _tempPrestatie.Id = tempId;
+                _tempPrestatie.Datum = DatePickerDatum.SelectedDate.GetValueOrDefault();
+                _tempPrestatie.KlantenNummer = _tempKlant.ID;
+
+                _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
+                _tempKlant.LaatsteActiviteit = _tempPrestatie.Datum;
+
+
+                //We query local context first to see if it's there.
+                var klant = _entities.Klanten.Find(_tempKlant.ID);
+
+                //We have it in the entity, need to update.
+                if (klant != null)
+                {
+                    _entities.Entry(klant).CurrentValues.SetValues(_tempKlant);
+                }
+
+                _entities.Prestaties.Add(_tempPrestatie);
+                _entities.SaveChanges();
             }
-
-            _tempPrestatie.Id = tempId;
-            _tempPrestatie.Datum = DatePickerDatum.SelectedDate.GetValueOrDefault();
-            _tempPrestatie.KlantenNummer = _tempKlant.ID;
-
-            _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
-            _tempKlant.LaatsteActiviteit = _tempPrestatie.Datum;
-
-
-            //We query local context first to see if it's there.
-            var attachedEntity = _entities.Klanten.Find(_tempKlant.ID);
-
-            //We have it in the entity, need to update.
-            if (attachedEntity != null)
+            else
             {
-                var attachedEntry = _entities.Entry(attachedEntity);
-                attachedEntry.CurrentValues.SetValues(_tempKlant);
-            }
+                _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.NieuwTegoed);
 
-            _entities.Prestaties.Add(_tempPrestatie);
-            _entities.SaveChanges();
+                var klant = _entities.Klanten.Find(_tempKlant.ID);
+
+                //We have it in the entity, need to update.
+                if (klant != null)
+                {
+                    _entities.Entry(klant).CurrentValues.SetValues(_tempKlant);
+                }
+
+                var prestatie = _entities.Prestaties.Find(_tempPrestatie.Id);
+
+                //We have it in the entity, need to update.
+                if (prestatie != null)
+                {
+                    _entities.Entry(prestatie).CurrentValues.SetValues(_tempPrestatie);
+                }
+
+                _entities.SaveChanges();
+                ButtonBereken.Content = "Bereken";
+                ButtonToevoegen.Content = "Toevoegen";
+                ButtonChange.Content = "Laatste prestatie aanpassen";
+            }
 
         }
 
@@ -187,13 +211,67 @@ namespace ISIS
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
+            _ableToSave = false;
+
             if (_tempKlant == null)
             {
                 MessageBox.Show("Je hebt nog geen klant gekozen!");
                 return;
             }
 
+            if (ButtonChange.Content.ToString() == "Laatste prestatie aanpassen")
+            {
+                if (_entities.Prestaties.Count() > 0)
+                    _tempPrestatie = _entities.Prestaties.Where(p => p.KlantenNummer == _tempKlant.ID).OrderByDescending(p => p.Id).First();
+                else
+                {
+                    MessageBox.Show("Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                    return;
+                }
 
+                _parameters.ParameterHemden = _tempPrestatie.ParameterHemden;
+                _parameters.ParameterLakens1 = _tempPrestatie.ParameterLakens1;
+                _parameters.ParameterLakens2 = _tempPrestatie.ParameterLakens2;
+                _parameters.ParameterAndereStrijk = _tempPrestatie.ParameterAndereStrijk;
+
+                _tempPrestatie.NieuwTegoed = _tempKlant.Tegoed;
+
+                CalculateStrijk();
+
+                _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;
+                _tempPrestatie.TotaalBetalen = Convert.ToByte((_tempPrestatie.TotaalDienstenChecks * 60) - _tempPrestatie.NieuwTegoed);
+                _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.TotaalMinuten - _tempPrestatie.TotaalBetalen);
+
+                MainGrid.DataContext = _tempPrestatie;
+
+                ButtonBereken.Content = "Herbereken";
+                ButtonToevoegen.Content = "Aanpassen";
+                ButtonChange.Content = "Annuleren";
+            }
+            else
+            {
+                ButtonBereken.Content = "Bereken";
+                ButtonToevoegen.Content = "Toevoegen";
+                ButtonChange.Content = "Laatste prestatie aanpassen";
+
+                _entities.Entry(_tempPrestatie).Reload();
+                _entities.Entry(_tempKlant).Reload();
+
+                _parameters = new Parameters();
+                ChangeDataContextColumn(2, _parameters);
+                _tempPrestatie = new Prestatie();
+                _tempPrestatie.AddParameters(_parameters);
+                MainGrid.DataContext = _tempPrestatie;
+            }
+        }
+
+        private void CalculateStrijk()
+        {
+            _tempPrestatie.TotaalHemden = _tempPrestatie.AantalHemden * _tempPrestatie.ParameterHemden;
+            _tempPrestatie.TotaalLakens1 = _tempPrestatie.AantalLakens1 * _tempPrestatie.ParameterLakens1;
+            _tempPrestatie.TotaalLakens2 = _tempPrestatie.AantalLakens2 * _tempPrestatie.ParameterLakens2;
+            _tempPrestatie.TotaalAndereStrijk = _tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk;
+            _tempPrestatie.TotaalStrijk = (_tempPrestatie.AantalHemden + _tempPrestatie.AantalLakens1 + _tempPrestatie.AantalLakens2 + _tempPrestatie.AantalAndereStrijk);
         }
     }
 }
