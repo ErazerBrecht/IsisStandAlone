@@ -32,6 +32,7 @@
                 <DataGridTextColumn x:Name="tijdAndereStrijkColumn" Binding="{Binding TijdAndereStrijk}" Header="Tijd Andere Strijk" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="parameterAndereStrijkColumn" Binding="{Binding ParameterAndereStrijk}" Header="Pm Andere Strijk" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="tijdAdministratieColumn" Binding="{Binding TijdAdministratie}" Header="Tijd Administratie" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalDienstenChecksColumn" Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
 

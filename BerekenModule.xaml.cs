@@ -241,7 +241,7 @@ namespace ISIS
                 _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;
                 if (_tempPrestatie.TotaalDienstenChecks > 0)
                 {
-                    _tempPrestatie.TotaalBetalen = Convert.ToByte((_tempPrestatie.TotaalDienstenChecks * 60) - _tempPrestatie.NieuwTegoed);
+                    _tempPrestatie.TotaalBetalen = (_tempPrestatie.TotaalDienstenChecks * 60) - _tempPrestatie.NieuwTegoed;
                     _tempKlant.Tegoed = Convert.ToByte(_tempPrestatie.TotaalMinuten - _tempPrestatie.TotaalBetalen);
                 }
                 else
