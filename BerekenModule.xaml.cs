@@ -109,11 +109,11 @@ namespace ISIS
 
             if (_tempPrestatie.TotaalStrijk < 20)
                 _tempPrestatie.TijdAdministratie = 5;
-            else if (_tempPrestatie.TotaalStrijk >= 20)
+            else if (_tempPrestatie.TotaalStrijk < 40)
                 _tempPrestatie.TijdAdministratie = 10;
-            else if (_tempPrestatie.TotaalStrijk >= 40)
+            else if (_tempPrestatie.TotaalStrijk < 80)
                 _tempPrestatie.TijdAdministratie = 15;
-            else if (_tempPrestatie.TotaalStrijk >= 80)
+            else
                 _tempPrestatie.TijdAdministratie = 20;
 
             _tempPrestatie.TotaalMinuten = _tempPrestatie.TotaalHemden + _tempPrestatie.TotaalLakens1 + _tempPrestatie.TotaalLakens2 + _tempPrestatie.TotaalAndereStrijk + _tempPrestatie.TijdAdministratie;      
