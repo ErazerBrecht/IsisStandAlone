@@ -17,8 +17,8 @@ namespace ISIS
             ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
         }
 
-        private byte _parameterHemden;
-        public byte ParameterHemden
+        private decimal _parameterHemden;
+        public decimal ParameterHemden
         {
             get { return _parameterHemden; }
             set
@@ -28,8 +28,8 @@ namespace ISIS
             }
         }
 
-        private byte _parameterLakens1;
-        public byte ParameterLakens1
+        private decimal _parameterLakens1;
+        public decimal ParameterLakens1
         {
             get { return _parameterLakens1; }
             set
@@ -39,8 +39,8 @@ namespace ISIS
             }
         }
 
-        private byte _parameterLakens2;
-        public byte ParameterLakens2
+        private decimal _parameterLakens2;
+        public decimal ParameterLakens2
         {
             get { return _parameterLakens2; }
             set
@@ -50,8 +50,8 @@ namespace ISIS
             }
         }
 
-        private byte _parameterAndereStrijk;
-        public byte ParameterAndereStrijk
+        private decimal _parameterAndereStrijk;
+        public decimal ParameterAndereStrijk
         {
             get { return _parameterAndereStrijk; }
             set

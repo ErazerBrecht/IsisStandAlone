@@ -39,14 +39,14 @@
           <Property Name="Datum" Type="datetime" Nullable="false" />
           <Property Name="KlantenNummer" Type="int" Nullable="false" />
           <Property Name="AantalHemden" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterHemden" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterHemden" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="AantalLakens1" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterLakens1" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="AantalLakens2" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterLakens2" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="AantalAndereStrijk" Type="tinyint" Nullable="false" />
           <Property Name="TijdAndereStrijk" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterAndereStrijk" Type="decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
           <Property Name="TotaalDienstenChecks" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -116,7 +116,7 @@
           <EntitySet Name="Klanten" EntityType="ISIS_DataModel.Klant" />
           <EntitySet Name="Prestaties" EntityType="ISIS_DataModel.Prestatie" />
           <AssociationSet Name="fk_KlantenNummer" Association="ISIS_DataModel.fk_KlantenNummer">
-            <End Role="Klanten" EntitySet="Klanten" />
+            <End Role="Klant" EntitySet="Klanten" />
             <End Role="Prestaty" EntitySet="Prestaties" />
           </AssociationSet>
         </EntityContainer>
@@ -145,7 +145,7 @@
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
           <Property Name="Tegoed" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klanten" ToRole="Prestaty" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klant" ToRole="Prestaty" />
         </EntityType>
         <EntityType Name="Prestatie">
           <Key>
@@ -155,23 +155,23 @@
           <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
           <Property Name="AantalHemden" Type="Byte" Nullable="false" />
-          <Property Name="ParameterHemden" Type="Byte" Nullable="false" />
+          <Property Name="ParameterHemden" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
           <Property Name="AantalLakens1" Type="Byte" Nullable="false" />
-          <Property Name="ParameterLakens1" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
           <Property Name="AantalLakens2" Type="Byte" Nullable="false" />
-          <Property Name="ParameterLakens2" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
           <Property Name="AantalAndereStrijk" Type="Byte" Nullable="false" />
           <Property Name="TijdAndereStrijk" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Prestaty" ToRole="Klanten" />
-          <Property Name="ParameterAndereStrijk" Type="Byte" Nullable="false" />
+          <Property Name="ParameterAndereStrijk" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
           <Property Name="TijdAdministratie" Type="Byte" Nullable="false" />
           <Property Name="TotaalDienstenChecks" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Prestaty" ToRole="Klant" />
         </EntityType>
         <Association Name="fk_KlantenNummer">
-          <End Type="ISIS_DataModel.Klant" Role="Klanten" Multiplicity="1" />
+          <End Type="ISIS_DataModel.Klant" Role="Klant" Multiplicity="1" />
           <End Type="ISIS_DataModel.Prestatie" Role="Prestaty" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Klanten">
+            <Principal Role="Klant">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Prestaty">

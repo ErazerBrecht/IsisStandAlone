@@ -276,10 +276,10 @@ namespace ISIS
 
         private void CalculateStrijk()
         {
-            _tempPrestatie.TotaalHemden = _tempPrestatie.AantalHemden * _tempPrestatie.ParameterHemden;
-            _tempPrestatie.TotaalLakens1 = _tempPrestatie.AantalLakens1 * _tempPrestatie.ParameterLakens1;
-            _tempPrestatie.TotaalLakens2 = _tempPrestatie.AantalLakens2 * _tempPrestatie.ParameterLakens2;
-            _tempPrestatie.TotaalAndereStrijk = _tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk;
+            _tempPrestatie.TotaalHemden = (int) Math.Ceiling(_tempPrestatie.AantalHemden * _tempPrestatie.ParameterHemden);
+            _tempPrestatie.TotaalLakens1 = (int)Math.Ceiling(_tempPrestatie.AantalLakens1 * _tempPrestatie.ParameterLakens1);
+            _tempPrestatie.TotaalLakens2 = (int)Math.Ceiling(_tempPrestatie.AantalLakens2 * _tempPrestatie.ParameterLakens2);
+            _tempPrestatie.TotaalAndereStrijk = (int)Math.Ceiling(_tempPrestatie.TijdAndereStrijk * _tempPrestatie.ParameterAndereStrijk);
             _tempPrestatie.TotaalStrijk = (_tempPrestatie.AantalHemden + _tempPrestatie.AantalLakens1 + _tempPrestatie.AantalLakens2 + _tempPrestatie.AantalAndereStrijk);
         }
     }

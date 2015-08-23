@@ -47,36 +47,36 @@ namespace ISIS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public byte ParameterHemden {
+        public decimal ParameterHemden {
             get {
-                return ((byte)(this["ParameterHemden"]));
+                return ((decimal)(this["ParameterHemden"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public byte ParameterLakens1 {
+        public decimal ParameterLakens1 {
             get {
-                return ((byte)(this["ParameterLakens1"]));
+                return ((decimal)(this["ParameterLakens1"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public byte ParameterLakens2 {
+        public decimal ParameterLakens2 {
             get {
-                return ((byte)(this["ParameterLakens2"]));
+                return ((decimal)(this["ParameterLakens2"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public byte ParameterAndereStrijk {
+        public decimal ParameterAndereStrijk {
             get {
-                return ((byte)(this["ParameterAndereStrijk"]));
+                return ((decimal)(this["ParameterAndereStrijk"]));
             }
         }
     }
