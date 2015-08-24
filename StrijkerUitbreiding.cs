@@ -73,6 +73,21 @@ namespace ISIS
                                 result = "Gemeente moet verplicht ingevuld worden!";
                             break;
                         }
+                    case "RNSZ":
+                        {
+                            if (String.IsNullOrWhiteSpace(RNSZ))
+                                result = "RNSZ nummer moet verplicht ingevuld worden!";
+                            break;
+                        }
+                    case "UrenTewerkstelling":
+                        {
+                            if (String.IsNullOrWhiteSpace(Convert.ToString(UrenTewerkstelling)))
+                                result = "Uren tewerkstelling moet verplicht ingevuld worden!";
+                            if (UrenTewerkstelling > 38)
+                                result = "Uren tewerkstelling mag maximaal 38 zijn!";
+                            break;
+                        }
+                 
                 }
 
                 return result;
