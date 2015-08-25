@@ -44,39 +44,51 @@ namespace ISIS.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public decimal ParameterHemden {
             get {
                 return ((decimal)(this["ParameterHemden"]));
             }
+            set {
+                this["ParameterHemden"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public decimal ParameterLakens1 {
             get {
                 return ((decimal)(this["ParameterLakens1"]));
             }
+            set {
+                this["ParameterLakens1"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
         public decimal ParameterLakens2 {
             get {
                 return ((decimal)(this["ParameterLakens2"]));
             }
+            set {
+                this["ParameterLakens2"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal ParameterAndereStrijk {
             get {
                 return ((decimal)(this["ParameterAndereStrijk"]));
+            }
+            set {
+                this["ParameterAndereStrijk"] = value;
             }
         }
     }

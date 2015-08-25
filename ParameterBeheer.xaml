@@ -8,7 +8,7 @@
         </Style>
     </UserControl.Resources>
     <Grid Margin="15" Name="MainGrid">
-        <Grid>
+        <Grid Name="ParameterGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -18,21 +18,23 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0">Hemden</TextBlock>
-            <TextBox Grid.Column="1" Margin="10,0,0,5" Name="TextBoxHemden"></TextBox>
+            <TextBox Grid.Column="1" Margin="20,0,0,5" Name="TextBoxHemden" Text="{Binding ParameterHemden, Mode=TwoWay}"></TextBox>
 
             <TextBlock Grid.Row="1">Lakens 1</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxLakens1"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" Name="TextBoxLakens1" Text="{Binding ParameterLakens1, Mode=TwoWay}"></TextBox>
  
             <TextBlock Grid.Row="2">Lakens 2</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxLakens2"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" Name="TextBoxLakens2" Text="{Binding ParameterLakens2, Mode=TwoWay}"></TextBox>
 
             <TextBlock Grid.Row="3">Andere strijk</TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxAndereStrijk"></TextBox>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" Name="TextBoxAndereStrijk" Text="{Binding ParameterAndereStrijk, Mode=TwoWay}"></TextBox>
 
+            <Button Grid.Row="4" Name="ButtonOpslaan" Click="ButtonOpslaan_Click">Opslaan</Button>
+            <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Name="ButtonAnnuleren" Click="ButtonAnnuleren_Click">Annuleren</Button>
         </Grid>
     </Grid>
 </UserControl>

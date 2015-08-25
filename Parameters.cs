@@ -17,6 +17,15 @@ namespace ISIS
             ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
         }
 
+        public void SaveParameters()
+        {
+            Properties.Settings.Default.ParameterHemden = ParameterHemden;
+            Properties.Settings.Default.ParameterLakens1 = ParameterLakens1;
+            Properties.Settings.Default.ParameterLakens2 = ParameterLakens2;
+            Properties.Settings.Default.ParameterAndereStrijk = ParameterAndereStrijk;
+            Properties.Settings.Default.Save();
+        }
+
         private decimal _parameterHemden;
         public decimal ParameterHemden
         {

@@ -20,10 +20,28 @@ namespace ISIS
     /// </summary>
     public partial class ParameterBeheer : UserControl
     {
+        Parameters _parameters;
 
         public ParameterBeheer()
         {
             InitializeComponent();
-        }        
+            LoadParameters();
+        }
+        
+        private void LoadParameters()
+        {
+            _parameters = new Parameters();
+            ParameterGrid.DataContext = _parameters;
+        }
+
+        private void ButtonOpslaan_Click(object sender, RoutedEventArgs e)
+        {
+            _parameters.SaveParameters();
+        }
+
+        private void ButtonAnnuleren_Click(object sender, RoutedEventArgs e)
+        {
+            LoadParameters();
+        }
     }
 }

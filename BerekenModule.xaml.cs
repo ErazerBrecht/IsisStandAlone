@@ -35,10 +35,8 @@ namespace ISIS
             _entities.Klanten.Load();
             _entities.Prestaties.Load();
             TextBoxSearch.ItemsSource = _entities.Klanten.Local;
-            _parameters = new Parameters();
-            ChangeDataContextColumn(2, _parameters);
+
             _tempPrestatie = new Prestatie();
-            _tempPrestatie.AddParameters(_parameters);
             MainGrid.DataContext = _tempPrestatie;
         }
 
@@ -104,6 +102,11 @@ namespace ISIS
                 MessageBox.Show("Je hebt nog geen klant gekozen!");
                 return;
             }
+
+            //Load parameters from settings! And add them into the Prestatie
+            _parameters = new Parameters();
+            ChangeDataContextColumn(2, _parameters);
+            _tempPrestatie.AddParameters(_parameters);
 
             CalculateStrijk();
 
