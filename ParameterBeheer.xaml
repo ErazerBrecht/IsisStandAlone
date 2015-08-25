@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="ISIS.ParameterBeheer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ISIS" FontSize="18">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="15" Name="MainGrid">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0">Hemden</TextBlock>
+            <TextBox Grid.Column="1" Margin="10,0,0,5" Name="TextBoxHemden"></TextBox>
+
+            <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxLakens1"></TextBox>
+ 
+            <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxLakens2"></TextBox>
+
+            <TextBlock Grid.Row="3">Andere strijk</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="10,0,0,5" Name="TextBoxAndereStrijk"></TextBox>
+
+        </Grid>
+    </Grid>
+</UserControl>

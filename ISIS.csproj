@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ParameterBeheer.xaml.cs">
+      <DependentUpon>ParameterBeheer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BerekenModule.xaml.cs">
       <DependentUpon>BerekenModule.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrestatieUitbreiding.cs" />
+    <Page Include="ParameterBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="BerekenModule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

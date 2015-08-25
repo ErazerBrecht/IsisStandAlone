@@ -26,6 +26,9 @@
             <TabItem Header="Personeelbeheer">
                 <local:PersoneelBeheer x:Name="PersoneelBeheerUserControl"></local:PersoneelBeheer>
             </TabItem>
+            <TabItem Header="Parameterbeheer">
+                <local:ParameterBeheer x:Name="ParameterBeheerUserControl"></local:ParameterBeheer>
+            </TabItem>
         </TabControl>
     </Grid>
 </Controls:MetroWindow>
