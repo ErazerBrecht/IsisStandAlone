@@ -88,7 +88,7 @@ namespace ISIS
 
         public bool CheckChanges()
         {
-            if(ButtonAdd.Content.ToString() ==  "Annuleren")
+            if (ButtonAdd.Content.ToString() == "Annuleren")
             {
                 MessageBoxResult result = MessageBox.Show("U bent nog een nieuwe klant aan het aanmaken! Deze is nog niet opgeslagen!\nWilt u zeker verder gaan?", "Klantenbeheer", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.No)
@@ -222,11 +222,28 @@ namespace ISIS
         private void ComboBoxSoortKlant_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> data = new List<string>();
-            data.Add("Winkel Rijkevorsel");
-            data.Add("Winkel Heist");
-            data.Add("Ophaling Brecht");
-            data.Add("Bedrijven Ecover");
+            data.Add("Winkel");
+            data.Add("Ophaling");
+            data.Add("Bedrijven");
             ComboBoxSoortKlant.ItemsSource = data;
+
+        }
+
+        private void ComboBoxSoortKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxSoortKlant.SelectedIndex != -1)
+            {
+                ComboBoxSoortKlantPlaats.IsEnabled = true;
+                if (ComboBoxSoortKlant.SelectedValue.ToString() == "Winkel")
+                {
+                    List<string> data = new List<string>();
+                    data.Add("Rijkevorsel");
+                    data.Add("Heist");
+                    ComboBoxSoortKlantPlaats.ItemsSource = data;
+                }
+            }
+            else
+                ComboBoxSoortKlantPlaats.IsEnabled = false;
         }
 
         private void ComboBoxBetalingswijze_Loaded(object sender, RoutedEventArgs e)
@@ -306,7 +323,7 @@ namespace ISIS
         }
     }
 
-    public class SearchComboBox: ComboBox
+    public class SearchComboBox : ComboBox
     {
 
         protected override void OnKeyDown(KeyEventArgs e)

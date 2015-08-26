@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ISIS" x:Class="ISIS.KlantenBeheer"
-        FontSize="18" Loaded="UserControl_Loaded">
+        FontSize="14" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <local:ISIS_DataDataSet x:Key="iSIS_DataDataSet"/>
         <CollectionViewSource x:Key="klantenViewSource" Source="{Binding Klanten, Source={StaticResource iSIS_DataDataSet}}"/>
@@ -137,17 +137,21 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
-                        <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Grid.Column="1" Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded"/>
+                        <UniformGrid Grid.Column="1" Rows="1">
+                            <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded" SelectionChanged="ComboBoxSoortKlant_SelectionChanged"/>
+                            <ComboBox SelectedItem="{Binding SoortKlantPlaats, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="False" Name="ComboBoxSoortKlantPlaats"></ComboBox>
+                        </UniformGrid>
+
                         <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
                         <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
 
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Tegoed: "></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding Tegoed}"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
 
-                        <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="2" Text="{Binding Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding Tegoed}"></TextBlock>
                         <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
                         <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
@@ -170,7 +174,7 @@
 
         </Grid>
 
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" FontSize="14" EnableRowVirtualization="True" ItemsSource="{Binding}"  IsReadOnly="False" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding}"  IsReadOnly="False" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
@@ -184,7 +188,14 @@
                 <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm}" Header="Gsm" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="soortKlantColumn" Binding="{Binding SoortKlant}" Header="Soort Klant" Width="SizeToCells" />
+                <DataGridTextColumn x:Name="soortKlantColumn" Header="Soort Klant" Width="SizeToCells">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat=" {0} {1}">
+                            <Binding Path="SoortKlant" />
+                            <Binding Path="SoortKlantPlaats" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="laatsteActiviteitColumn" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="tegoedColumn" Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
             </DataGrid.Columns>

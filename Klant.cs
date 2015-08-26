@@ -70,7 +70,8 @@ namespace ISIS
         public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
     private byte _tegoed;
         public byte Tegoed { get { return _tegoed; } set { _tegoed = value; OnPropertyChanged("Tegoed");} }
-    
+    private string _soortklantplaats;
+        public string SoortKlantPlaats { get { return _soortklantplaats; } set { _soortklantplaats = value; OnPropertyChanged("SoortKlantPlaats"); } }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestatie> Prestaties { get; set; }
     }

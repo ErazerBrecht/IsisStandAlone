@@ -22,7 +22,7 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="AndereNaam" Type="varchar" MaxLength="50" />
           <Property Name="Betalingswijze" Type="varchar" MaxLength="12" />
-          <Property Name="SoortKlant" Type="varchar" MaxLength="50" />
+          <Property Name="SoortKlant" Type="varchar" MaxLength="9" />
           <Property Name="Actief" Type="int" />
           <Property Name="Strijkbox" Type="int" />
           <Property Name="Waarborg" Type="int" />
@@ -30,6 +30,7 @@
           <Property Name="Datum" Type="date" />
           <Property Name="LaatsteActiviteit" Type="date" />
           <Property Name="Tegoed" Type="tinyint" Nullable="false" />
+          <Property Name="SoortKlantPlaats" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Prestaties">
           <Key>
@@ -137,7 +138,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AndereNaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Betalingswijze" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="SoortKlant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SoortKlant" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="Actief" Type="Int32" />
           <Property Name="Strijkbox" Type="Int32" />
           <Property Name="Waarborg" Type="Int32" />
@@ -146,6 +147,7 @@
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
           <Property Name="Tegoed" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klant" ToRole="Prestaty" />
+          <Property Name="SoortKlantPlaats" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Prestatie">
           <Key>
@@ -207,6 +209,7 @@
           <EntitySetMapping Name="Klanten">
             <EntityTypeMapping TypeName="ISIS_DataModel.Klant">
               <MappingFragment StoreEntitySet="Klanten">
+                <ScalarProperty Name="SoortKlantPlaats" ColumnName="SoortKlantPlaats" />
                 <ScalarProperty Name="Tegoed" ColumnName="Tegoed" />
                 <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
