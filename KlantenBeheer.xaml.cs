@@ -225,6 +225,7 @@ namespace ISIS
             data.Add("Winkel");
             data.Add("Ophaling");
             data.Add("Bedrijven");
+            data.Add("Scholen");
             ComboBoxSoortKlant.ItemsSource = data;
 
         }
@@ -235,12 +236,13 @@ namespace ISIS
             {
                 ComboBoxSoortKlantPlaats.IsEnabled = true;
                 if (ComboBoxSoortKlant.SelectedValue.ToString() == "Winkel")
-                {
-                    List<string> data = new List<string>();
-                    data.Add("Rijkevorsel");
-                    data.Add("Heist");
-                    ComboBoxSoortKlantPlaats.ItemsSource = data;
-                }
+                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Winkels;
+                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Ophaling")
+                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Ophaling;
+                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Bedrijven")
+                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Bedrijven;
+                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Scholen")
+                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Scholen;
             }
             else
                 ComboBoxSoortKlantPlaats.IsEnabled = false;

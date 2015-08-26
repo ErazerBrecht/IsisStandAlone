@@ -91,5 +91,58 @@ namespace ISIS.Properties {
                 this["ParameterAndereStrijk"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Rijkevorsel</string>\r\n  <string>Heist</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Winkels {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Winkels"]));
+            }
+            set {
+                this["Winkels"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Brecht</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Ophaling {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Ophaling"]));
+            }
+            set {
+                this["Ophaling"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Ecover</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Bedrijven {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Bedrijven"]));
+            }
+            set {
+                this["Bedrijven"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Scholen {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Scholen"]));
+            }
+            set {
+                this["Scholen"] = value;
+            }
+        }
     }
 }
