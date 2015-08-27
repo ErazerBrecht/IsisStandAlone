@@ -1,8 +1,7 @@
-﻿<UserControl
+﻿<UserControl x:Class="ISIS.ParameterBeheer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ISIS" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ISIS.ParameterBeheer"
-             FontSize="18" d:DesignWidth="560.048">
+             xmlns:local="clr-namespace:ISIS" FontSize="14">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
@@ -28,16 +27,16 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"><Run Text="Hemden"/></TextBlock>
+                <TextBlock Grid.Column="0">Hemden</TextBlock>
                 <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterHemden, Mode=TwoWay}"/>
 
-                <TextBlock Grid.Row="1"><Run Text="Lakens 1"/></TextBlock>
+                <TextBlock Grid.Row="1">Lakens 1</TextBlock>
                 <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterLakens1, Mode=TwoWay}"/>
 
-                <TextBlock Grid.Row="2"><Run Text="Lakens 2"/></TextBlock>
+                <TextBlock Grid.Row="2">Lakens 2</TextBlock>
                 <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterLakens2, Mode=TwoWay}"/>
 
-                <TextBlock Grid.Row="3"><Run Text="Andere strijk"/></TextBlock>
+                <TextBlock Grid.Row="3">Andere strijk</TextBlock>
                 <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterAndereStrijk, Mode=TwoWay}"/>
 
                 <Button Grid.Row="4" x:Name="ButtonOpslaan" Click="ButtonOpslaan_Click" Content="Opslaan"/>
@@ -55,8 +54,8 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <UniformGrid Rows="1">
-                                <TextBlock Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                <Button Margin="15,10,0,0" Padding="10,5,10,5" Content="X" HorizontalAlignment="Center" Click="ButtonDelete_Click"></Button>
+                                <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
+                                <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonDelete_Click"></Button>
                             </UniformGrid>
                             
                         </DataTemplate>
