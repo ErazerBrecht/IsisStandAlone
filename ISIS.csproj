@@ -138,6 +138,7 @@
     <Compile Include="PrestatieBeheer.xaml.cs">
       <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SoortKlant.cs" />
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
