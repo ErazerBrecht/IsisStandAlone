@@ -21,14 +21,12 @@ namespace ISIS
     public partial class ParameterBeheer : UserControl
     {
         Parameters _parameters;
-        SoortKlant _soortKlant;
 
         public ParameterBeheer()
         {
             InitializeComponent();
             LoadParameters();
-            _soortKlant = new SoortKlant();
-            ListBoxWinkel.ItemsSource = _soortKlant.Winkels;
+            ListBoxWinkel.ItemsSource = SoortKlant.Winkels;
         }
         
         private void LoadParameters()
@@ -50,8 +48,20 @@ namespace ISIS
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             string remove = (sender as Button).DataContext.ToString();
-            _soortKlant.Winkels.Remove(remove);
-            _soortKlant.Save();
+            SoortKlant.Winkels.Remove(remove);
+            SoortKlant.Save();
+        }
+
+        private void TextBoxWinkelsAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (String.IsNullOrWhiteSpace(TextBoxWinkelsAdd.Text))
+                    return;
+
+                SoortKlant.Winkels.Add(TextBoxWinkelsAdd.Text);
+                SoortKlant.Save();
+            }
         }
     }
 }

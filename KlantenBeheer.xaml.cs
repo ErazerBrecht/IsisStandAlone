@@ -236,13 +236,13 @@ namespace ISIS
             {
                 ComboBoxSoortKlantPlaats.IsEnabled = true;
                 if (ComboBoxSoortKlant.SelectedValue.ToString() == "Winkel")
-                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Winkels;
+                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Winkels;
                 else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Ophaling")
-                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Ophaling;
+                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Ophaling;
                 else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Bedrijven")
-                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Bedrijven;
+                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Bedrijven;
                 else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Scholen")
-                    ComboBoxSoortKlantPlaats.ItemsSource = Properties.Settings.Default.Scholen;
+                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Scholen;
             }
             else
                 ComboBoxSoortKlantPlaats.IsEnabled = false;

@@ -21,6 +21,7 @@ namespace ISIS
     {
         public MainWindow()
         {
+            SoortKlant.Load();
             InitializeComponent();
         }
 

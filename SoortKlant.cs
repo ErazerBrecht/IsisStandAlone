@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ISIS
 {
-    class SoortKlant
+    public static class SoortKlant
     {
-        public SoortKlant()
+        public static void Load()
         {
             //Need ObservableCollection for beter binding => Otherwise the changes won't update in the UI!
             Winkels = new ObservableCollection<string>(Properties.Settings.Default.Winkels.Cast<string>().ToList());
@@ -21,7 +21,7 @@ namespace ISIS
         }
        
 
-        public void Save()
+        public static void Save()
         {
             StringCollection saveWinkels = new StringCollection();
             saveWinkels.AddRange(Winkels.ToArray());
@@ -33,9 +33,9 @@ namespace ISIS
             Properties.Settings.Default.Save();
         }
 
-        public ObservableCollection<string> Winkels {get; set;}
-        public ObservableCollection<string> Bedrijven { get; set; }
-        public ObservableCollection<string> Scholen { get; set; }
-        public ObservableCollection<string> Ophaling { get; set; }
+        public static ObservableCollection<string> Winkels {get; set;}
+        public static ObservableCollection<string> Bedrijven { get; set; }
+        public static ObservableCollection<string> Scholen { get; set; }
+        public static ObservableCollection<string> Ophaling { get; set; }
     }
 }

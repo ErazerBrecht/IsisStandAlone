@@ -50,17 +50,28 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <GroupBox Header="Winkels">
-                <ItemsControl x:Name="ListBoxWinkel">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <UniformGrid Rows="1">
-                                <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonDelete_Click"></Button>
-                            </UniformGrid>
-                            
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ItemsControl x:Name="ListBoxWinkel">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <UniformGrid Rows="1" >
+                                    <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
+                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonDelete_Click"></Button>
+                                </UniformGrid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock>Toevoegen: </TextBlock>
+                        <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxWinkelsAdd" KeyDown="TextBoxWinkelsAdd_KeyDown"></TextBox>
+                    </StackPanel>
+                </Grid>
+                
             </GroupBox>
         </Grid>
     </Grid>
