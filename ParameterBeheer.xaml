@@ -46,6 +46,12 @@
 
 
         <Grid x:Name="SoortKlantenGrid" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -60,7 +66,7 @@
                             <DataTemplate>
                                 <UniformGrid Rows="1" >
                                     <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonDelete_Click"></Button>
+                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonWinkelDelete_Click"></Button>
                                 </UniformGrid>
 
                             </DataTemplate>
@@ -72,6 +78,78 @@
                     </StackPanel>
                 </Grid>
                 
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Bedrijven">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ItemsControl x:Name="ListBoxBedrijven">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <UniformGrid Rows="1" >
+                                    <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
+                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonBedrijfDelete_Click"></Button>
+                                </UniformGrid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock>Toevoegen:</TextBlock>
+                        <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxBedrijvenAdd" KeyDown="TextBoxBedrijvenAdd_KeyDown"></TextBox>
+                    </StackPanel>
+                </Grid>
+
+            </GroupBox>
+            <GroupBox Grid.Row="2" Header="Ophaling">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ItemsControl x:Name="ListBoxOphaling">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <UniformGrid Rows="1" >
+                                    <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
+                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonOphalingDelete_Click"></Button>
+                                </UniformGrid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock>Toevoegen:</TextBlock>
+                        <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxOphalingAdd" KeyDown="TextBoxOphalingAdd_KeyDown"></TextBox>
+                    </StackPanel>
+                </Grid>
+
+            </GroupBox>
+            <GroupBox Grid.Row="3" Header="Scholen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ItemsControl x:Name="ListBoxScholen">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <UniformGrid Rows="1" >
+                                    <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
+                                    <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Click="ButtonSchoolDelete_Click"></Button>
+                                </UniformGrid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock>Toevoegen:</TextBlock>
+                        <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxScholenAdd" KeyDown="TextBoxScholenAdd_KeyDown"></TextBox>
+                    </StackPanel>
+                </Grid>
+
             </GroupBox>
         </Grid>
     </Grid>

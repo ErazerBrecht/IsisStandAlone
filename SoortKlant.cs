@@ -15,9 +15,9 @@ namespace ISIS
         {
             //Need ObservableCollection for beter binding => Otherwise the changes won't update in the UI!
             Winkels = new ObservableCollection<string>(Properties.Settings.Default.Winkels.Cast<string>().ToList());
-            //Bedrijven = new ObservableCollection<string>(Properties.Settings.Default.Bedrijven.Cast<string>().ToList());
-            //Scholen = new ObservableCollection<string>(Properties.Settings.Default.Scholen.Cast<string>().ToList());
-            //Ophaling = new ObservableCollection<string>(Properties.Settings.Default.Ophaling.Cast<string>().ToList());
+            Bedrijven = new ObservableCollection<string>(Properties.Settings.Default.Bedrijven.Cast<string>().ToList());
+            Scholen = new ObservableCollection<string>(Properties.Settings.Default.Scholen.Cast<string>().ToList());
+            Ophaling = new ObservableCollection<string>(Properties.Settings.Default.Ophaling.Cast<string>().ToList());
         }
        
 
@@ -26,10 +26,19 @@ namespace ISIS
             StringCollection saveWinkels = new StringCollection();
             saveWinkels.AddRange(Winkels.ToArray());
 
+            StringCollection saveBedrijven = new StringCollection();
+            saveBedrijven.AddRange(Bedrijven.ToArray());
+
+            StringCollection saveOphaling = new StringCollection();
+            saveOphaling.AddRange(Ophaling.ToArray());
+
+            StringCollection saveScholen = new StringCollection();
+            saveScholen.AddRange(Scholen.ToArray());
+
             Properties.Settings.Default.Winkels = saveWinkels;
-            //Properties.Settings.Default.Bedrijven = Bedrijven;
-            //Properties.Settings.Default.Scholen = Scholen;
-            //Properties.Settings.Default.Ophaling = Ophaling;
+            Properties.Settings.Default.Bedrijven = saveBedrijven;
+            Properties.Settings.Default.Scholen = saveScholen;
+            Properties.Settings.Default.Ophaling = saveOphaling;
             Properties.Settings.Default.Save();
         }
 

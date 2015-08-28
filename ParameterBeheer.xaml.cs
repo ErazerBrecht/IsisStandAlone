@@ -27,6 +27,9 @@ namespace ISIS
             InitializeComponent();
             LoadParameters();
             ListBoxWinkel.ItemsSource = SoortKlant.Winkels;
+            ListBoxBedrijven.ItemsSource = SoortKlant.Bedrijven;
+            ListBoxOphaling.ItemsSource = SoortKlant.Ophaling;
+            ListBoxScholen.ItemsSource = SoortKlant.Scholen;
         }
         
         private void LoadParameters()
@@ -45,7 +48,7 @@ namespace ISIS
             LoadParameters();
         }
 
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        private void ButtonWinkelDelete_Click(object sender, RoutedEventArgs e)
         {
             string remove = (sender as Button).DataContext.ToString();
             SoortKlant.Winkels.Remove(remove);
@@ -60,6 +63,63 @@ namespace ISIS
                     return;
 
                 SoortKlant.Winkels.Add(TextBoxWinkelsAdd.Text);
+                SoortKlant.Save();
+            }
+        }
+
+        private void ButtonBedrijfDelete_Click(object sender, RoutedEventArgs e)
+        {
+            string remove = (sender as Button).DataContext.ToString();
+            SoortKlant.Bedrijven.Remove(remove);
+            SoortKlant.Save();
+        }
+
+        private void TextBoxBedrijvenAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (String.IsNullOrWhiteSpace(TextBoxBedrijvenAdd.Text))
+                    return;
+
+                SoortKlant.Bedrijven.Add(TextBoxBedrijvenAdd.Text);
+                SoortKlant.Save();
+            }
+        }
+
+        private void ButtonOphalingDelete_Click(object sender, RoutedEventArgs e)
+        {
+            string remove = (sender as Button).DataContext.ToString();
+            SoortKlant.Ophaling.Remove(remove);
+            SoortKlant.Save();
+        }
+
+        private void TextBoxOphalingAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (String.IsNullOrWhiteSpace(TextBoxOphalingAdd.Text))
+                    return;
+
+                SoortKlant.Ophaling.Add(TextBoxOphalingAdd.Text);
+                SoortKlant.Save();
+            }
+        }
+
+        private void ButtonSchoolDelete_Click(object sender, RoutedEventArgs e)
+        {
+            string remove = (sender as Button).DataContext.ToString();
+            SoortKlant.Scholen.Remove(remove);
+            SoortKlant.Save();
+        }
+
+        private void TextBoxScholenAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (String.IsNullOrWhiteSpace(TextBoxScholenAdd.Text))
+                    return;
+
+                SoortKlant.Scholen.Add(TextBoxScholenAdd.Text);
                 SoortKlant.Save();
             }
         }
