@@ -28,16 +28,16 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0">Hemden</TextBlock>
-                <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterHemden, Mode=TwoWay}"/>
+                <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterHemden, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
                 <TextBlock Grid.Row="1">Lakens 1</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterLakens1, Mode=TwoWay}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
                 <TextBlock Grid.Row="2">Lakens 2</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterLakens2, Mode=TwoWay}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
                 <TextBlock Grid.Row="3">Andere strijk</TextBlock>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterAndereStrijk, Mode=TwoWay}"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterAndereStrijk, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
                 <Button Grid.Row="4" x:Name="ButtonOpslaan" Click="ButtonOpslaan_Click" Content="Opslaan"/>
                 <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" x:Name="ButtonAnnuleren" Click="ButtonAnnuleren_Click" Content="Annuleren"/>
