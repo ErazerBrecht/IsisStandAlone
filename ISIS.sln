@@ -5,16 +5,37 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS", "ISIS.csproj", "{8B8711A2-1FF0-463D-B5C1-36672E434A2C}"
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{A930B5CF-2818-4619-AD08-B569FD299043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
 		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
 		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8711A2-1FF0-463D-B5C1-36672E434A2C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{A930B5CF-2818-4619-AD08-B569FD299043}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{A930B5CF-2818-4619-AD08-B569FD299043}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{A930B5CF-2818-4619-AD08-B569FD299043}.Debug|Any CPU.ActiveCfg = DVD-5
+		{A930B5CF-2818-4619-AD08-B569FD299043}.Debug|Any CPU.Build.0 = DVD-5
+		{A930B5CF-2818-4619-AD08-B569FD299043}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{A930B5CF-2818-4619-AD08-B569FD299043}.DVD-5|Any CPU.Build.0 = DVD-5
+		{A930B5CF-2818-4619-AD08-B569FD299043}.Release|Any CPU.ActiveCfg = SingleImage
+		{A930B5CF-2818-4619-AD08-B569FD299043}.Release|Any CPU.Build.0 = SingleImage
+		{A930B5CF-2818-4619-AD08-B569FD299043}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{A930B5CF-2818-4619-AD08-B569FD299043}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
