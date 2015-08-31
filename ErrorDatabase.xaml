@@ -5,10 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ISIS"
         mc:Ignorable="d"
-        Title="ErrorDatabase" Height="300" Width="300">
+        Title="Database ERROR" Height="200" Width="700" FontSize="14" ResizeMode="NoResize">
     <Grid>
-        <TextBlock TextWrapping="WrapWithOverflow">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est elit, ultricies tincidunt sem a, finibus dignissim nibh. Ut vitae erat ut ante mollis tincidunt. Donec lobortis, lorem nec pretium fermentum, orci enim aliquet ligula, id tempus elit libero nec ipsum. Quisque consequat, metus ultrices egestas aliquet, arcu arcu tempor augue, eu porttitor felis urna et mi. Duis at eros nisi. Sed porta nibh quam, ut ultrices ipsum ultrices vitae. Vivamus ac maximus nibh, vel tincidunt ligula.
-        </TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="15">
+            <Image Margin="0,5,15,0" Name="ErrorImage" Stretch="None" VerticalAlignment="Top"></Image>
+            <StackPanel>
+                <TextBlock>De databank is niet gevonden, of kan niet geopend worden!</TextBlock>
+                <TextBlock Name="TextBlockPath"></TextBlock>
+                <TextBlock Margin="0,15,0,0">U kunt manueel zoeken naar een databank bestand (bijvoorbeeld back-up)!</TextBlock>
+                <TextBlock>Of u kunt de applicatie afsluiten!</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Right">
+                    <Button Name="ButtonSearch" Click="ButtonSearch_Click">Zoeken</Button>
+                    <Button Name="ButtonQuit" Click="ButtonQuit_Click" Margin="15,0,0,0">Afsluiten</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>
