@@ -26,16 +26,6 @@ namespace ISIS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=|DataDirectory|\\ISIS_Klanten.sqlite;Pooling=true;FailIfMissing=false")]
-        public string ISIS_KlantenConnectionString {
-            get {
-                return ((string)(this["ISIS_KlantenConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ISIS_Data.mdf" +
             ";Integrated Security=True;Connect Timeout=30")]
         public string ISIS_DataConnectionString {

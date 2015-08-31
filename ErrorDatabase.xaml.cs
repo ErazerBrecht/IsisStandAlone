@@ -12,6 +12,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace ISIS
 {
@@ -29,12 +31,18 @@ namespace ISIS
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: File explorer
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                File.Copy(openFileDialog.FileName, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel", openFileDialog.SafeFileName));     //TODO Add Exception handling
+                Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
         }
 
         private void ButtonQuit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
     }
 }

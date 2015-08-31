@@ -10,9 +10,9 @@
         <StackPanel Orientation="Horizontal" Margin="15">
             <Image Margin="0,5,15,0" Name="ErrorImage" Stretch="None" VerticalAlignment="Top"></Image>
             <StackPanel>
-                <TextBlock>De databank is niet gevonden, of kan niet geopend worden!</TextBlock>
+                <TextBlock>De databank kan niet geopend worden!</TextBlock>
                 <TextBlock Name="TextBlockPath"></TextBlock>
-                <TextBlock Margin="0,15,0,0">U kunt manueel zoeken naar een databank bestand (bijvoorbeeld back-up)!</TextBlock>
+                <TextBlock Margin="0,15,0,0">U kunt manueel zoeken naar een databank bestand (bijvoorbeeld een back-up)!</TextBlock>
                 <TextBlock>Of u kunt de applicatie afsluiten!</TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0" HorizontalAlignment="Right">
                     <Button Name="ButtonSearch" Click="ButtonSearch_Click">Zoeken</Button>

@@ -36,7 +36,6 @@ namespace ISIS
                 var errorWindow = new ErrorDatabase();
                 errorWindow.Show();
                 this.Close();
-
             }
         }
 
