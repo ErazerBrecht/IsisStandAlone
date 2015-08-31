@@ -124,10 +124,13 @@ namespace ISIS
                 _entities.SaveChanges();
                 _unsavedChanges = false;
             }
-            catch
+            catch (Exception e)
             {
                 var error = _entities.GetValidationErrors();
-                MessageBox.Show("Opslagen is niet gelukt!\n\nWegens volgende reden:\n" + error.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
+                if (error != null)
+                    MessageBox.Show("Opslagen is niet gelukt!\n\nWegens volgende reden:\n" + error.FirstOrDefault().ValidationErrors.FirstOrDefault().ErrorMessage);
+                else
+                    MessageBox.Show(e.ToString());
             }
 
         }

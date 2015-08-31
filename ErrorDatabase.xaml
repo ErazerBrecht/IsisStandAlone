@@ -1,0 +1,14 @@
+﻿<Window x:Class="ISIS.ErrorDatabase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISIS"
+        mc:Ignorable="d"
+        Title="ErrorDatabase" Height="300" Width="300">
+    <Grid>
+        <TextBlock TextWrapping="WrapWithOverflow">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est elit, ultricies tincidunt sem a, finibus dignissim nibh. Ut vitae erat ut ante mollis tincidunt. Donec lobortis, lorem nec pretium fermentum, orci enim aliquet ligula, id tempus elit libero nec ipsum. Quisque consequat, metus ultrices egestas aliquet, arcu arcu tempor augue, eu porttitor felis urna et mi. Duis at eros nisi. Sed porta nibh quam, ut ultrices ipsum ultrices vitae. Vivamus ac maximus nibh, vel tincidunt ligula.
+        </TextBlock>
+    </Grid>
+</Window>

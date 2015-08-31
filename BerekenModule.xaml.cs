@@ -31,6 +31,10 @@ namespace ISIS
         public BerekenModule()
         {
             InitializeComponent();
+        }
+
+        private void BerekenModule_Loaded(object sender, RoutedEventArgs e)
+        {
             _entities = new ISIS_DataEntities();
             _entities.Klanten.Load();
             _entities.Prestaties.Load();

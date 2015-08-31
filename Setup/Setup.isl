@@ -344,6 +344,8 @@
 		<row><td>ISIS.exe</td><td>{D0E1B342-81DB-463D-B82F-F25635BDCE30}</td><td>INSTALLDIR</td><td>2</td><td/><td>isis.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISIS.vshost.exe</td><td>{241C9C32-7020-4D06-B8BA-762617613A63}</td><td>INSTALLDIR</td><td>2</td><td/><td>isis.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{9AAF4EBC-632D-4DB0-8B71-2231F532BD0C}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{7B41810E-19C1-4378-9C6F-6DFE50C50D83}</td><td>AppDataFolder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{0DE24402-611D-43D7-8945-B22AFC0F7AE8}</td><td>ISIS_RIJKEVORSEL1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MahApps.Metro.dll</td><td>{D8B23EC6-6E77-4162-859D-D2C84412BD6D}</td><td>INSTALLDIR</td><td>2</td><td/><td>mahapps.metro.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>System.Windows.Interactivity.dll</td><td>{751DC512-857A-4339-8AAD-0408A6F1F22C}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.windows.interactivity</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -1054,13 +1056,17 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AppDataFolder</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>EntityFramework.SqlServer.dll</td></row>
 		<row><td>INSTALLDIR</td><td>EntityFramework.dll</td></row>
 		<row><td>INSTALLDIR</td><td>ISIS.exe</td></row>
 		<row><td>INSTALLDIR</td><td>ISIS.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>INSTALLDIR</td><td>MahApps.Metro.dll</td></row>
 		<row><td>INSTALLDIR</td><td>System.Windows.Interactivity.dll</td></row>
+		<row><td>ISIS_RIJKEVORSEL1</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1154,6 +1160,7 @@
 		<row><td>INSTALLDIR</td><td>STANDELONE_APPLICATION</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISIS_RIJKEVORSEL</td><td>ProgramFilesFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>0</td><td/></row>
+		<row><td>ISIS_RIJKEVORSEL1</td><td>AppDataFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
@@ -1880,6 +1887,8 @@
 		<row><td>AlwaysInstall</td><td>ISIS.exe</td></row>
 		<row><td>AlwaysInstall</td><td>ISIS.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>MahApps.Metro.dll</td></row>
 		<row><td>AlwaysInstall</td><td>System.Windows.Interactivity.dll</td></row>
 	</table>
@@ -1905,8 +1914,8 @@
 		<row><td>isis.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>ISIS.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.pdb</td><td>1</td><td/></row>
 		<row><td>isis.vshost.exe</td><td>ISIS.vshost.exe</td><td>ISISVS~1.EXE|ISIS.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.vshost.exe</td><td>1</td><td/></row>
 		<row><td>isis.vshost.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>ISISVS~1.CON|ISIS.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.vshost.exe.config</td><td>1</td><td/></row>
-		<row><td>isis_data.mdf</td><td>ISX_DEFAULTCOMPONENT</td><td>ISIS_D~1.MDF|ISIS_Data.mdf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS_Data.mdf</td><td>1</td><td/></row>
-		<row><td>isis_data_log.ldf</td><td>ISX_DEFAULTCOMPONENT</td><td>ISIS_D~1.LDF|ISIS_Data_log.ldf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS_Data_log.ldf</td><td>1</td><td/></row>
+		<row><td>isis_data.mdf2</td><td>ISX_DEFAULTCOMPONENT2</td><td>ISIS_D~1.MDF|ISIS_Data.mdf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\ISIS_Data.mdf</td><td>1</td><td/></row>
+		<row><td>isis_data_log.ldf2</td><td>ISX_DEFAULTCOMPONENT2</td><td>ISIS_D~1.LDF|ISIS_Data_log.ldf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\ISIS_Data_log.ldf</td><td>1</td><td/></row>
 		<row><td>mahapps.metro.dll</td><td>MahApps.Metro.dll</td><td>MAHAPP~1.DLL|MahApps.Metro.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\MahApps.Metro.dll</td><td>1</td><td/></row>
 		<row><td>mahapps.metro.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MAHAPP~1.XML|MahApps.Metro.xml</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\MahApps.Metro.xml</td><td>1</td><td/></row>
 		<row><td>system.windows.interactivity</td><td>System.Windows.Interactivity.dll</td><td>SYSTEM~1.DLL|System.Windows.Interactivity.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\System.Windows.Interactivity.dll</td><td>1</td><td/></row>
@@ -2056,6 +2065,8 @@
 		<row><td>ISIS.exe</td><td/><td/><td>_553BDE45_4FDA_4F47_9850_2517BE0B9120_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISIS.vshost.exe</td><td/><td/><td>_84EBA0D0_F4AF_4830_B01B_DFD51F56BD6A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_DE785F30_7BB0_4C3C_9644_08DAD30D5492_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_CD581931_3543_4F39_AFBA_E8B2C9DF5A08_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_02C4458B_7258_4BDE_84E0_B07FF0385549_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MahApps.Metro.dll</td><td/><td/><td>_1DC16DB9_5988_4BB7_91B2_CC6A87789D99_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>System.Windows.Interactivity.dll</td><td/><td/><td>_0C7685E8_151B_451F_971D_0850CD1AAF0A_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -4379,7 +4390,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{7CD8F804-5DA6-4C7A-9186-6E991FBC1E11}</td><td/></row>
 		<row><td>ProductName</td><td>Standelone Application</td><td/></row>
-		<row><td>ProductVersion</td><td>0.00.1500</td><td/></row>
+		<row><td>ProductVersion</td><td>0.00.1501</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
