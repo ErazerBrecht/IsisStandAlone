@@ -7,7 +7,8 @@
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
         </Style>
     </UserControl.Resources>
-    <Grid Margin="15" Name="MainGrid">
+    <ScrollViewer>
+        <Grid Margin="15" Name="MainGrid">
         <Grid Name="BerekenGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -110,4 +111,5 @@
             </Grid>
         </Grid>
     </Grid>
+    </ScrollViewer>
 </UserControl>
