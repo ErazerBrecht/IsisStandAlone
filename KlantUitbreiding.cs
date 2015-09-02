@@ -80,12 +80,20 @@ namespace ISIS
                             {
                                 result = "Geen geldig telefoonnummer!";
                             }
-                            break;
+                            if (String.IsNullOrEmpty(Gsm))
+                                this.Gsm = null;     //Force validation for GSM
+
+                                break;
                         }
 
                     case "Gsm":
                         {
-                            if (!String.IsNullOrEmpty(Gsm) && (!Gsm.All(char.IsDigit) || Gsm.Length != 10))
+                            if (String.IsNullOrEmpty(_gsm))
+                            {
+                                if (String.IsNullOrEmpty(Telefoon))
+                                    result = "U dient ofwel een telefoon of gsm in te vullen!";
+                            }
+                            else if (!_gsm.All(char.IsDigit) || _gsm.Length != 10)
                             {
                               result = "Geen geldig gsmnummer!";
                             }
@@ -117,6 +125,12 @@ namespace ISIS
                         {
                             if (String.IsNullOrWhiteSpace(SoortKlant))
                                 result = "Soort klant moet verplicht gekozen worden!";
+                            break;
+                        }
+                    case "SoortKlantPlaats":
+                        {
+                            if (String.IsNullOrWhiteSpace(SoortKlantPlaats))
+                                result = "Gelieve de soort klant te specificeren!";
                             break;
                         }
                 }
