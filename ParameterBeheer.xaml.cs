@@ -40,6 +40,7 @@ namespace ISIS
             //_entities.Ophalingen.Load();
 
             ListBoxWinkel.ItemsSource = _entities.Winkels.Local;
+            GridAddWinkel.DataContext = new Winkel();
             //ListBoxBedrijven.ItemsSource = _entities.Bedrijven.Local;
             //ListBoxOphaling.ItemsSource = _entities.Ophalingen.Local;
             //ListBoxScholen.ItemsSource = _entities.Scholen.Local;
@@ -65,12 +66,21 @@ namespace ISIS
         {
             Winkel remove = (sender as Button).DataContext as Winkel;
             _entities.Winkels.Remove(remove);
+            _entities.SaveChanges();
         }
 
         private void ButtonWinkelAdd_Click(object sender, RoutedEventArgs e)
         {
-            Winkel remove = (sender as Button).DataContext as Winkel;
-            _entities.Winkels.Remove(remove);
+            Winkel add = (sender as Button).DataContext as Winkel;
+            if (_entities.Winkels.Local.Where(t => t.Naam == add.Naam).Count() > 0)
+                MessageBox.Show("Deze winkel bestaat al!");
+            else
+            { 
+                _entities.Winkels.Add(add);
+                _entities.SaveChanges();
+            }
+
+            GridAddWinkel.DataContext = new Winkel();       //Reset
         }
 
 

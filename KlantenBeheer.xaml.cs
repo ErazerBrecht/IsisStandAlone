@@ -53,10 +53,17 @@ namespace ISIS
             _entities = new ISIS_DataEntities();
             _entities.Klanten.Local.CollectionChanged += Local_CollectionChanged;
             _entities.Klanten.Load();
+            _entities.Winkels.Local.CollectionChanged += SoortKlant_CollectionChanged;
+            _entities.Winkels.Load();
             _klantenViewSource.Source = _entities.Klanten.Local;
             TextBoxSearch.ItemsSource = _entities.Klanten.Local;
             ButtonAdd.Content = "Toevoegen";
             GridInformation.DataContext = _klantenViewSource;
+        }
+
+        private void SoortKlant_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            AddItemmSourceComboBoxSoortKlant();
         }
 
         void Local_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -235,17 +242,23 @@ namespace ISIS
 
         private void ComboBoxSoortKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            AddItemmSourceComboBoxSoortKlant();
+        }
+
+        private void AddItemmSourceComboBoxSoortKlant()
+        {
             if (ComboBoxSoortKlant.SelectedIndex != -1)
             {
-                ComboBoxSoortKlantPlaats.IsEnabled = true;
                 if (ComboBoxSoortKlant.SelectedValue.ToString() == "Winkel")
-                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Winkels;
-                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Ophaling")
-                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Ophaling;
-                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Bedrijven")
-                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Bedrijven;
-                else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Scholen")
-                    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Scholen;
+                    ComboBoxSoortKlantPlaats.ItemsSource = _entities.Winkels.Local;
+                //else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Ophaling")
+                //    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Ophalingen;
+                //else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Bedrijven")
+                //    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Bedrijven;
+                //else if (ComboBoxSoortKlant.SelectedValue.ToString() == "Scholen")
+                //    ComboBoxSoortKlantPlaats.ItemsSource = SoortKlant.Scholen;
+
+                ComboBoxSoortKlantPlaats.IsEnabled = true;
             }
             else
                 ComboBoxSoortKlantPlaats.IsEnabled = false;

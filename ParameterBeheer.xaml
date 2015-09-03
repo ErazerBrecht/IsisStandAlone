@@ -61,14 +61,14 @@
                 <GroupBox Header="Winkels">
                     <StackPanel>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                <ColumnDefinition Width="75"></ColumnDefinition>
-                                <ColumnDefinition Width="115"></ColumnDefinition>
-                                <ColumnDefinition Width="125"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="75"></ColumnDefinition>
+                                    <ColumnDefinition Width="115"></ColumnDefinition>
+                                    <ColumnDefinition Width="125"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
 
                                 <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
                                     <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
@@ -85,28 +85,53 @@
                             </Grid>
                         </Border>
                         <ItemsControl Name="ListBoxWinkel">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"></ColumnDefinition>
-                                        <ColumnDefinition Width="200"></ColumnDefinition>
-                                        <ColumnDefinition Width="75"></ColumnDefinition>
-                                        <ColumnDefinition Width="115"></ColumnDefinition>
-                                        <ColumnDefinition Width="125"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="75"></ColumnDefinition>
+                                            <ColumnDefinition Width="115"></ColumnDefinition>
+                                            <ColumnDefinition Width="125"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
 
-                                    <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
-                                    <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}" BorderBrush="White"></TextBox>
-                                    <TextBox Grid.Column="2" Text="{Binding Euro}" BorderBrush="White"></TextBox>
-                                    <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
+                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Click="ButtonWinkelDelete_Click">
+                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid Name="GridAddWinkel">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Click="ButtonWinkelAdd_Click" FontSize="14" Padding="10,0,10,0"></Button>
+                        </Grid>
+
                     </StackPanel>
-                    
-                    
+
+
 
                 </GroupBox>
                 <GroupBox Grid.Row="1" Header="Bedrijven">
