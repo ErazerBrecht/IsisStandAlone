@@ -103,8 +103,12 @@ namespace ISIS
                         {
                             if (Betalingswijze == "Elektronisch")
                             {
-                                if (String.IsNullOrWhiteSpace(Gebruikersnummer))
-                                    result = "U hebt gekozen voor Elektronisch betalen dan is een Gebruikersnummer verplicht";
+                                if (ElektronischBetalen == Visibility.Visible)
+                                {
+                                    //TODO: Check length!
+                                    if (String.IsNullOrWhiteSpace(Gebruikersnummer))
+                                        result = "U hebt gekozen voor Elektronisch betalen dan is een Gebruikersnummer verplicht";
+                                }
                             }
                             break;
                         }
@@ -138,12 +142,15 @@ namespace ISIS
             {
                 if (this.Betalingswijze == "Elektronisch")
                 {
-                    if (Gebruikersnummer == null)
+                    if (Gebruikersnummer == null)       //Force validation --> Manual add something, this will cause validationerror!
                         this.Gebruikersnummer = "";
                     return Visibility.Visible;
                 }
                 else
+                {           
+                    this.Gebruikersnummer = null;         //Force validation --> Otherwise the error still keeps => unable to save
                     return Visibility.Hidden;
+                }
             }
         }
 
