@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Data.Entity;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -21,17 +22,29 @@ namespace ISIS
     public partial class ParameterBeheer : UserControl
     {
         Parameters _parameters;
+        ISIS_DataEntities _entities;
 
         public ParameterBeheer()
         {
-            InitializeComponent();
-            LoadParameters();
-            ListBoxWinkel.ItemsSource = SoortKlant.Winkels;
-            ListBoxBedrijven.ItemsSource = SoortKlant.Bedrijven;
-            ListBoxOphaling.ItemsSource = SoortKlant.Ophaling;
-            ListBoxScholen.ItemsSource = SoortKlant.Scholen;
+            InitializeComponent();          
         }
-        
+
+        private void ParameterBeheer_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadParameters();
+
+            _entities = new ISIS_DataEntities();
+            _entities.Winkels.Load();
+            //_entities.Bedrijven.Load();
+            //_entities.Scholen.Load();
+            //_entities.Ophalingen.Load();
+
+            ListBoxWinkel.ItemsSource = _entities.Winkels.Local;
+            //ListBoxBedrijven.ItemsSource = _entities.Bedrijven.Local;
+            //ListBoxOphaling.ItemsSource = _entities.Ophalingen.Local;
+            //ListBoxScholen.ItemsSource = _entities.Scholen.Local;
+        }
+
         private void LoadParameters()
         {
             _parameters = new Parameters();
@@ -50,78 +63,85 @@ namespace ISIS
 
         private void ButtonWinkelDelete_Click(object sender, RoutedEventArgs e)
         {
-            string remove = (sender as Button).DataContext.ToString();
-            SoortKlant.Winkels.Remove(remove);
-            SoortKlant.Save();
+            Winkel remove = (sender as Button).DataContext as Winkel;
+            _entities.Winkels.Remove(remove);
         }
+
+        private void ButtonWinkelAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Winkel remove = (sender as Button).DataContext as Winkel;
+            _entities.Winkels.Remove(remove);
+        }
+
 
         private void TextBoxWinkelsAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                if (String.IsNullOrWhiteSpace(TextBoxWinkelsAdd.Text))
-                    return;
+            //if (e.Key == Key.Enter)
+            //{
+            //    if (String.IsNullOrWhiteSpace(TextBoxWinkelsAdd.Text))
+            //        return;
 
-                SoortKlant.Winkels.Add(TextBoxWinkelsAdd.Text);
-                SoortKlant.Save();
-            }
+            //    Winkel temp = new Winkel() { Naam = TextBoxWinkelsAdd.Text};
+            //    _entities.Winkels.Add(temp);
+            //    _entities.SaveChanges();
+            //}
         }
 
         private void ButtonBedrijfDelete_Click(object sender, RoutedEventArgs e)
         {
-            string remove = (sender as Button).DataContext.ToString();
-            SoortKlant.Bedrijven.Remove(remove);
-            SoortKlant.Save();
+            //string remove = (sender as Button).DataContext.ToString();
+            //SoortKlant.Bedrijven.Remove(remove);
+            //SoortKlant.Save();
         }
 
         private void TextBoxBedrijvenAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                if (String.IsNullOrWhiteSpace(TextBoxBedrijvenAdd.Text))
-                    return;
+            //if (e.Key == Key.Enter)
+            //{
+            //    if (String.IsNullOrWhiteSpace(TextBoxBedrijvenAdd.Text))
+            //        return;
 
-                SoortKlant.Bedrijven.Add(TextBoxBedrijvenAdd.Text);
-                SoortKlant.Save();
-            }
+            //    SoortKlant.Bedrijven.Add(TextBoxBedrijvenAdd.Text);
+            //    SoortKlant.Save();
+            //}
         }
 
         private void ButtonOphalingDelete_Click(object sender, RoutedEventArgs e)
         {
-            string remove = (sender as Button).DataContext.ToString();
-            SoortKlant.Ophaling.Remove(remove);
-            SoortKlant.Save();
+            //string remove = (sender as Button).DataContext.ToString();
+            //SoortKlant.Ophaling.Remove(remove);
+            //SoortKlant.Save();
         }
 
         private void TextBoxOphalingAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                if (String.IsNullOrWhiteSpace(TextBoxOphalingAdd.Text))
-                    return;
+            //if (e.Key == Key.Enter)
+            //{
+            //    if (String.IsNullOrWhiteSpace(TextBoxOphalingAdd.Text))
+            //        return;
 
-                SoortKlant.Ophaling.Add(TextBoxOphalingAdd.Text);
-                SoortKlant.Save();
-            }
+            //    SoortKlant.Ophaling.Add(TextBoxOphalingAdd.Text);
+            //    SoortKlant.Save();
+            //}
         }
 
         private void ButtonSchoolDelete_Click(object sender, RoutedEventArgs e)
         {
-            string remove = (sender as Button).DataContext.ToString();
-            SoortKlant.Scholen.Remove(remove);
-            SoortKlant.Save();
+            //string remove = (sender as Button).DataContext.ToString();
+            //SoortKlant.Scholen.Remove(remove);
+            //SoortKlant.Save();
         }
 
         private void TextBoxScholenAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                if (String.IsNullOrWhiteSpace(TextBoxScholenAdd.Text))
-                    return;
+            //if (e.Key == Key.Enter)
+            //{
+            //    if (String.IsNullOrWhiteSpace(TextBoxScholenAdd.Text))
+            //        return;
 
-                SoortKlant.Scholen.Add(TextBoxScholenAdd.Text);
-                SoortKlant.Save();
-            }
+            //    SoortKlant.Scholen.Add(TextBoxScholenAdd.Text);
+            //    SoortKlant.Save();
+            //}
         }
     }
 }

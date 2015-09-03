@@ -21,7 +21,7 @@ namespace ISIS
     {
         public MainWindow()
         {
-            SoortKlant.Load();
+            //SoortKlant.Load();
             InitializeComponent();
 
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
