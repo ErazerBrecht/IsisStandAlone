@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ISIS_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'D:\DROPBOX\ISIS RIJKEVORSEL\ISIS\ISIS_DATA.MDF.dbo.Bedrijven' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Bedrijven">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Euro" Type="money" Nullable="false" />
+          <Property Name="StukTarief" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Klanten">
           <Key>
             <PropertyRef Name="ID" />
@@ -32,6 +46,20 @@
           <Property Name="Tegoed" Type="tinyint" Nullable="false" />
           <Property Name="SoortKlantPlaats" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'D:\DROPBOX\ISIS RIJKEVORSEL\ISIS\ISIS_DATA.MDF.dbo.Ophaling' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Ophaling">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Euro" Type="money" Nullable="false" />
+          <Property Name="StukTarief" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Prestaties">
           <Key>
             <PropertyRef Name="Id" />
@@ -51,6 +79,20 @@
           <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
           <Property Name="TotaalDienstenChecks" Type="tinyint" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'D:\DROPBOX\ISIS RIJKEVORSEL\ISIS\ISIS_DATA.MDF.dbo.Scholen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Scholen">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Euro" Type="money" Nullable="false" />
+          <Property Name="StukTarief" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Strijkers">
           <Key>
             <PropertyRef Name="ID" />
@@ -69,6 +111,15 @@
           <Property Name="IndienstVanaf" Type="date" />
           <Property Name="UrenTewerkstelling" Type="int" />
         </EntityType>
+        <EntityType Name="Winkels">
+          <Key>
+            <PropertyRef Name="Naam" />
+          </Key>
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Euro" Type="money" Nullable="false" />
+          <Property Name="StukTarief" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="fk_KlantenNummer">
           <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
           <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="*" />
@@ -85,6 +136,31 @@
           <EntitySet Name="Klanten" EntityType="Self.Klanten" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prestaties" EntityType="Self.Prestaties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Winkels" EntityType="Self.Winkels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bedrijven" EntityType="Self.Bedrijven" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Bedrijven].[Naam] AS [Naam], 
+    [Bedrijven].[SnelheidsCoëfficiënt] AS [SnelheidsCoëfficiënt], 
+    [Bedrijven].[Euro] AS [Euro], 
+    [Bedrijven].[StukTarief] AS [StukTarief]
+    FROM [dbo].[Bedrijven] AS [Bedrijven]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ophaling" EntityType="Self.Ophaling" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Ophaling].[Naam] AS [Naam], 
+    [Ophaling].[SnelheidsCoëfficiënt] AS [SnelheidsCoëfficiënt], 
+    [Ophaling].[Euro] AS [Euro], 
+    [Ophaling].[StukTarief] AS [StukTarief]
+    FROM [dbo].[Ophaling] AS [Ophaling]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Scholen" EntityType="Self.Scholen" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Scholen].[Naam] AS [Naam], 
+    [Scholen].[SnelheidsCoëfficiënt] AS [SnelheidsCoëfficiënt], 
+    [Scholen].[Euro] AS [Euro], 
+    [Scholen].[StukTarief] AS [StukTarief]
+    FROM [dbo].[Scholen] AS [Scholen]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="fk_KlantenNummer" Association="Self.fk_KlantenNummer">
             <End Role="Klanten" EntitySet="Klanten" />
             <End Role="Prestaties" EntitySet="Prestaties" />
@@ -120,6 +196,10 @@
             <End Role="Klant" EntitySet="Klanten" />
             <End Role="Prestaty" EntitySet="Prestaties" />
           </AssociationSet>
+          <EntitySet Name="Winkels" EntityType="ISIS_DataModel.Winkel" />
+          <EntitySet Name="Bedrijven" EntityType="ISIS_DataModel.Bedrijf" />
+          <EntitySet Name="Ophalingen" EntityType="ISIS_DataModel.Ophaling" />
+          <EntitySet Name="Scholen" EntityType="ISIS_DataModel.School" />
         </EntityContainer>
         <EntityType Name="Klant">
           <Key>
@@ -181,6 +261,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Winkel">
+          <Key>
+            <PropertyRef Name="Naam" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="Decimal" Nullable="false" Precision="3" Scale="2" DefaultValue="1.00" />
+          <Property Name="Euro" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StukTarief" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bedrijf">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="Euro" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StukTarief" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ophaling">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="Euro" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StukTarief" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="Naam" />
+            <PropertyRef Name="SnelheidsCoëfficiënt" />
+            <PropertyRef Name="Euro" />
+            <PropertyRef Name="StukTarief" />
+          </Key>
+          <Property Name="Naam" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SnelheidsCoëfficiënt" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="Euro" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StukTarief" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -251,6 +376,46 @@
                 <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Winkels">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Winkel">
+              <MappingFragment StoreEntitySet="Winkels">
+                <ScalarProperty Name="StukTarief" ColumnName="StukTarief" />
+                <ScalarProperty Name="Euro" ColumnName="Euro" />
+                <ScalarProperty Name="SnelheidsCoëfficiënt" ColumnName="SnelheidsCoëfficiënt" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bedrijven">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Bedrijf">
+              <MappingFragment StoreEntitySet="Bedrijven">
+                <ScalarProperty Name="StukTarief" ColumnName="StukTarief" />
+                <ScalarProperty Name="Euro" ColumnName="Euro" />
+                <ScalarProperty Name="SnelheidsCoëfficiënt" ColumnName="SnelheidsCoëfficiënt" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ophalingen">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Ophaling">
+              <MappingFragment StoreEntitySet="Ophaling">
+                <ScalarProperty Name="StukTarief" ColumnName="StukTarief" />
+                <ScalarProperty Name="Euro" ColumnName="Euro" />
+                <ScalarProperty Name="SnelheidsCoëfficiënt" ColumnName="SnelheidsCoëfficiënt" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scholen">
+            <EntityTypeMapping TypeName="ISIS_DataModel.School">
+              <MappingFragment StoreEntitySet="Scholen">
+                <ScalarProperty Name="StukTarief" ColumnName="StukTarief" />
+                <ScalarProperty Name="Euro" ColumnName="Euro" />
+                <ScalarProperty Name="SnelheidsCoëfficiënt" ColumnName="SnelheidsCoëfficiënt" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

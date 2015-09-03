@@ -107,8 +107,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bedrijf.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ErrorDatabase.xaml.cs">
       <DependentUpon>ErrorDatabase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ophaling.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="ParameterBeheer.xaml.cs">
       <DependentUpon>ParameterBeheer.xaml</DependentUpon>
@@ -146,7 +152,10 @@
     <Compile Include="PrestatieBeheer.xaml.cs">
       <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SoortKlant.cs" />
+    <Compile Include="School.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SoortUitbreiding.cs" />
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -159,6 +168,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrestatieUitbreiding.cs" />
+    <Compile Include="Winkel.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Page Include="ErrorDatabase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,6 +275,7 @@
     <Content Include="ISIS_Data_log.ldf">
       <DependentUpon>ISIS_Data.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Cancel.png" />
     <SplashScreen Include="Resources\SplatchScreen_ISIS.png" />
     <Resource Include="Resources\back.png" />
     <Resource Include="Resources\next.png" />
