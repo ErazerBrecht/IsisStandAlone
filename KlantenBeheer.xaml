@@ -34,14 +34,10 @@
 
             <DockPanel  Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="250">
                 <Button Style="{StaticResource TransparantButton}" Name="ButtonPrevious" Click="ButtonPrevious_Click">
-                    <StackPanel>
-                        <Image Source="Resources/back.png" Width="45"/>
-                    </StackPanel>
+                    <Image Source="Resources/back.png" Width="45"/>
                 </Button>
                 <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Right"  Name="ButtonNext" Click="ButtonNext_Click">
-                    <StackPanel>
-                        <Image Source="Resources/next.png" Width="45"/>
-                    </StackPanel>
+                    <Image Source="Resources/next.png" Width="45"/>
                 </Button>
             </DockPanel>
 
@@ -144,7 +140,7 @@
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <UniformGrid Grid.Column="1" Rows="1">
                             <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded" SelectionChanged="ComboBoxSoortKlant_SelectionChanged"/>
-                            <ComboBox SelectedItem="{Binding SoortKlantPlaats, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="False" Name="ComboBoxSoortKlantPlaats"></ComboBox>
+                            <ComboBox SelectedValuePath="Naam" SelectedValue="{Binding SoortKlantPlaats, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="False" Name="ComboBoxSoortKlantPlaats"></ComboBox>
                         </UniformGrid>
 
                         <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
