@@ -109,7 +109,7 @@ namespace ISIS
 
             //Load parameters from settings! And add them into the Prestatie
             _parameters = new Parameters();
-            ChangeDataContextColumn(2, _parameters);
+            ChangeDataContextColumn(3, _parameters);
             _tempPrestatie.AddParameters(_parameters);
 
             CalculateStrijk();
@@ -274,7 +274,7 @@ namespace ISIS
                 _entities.Entry(_tempKlant).Reload();
 
                 _parameters = new Parameters();
-                ChangeDataContextColumn(2, _parameters);
+                ChangeDataContextColumn(3, _parameters);
                 _tempPrestatie = new Prestatie();
                 _tempPrestatie.AddParameters(_parameters);
                 MainGrid.DataContext = _tempPrestatie;
