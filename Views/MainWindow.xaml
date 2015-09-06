@@ -1,0 +1,31 @@
+﻿<Controls:MetroWindow x:Class="ISIS.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:vm="clr-namespace:ISIS.ViewModels"
+        xmlns:views="clr-namespace:ISIS.Views"
+        Title="MainWindow" Height="900" MinWidth="960" Closing="MetroWindow_Closing">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="MaxLines" Value="1" />
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl
+            ItemsSource="{Binding Workspaces}">
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type vm:KlantenBeheerViewModel}">
+                    <views:KlantenBeheer/>
+                </DataTemplate>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>

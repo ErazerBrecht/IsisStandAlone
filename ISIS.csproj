@@ -110,17 +110,11 @@
     <Compile Include="Bedrijf.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="ErrorDatabase.xaml.cs">
-      <DependentUpon>ErrorDatabase.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\PreviousCommandKlant.cs" />
+    <Compile Include="Commands\NextCommandKlant.cs" />
+    <Compile Include="ModelExtensions\KlantUitbreiding.cs" />
     <Compile Include="Ophaling.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ParameterBeheer.xaml.cs">
-      <DependentUpon>ParameterBeheer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BerekenModule.xaml.cs">
-      <DependentUpon>BerekenModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="ISIS.Context.cs">
       <AutoGen>True</AutoGen>
@@ -137,61 +131,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ISIS.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ISIS_DataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Parameters.cs" />
     <Compile Include="Prestatie.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PrestatieBeheer.xaml.cs">
-      <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="School.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="SoortUitbreiding.cs" />
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="StrijkerUitbreiding.cs" />
-    <Compile Include="KlantUitbreiding.cs" />
-    <Compile Include="PersoneelBeheer.xaml.cs">
-      <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrestatieUitbreiding.cs" />
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Page Include="ErrorDatabase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ParameterBeheer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BerekenModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PrestatieBeheer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PersoneelBeheer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="KlantenBeheer.xaml">
+    <Page Include="Views\KlantenBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -199,11 +160,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="KlantenBeheer.xaml.cs">
+    <Compile Include="Views\KlantenBeheer.xaml.cs">
       <DependentUpon>KlantenBeheer.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,17 +193,6 @@
     </EntityDeploy>
     <None Include="ISIS.edmx.diagram">
       <DependentUpon>ISIS.edmx</DependentUpon>
-    </None>
-    <None Include="ISIS_DataDataSet.xsc">
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ISIS_DataDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ISIS_DataDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ISIS_DataDataSet.xss">
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
     </None>
     <None Include="ISIS_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -275,10 +225,10 @@
     <Content Include="ISIS_Data_log.ldf">
       <DependentUpon>ISIS_Data.mdf</DependentUpon>
     </Content>
-    <Resource Include="Resources\Cancel.png" />
-    <SplashScreen Include="Resources\SplatchScreen_ISIS.png" />
-    <Resource Include="Resources\back.png" />
-    <Resource Include="Resources\next.png" />
+    <Resource Include="Views\Resources\Cancel.png" />
+    <SplashScreen Include="Views\Resources\SplatchScreen_ISIS.png" />
+    <Resource Include="Views\Resources\back.png" />
+    <Resource Include="Views\Resources\next.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">

@@ -12,7 +12,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-namespace ISIS
+using ISIS.ViewModels;
+
+namespace ISIS.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,19 +26,22 @@ namespace ISIS
             //SoortKlant.Load();
             InitializeComponent();
 
+            var mainViewModel = new MainViewModel();
+            DataContext = mainViewModel;
+
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
 
-            try
-            {
+            //try
+            //{
                 AppDomain.CurrentDomain.SetData("DataDirectory", path);
                 TestConnection();
-            }
-            catch
-            {
-                var errorWindow = new ErrorDatabase();
-                errorWindow.Show();
-                this.Close();
-            }
+            //}
+            //catch
+            //{
+            //    var errorWindow = new ErrorDatabase();
+            //    errorWindow.Show();
+            //    this.Close();
+            //}
         }
 
 
@@ -51,10 +56,10 @@ namespace ISIS
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (this.KlantenBeheerUserControl.CheckChanges())
-                e.Cancel = true;
-            else if (this.PersoneelBeheerUserControl.CheckChanges())
-                e.Cancel = true;
+            //if (this.KlantenBeheerUserControl.CheckChanges())
+            //    e.Cancel = true;
+            //else if (this.PersoneelBeheerUserControl.CheckChanges())
+            //    e.Cancel = true;
         }
     }
 }
