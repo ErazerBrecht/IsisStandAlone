@@ -23,35 +23,10 @@ namespace ISIS.Views
     {
         public MainWindow()
         {
-            //SoortKlant.Load();
             InitializeComponent();
 
             var mainViewModel = new MainViewModel();
             DataContext = mainViewModel;
-
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
-
-            //try
-            //{
-                AppDomain.CurrentDomain.SetData("DataDirectory", path);
-                TestConnection();
-            //}
-            //catch
-            //{
-            //    var errorWindow = new ErrorDatabase();
-            //    errorWindow.Show();
-            //    this.Close();
-            //}
-        }
-
-
-        public void TestConnection()
-        {
-            using (var db = new ISIS_DataEntities())
-            {
-                DbConnection conn = db.Database.Connection;
-                conn.Open();   // check the database connection
-            }
         }
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -8,11 +8,11 @@ using ISIS.ViewModels;
 
 namespace ISIS.Commands
 {
-    class PreviousCommandKlant : ICommand
+    class NextCommand : ICommand
     {
-        private KlantenBeheerViewModel _viewModel;
+        private BeheerViewModel _viewModel;
 
-        public PreviousCommandKlant(KlantenBeheerViewModel viewModel)
+        public NextCommand(BeheerViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -30,8 +30,8 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            if (_viewModel.KlantenView.CurrentPosition > 0)
-                _viewModel.KlantenView.MoveCurrentToPrevious();
+            if (_viewModel.ViewSource.CurrentPosition <  _viewModel.ViewSource.Count - 1)
+                _viewModel.ViewSource.MoveCurrentToNext();
         }
     }
 }

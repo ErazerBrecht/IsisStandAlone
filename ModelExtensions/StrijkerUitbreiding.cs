@@ -10,6 +10,7 @@ namespace ISIS
 {
     partial class Strijker : IDataErrorInfo
     {
+        #region Data Validation
         public string Error
         {
             get
@@ -37,14 +38,14 @@ namespace ISIS
 
                     case "ID":
                         {
-                            if (CanValidateID == true)
-                            {
-                                ISIS_DataEntities _viewModel = new ISIS_DataEntities();
-                                if ((_viewModel.Klanten.Any(k => k.ID == ID)))
-                                {
-                                    result = "ID is al in gebruik!";
-                                }
-                            }
+                            //if (CanValidateID == true)
+                            //{
+                            //    ISIS_DataEntities _viewModel = new ISIS_DataEntities();
+                            //    if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                            //    {
+                            //        result = "ID is al in gebruik!";
+                            //    }
+                            //}
                             break;
                         }
 
@@ -93,7 +94,9 @@ namespace ISIS
                 return result;
             }
         }
+        #endregion
 
+        /*
         private bool _canValidateID;
         public bool CanValidateID
         {
@@ -103,6 +106,6 @@ namespace ISIS
                 _canValidateID = value;
                 OnPropertyChanged("CanValidateID");
             }
-        }
+        }*/
     }
 }

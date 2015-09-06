@@ -32,15 +32,15 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel  Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="250">
-                <Button Style="{StaticResource TransparantButton}" Name="ButtonPrevious" Command="{Binding PreviousCommand}">
+                <Button Style="{StaticResource TransparantButton}" Name="ButtonPrevious" Command="{Binding PreviousCommandEvent}">
                     <Image Source="Resources/back.png" Width="45"/>
                 </Button>
-                <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Right"  Name="ButtonNext" Command="{Binding NextCommand}">
+                <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Right"  Name="ButtonNext" Command="{Binding NextCommandEvent}">
                     <Image Source="Resources/next.png" Width="45"/>
                 </Button>
             </DockPanel>
 
-            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding KlantenView.CurrentItem}">
+            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding ViewSource.CurrentItem}">
                 <GroupBox Header="Algemene gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -122,7 +122,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding KlantenView.CurrentItem}">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding ViewSource.CurrentItem}">
                 <GroupBox Header="Overige gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -173,7 +173,7 @@
             </StackPanel>
 
         </Grid>
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding KlantenView}"  IsReadOnly="False" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected" SelectedItem="{Binding KlantenView.CurrentItem, Mode=OneWay}">
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected" SelectedItem="{Binding ViewSource.CurrentItem, Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>

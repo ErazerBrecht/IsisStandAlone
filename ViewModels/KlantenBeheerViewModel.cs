@@ -9,11 +9,11 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class KlantenBeheerViewModel : WorkspaceViewModel, INotifyPropertyChanged
+    class KlantenBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
     {
         ISIS_DataEntities ctx = new ISIS_DataEntities();
 
-        #region Lijst Klaten
+        #region Lijst Klanten
         private List<Klant> _klanten;
         public List<Klant> Klanten
         {
@@ -26,23 +26,21 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public CollectionView KlantenView { get; private set; }
-
-        public NextCommandKlant NextCommand { get; private set; }
-        public PreviousCommandKlant PreviousCommand { get; private set; }
+        public NextCommand NextCommandEvent { get; private set; }
+        public PreviousCommand PreviousCommandEvent { get; private set; }
 
         public KlantenBeheerViewModel()
         {
             Header = "KlantenBeheer";
             GetData();
-            NextCommand = new NextCommandKlant(this);
-            PreviousCommand = new PreviousCommandKlant(this);
+            NextCommandEvent = new NextCommand(this);
+            PreviousCommandEvent = new PreviousCommand(this);
         }
 
         private void GetData()
         {
             Klanten = ctx.Klanten.ToList();
-            KlantenView = GetKlantenCollectionView(Klanten);
+            ViewSource = GetKlantenCollectionView(Klanten);
         }
 
         public CollectionView GetKlantenCollectionView(List<Klant> klantenLijst)

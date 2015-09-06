@@ -21,7 +21,7 @@ namespace ISIS.ViewModels
         }
 
         #region INotifyPropertyChanged
-        private void NoticeMe(string property)
+        protected void NoticeMe(string property)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)

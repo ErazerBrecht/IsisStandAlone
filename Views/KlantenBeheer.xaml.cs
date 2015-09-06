@@ -142,15 +142,6 @@ namespace ISIS.Views
 
         //}
 
-        private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
-        {
-        //    if (_klantenViewSource.View.CurrentPosition > 0)
-        //    {
-        //        _klantenViewSource.View.MoveCurrentToPrevious();
-        //        klantenDataGrid.ScrollIntoView(klantenDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
-        //    }
-        }
-
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
         //    CheckChanges();

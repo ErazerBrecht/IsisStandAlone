@@ -110,9 +110,10 @@
     <Compile Include="Bedrijf.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Commands\PreviousCommandKlant.cs" />
-    <Compile Include="Commands\NextCommandKlant.cs" />
+    <Compile Include="Commands\PreviousCommand.cs" />
+    <Compile Include="Commands\NextCommand.cs" />
     <Compile Include="ModelExtensions\KlantUitbreiding.cs" />
+    <Compile Include="ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Ophaling.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -143,11 +144,16 @@
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
+    <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />
     <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\WorkspaceViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersoneelBeheer.xaml.cs">
+      <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
@@ -167,6 +173,10 @@
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersoneelBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,9 @@
                 <DataTemplate DataType="{x:Type vm:KlantenBeheerViewModel}">
                     <views:KlantenBeheer/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:PersoneelBeheerViewModel}">
+                    <views:PersoneelBeheer/>
+                </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate>
