@@ -40,7 +40,7 @@
                 </Button>
             </DockPanel>
 
-            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding ViewSource.CurrentItem}">
+            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding ViewSource}">
                 <GroupBox Header="Algemene gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -109,7 +109,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding ViewSource.CurrentItem}">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding ViewSource}">
                 <GroupBox Header="Overige gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -141,7 +141,7 @@
                 <Button Name="ButtonSave" Content="Opslaan" Click="ButtonSave_Click"></Button>
             </StackPanel>
         </Grid>
-        <DataGrid x:Name="strijkersDataGrid" BorderBrush="Black" BorderThickness="2" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource}" RowDetailsVisibilityMode="VisibleWhenSelected" SelectedItem="{Binding ViewSource.CurrentItem, Mode=OneWay}">
+        <DataGrid x:Name="strijkersDataGrid" BorderBrush="Black" BorderThickness="2" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToHeader"/>

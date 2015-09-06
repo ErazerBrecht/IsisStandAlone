@@ -40,7 +40,9 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Personeel = ctx.Strijkers.ToList();
-            ViewSource = GetPersoneelCollectionView(Personeel);
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = Personeel;
+             
         }
 
         public CollectionView GetPersoneelCollectionView(List<Strijker> personeelLijst)

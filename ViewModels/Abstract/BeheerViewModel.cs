@@ -9,6 +9,6 @@ namespace ISIS.ViewModels
 {
     abstract class BeheerViewModel : WorkspaceViewModel
     {
-        public CollectionView ViewSource { get; protected set; }
+        public CollectionViewSource ViewSource { get; protected set; }
     }
 }

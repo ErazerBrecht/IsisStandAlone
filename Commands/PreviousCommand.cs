@@ -30,8 +30,8 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            if (_viewModel.ViewSource.CurrentPosition > 0)
-                _viewModel.ViewSource.MoveCurrentToPrevious();
+            if (_viewModel.ViewSource.View.CurrentPosition > 0)
+                _viewModel.ViewSource.View.MoveCurrentToPrevious();
         }
     }
 }

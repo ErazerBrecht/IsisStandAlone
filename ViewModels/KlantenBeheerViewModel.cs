@@ -40,7 +40,8 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Klanten = ctx.Klanten.ToList();
-            ViewSource = GetKlantenCollectionView(Klanten);
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = Klanten;
         }
 
         public CollectionView GetKlantenCollectionView(List<Klant> klantenLijst)
