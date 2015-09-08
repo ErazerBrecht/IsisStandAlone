@@ -109,8 +109,8 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding SelectedPersonel}">
-                <GroupBox Header="Overige gegevens">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <GroupBox Header="Overige gegevens" DataContext="{Binding SelectedPersoneel}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -134,11 +134,11 @@
                 </GroupBox>
 
                 <Grid Margin="0,50,0,10" >
-                    <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Name="ButtonCancel" Click="ButtonCancel_Click"></Button>
-                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Name="ButtonDelete" Click="ButtonDelete_Click"></Button>
-                    <Button HorizontalAlignment="Right"  Width="125" Content="Toevoegen" Name="ButtonAdd" Click="ButtonAdd_Click"></Button>
+                    <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Command="{Binding DeleteCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddCommandEvent}"></Button>
                 </Grid>
-                <Button Name="ButtonSave" Content="Opslaan" Click="ButtonSave_Click"></Button>
+                <Button Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
             </StackPanel>
         </Grid>
         <DataGrid x:Name="strijkersDataGrid" BorderBrush="Black" BorderThickness="2" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedPersoneel}" RowDetailsVisibilityMode="VisibleWhenSelected">

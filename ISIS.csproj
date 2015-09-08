@@ -110,6 +110,7 @@
     <Compile Include="Bedrijf.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Commands\AddPersoneel.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,35 +41,18 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public NextCommand NextCommandEvent { get; private set; }
-        public PreviousCommand PreviousCommandEvent { get; private set; }
-
-        #region ButtonToevoegenContent
-        protected string _buttonToevoegenContent;
-
-        public override string ButtonToevoegenContent
-        {
-            get { return _buttonToevoegenContent; }
-            set
-            {
-                _buttonToevoegenContent = value;
-                NoticeMe("ButtonToevoegenContent");
-            }
-        }
-        #endregion
+        public AddPersoneelCommand AddCommandEvent { get; private set; }
 
         public PersoneelBeheerViewModel() : base()
         {
             Header = "PersoneelBeheer";
             GetData();
-            NextCommandEvent = new NextCommand(this);
-            PreviousCommandEvent = new PreviousCommand(this);
+            AddCommandEvent = new AddPersoneelCommand(this);
         }
 
         private void GetData()
         {
-            Personeel = ctx.Strijkers.ToList();
-            ViewSource.Source = Personeel;
+            Refresh();
             ViewSource.View.CollectionChanged += View_CurrentChanged;
 
             SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
@@ -80,22 +64,25 @@ namespace ISIS.ViewModels
 
         public override void Delete()
         {
-            throw new NotImplementedException();
+            ctx.Strijkers.Remove(SelectedPersoneel);
         }
 
         public override void Refresh()
         {
-            throw new NotImplementedException();
+            ctx = new ISIS_DataEntities();
+            ctx.Strijkers.Load();
+            ViewSource.Source = ctx.Strijkers.Local;
+            ViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));            //Zorgt ervoor dat de DataGrid geordend is op ID!!
         }
 
         public override void Add()
         {
-            throw new NotImplementedException();
+            ctx.Strijkers.Add(SelectedPersoneel);
         }
 
         public override void SaveChanges()
         {
-            throw new NotImplementedException();
+            ctx.SaveChanges();
         }
     }
 }

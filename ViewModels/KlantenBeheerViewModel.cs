@@ -11,7 +11,7 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class KlantenBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
+    class KlantenBeheerViewModel : BeheerViewModel
     {
         #region SelectedKlant fullproperty
 
@@ -28,38 +28,13 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public NextCommand NextCommandEvent { get; private set; }
-        public PreviousCommand PreviousCommandEvent { get; private set; }
-        public SaveCommand SaveCommandEvent { get; private set; }
-        public DeleteCommand DeleteCommandEvent { get; set; }
-        public RefreshCommand RefreshCommandEvent { get; set; }
         public AddKlantCommand AddCommandEvent { get; private set; }
-
-        #region ButtonToevoegenContent
-        protected string _buttonToevoegenContent;
-
-        public override string ButtonToevoegenContent
-        {
-            get { return _buttonToevoegenContent; }
-            set
-            {
-                _buttonToevoegenContent = value;
-                NoticeMe("ButtonToevoegenContent");
-            }
-        }
-        #endregion
 
         public KlantenBeheerViewModel() : base()
         {
             Header = "KlantenBeheer";
             GetData();
-            NextCommandEvent = new NextCommand(this);
-            PreviousCommandEvent = new PreviousCommand(this);
-            SaveCommandEvent = new SaveCommand(this);
-            DeleteCommandEvent = new DeleteCommand(this);
-            RefreshCommandEvent = new RefreshCommand(this);
             AddCommandEvent = new AddKlantCommand(this);
-            ButtonToevoegenContent = "Toevoegen";
         }
 
         private void GetData()
@@ -97,17 +72,5 @@ namespace ISIS.ViewModels
         {
             SelectedKlant = (sender as CollectionView).CurrentItem as Klant;
         }
-
-        #region INotifyPropertyChanged
-        private void NoticeMe(string property)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
     }
 }
