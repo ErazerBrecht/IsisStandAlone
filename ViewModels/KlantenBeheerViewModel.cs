@@ -13,8 +13,6 @@ namespace ISIS.ViewModels
 {
     class KlantenBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
     {
-        ISIS_DataEntities ctx;
-
         #region SelectedKlant fullproperty
 
         private Klant _selectedKlant;
@@ -30,10 +28,17 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        #region ButtonToevoegenContent
-        private string _buttonToevoegenContent;
+        public NextCommand NextCommandEvent { get; private set; }
+        public PreviousCommand PreviousCommandEvent { get; private set; }
+        public SaveCommand SaveCommandEvent { get; private set; }
+        public DeleteCommand DeleteCommandEvent { get; set; }
+        public RefreshCommand RefreshCommandEvent { get; set; }
+        public AddKlantCommand AddCommandEvent { get; private set; }
 
-        public string ButtonToevoegenContent
+        #region ButtonToevoegenContent
+        protected string _buttonToevoegenContent;
+
+        public override string ButtonToevoegenContent
         {
             get { return _buttonToevoegenContent; }
             set
@@ -44,22 +49,15 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public NextCommand NextCommandEvent { get; private set; }
-        public PreviousCommand PreviousCommandEvent { get; private set; }
-        public SaveKlantCommand SaveCommandEvent { get; private set; }
-        public DeleteKlantCommand DeleteCommandEvent { get; set; }
-        public RefreshKlantCommand RefreshCommandEvent { get; set; }
-        public AddKlantCommand AddCommandEvent { get; private set; }
-
         public KlantenBeheerViewModel() : base()
         {
             Header = "KlantenBeheer";
             GetData();
             NextCommandEvent = new NextCommand(this);
             PreviousCommandEvent = new PreviousCommand(this);
-            SaveCommandEvent = new SaveKlantCommand(this);
-            DeleteCommandEvent = new DeleteKlantCommand(this);
-            RefreshCommandEvent = new RefreshKlantCommand(this);
+            SaveCommandEvent = new SaveCommand(this);
+            DeleteCommandEvent = new DeleteCommand(this);
+            RefreshCommandEvent = new RefreshCommand(this);
             AddCommandEvent = new AddKlantCommand(this);
             ButtonToevoegenContent = "Toevoegen";
         }
@@ -72,17 +70,17 @@ namespace ISIS.ViewModels
             SelectedKlant = ViewSource.View.CurrentItem as Klant;           
         }
 
-        public void AddKlant(Klant k)
+        public override void Add()
         {
-            ctx.Klanten.Add(k);
+            ctx.Klanten.Add(SelectedKlant);
         }
 
-        public void DeleteKlant(Klant k)
+        public override void Delete()
         {
-            ctx.Klanten.Remove(k);
+            ctx.Klanten.Remove(SelectedKlant);
         }
 
-        public void Refresh()
+        public override void Refresh()
         {
             ctx = new ISIS_DataEntities();
             ctx.Klanten.Load();
@@ -90,7 +88,7 @@ namespace ISIS.ViewModels
             ViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));            //Zorgt ervoor dat de DataGrid geordend is op ID!!
         }
         
-        public void SaveChanges()
+        public override void SaveChanges()
         {
             ctx.SaveChanges();
         } 

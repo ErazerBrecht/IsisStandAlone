@@ -8,11 +8,11 @@ using ISIS.ViewModels;
 
 namespace ISIS.Commands
 {
-    class RefreshKlantCommand : ICommand
+    class DeleteCommand : ICommand
     {
-        private KlantenBeheerViewModel _viewModel;
+        private BeheerViewModel _viewModel;
 
-        public RefreshKlantCommand(KlantenBeheerViewModel viewModel)
+        public DeleteCommand(BeheerViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -32,7 +32,7 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.Refresh();
+            _viewModel.Delete();
         }
     }
 }

@@ -11,7 +11,6 @@ namespace ISIS.ViewModels
 {
     class PersoneelBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
     {
-        ISIS_DataEntities ctx = new ISIS_DataEntities();
 
         #region SelectedPersoneel
         private Strijker _selectedPersoneel;
@@ -44,6 +43,20 @@ namespace ISIS.ViewModels
         public NextCommand NextCommandEvent { get; private set; }
         public PreviousCommand PreviousCommandEvent { get; private set; }
 
+        #region ButtonToevoegenContent
+        protected string _buttonToevoegenContent;
+
+        public override string ButtonToevoegenContent
+        {
+            get { return _buttonToevoegenContent; }
+            set
+            {
+                _buttonToevoegenContent = value;
+                NoticeMe("ButtonToevoegenContent");
+            }
+        }
+        #endregion
+
         public PersoneelBeheerViewModel() : base()
         {
             Header = "PersoneelBeheer";
@@ -63,6 +76,26 @@ namespace ISIS.ViewModels
         protected override void View_CurrentChanged(object sender, EventArgs e)
         {
             SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
+        }
+
+        public override void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Refresh()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Add()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

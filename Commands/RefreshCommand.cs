@@ -8,11 +8,11 @@ using ISIS.ViewModels;
 
 namespace ISIS.Commands
 {
-    class SaveKlantCommand : ICommand
+    class RefreshCommand : ICommand
     {
-        private KlantenBeheerViewModel _viewModel;
+        private BeheerViewModel _viewModel;
 
-        public SaveKlantCommand(KlantenBeheerViewModel viewModel)
+        public RefreshCommand(BeheerViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -25,20 +25,14 @@ namespace ISIS.Commands
 
         public bool CanExecute(object parameter)
         {
-            //TODO: Check Validation!
-            return true;
+            if (_viewModel.ButtonToevoegenContent == "Toevoegen")
+                return true;
+            return false;
         }
 
         public void Execute(object parameter)
         {
-            if (_viewModel.ButtonToevoegenContent == "Annuleren")
-            {
-                _viewModel.AddKlant(_viewModel.SelectedKlant);             
-            }
-
-            _viewModel.SaveChanges();        
-            _viewModel.ButtonToevoegenContent = "Toevoegen";
-
+            _viewModel.Refresh();
         }
     }
 }
