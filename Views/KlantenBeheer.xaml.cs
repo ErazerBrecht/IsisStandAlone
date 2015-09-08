@@ -147,53 +147,6 @@ namespace ISIS.Views
         //    CheckChanges();
         }
 
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-        //    _entities.Klanten.Remove((Klant)_klantenViewSource.View.CurrentItem);
-        //    _unsavedChanges = true;
-        //    //_entities.SaveChanges();
-        //    //Refresh();
-        }
-
-        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
-        {
-        //    if (ButtonAdd.Content.ToString() == "Toevoegen")
-        //    {
-        //        _addClient = new Klant();
-
-        //        int tempId = 1;
-
-        //        //Search for first valid ID
-        //        while (_entities.Klanten.Any(k => k.ID == tempId))
-        //        {
-        //            tempId++;
-        //        }
-
-        //        _addClient.ID = tempId;
-        //        _addClient.Datum = DateTime.Now;
-        //        GridInformation.DataContext = _addClient;
-        //        SwitchToAddMode();
-        //    }
-        //    else
-        //    {
-        //        _addClient = null;          //Clicked on cancel ("Annuleren") so the client doesn't have to be saved!
-        //        SwitchToEditMode();
-        //    }
-        }
-
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
-        {
-        //    SwitchToEditMode();
-
-        //    if (_addClient != null)
-        //    {
-        //        _entities.Klanten.Add(_addClient);
-        //    }
-
-        //    Save();
-        //    Refresh();
-        }
-
         //private void SwitchToAddMode()
         //{
         //    TextBoxID.IsReadOnly = false;

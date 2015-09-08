@@ -110,8 +110,12 @@
     <Compile Include="Bedrijf.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Commands\RefreshKlantCommand.cs" />
+    <Compile Include="Commands\DeleteKlantCommand.cs" />
+    <Compile Include="Commands\SaveKlantCommand.cs" />
     <Compile Include="Commands\PreviousCommand.cs" />
     <Compile Include="Commands\NextCommand.cs" />
+    <Compile Include="Commands\AddKlantCommand.cs" />
     <Compile Include="ModelExtensions\KlantUitbreiding.cs" />
     <Compile Include="ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Ophaling.cs">

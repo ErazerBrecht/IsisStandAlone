@@ -122,8 +122,8 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding SelectedKlant}">
-                <GroupBox Header="Overige gegevens">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <GroupBox Header="Overige gegevens" DataContext="{Binding SelectedKlant}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -158,11 +158,11 @@
                 </GroupBox>
 
                 <Grid Margin="0,46,0,10" >
-                    <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Name="ButtonCancel" Click="ButtonCancel_Click"></Button>
-                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Name="ButtonDelete" Click="ButtonDelete_Click"></Button>
-                    <Button HorizontalAlignment="Right"  Width="125" Content="Toevoegen" Name="ButtonAdd" Click="ButtonAdd_Click"></Button>
+                    <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen"  Command="{Binding DeleteCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddCommandEvent}"></Button>
                 </Grid>
-                <Button Name="ButtonSave" Content="Opslaan" Click="ButtonSave_Click"></Button>
+                <Button Name="ButtonSave" Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
                 <DockPanel Margin="0,46,0,0">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
                     <local:SearchComboBox x:Name="TextBoxSearch" IsEditable="True" StaysOpenOnEdit="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged">
