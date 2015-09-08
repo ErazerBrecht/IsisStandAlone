@@ -13,6 +13,21 @@ namespace ISIS.ViewModels
     {
         ISIS_DataEntities ctx = new ISIS_DataEntities();
 
+        #region SelectedPersoneel
+        private Strijker _selectedPersoneel;
+
+        public Strijker SelectedPersoneel
+        {
+            get { return _selectedPersoneel; }
+            set
+            {
+                _selectedPersoneel = value;
+                NoticeMe("SelectedPersoneel");
+            }
+        }
+
+        #endregion
+
         #region Lijst Personeel
         private List<Strijker> _personeel;
         public List<Strijker> Personeel
@@ -29,7 +44,7 @@ namespace ISIS.ViewModels
         public NextCommand NextCommandEvent { get; private set; }
         public PreviousCommand PreviousCommandEvent { get; private set; }
 
-        public PersoneelBeheerViewModel()
+        public PersoneelBeheerViewModel() : base()
         {
             Header = "PersoneelBeheer";
             GetData();
@@ -40,14 +55,14 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Personeel = ctx.Strijkers.ToList();
-            ViewSource = new CollectionViewSource();
             ViewSource.Source = Personeel;
-             
-        }
+            ViewSource.View.CollectionChanged += View_CurrentChanged;
 
-        public CollectionView GetPersoneelCollectionView(List<Strijker> personeelLijst)
+            SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
+        }
+        protected override void View_CurrentChanged(object sender, EventArgs e)
         {
-            return (CollectionView)CollectionViewSource.GetDefaultView(personeelLijst);
+            SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
         }
     }
 }

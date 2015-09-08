@@ -128,24 +128,6 @@ namespace ISIS.Views
         //    }
         //}
 
-        private void ButtonNext_Click(object sender, RoutedEventArgs e)
-        {
-            //if (_PersoneelViewSource.View.CurrentPosition < _entities.Strijkers.Local.Count() - 1)
-            //{
-            //    _PersoneelViewSource.View.MoveCurrentToNext();
-            //    strijkersDataGrid.ScrollIntoView(strijkersDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
-            //}
-        }
-
-        private void ButtonPrevious_Click(object sender, RoutedEventArgs e)
-        {
-            //if (_PersoneelViewSource.View.CurrentPosition > 0)
-            //{
-            //    _PersoneelViewSource.View.MoveCurrentToPrevious();
-            //    strijkersDataGrid.ScrollIntoView(strijkersDataGrid.SelectedItem);       //Make sure the datagrid follows (scroll), otherwise you can't see what you're doing
-            //}
-        }
-
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             //CheckChanges();

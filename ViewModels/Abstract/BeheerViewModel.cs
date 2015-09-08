@@ -10,5 +10,12 @@ namespace ISIS.ViewModels
     abstract class BeheerViewModel : WorkspaceViewModel
     {
         public CollectionViewSource ViewSource { get; protected set; }
+
+        public BeheerViewModel()
+        {
+            ViewSource = new CollectionViewSource();
+        }
+
+        protected abstract void View_CurrentChanged(object sender, EventArgs e);
     }
 }

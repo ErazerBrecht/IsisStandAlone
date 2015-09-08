@@ -40,7 +40,7 @@
                 </Button>
             </DockPanel>
 
-            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding ViewSource}">
+            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding SelectedKlant}">
                 <GroupBox Header="Algemene gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -122,7 +122,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding ViewSource}">
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" DataContext="{Binding SelectedKlant}">
                 <GroupBox Header="Overige gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -173,7 +173,7 @@
             </StackPanel>
 
         </Grid>
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlant}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>

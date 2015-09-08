@@ -26,10 +26,25 @@ namespace ISIS.ViewModels
         }
         #endregion
 
+        #region SelectedKlant fullproperty
+
+        private Klant _selectedKlant;
+
+        public Klant SelectedKlant
+        {
+            get { return _selectedKlant; }
+            set
+            {
+                _selectedKlant = value;
+                NoticeMe("SelectedKlant");
+            }
+        }
+        #endregion
+
         public NextCommand NextCommandEvent { get; private set; }
         public PreviousCommand PreviousCommandEvent { get; private set; }
 
-        public KlantenBeheerViewModel()
+        public KlantenBeheerViewModel() : base()
         {
             Header = "KlantenBeheer";
             GetData();
@@ -40,13 +55,15 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Klanten = ctx.Klanten.ToList();
-            ViewSource = new CollectionViewSource();
             ViewSource.Source = Klanten;
+            ViewSource.View.CollectionChanged += View_CurrentChanged;
+
+            SelectedKlant = ViewSource.View.CurrentItem as Klant;           
         }
 
-        public CollectionView GetKlantenCollectionView(List<Klant> klantenLijst)
+        protected override void View_CurrentChanged(object sender, EventArgs e)
         {
-            return (CollectionView)CollectionViewSource.GetDefaultView(klantenLijst);
+            SelectedKlant = (sender as CollectionView).CurrentItem as Klant;
         }
 
         #region INotifyPropertyChanged
