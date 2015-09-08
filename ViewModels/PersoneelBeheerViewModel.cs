@@ -43,6 +43,15 @@ namespace ISIS.ViewModels
 
         public AddPersoneelCommand AddCommandEvent { get; private set; }
 
+        public override bool IsValid
+        {
+            get
+            {
+                //return SelectedKlant.CanSave;
+                return true;
+            }
+        }
+    
         public PersoneelBeheerViewModel() : base()
         {
             Header = "PersoneelBeheer";

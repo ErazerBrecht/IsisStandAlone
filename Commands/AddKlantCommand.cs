@@ -43,6 +43,7 @@ namespace ISIS.Commands
 
                 addClient.ID = tempId;
                 addClient.Datum = DateTime.Now;
+                addClient.Bericht = "Neen";
                 _viewModel.SelectedKlant = addClient;
                 _viewModel.ButtonToevoegenContent = "Annuleren";
             }

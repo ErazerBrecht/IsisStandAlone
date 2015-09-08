@@ -40,7 +40,7 @@
                 </Button>
             </DockPanel>
 
-            <StackPanel Grid.Row="1" Margin="10" DataContext="{Binding SelectedKlant}">
+            <StackPanel Grid.Row="1" Margin="10">
                 <GroupBox Header="Algemene gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -55,12 +55,12 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Klnr:  "></TextBlock>
-                        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Name="TextBoxID"></TextBox>
+                        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SelectedKlant.ID, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" IsReadOnly="{Binding IsIdReadOnly}" Name="TextBoxID"></TextBox>
 
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Naam:  "></TextBlock>
-                        <TextBox Grid.Row="1" Margin="0,10,0,0" Grid.Column="1" Text="{Binding Naam, Mode=TwoWay,  ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Row="1" Margin="0,10,0,0" Grid.Column="1" Text="{Binding SelectedKlant.Naam, Mode=TwoWay,  ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Row="1" Margin="15,10,0,0" Grid.Column="2" Text="Voornaam:  "></TextBlock>
-                        <TextBox  Grid.Row="1" Margin="0,10,0,0" Grid.Column="3" Text="{Binding Voornaam, Mode=TwoWay}" Name="TextBoxVoornaam"></TextBox>
+                        <TextBox  Grid.Row="1" Margin="0,10,0,0" Grid.Column="3" Text="{Binding SelectedKlant.Voornaam, Mode=TwoWay}" Name="TextBoxVoornaam"></TextBox>
                     </Grid>
                 </GroupBox>
 
@@ -77,18 +77,18 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Straat:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding Straat, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Straat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
                         <DockPanel Grid.Column="3">
-                            <TextBox Width="60"  Text="{Binding Nummer, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                            <TextBox Width="60"  Text="{Binding SelectedKlant.Nummer, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
                             <TextBlock Margin="10,0,10,0">Bus:</TextBlock>
                             <TextBox></TextBox>
                         </DockPanel>
 
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Gemeente, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Gemeente, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Postcode:  "></TextBlock>
-                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Postcode, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Postcode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
                     </Grid>
                 </GroupBox>
 
@@ -106,24 +106,24 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Telefoon:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding Telefoon, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Telefoon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding Gsm, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBox Grid.Column="3" Text="{Binding SelectedKlant.Gsm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
-                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding AndereNaam, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.AndereNaam, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="E-mail:  "></TextBlock>
-                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Email}"></TextBox>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Email, Mode=TwoWay}"></TextBox>
 
                         <TextBlock Text="Betalingswijze:  "  Grid.Row="2"  Margin="0,10,0,0"></TextBlock>
-                        <ComboBox SelectedItem="{Binding Betalingswijze, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Grid.Column="1" Grid.Row="2" Name="ComboBoxBetalingswijze"  Margin="0,10,0,0" Loaded="ComboBoxBetalingswijze_Loaded"/>
-                        <TextBlock Text="Gebruikersnummer:  " Visibility="{Binding ElektronischBetalen}"  Grid.Column="2"  Grid.Row="2" Margin="15,10,0,0"></TextBlock>
-                        <TextBox Grid.Column="3"  Grid.Row="2"  Margin="0,10,0,0" Visibility="{Binding ElektronischBetalen}" Text="{Binding Gebruikersnummer, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Betalingswijze, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding BetalingswijzeItems}" Grid.Column="1" Grid.Row="2" Name="ComboBoxBetalingswijze"  Margin="0,10,0,0" Loaded="ComboBoxBetalingswijze_Loaded"/>
+                        <TextBlock Text="Gebruikersnummer:  " Visibility="{Binding ElektronischBetalenVisibility}"  Grid.Column="2"  Grid.Row="2" Margin="15,10,0,0"></TextBlock>
+                        <TextBox Grid.Column="3"  Grid.Row="2"  Margin="0,10,0,0" Visibility="{Binding ElektronischBetalenVisibility}" Text="{Binding SelectedKlant.Gebruikersnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                     </Grid>
                 </GroupBox>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                <GroupBox Header="Overige gegevens" DataContext="{Binding SelectedKlant}">
+                <GroupBox Header="Overige gegevens">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -138,22 +138,22 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <UniformGrid Grid.Column="1" Rows="1">
-                            <ComboBox SelectedItem="{Binding SoortKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Name="ComboBoxSoortKlant" Loaded="ComboBoxSoortKlant_Loaded" SelectionChanged="ComboBoxSoortKlant_SelectionChanged"/>
-                            <ComboBox SelectedValuePath="Naam" SelectedValue="{Binding SoortKlantPlaats, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="False" Name="ComboBoxSoortKlantPlaats"></ComboBox>
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}"  SelectionChanged="ComboBoxSoortKlant_SelectionChanged"/>
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantPlaats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="{Binding IsComboBoxSoortKlantPlaatsEnabled}" ItemsSource="{Binding SoortKlantPlaatsItems}" Name="ComboBoxSoortKlantPlaats"></ComboBox>
                         </UniformGrid>
 
                         <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
-                        <ComboBox SelectedItem="{Binding Bericht, Mode=TwoWay}" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Bericht, Mode=TwoWay}" ItemsSource="{Binding BerichtItems}" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
 
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
-                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding Actief, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
 
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding Tegoed}"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Tegoed}"></TextBlock>
                         <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding SelectedKlant.LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
                 </GroupBox>
 

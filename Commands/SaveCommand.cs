@@ -25,8 +25,7 @@ namespace ISIS.Commands
 
         public bool CanExecute(object parameter)
         {
-            //TODO: Check Validation!
-            return true;
+            return _viewModel.IsValid;
         }
 
         public void Execute(object parameter)

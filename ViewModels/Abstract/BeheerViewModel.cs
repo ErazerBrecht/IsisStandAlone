@@ -24,16 +24,29 @@ namespace ISIS.ViewModels
         #region ButtonToevoegenContent
         protected string _buttonToevoegenContent;
 
-        public string ButtonToevoegenContent
+        public virtual string ButtonToevoegenContent
         {
             get { return _buttonToevoegenContent; }
             set
             {
                 _buttonToevoegenContent = value;
                 NoticeMe("ButtonToevoegenContent");
+                NoticeMe("IsIdReadOnly");
             }
         }
         #endregion
+
+        public bool IsIdReadOnly
+        {
+            get
+            {
+                if (ButtonToevoegenContent == "Annuleren")
+                    return false;
+                return true;
+            }
+        }
+
+        abstract public bool IsValid { get; }
 
         public BeheerViewModel()
         {

@@ -47,10 +47,7 @@ namespace ISIS.Commands
                 _viewModel.ButtonToevoegenContent = "Annuleren";
             }
             else
-            {
                 _viewModel.SelectedPersoneel = _viewModel.ViewSource.View.CurrentItem as Strijker;
-                _viewModel.ButtonToevoegenContent = "Toevoegen";
-            }
         }
     }
 }
