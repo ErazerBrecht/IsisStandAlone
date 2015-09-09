@@ -15,6 +15,7 @@
     </Window.Resources>
     <Grid>
         <TabControl
+            SelectedItem="{Binding SelectedWorkspace}"
             ItemsSource="{Binding Workspaces}">
             <TabControl.Resources>
                 <DataTemplate DataType="{x:Type vm:KlantenBeheerViewModel}">

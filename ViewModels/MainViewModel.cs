@@ -12,6 +12,7 @@ namespace ISIS.ViewModels
     class MainViewModel
     {
 
+        public WorkspaceViewModel SelectedWorkspace { get;  set; }
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; }
 
         public MainViewModel()
@@ -33,6 +34,7 @@ namespace ISIS.ViewModels
             Workspaces = new ObservableCollection<WorkspaceViewModel>();
             Workspaces.Add(new KlantenBeheerViewModel());
             Workspaces.Add(new PersoneelBeheerViewModel());
+            SelectedWorkspace = Workspaces.First();
         }
 
 
