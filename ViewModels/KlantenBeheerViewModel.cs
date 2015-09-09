@@ -24,7 +24,7 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedKlant = value;
-                ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps annuleren...
+                ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
                 NoticeMe("SelectedKlant");
                 NoticeMe("SoortKlantPlaatsItems");
                 NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
@@ -37,7 +37,7 @@ namespace ISIS.ViewModels
         {
             if (e.PropertyName == "SoortKlant")
             {
-                NoticeMe("SoortKlantPlaatsItems");          //If SoortKlant is adjusted the ItemSource of the combobox for SoortKlantPlaats should also change!
+                NoticeMe("SoortKlantPlaatsItems");                  //If SoortKlant is adjusted the ItemSource of the combobox for SoortKlantPlaats should also change!
                 NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
             }
             else if (e.PropertyName == "Betalingswijze")
@@ -46,10 +46,77 @@ namespace ISIS.ViewModels
 
         #endregion
 
+        #region TextBoxSearch
+        private int _oldLengthSearchBox = 0;
+
+        public string SearchBoxText
+        {
+            set
+            {
+                int tempID;
+                var tempSearchList = new List<Klant>();
+
+                //If text is getting longer search in items from the combobox self
+                //If not search in the list with all the items (in this situation you're deleting chars)
+                //Result: If you're adding chars, it will go faster because you need to search in a smaller list!
+                if (_oldLengthSearchBox < value.Length && SearchBoxResults != null)
+                {
+                        tempSearchList = SearchBoxResults;
+                }
+                else
+                {
+                    tempSearchList = ViewSource.View.SourceCollection.Cast<Klant>().ToList();
+                }
+
+                if (int.TryParse(value, out tempID))            //Check if user only typed numebers (an id)
+                {
+                    List<Klant> tempList = tempSearchList.Where(k => k.ID.ToString().Contains(value)).ToList();
+                    SearchBoxResults = tempList;
+                }
+                else
+                {
+                    //If the text contains off digits don't search after it in Naam and Voornaam (after all you will not find anything!)
+                    if (!value.Any(char.IsDigit))
+                    {
+                        List<Klant> tempList = tempSearchList.Where(k => k.Naam.ToString().ToLower().Contains(value.ToLower()) || k.Voornaam != null && k.Voornaam.ToString().ToLower().Contains(value.ToLower())).ToList();
+                        SearchBoxResults = tempList;
+                    }
+                }
+
+                _oldLengthSearchBox = value.Length;        //Save current textlength, in the future we can compare it to determine if the textlength became bigger or smaller!
+            }
+    }
+
+        private List<Klant> _searchBoxResults;
+        public List<Klant> SearchBoxResults
+        {
+            get
+            {
+                return _searchBoxResults;
+            }
+
+            private set
+            {
+                _searchBoxResults = value;
+                NoticeMe("SearchBoxResults");
+            }
+        }
+
+        public Klant SearchBoxSelectedKlant
+        {
+            set
+            {
+                if (value != null)
+                    SelectedKlant = value;
+            }
+        }
+        #endregion
+
         #region KlantenBeheerViewModel specific commands
         public AddKlantCommand AddCommandEvent { get; private set; }
         #endregion
 
+        #region Overrided properties
         public override bool IsValid
         {
             get
@@ -78,30 +145,42 @@ namespace ISIS.ViewModels
                 if (SelectedKlant != null)
                 {
                     if (value == "Annuleren")
-                        SelectedKlant.CanValidateID = true;
-                    else
+                        SelectedKlant.CanValidateID = true;             //We should ony check the ID for unicity when the user is adding a new user!
+                    else                                                
                         SelectedKlant.CanValidateID = false;
                 }
 
                 base.ButtonToevoegenContent = value;
             }
         }
+        #endregion
 
+        #region Convertor properties
         public Visibility ElektronischBetalenVisibility
         {
             get
             {
                 if (SelectedKlant.Betalingswijze == "Elektronisch")
                 {
-                    return Visibility.Visible;
                     if (String.IsNullOrWhiteSpace(SelectedKlant.Gebruikersnummer))
                         SelectedKlant.Gebruikersnummer = null;      //Force data validation
+
+                    return Visibility.Visible;
                 }
 
                 return Visibility.Hidden;
             }
        }
-
+        public bool IsComboBoxSoortKlantPlaatsEnabled
+        {
+            get
+            {
+                if (String.IsNullOrWhiteSpace(SelectedKlant.SoortKlant))
+                    return false;
+                return true;
+            }
+        }
+        #endregion
 
         #region ItemSources for Comboboxes
         public List<string> SoortKlantItems
@@ -114,16 +193,6 @@ namespace ISIS.ViewModels
                 data.Add("Bedrijf");
                 data.Add("School");
                 return data;
-            }
-        }
-
-        public bool IsComboBoxSoortKlantPlaatsEnabled
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(SelectedKlant.SoortKlant))
-                    return false;
-                return true;
             }
         }
 
@@ -193,9 +262,7 @@ namespace ISIS.ViewModels
         {
             Refresh(); 
             ViewSource.View.CollectionChanged += View_CurrentChanged;
-
-            SelectedKlant = ViewSource.View.CurrentItem as Klant;
-            //SelectedKlant.PropertyChanged += SelectedKlant_PropertyChanged;        
+            SelectedKlant = ViewSource.View.CurrentItem as Klant;      
         }
 
         public override void Add()
@@ -223,7 +290,7 @@ namespace ISIS.ViewModels
 
         protected override void View_CurrentChanged(object sender, EventArgs e)
         {
-            SelectedKlant = (sender as CollectionView).CurrentItem as Klant;
+            SelectedKlant = (sender as CollectionView).CurrentItem as Klant;           
         }
     }
 }

@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Name="GridInformation" Validation.Error="GridInformation_Error">
+        <Grid Name="GridInformation">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition></RowDefinition>
@@ -115,7 +115,7 @@
                         <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Email, Mode=TwoWay}"></TextBox>
 
                         <TextBlock Text="Betalingswijze:  "  Grid.Row="2"  Margin="0,10,0,0"></TextBlock>
-                        <ComboBox SelectedItem="{Binding SelectedKlant.Betalingswijze, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding BetalingswijzeItems}" Grid.Column="1" Grid.Row="2" Name="ComboBoxBetalingswijze"  Margin="0,10,0,0" Loaded="ComboBoxBetalingswijze_Loaded"/>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Betalingswijze, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding BetalingswijzeItems}" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0" />
                         <TextBlock Text="Gebruikersnummer:  " Visibility="{Binding ElektronischBetalenVisibility}"  Grid.Column="2"  Grid.Row="2" Margin="15,10,0,0"></TextBlock>
                         <TextBox Grid.Column="3"  Grid.Row="2"  Margin="0,10,0,0" Visibility="{Binding ElektronischBetalenVisibility}" Text="{Binding SelectedKlant.Gebruikersnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                     </Grid>
@@ -138,12 +138,12 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <UniformGrid Grid.Column="1" Rows="1">
-                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}"  SelectionChanged="ComboBoxSoortKlant_SelectionChanged"/>
-                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantPlaats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="{Binding IsComboBoxSoortKlantPlaatsEnabled}" ItemsSource="{Binding SoortKlantPlaatsItems}" Name="ComboBoxSoortKlantPlaats"></ComboBox>
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}" />
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantPlaats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="{Binding IsComboBoxSoortKlantPlaatsEnabled}" ItemsSource="{Binding SoortKlantPlaatsItems}"/>
                         </UniformGrid>
 
                         <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
-                        <ComboBox SelectedItem="{Binding SelectedKlant.Bericht, Mode=TwoWay}" ItemsSource="{Binding BerichtItems}" Grid.Column="3" Name="ComboBoxBericht" Loaded="ComboBoxBericht_Loaded"/>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Bericht, Mode=TwoWay}" ItemsSource="{Binding BerichtItems}" Grid.Column="3" />
 
                         <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
                         <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
@@ -165,7 +165,7 @@
                 <Button Name="ButtonSave" Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
                 <DockPanel Margin="0,46,0,0">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <local:SearchComboBox x:Name="TextBoxSearch" IsEditable="True" StaysOpenOnEdit="True" TextBoxBase.TextChanged="TextBoxSearch_TextChanged" SelectionChanged="TextBoxSearch_SelectionChanged">
+                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxResults}" SelectedItem="{Binding SearchBoxSelectedKlant}">
                     </local:SearchComboBox>
                 </DockPanel>
 
