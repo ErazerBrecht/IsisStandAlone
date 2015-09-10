@@ -12,6 +12,7 @@ namespace ISIS.ViewModels
 {
     class PersoneelBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
     {
+        private Strijker _errorPersoneel;
 
         #region SelectedPersoneel
         private Strijker _selectedPersoneel;
@@ -57,7 +58,10 @@ namespace ISIS.ViewModels
                 foreach (Strijker s in ViewSource.View.SourceCollection)           //Check if there is somewhere a validation error!
                 {
                     if (!s.CanSave)
+                    {
+                        _errorPersoneel = s;
                         return false;
+                    }
                 }
                 return true;
             }
@@ -120,6 +124,12 @@ namespace ISIS.ViewModels
         public override void SaveChanges()
         {
             ctx.SaveChanges();
+        }
+
+        public override void SetErrorAsSelected()
+        {
+            if (_errorPersoneel != null)            //If this is null the errorPersoneel is already the selected one!
+                SelectedPersoneel = _errorPersoneel;
         }
 
         protected override void View_CurrentChanged(object sender, EventArgs e)

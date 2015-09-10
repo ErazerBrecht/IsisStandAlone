@@ -122,8 +122,13 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                <GroupBox Header="Overige gegevens">
+            <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Overige gegevens" Grid.Row="0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -157,36 +162,40 @@
                     </Grid>
                 </GroupBox>
 
-                <Grid Margin="0,46,0,10" >
+                <Grid VerticalAlignment="Center" Grid.Row="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshCommandEvent}"></Button>
                     <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen"  Command="{Binding DeleteCommandEvent}"></Button>
                     <Button HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddCommandEvent}"></Button>
+                    <Button Grid.Row="1" Margin="0,10,0,0" Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
+                    <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorCommandEvent}"></Button>
                 </Grid>
-                <Button Name="ButtonSave" Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
-                <DockPanel Margin="0,46,0,0">
+                
+                <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxResults}" SelectedItem="{Binding SearchBoxSelectedKlant}">
-                    </local:SearchComboBox>
+                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxResults}" SelectedItem="{Binding SearchBoxSelectedKlant}" />
                 </DockPanel>
-
-
-            </StackPanel>
+            </Grid>
 
         </Grid>
         <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlant}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam}" Header="Voornaam" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam}" Header="2de naam" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat}" Header="Straat" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer}" Header="Nr." Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="telefoonColumn" Binding="{Binding Telefoon}" Header="Telefoon" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm}" Header="Gsm" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze}" Header="Betalingswijze" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam, ValidatesOnDataErrors=True}" Header="Voornaam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam, ValidatesOnDataErrors=True}" Header="2de naam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat, ValidatesOnDataErrors=True}" Header="Straat" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer, ValidatesOnDataErrors=True}" Header="Nr." Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode, ValidatesOnDataErrors=True}" Header="Postcode" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente, ValidatesOnDataErrors=True}" Header="Gemeente" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="telefoonColumn" Binding="{Binding Telefoon, ValidatesOnDataErrors=True}" Header="Telefoon" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm, ValidatesOnDataErrors=True}" Header="Gsm" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email, ValidatesOnDataErrors=True}" Header="Email" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze, ValidatesOnDataErrors=True}" Header="Betalingswijze" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="soortKlantColumn" Header="Soort Klant" Width="SizeToCells">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat=" {0} {1}">

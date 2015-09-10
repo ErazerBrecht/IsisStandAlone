@@ -46,6 +46,8 @@ namespace ISIS.ViewModels
 
         #endregion
 
+        private Klant _errorKlant;
+
         #region TextBoxSearch
         private int _oldLengthSearchBox = 0;
 
@@ -127,7 +129,10 @@ namespace ISIS.ViewModels
                 foreach (Klant k in ViewSource.View.SourceCollection)           //Check if there is somewhere a validation error!
                 {
                     if (!k.CanSave)
+                    {
+                        _errorKlant = k;
                         return false;
+                    }
                 }
                 return true;
             }
@@ -255,7 +260,6 @@ namespace ISIS.ViewModels
             Header = "KlantenBeheer";
             GetData();
             AddCommandEvent = new AddKlantCommand(this);
-
         }
 
         private void GetData()
@@ -286,6 +290,12 @@ namespace ISIS.ViewModels
         public override void SaveChanges()
         {
             ctx.SaveChanges();
+        }
+
+        public override void SetErrorAsSelected()
+        {
+            if (_errorKlant != null)            //If this is null the errorKlant is already the selected one!
+                SelectedKlant = _errorKlant;
         }
 
         protected override void View_CurrentChanged(object sender, EventArgs e)
