@@ -124,7 +124,7 @@ namespace ISIS.ViewModels
                 if (!SelectedKlant.CanSave)
                     return false;
 
-                foreach (Klant k in ViewSource.View.SourceCollection)
+                foreach (Klant k in ViewSource.View.SourceCollection)           //Check if there is somewhere a validation error!
                 {
                     if (!k.CanSave)
                         return false;
@@ -145,7 +145,7 @@ namespace ISIS.ViewModels
                 if (SelectedKlant != null)
                 {
                     if (value == "Annuleren")
-                        SelectedKlant.CanValidateID = true;             //We should ony check the ID for unicity when the user is adding a new user!
+                        SelectedKlant.CanValidateID = true;             //We should ony check the ID for unicity when the user is adding a new klant!
                     else                                                
                         SelectedKlant.CanValidateID = false;
                 }

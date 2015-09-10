@@ -22,6 +22,7 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedPersoneel = value;
+                ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
                 NoticeMe("SelectedPersoneel");
             }
         }
@@ -41,17 +42,49 @@ namespace ISIS.ViewModels
         }
         #endregion
 
+        #region PersoneelBeheerViewModel specific commands
         public AddPersoneelCommand AddCommandEvent { get; private set; }
+        #endregion
 
+        #region Overrided properties
         public override bool IsValid
         {
             get
             {
-                //return SelectedKlant.CanSave;
+                if (!SelectedPersoneel.CanSave)
+                    return false;
+
+                foreach (Strijker s in ViewSource.View.SourceCollection)           //Check if there is somewhere a validation error!
+                {
+                    if (!s.CanSave)
+                        return false;
+                }
                 return true;
             }
         }
-    
+        public override string ButtonToevoegenContent
+        {
+            get
+            {
+                return base.ButtonToevoegenContent;
+            }
+
+            set
+            {
+                if (SelectedPersoneel != null)
+                {
+                    if (value == "Annuleren")
+                        SelectedPersoneel.CanValidateID = true;             //We should ony check the ID for unicity when the user is adding a new strijker!
+                    else
+                        SelectedPersoneel.CanValidateID = false;
+                }
+
+                base.ButtonToevoegenContent = value;
+            }
+        }
+
+        #endregion
+
         public PersoneelBeheerViewModel() : base()
         {
             Header = "PersoneelBeheer";
@@ -63,12 +96,7 @@ namespace ISIS.ViewModels
         {
             Refresh();
             ViewSource.View.CollectionChanged += View_CurrentChanged;
-
             SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
-        }
-        protected override void View_CurrentChanged(object sender, EventArgs e)
-        {
-            SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
         }
 
         public override void Delete()
@@ -92,6 +120,11 @@ namespace ISIS.ViewModels
         public override void SaveChanges()
         {
             ctx.SaveChanges();
+        }
+
+        protected override void View_CurrentChanged(object sender, EventArgs e)
+        {
+            SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
         }
     }
 }

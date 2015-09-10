@@ -60,8 +60,8 @@ namespace ISIS
                     {
                         if (CanValidateID == true)
                         {
-                            ISIS_DataEntities _viewModel = new ISIS_DataEntities();
-                            if ((_viewModel.Klanten.Any(k => k.ID == ID)))
+                            ISIS_DataEntities entities = new ISIS_DataEntities();
+                            if ((entities.Klanten.Any(k => k.ID == ID)))
                             {
                                 result = "ID is al in gebruik!";
                             }
