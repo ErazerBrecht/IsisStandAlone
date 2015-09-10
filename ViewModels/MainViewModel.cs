@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ISIS.ViewModels
 {
@@ -17,6 +18,7 @@ namespace ISIS.ViewModels
 
         public MainViewModel()
         {
+            Application.Current.MainWindow.Closing += MainWindow_Closing;
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
 
             //try
@@ -37,8 +39,22 @@ namespace ISIS.ViewModels
             SelectedWorkspace = Workspaces.First();
         }
 
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            foreach (WorkspaceViewModel wvm in Workspaces)
+            {
+                if (wvm is BeheerViewModel)
+                {
+                    if (((BeheerViewModel)wvm).Close())
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }          
+            }
+        }
 
-    private void TestConnection()
+        private void TestConnection()
     {
         using (var db = new ISIS_DataEntities())
         {

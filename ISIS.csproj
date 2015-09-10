@@ -147,6 +147,7 @@
     <Compile Include="School.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>

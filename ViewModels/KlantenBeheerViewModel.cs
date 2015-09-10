@@ -286,7 +286,7 @@ namespace ISIS.ViewModels
         public override void SaveChanges()
         {
             ctx.SaveChanges();
-        } 
+        }
 
         protected override void View_CurrentChanged(object sender, EventArgs e)
         {

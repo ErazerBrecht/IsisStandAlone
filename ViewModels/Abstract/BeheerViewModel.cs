@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using ISIS.Commands;
+using ISIS.Services;
+using System.Windows;
 
 namespace ISIS.ViewModels
 {
@@ -63,6 +65,30 @@ namespace ISIS.ViewModels
         public abstract void Refresh();
         public abstract void Add();
         public abstract void SaveChanges();
+        public  bool Close()
+        {
+            if (ctx.ChangeTracker.HasChanges())
+            {
+                MessageBoxService messageService = new MessageBoxService();
+
+                var result = messageService.AskForConfirmation("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", Header);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SaveChanges();
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    Refresh();
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
         protected abstract void View_CurrentChanged(object sender, EventArgs e);
     }
 }
