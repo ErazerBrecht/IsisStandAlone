@@ -267,7 +267,6 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Refresh(); 
-            ViewSource.View.CollectionChanged += View_CurrentChanged;
             SelectedKlant = ViewSource.View.CurrentItem as Klant;      
         }
 
@@ -296,14 +295,7 @@ namespace ISIS.ViewModels
                 Add();
             }
 
-            try
-            {
-                ctx.SaveChanges();
-            }
-            catch(Exception e)
-            {
-
-            }
+            ctx.SaveChanges();
             ButtonToevoegenContent = "Toevoegen";
         }
 
@@ -311,12 +303,6 @@ namespace ISIS.ViewModels
         {
             if (_errorKlant != null)            //If this is null the errorKlant is already the selected one!
                 SelectedKlant = _errorKlant;
-        }
-
-        protected override void View_CurrentChanged(object sender, EventArgs e)
-        {
-            //if (ButtonToevoegenContent == "Toevoegen")
-                SelectedKlant = (sender as CollectionView).CurrentItem as Klant;           
         }
     }
 }

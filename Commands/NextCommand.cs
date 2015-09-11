@@ -30,7 +30,7 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            if (_viewModel.ViewSource.View.CurrentPosition < _viewModel.ViewSource.View.SourceCollection.Cast<Klant>().Count() - 1)
+            if (_viewModel.ViewSource.View.CurrentPosition < _viewModel.ViewSource.View.SourceCollection.Cast<object>().Count() - 1)
                 _viewModel.ViewSource.View.MoveCurrentToNext();
         }
     }

@@ -101,7 +101,6 @@ namespace ISIS.ViewModels
         private void GetData()
         {
             Refresh();
-            ViewSource.View.CollectionChanged += View_CurrentChanged;
             SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
         }
 
@@ -138,11 +137,6 @@ namespace ISIS.ViewModels
         {
             if (_errorPersoneel != null)            //If this is null the errorPersoneel is already the selected one!
                 SelectedPersoneel = _errorPersoneel;
-        }
-
-        protected override void View_CurrentChanged(object sender, EventArgs e)
-        {
-            SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
         }
     }
 }

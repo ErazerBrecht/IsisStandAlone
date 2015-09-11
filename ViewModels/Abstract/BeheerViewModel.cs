@@ -34,7 +34,7 @@ namespace ISIS.ViewModels
         public abstract void Refresh();
         public abstract void Add();
         public abstract void SaveChanges();
-        public  bool Close()
+        public virtual bool Close()
         {
             if (ctx.ChangeTracker.HasChanges())
             {
@@ -43,7 +43,7 @@ namespace ISIS.ViewModels
                 var result = messageService.AskForConfirmation("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", Header);
                 if (result == MessageBoxResult.Yes)
                 {
-                    //TODO: Check if there arne validation errors!!!
+                    //TODO: Check if there are validation errors!!!
                     SaveChanges();
                 }
                 else if (result == MessageBoxResult.No)

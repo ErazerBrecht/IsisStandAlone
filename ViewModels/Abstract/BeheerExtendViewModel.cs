@@ -56,7 +56,5 @@ namespace ISIS.ViewModels
         }
 
         public abstract void SetErrorAsSelected();
-
-        protected abstract void View_CurrentChanged(object sender, EventArgs e);
     }
 }
