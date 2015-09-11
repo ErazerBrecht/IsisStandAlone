@@ -114,15 +114,18 @@
     <Compile Include="Commands\NextErrorCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\RefreshParameterCommand.cs" />
+    <Compile Include="Commands\SaveParameterCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\PreviousCommand.cs" />
     <Compile Include="Commands\NextCommand.cs" />
     <Compile Include="Commands\AddKlantCommand.cs" />
     <Compile Include="Commands\OpenFileDialogCommand.cs" />
     <Compile Include="Commands\ShutDownCommand.cs" />
-    <Compile Include="ModelExtensions\KlantUitbreiding.cs" />
-    <Compile Include="ModelExtensions\SoortKlantUitbreiding.cs" />
-    <Compile Include="ModelExtensions\StrijkerUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
+    <Compile Include="Models\Parameters.cs" />
     <Compile Include="Ophaling.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -158,6 +161,7 @@
     </Compile>
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
+    <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
     <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />
     <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -167,6 +171,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ParameterBeheer.xaml.cs">
+      <DependentUpon>ParameterBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PersoneelBeheer.xaml.cs">
       <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
@@ -193,6 +200,10 @@
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParameterBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PersoneelBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>

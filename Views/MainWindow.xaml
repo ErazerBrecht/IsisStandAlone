@@ -24,6 +24,9 @@
                 <DataTemplate DataType="{x:Type vm:PersoneelBeheerViewModel}">
                     <views:PersoneelBeheer/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:ParameterBeheerViewModel}">
+                    <views:ParameterBeheer/>
+                </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate>

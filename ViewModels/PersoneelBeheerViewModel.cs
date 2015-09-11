@@ -10,7 +10,7 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class PersoneelBeheerViewModel : BeheerViewModel, INotifyPropertyChanged
+    class PersoneelBeheerViewModel : BeheerViewModel
     {
         private Strijker _errorPersoneel;
 
