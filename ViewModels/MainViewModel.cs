@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
@@ -21,36 +22,38 @@ namespace ISIS.ViewModels
             Application.Current.MainWindow.Closing += MainWindow_Closing;
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
 
-            //try
-            //{
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            TestConnection();
-            //}
-            //catch
-            //{
-            //    var errorWindow = new ErrorDatabase();
-            //    errorWindow.Show();
-            //    this.Close();
-            //}
-
-            Workspaces = new ObservableCollection<WorkspaceViewModel>();
-            Workspaces.Add(new KlantenBeheerViewModel());
-            Workspaces.Add(new PersoneelBeheerViewModel());
-            SelectedWorkspace = Workspaces.First();
+            try
+            {
+                AppDomain.CurrentDomain.SetData("DataDirectory", path);
+                TestConnection();
+                Workspaces = new ObservableCollection<WorkspaceViewModel>();
+                Workspaces.Add(new KlantenBeheerViewModel());
+                Workspaces.Add(new PersoneelBeheerViewModel());
+                SelectedWorkspace = Workspaces.First();
+            }
+            catch
+            {
+                var errorWindow = new ErrorDataBaseWindowService();
+                errorWindow.Show(new ErrorWindowViewModel());
+                Application.Current.MainWindow.Close();
+            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            foreach (WorkspaceViewModel wvm in Workspaces)
+            if (Workspaces != null)         //This happens when the database failed to load! The ErrorWindow will pop up!
             {
-                if (wvm is BeheerViewModel)
+                foreach (WorkspaceViewModel wvm in Workspaces)
                 {
-                    if (((BeheerViewModel)wvm).Close())
+                    if (wvm is BeheerViewModel)
                     {
-                        e.Cancel = true;
-                        return;
+                        if (((BeheerViewModel)wvm).Close())
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
                     }
-                }          
+                }
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ISIS.ViewModels;
+using Microsoft.Win32;
+using System.Diagnostics;
 
-namespace ISIS.Views
+namespace ISIS
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ErrorDatabase.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class ErrorDatabase : Window
     {
-        public MainWindow()
-        {
+        public ErrorDatabase()
+        {            
             InitializeComponent();
-
-            var mainViewModel = new MainViewModel();
-            DataContext = mainViewModel;
         }
     }
 }
