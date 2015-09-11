@@ -29,6 +29,7 @@ namespace ISIS.ViewModels
                 Workspaces = new ObservableCollection<WorkspaceViewModel>();
                 Workspaces.Add(new KlantenBeheerViewModel());
                 Workspaces.Add(new PersoneelBeheerViewModel());
+                Workspaces.Add(new ParameterBeheerViewModel());
                 SelectedWorkspace = Workspaces.First();
             }
             catch
