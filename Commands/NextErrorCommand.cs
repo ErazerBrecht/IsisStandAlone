@@ -10,9 +10,9 @@ namespace ISIS.Commands
 {
     class NextErrorCommand : ICommand
     {
-        private BeheerViewModel _viewModel;
+        private BeheerExtendViewModel _viewModel;
 
-        public NextErrorCommand(BeheerViewModel viewModel)
+        public NextErrorCommand(BeheerExtendViewModel viewModel)
         {
             _viewModel = viewModel;
         }

@@ -10,7 +10,7 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class PersoneelBeheerViewModel : BeheerViewModel
+    class PersoneelBeheerViewModel : BeheerExtendViewModel
     {
         private Strijker _errorPersoneel;
 
@@ -93,13 +93,14 @@ namespace ISIS.ViewModels
         {
             Header = "PersoneelBeheer";
             GetData();
+            DeleteCommandEvent = new DeleteExtendCommand(this);
+            RefreshCommandEvent = new RefreshExtendCommand(this);
             AddCommandEvent = new AddPersoneelCommand(this);
         }
 
         private void GetData()
         {
             Refresh();
-            ViewSource.View.CollectionChanged += View_CurrentChanged;
             SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
         }
 
@@ -123,18 +124,19 @@ namespace ISIS.ViewModels
 
         public override void SaveChanges()
         {
+            if (ButtonToevoegenContent == "Annuleren")
+            {
+                Add();
+            }
+
             ctx.SaveChanges();
+            ButtonToevoegenContent = "Toevoegen";
         }
 
         public override void SetErrorAsSelected()
         {
             if (_errorPersoneel != null)            //If this is null the errorPersoneel is already the selected one!
                 SelectedPersoneel = _errorPersoneel;
-        }
-
-        protected override void View_CurrentChanged(object sender, EventArgs e)
-        {
-            SelectedPersoneel = (sender as CollectionView).CurrentItem as Strijker;
         }
     }
 }

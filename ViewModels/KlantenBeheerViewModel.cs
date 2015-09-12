@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace ISIS.ViewModels
 {
-    class KlantenBeheerViewModel : BeheerViewModel
+    class KlantenBeheerViewModel : BeheerExtendViewModel
     {
         #region SelectedKlant fullproperty
 
@@ -259,13 +259,14 @@ namespace ISIS.ViewModels
         {
             Header = "KlantenBeheer";
             GetData();
+            DeleteCommandEvent = new DeleteExtendCommand(this);
+            RefreshCommandEvent = new RefreshExtendCommand(this);
             AddCommandEvent = new AddKlantCommand(this);
         }
 
         private void GetData()
         {
             Refresh(); 
-            ViewSource.View.CollectionChanged += View_CurrentChanged;
             SelectedKlant = ViewSource.View.CurrentItem as Klant;      
         }
 
@@ -289,18 +290,19 @@ namespace ISIS.ViewModels
         
         public override void SaveChanges()
         {
+            if (ButtonToevoegenContent == "Annuleren")
+            {
+                Add();
+            }
+
             ctx.SaveChanges();
+            ButtonToevoegenContent = "Toevoegen";
         }
 
         public override void SetErrorAsSelected()
         {
             if (_errorKlant != null)            //If this is null the errorKlant is already the selected one!
                 SelectedKlant = _errorKlant;
-        }
-
-        protected override void View_CurrentChanged(object sender, EventArgs e)
-        {
-            SelectedKlant = (sender as CollectionView).CurrentItem as Klant;           
         }
     }
 }

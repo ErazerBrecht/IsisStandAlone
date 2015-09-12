@@ -10,9 +10,9 @@ namespace ISIS.Commands
 {
     class PreviousCommand : ICommand
     {
-        private BeheerViewModel _viewModel;
+        private BeheerExtendViewModel _viewModel;
 
-        public PreviousCommand(BeheerViewModel viewModel)
+        public PreviousCommand(BeheerExtendViewModel viewModel)
         {
             _viewModel = viewModel;
         }

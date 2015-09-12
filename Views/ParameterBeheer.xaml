@@ -44,8 +44,8 @@
                     <TextBlock Grid.Row="3">Andere strijk</TextBlock>
                     <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterData.ParameterAndereStrijk, Mode=TwoWay, StringFormat=N2, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                    <Button Grid.Row="4" Command="{Binding SaveParameterCommandEvent}" Content="Opslaan"/>
-                    <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding SaveParameterCommandEvent}" Content="Vernieuwen"/>
+                    <Button Grid.Row="4" Command="{Binding SaveCommandEvent}" Content="Opslaan"/>
+                    <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshCommandEvent}" Content="Vernieuwen"/>
                 </Grid>
             </GroupBox>
             <Grid x:Name="SoortKlantenGrid" Grid.Row="2">
@@ -58,7 +58,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="Winkels">
+                <GroupBox>
+                    <GroupBox.Header>
+                        <DockPanel>
+                            <TextBlock FontSize="12" Foreground="White">WINKELS</TextBlock>
+                            <Image HorizontalAlignment="Right"></Image>
+                        </DockPanel>
+                    </GroupBox.Header>
                     <StackPanel>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
                             <Grid>
@@ -126,7 +132,7 @@
                             <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
                             <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
                             <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" HorizontalAlignment="Center"></CheckBox>
-                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Click="ButtonWinkelAdd_Click" FontSize="14" Padding="10,0,10,0"></Button>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Click="ButtonWinkelAdd_Click" Padding="10,0,10,0"></Button>
                         </Grid>
 
                     </StackPanel>

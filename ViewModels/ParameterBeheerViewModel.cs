@@ -8,23 +8,28 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class ParameterBeheerViewModel: WorkspaceViewModel
+    class ParameterBeheerViewModel: BeheerViewModel
     {
         public Parameters  ParameterData { get; set; }
-        public SaveParameterCommand SaveParameterCommandEvent { get; set; }
-        public RefreshParameterCommand RefreshParameterCommandEvent { get; set; }
+
+        public override bool IsValid
+        {
+            get
+            {
+                //TODO: Add Datavalidation
+                return true;
+            }
+        }
 
         public ParameterBeheerViewModel()
         {
             Header = "ParameterBeheer";
+            ParameterData = new Parameters();
             LoadParameters();
-            SaveParameterCommandEvent = new SaveParameterCommand(this);
-            RefreshParameterCommandEvent = new RefreshParameterCommand(this);
         }
 
         public void LoadParameters()
         {
-            ParameterData = new Parameters();
             ParameterData.ParameterHemden = Properties.Settings.Default.ParameterHemden;
             ParameterData.ParameterLakens1 = Properties.Settings.Default.ParameterLakens1;
             ParameterData.ParameterLakens2 = Properties.Settings.Default.ParameterLakens2;
@@ -38,6 +43,31 @@ namespace ISIS.ViewModels
             Properties.Settings.Default.ParameterLakens2 = ParameterData.ParameterLakens2;
             Properties.Settings.Default.ParameterAndereStrijk = ParameterData.ParameterAndereStrijk;
             Properties.Settings.Default.Save();
+        }
+
+        public override void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Refresh()
+        {
+            LoadParameters();
+        }
+
+        public override void Add()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SaveChanges()
+        {
+            SaveParameters();
+        }
+
+        public override bool Close()
+        {
+            return false;
         }
     }
 }

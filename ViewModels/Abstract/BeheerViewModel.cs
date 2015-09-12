@@ -7,68 +7,34 @@ using System.Windows.Data;
 using ISIS.Commands;
 using ISIS.Services;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ISIS.ViewModels
 {
     abstract class BeheerViewModel : WorkspaceViewModel
     {
         protected ISIS_DataEntities ctx;
-        public CollectionViewSource ViewSource { get; protected set; }
 
         #region Commands
-        public NextCommand NextCommandEvent { get; private set; }
-        public PreviousCommand PreviousCommandEvent { get; private set; }
-        public SaveCommand SaveCommandEvent { get; private set; }
-        public DeleteCommand DeleteCommandEvent { get; private set; }
-        public RefreshCommand RefreshCommandEvent { get; private set; }
-        public NextErrorCommand NextErrorCommandEvent { get; private set; }
+        public ICommand SaveCommandEvent { get; protected set; }
+        public ICommand DeleteCommandEvent { get; protected set; }
+        public ICommand RefreshCommandEvent { get; protected set; }
         #endregion
-
-        #region ButtonToevoegenContent
-        protected string _buttonToevoegenContent;
-
-        public virtual string ButtonToevoegenContent
-        {
-            get { return _buttonToevoegenContent; }
-            set
-            {
-                _buttonToevoegenContent = value;
-                NoticeMe("ButtonToevoegenContent");
-                NoticeMe("IsIdReadOnly");
-            }
-        }
-        #endregion
-
-        public bool IsIdReadOnly
-        {
-            get
-            {
-                if (ButtonToevoegenContent == "Annuleren")
-                    return false;
-                return true;
-            }
-        }
 
         abstract public bool IsValid { get; }
 
         public BeheerViewModel()
         {
-            ViewSource = new CollectionViewSource();
-            NextCommandEvent = new NextCommand(this);
-            PreviousCommandEvent = new PreviousCommand(this);
             SaveCommandEvent = new SaveCommand(this);
             DeleteCommandEvent = new DeleteCommand(this);
             RefreshCommandEvent = new RefreshCommand(this);
-            NextErrorCommandEvent = new NextErrorCommand(this);
-            ButtonToevoegenContent = "Toevoegen";
         }
 
         public abstract void Delete();
         public abstract void Refresh();
         public abstract void Add();
         public abstract void SaveChanges();
-        public abstract void SetErrorAsSelected();
-        public  bool Close()
+        public virtual bool Close()
         {
             if (ctx.ChangeTracker.HasChanges())
             {
@@ -77,7 +43,7 @@ namespace ISIS.ViewModels
                 var result = messageService.AskForConfirmation("Er zijn nog onopgeslagen wijzigingen.\nWilt u deze wijzingen nog opslaan?", Header);
                 if (result == MessageBoxResult.Yes)
                 {
-                    //TODO: Check if there arne validation errors!!!
+                    //TODO: Check if there are validation errors!!!
                     SaveChanges();
                 }
                 else if (result == MessageBoxResult.No)
@@ -93,6 +59,5 @@ namespace ISIS.ViewModels
             return false;
 
         }
-        protected abstract void View_CurrentChanged(object sender, EventArgs e);
     }
 }
