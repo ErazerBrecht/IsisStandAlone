@@ -8,11 +8,11 @@ using ISIS.ViewModels;
 
 namespace ISIS.Commands
 {
-    class RefreshCommand : ICommand
+    class DeleteExtendCommand : ICommand
     {
-        private BeheerViewModel _viewModel;
+        private BeheerExtendViewModel _viewModel;
 
-        public RefreshCommand(BeheerViewModel viewModel)
+        public DeleteExtendCommand(BeheerExtendViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -25,12 +25,14 @@ namespace ISIS.Commands
 
         public bool CanExecute(object parameter)
         {
+            if (_viewModel.ButtonToevoegenContent == "Toevoegen")
                 return true;
+            return false;
         }
 
         public void Execute(object parameter)
         {
-            _viewModel.Refresh();
+            _viewModel.Delete();
         }
     }
 }

@@ -30,14 +30,7 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            if (_viewModel.ButtonToevoegenContent == "Annuleren")
-            {
-                _viewModel.Add();             
-            }
-
             _viewModel.SaveChanges();        
-            _viewModel.ButtonToevoegenContent = "Toevoegen";
-
         }
     }
 }

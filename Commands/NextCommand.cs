@@ -10,9 +10,9 @@ namespace ISIS.Commands
 {
     class NextCommand : ICommand
     {
-        private BeheerViewModel _viewModel;
+        private BeheerExtendViewModel _viewModel;
 
-        public NextCommand(BeheerViewModel viewModel)
+        public NextCommand(BeheerExtendViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -30,9 +30,8 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.ViewSource.View.MoveCurrentToNext();
-            if (_viewModel.ViewSource.View.IsCurrentAfterLast)
-                _viewModel.ViewSource.View.MoveCurrentToLast();
+            if (_viewModel.ViewSource.View.CurrentPosition < _viewModel.ViewSource.View.SourceCollection.Cast<Klant>().Count() - 1)
+                _viewModel.ViewSource.View.MoveCurrentToNext();
         }
     }
 }

@@ -111,7 +111,9 @@
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Commands\AddPersoneel.cs" />
+    <Compile Include="Commands\DeleteExtendCommand.cs" />
     <Compile Include="Commands\NextErrorCommand.cs" />
+    <Compile Include="Commands\RefreshExtendCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\RefreshParameterCommand.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
     <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />

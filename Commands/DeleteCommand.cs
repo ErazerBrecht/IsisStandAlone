@@ -25,9 +25,7 @@ namespace ISIS.Commands
 
         public bool CanExecute(object parameter)
         {
-            if (_viewModel.ButtonToevoegenContent == "Toevoegen")
-                return true;
-            return false;
+            return true;
         }
 
         public void Execute(object parameter)
