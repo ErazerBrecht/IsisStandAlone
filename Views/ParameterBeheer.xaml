@@ -58,7 +58,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox>
+                <GroupBox DataContext="{Binding WinkelData}">
                     <GroupBox.Header>
                         <DockPanel>
                             <TextBlock FontSize="12" Foreground="White">WINKELS</TextBlock>
@@ -90,7 +90,7 @@
                                 </Border>
                             </Grid>
                         </Border>
-                        <ItemsControl Name="ListBoxWinkel">
+                        <ItemsControl Name="ListBoxWinkel" ItemsSource="{Binding ViewSource.View}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -128,11 +128,11 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" HorizontalAlignment="Center"></CheckBox>
-                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Click="ButtonWinkelAdd_Click" Padding="10,0,10,0"></Button>
+                            <TextBox Text="{Binding AddWinkel.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddWinkel.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddWinkel.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddWinkel.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
                     </StackPanel>

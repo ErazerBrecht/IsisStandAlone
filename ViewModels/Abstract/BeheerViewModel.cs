@@ -14,6 +14,7 @@ namespace ISIS.ViewModels
     abstract class BeheerViewModel : WorkspaceViewModel
     {
         protected ISIS_DataEntities ctx;
+        public CollectionViewSource ViewSource { get; protected set; }
 
         #region Commands
         public ICommand SaveCommandEvent { get; protected set; }
@@ -25,6 +26,7 @@ namespace ISIS.ViewModels
 
         public BeheerViewModel()
         {
+            ViewSource = new CollectionViewSource();
             SaveCommandEvent = new SaveCommand(this);
             DeleteCommandEvent = new DeleteCommand(this);
             RefreshCommandEvent = new RefreshCommand(this);

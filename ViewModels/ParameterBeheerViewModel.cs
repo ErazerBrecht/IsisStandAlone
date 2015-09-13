@@ -11,6 +11,7 @@ namespace ISIS.ViewModels
     class ParameterBeheerViewModel: BeheerViewModel
     {
         public Parameters  ParameterData { get; set; }
+        public WinkelBeheerViewModel WinkelData { get; private set; }
 
         public override bool IsValid
         {
@@ -26,6 +27,8 @@ namespace ISIS.ViewModels
             Header = "ParameterBeheer";
             ParameterData = new Parameters();
             LoadParameters();
+
+            WinkelData = new WinkelBeheerViewModel();
         }
 
         public void LoadParameters()

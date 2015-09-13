@@ -12,8 +12,6 @@ namespace ISIS.ViewModels
 {
     abstract class BeheerExtendViewModel : BeheerViewModel
     {
-        public CollectionViewSource ViewSource { get; protected set; }
-
         #region Commands
         public NextCommand NextCommandEvent { get; private set; }
         public PreviousCommand PreviousCommandEvent { get; private set; }
@@ -48,7 +46,6 @@ namespace ISIS.ViewModels
 
         public BeheerExtendViewModel()
         {
-            ViewSource = new CollectionViewSource();
             NextCommandEvent = new NextCommand(this);
             PreviousCommandEvent = new PreviousCommand(this);
             NextErrorCommandEvent = new NextErrorCommand(this);

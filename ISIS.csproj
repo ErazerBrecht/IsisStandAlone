@@ -164,6 +164,7 @@
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
+    <Compile Include="ViewModels\WinkelBeheerViewModel.cs" />
     <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
     <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />
     <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
