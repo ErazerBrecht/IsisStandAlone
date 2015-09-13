@@ -52,11 +52,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <GroupBox DataContext="{Binding WinkelData}">
                     <GroupBox.Header>
@@ -90,7 +89,90 @@
                                 </Border>
                             </Grid>
                         </Border>
-                        <ItemsControl Name="ListBoxWinkel" ItemsSource="{Binding ViewSource.View}">
+                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="75"></ColumnDefinition>
+                                            <ColumnDefinition Width="115"></ColumnDefinition>
+                                            <ColumnDefinition Width="125"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
+                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
+                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddWinkel.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddWinkel.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddWinkel.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddWinkel.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+
+
+
+                </GroupBox>
+                
+                <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}">
+                    <GroupBox.Header>
+                        <DockPanel>
+                            <TextBlock FontSize="12" Foreground="White">SCHOLEN</TextBlock>
+                            <Image HorizontalAlignment="Right"></Image>
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="75"></ColumnDefinition>
+                                    <ColumnDefinition Width="115"></ColumnDefinition>
+                                    <ColumnDefinition Width="125"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -116,7 +198,7 @@
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
                             <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
                         </Border>
-                        <Grid Name="GridAddWinkel">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="200"></ColumnDefinition>
@@ -128,10 +210,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding AddWinkel.Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding AddWinkel.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding AddWinkel.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding AddWinkel.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <TextBox Text="{Binding AddSchool.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSchool.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSchool.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSchool.StukTarief}" HorizontalAlignment="Center"></CheckBox>
                             <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
@@ -140,77 +222,165 @@
 
 
                 </GroupBox>
-                <GroupBox Grid.Row="1" Header="Bedrijven">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <ItemsControl x:Name="ListBoxBedrijven">
+
+                <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}">
+                    <GroupBox.Header>
+                        <DockPanel>
+                            <TextBlock FontSize="12" Foreground="White">BEDRIJVEN</TextBlock>
+                            <Image HorizontalAlignment="Right"></Image>
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="75"></ColumnDefinition>
+                                    <ColumnDefinition Width="115"></ColumnDefinition>
+                                    <ColumnDefinition Width="125"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <UniformGrid Rows="1" >
-                                        <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                        <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center"></Button>
-                                    </UniformGrid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="75"></ColumnDefinition>
+                                            <ColumnDefinition Width="115"></ColumnDefinition>
+                                            <ColumnDefinition Width="125"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
 
+                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
+                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
+                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                        </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock>Toevoegen:</TextBlock>
-                            <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxBedrijvenAdd"></TextBox>
-                        </StackPanel>
-                    </Grid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
 
+                            <TextBox Text="{Binding AddBedrijf.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddBedrijf.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddBedrijf.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddBedrijf.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
                 </GroupBox>
-                <GroupBox Grid.Row="2" Header="Ophaling">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <ItemsControl x:Name="ListBoxOphaling">
+
+                <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}">
+                    <GroupBox.Header>
+                        <DockPanel>
+                            <TextBlock FontSize="12" Foreground="White">OPHALINGEN</TextBlock>
+                            <Image HorizontalAlignment="Right"></Image>
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="75"></ColumnDefinition>
+                                    <ColumnDefinition Width="115"></ColumnDefinition>
+                                    <ColumnDefinition Width="125"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
+                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <UniformGrid Rows="1" >
-                                        <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                        <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center"></Button>
-                                    </UniformGrid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="200"></ColumnDefinition>
+                                            <ColumnDefinition Width="75"></ColumnDefinition>
+                                            <ColumnDefinition Width="115"></ColumnDefinition>
+                                            <ColumnDefinition Width="125"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
 
+                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
+                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
+                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
+                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                        </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock>Toevoegen:</TextBlock>
-                            <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxOphalingAdd"></TextBox>
-                        </StackPanel>
-                    </Grid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                </GroupBox>
-                <GroupBox Grid.Row="3" Header="Scholen">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <ItemsControl x:Name="ListBoxScholen">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <UniformGrid Rows="1" >
-                                        <TextBlock Margin="0,0,0,10" Text="{Binding}" VerticalAlignment="Center"></TextBlock>
-                                        <Button Margin="15,0,0,10" Padding="10,0,10,0" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center"></Button>
-                                    </UniformGrid>
+                            <TextBox Text="{Binding AddOphaling.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddOphaling.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddOphaling.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddOphaling.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
 
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <TextBlock>Toevoegen:</TextBlock>
-                            <TextBox Margin="15,0,0,0" Width="125" Name="TextBoxScholenAdd"></TextBox>
-                        </StackPanel>
-                    </Grid>
-
+                    </StackPanel>
                 </GroupBox>
             </Grid>
 

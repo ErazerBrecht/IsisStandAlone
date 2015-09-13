@@ -12,6 +12,9 @@ namespace ISIS.ViewModels
     {
         public Parameters  ParameterData { get; set; }
         public WinkelBeheerViewModel WinkelData { get; private set; }
+        public SchoolBeheerViewModel SchoolData { get; private set; }
+        public BedrijfBeheerViewModel BedrijfData { get; private set; }
+        public OphalingBeheerViewModel OphalingData { get; private set; }
 
         public override bool IsValid
         {
@@ -29,6 +32,9 @@ namespace ISIS.ViewModels
             LoadParameters();
 
             WinkelData = new WinkelBeheerViewModel();
+            SchoolData = new SchoolBeheerViewModel();
+            BedrijfData = new BedrijfBeheerViewModel();
+            OphalingData = new OphalingBeheerViewModel();
         }
 
         public void LoadParameters()

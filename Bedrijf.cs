@@ -21,6 +21,13 @@ namespace ISIS
     			PropertyChangedEventHandler handler = PropertyChanged;
     			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
     	}
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bedrijf()
+        {
+            this.SnelheidsCoëfficiënt = 1.00m;
+        }
+    
     private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
     private decimal _snelheidscoëfficiënt;
