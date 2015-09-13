@@ -238,7 +238,6 @@
     <None Include="ISIS.edmx.diagram">
       <DependentUpon>ISIS.edmx</DependentUpon>
     </None>
-    <None Include="ISIS_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

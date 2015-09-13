@@ -25,11 +25,14 @@ namespace ISIS.ViewModels
             {
                 _selectedKlant = value;
                 ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
-                NoticeMe("SelectedKlant");
-                NoticeMe("SoortKlantPlaatsItems");
-                NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
-                NoticeMe("ElektronischBetalenVisibility");
-                _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
+                if (value != null)
+                {
+                    NoticeMe("SelectedKlant");
+                    NoticeMe("SoortKlantPlaatsItems");
+                    NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
+                    NoticeMe("ElektronischBetalenVisibility");
+                    _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
+                }
             }
         }
 
@@ -205,29 +208,29 @@ namespace ISIS.ViewModels
         {
             get
             {
-                if (SelectedKlant.SoortKlant == "Winkel")
-                {
-                    ctx.Winkels.Load();
+                    if (SelectedKlant.SoortKlant == "Winkel")
+                    {
+                        ctx.Winkels.Load();
                         return ctx.Winkels.Local.Select(s => s.ToString()).ToList();     //Convert Winkels to list of strings
-                }
+                    }
 
-                if (SelectedKlant.SoortKlant == "Bedrijf")
-                {
-                    ctx.Bedrijven.Load();
+                    if (SelectedKlant.SoortKlant == "Bedrijf")
+                    {
+                        ctx.Bedrijven.Load();
                         return ctx.Bedrijven.Local.Select(s => s.ToString()).ToList();
-                }
+                    }
 
-                if(SelectedKlant.SoortKlant == "School")
-                {
-                    ctx.Scholen.Load();
+                    if (SelectedKlant.SoortKlant == "School")
+                    {
+                        ctx.Scholen.Load();
                         return ctx.Scholen.Local.Select(s => s.ToString()).ToList();
-                }
+                    }
 
-                if(SelectedKlant.SoortKlant == "Ophaling")
-                {
-                    ctx.Ophalingen.Load();
+                    if (SelectedKlant.SoortKlant == "Ophaling")
+                    {
+                        ctx.Ophalingen.Load();
                         return ctx.Ophalingen.Local.Select(s => s.ToString()).ToList();
-                }
+                    }
 
                 return null;
             }
