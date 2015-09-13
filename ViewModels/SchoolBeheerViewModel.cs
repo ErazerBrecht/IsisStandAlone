@@ -11,7 +11,48 @@ namespace ISIS.ViewModels
 {
     class SchoolBeheerViewModel : BeheerViewModel
     {
-        public School AddSchool { get; private set; }
+        #region AddSchool fullproperty
+        private School _addSchool;
+        public School AddSchool
+        {
+            get
+            {
+                return _addSchool;
+            }
+            private set
+            {
+                _addSchool = value;
+                NoticeMe("AddSchool");
+            }
+        }
+        #endregion
+
+        #region SelectedSchool fullproperty + propertychanged event
+        private School _selectedSchool;
+        public School SelectedSchool
+        {
+            get
+            {
+                return _selectedSchool;
+            }
+            set
+            {
+                _selectedSchool = value;
+                NoticeMe("SelectedSchool");
+                if (value != null)
+                    _selectedSchool.PropertyChanged += _selectedSchool_PropertyChanged;
+            }
+        }
+
+        private void _selectedSchool_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //ADD Datavalidation
+            //SelectedSchool.Check();
+
+            ctx.SaveChanges();
+        }
+
+        #endregion
 
         public override bool IsValid
         {
@@ -33,9 +74,9 @@ namespace ISIS.ViewModels
             Refresh();
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
-            ctx.Scholen.Remove(o as School);
+            ctx.Scholen.Remove(SelectedSchool);
             ctx.SaveChanges();
         }
 

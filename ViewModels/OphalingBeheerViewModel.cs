@@ -11,7 +11,48 @@ namespace ISIS.ViewModels
 {
     class OphalingBeheerViewModel : BeheerViewModel
     {
-        public Ophaling AddOphaling { get; private set; }
+        #region AddOphaling fullproperty
+        private Ophaling _addOphaling;
+        public Ophaling AddOphaling
+        {
+            get
+            {
+                return _addOphaling;
+            }
+            private set
+            {
+                _addOphaling = value;
+                NoticeMe("AddOphaling");
+            }
+        }
+        #endregion
+
+        #region SelectedOphaling fullproperty + propertychanged event
+        private Ophaling _selectedOphaling;
+        public Ophaling SelectedOphaling
+        {
+            get
+            {
+                return _selectedOphaling;
+            }
+            set
+            {
+                _selectedOphaling = value;
+                NoticeMe("SelectedOphaling");
+                if (value != null)
+                    _selectedOphaling.PropertyChanged += _selectedOphaling_PropertyChanged;
+            }
+        }
+
+        private void _selectedOphaling_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //ADD Datavalidation
+            //SelectedOphaling.Check();
+
+            ctx.SaveChanges();
+        }
+
+        #endregion
 
         public override bool IsValid
         {
@@ -33,9 +74,9 @@ namespace ISIS.ViewModels
             Refresh();
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
-            ctx.Ophalingen.Remove(o as Ophaling);
+            ctx.Ophalingen.Remove(SelectedOphaling);
             ctx.SaveChanges();
         }
 

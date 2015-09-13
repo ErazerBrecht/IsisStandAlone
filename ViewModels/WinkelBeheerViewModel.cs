@@ -11,9 +11,48 @@ namespace ISIS.ViewModels
 {
     class WinkelBeheerViewModel : BeheerViewModel
     {
-        public Winkel AddWinkel { get; private set; }
+        #region AddWinkel fullproperty
+        private Winkel _addWinkel;
+        public Winkel AddWinkel
+        {
+            get
+            {
+                return _addWinkel;
+            }
+            private set
+            {
+                _addWinkel = value;
+                NoticeMe("AddWinkel");
+            }
+        }
+        #endregion
 
-        public override bool IsValid
+        #region SelectedWinkel fullproperty + propertychanged event
+        private Winkel _selectedWinkel;
+        public Winkel SelectedWinkel {
+            get
+            {
+                return _selectedWinkel;
+            }
+            set
+            {
+                _selectedWinkel = value;
+                NoticeMe("SelectedWinkel");
+                if (value != null)
+                    _selectedWinkel.PropertyChanged += _selectedWinkel_PropertyChanged;
+            }
+        }
+
+        private void _selectedWinkel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //ADD Datavalidation
+            //SelectedWinkel.Check();
+
+            ctx.SaveChanges();
+        }
+
+        #endregion
+        public override bool IsValid        //Used to disable or Enable Toevoegen button
         {
             get
             {
@@ -33,9 +72,9 @@ namespace ISIS.ViewModels
             Refresh();
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
-            ctx.Winkels.Remove(o as Winkel);
+            ctx.Winkels.Remove(SelectedWinkel);
             ctx.SaveChanges();
         }
 

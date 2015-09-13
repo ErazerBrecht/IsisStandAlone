@@ -11,7 +11,48 @@ namespace ISIS.ViewModels
 {
     class BedrijfBeheerViewModel : BeheerViewModel
     {
-        public Bedrijf AddBedrijf { get; private set; }
+        #region AddBedrijf fullproperty
+        private Bedrijf _addBedrijf;
+        public Bedrijf AddBedrijf
+        {
+            get
+            {
+                return _addBedrijf;
+            }
+            private set
+            {
+                _addBedrijf = value;
+                NoticeMe("AddBedrijf");
+            }
+        }
+        #endregion
+
+        #region SelectedBedrijf fullproperty + propertychanged event
+        private Bedrijf _selectedBedrijf;
+        public Bedrijf SelectedBedrijf
+        {
+            get
+            {
+                return _selectedBedrijf;
+            }
+            set
+            {
+                _selectedBedrijf = value;
+                NoticeMe("SelectedBedrijf");
+                if (value != null)
+                    _selectedBedrijf.PropertyChanged += _selectedBedrijf_PropertyChanged;
+            }
+        }
+
+        private void _selectedBedrijf_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //ADD Datavalidation
+            //SelectedBedrijf.Check();
+
+            ctx.SaveChanges();
+        }
+
+        #endregion
 
         public override bool IsValid
         {
@@ -33,9 +74,9 @@ namespace ISIS.ViewModels
             Refresh();
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
-            ctx.Bedrijven.Remove(o as Bedrijf);
+            ctx.Bedrijven.Remove(SelectedBedrijf);
             ctx.SaveChanges();
         }
 

@@ -32,7 +32,7 @@ namespace ISIS.ViewModels
             RefreshCommandEvent = new RefreshCommand(this);
         }
 
-        public abstract void Delete(object o);
+        public abstract void Delete();
         public abstract void Refresh();
         public abstract void Add();
         public abstract void SaveChanges();

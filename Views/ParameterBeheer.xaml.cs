@@ -23,7 +23,8 @@ namespace ISIS.Views
     {
         public ParameterBeheer()
         {
-            InitializeComponent();          
+            InitializeComponent();       
+
         }
     }
 }

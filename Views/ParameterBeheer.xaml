@@ -65,53 +65,29 @@
                         </DockPanel>
                     </GroupBox.Header>
                     <StackPanel>
-                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="75"></ColumnDefinition>
-                                    <ColumnDefinition Width="115"></ColumnDefinition>
-                                    <ColumnDefinition Width="125"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="200"></ColumnDefinition>
-                                            <ColumnDefinition Width="75"></ColumnDefinition>
-                                            <ColumnDefinition Width="115"></ColumnDefinition>
-                                            <ColumnDefinition Width="125"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
-                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
-                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedWinkel}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
                             <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
                         </Border>
@@ -136,8 +112,6 @@
 
                     </StackPanel>
 
-
-
                 </GroupBox>
                 
                 <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}">
@@ -148,53 +122,29 @@
                         </DockPanel>
                     </GroupBox.Header>
                     <StackPanel>
-                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="75"></ColumnDefinition>
-                                    <ColumnDefinition Width="115"></ColumnDefinition>
-                                    <ColumnDefinition Width="125"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="200"></ColumnDefinition>
-                                            <ColumnDefinition Width="75"></ColumnDefinition>
-                                            <ColumnDefinition Width="115"></ColumnDefinition>
-                                            <ColumnDefinition Width="125"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
-                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
-                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSchool}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
                             <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
                         </Border>
@@ -231,53 +181,29 @@
                         </DockPanel>
                     </GroupBox.Header>
                     <StackPanel>
-                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="75"></ColumnDefinition>
-                                    <ColumnDefinition Width="115"></ColumnDefinition>
-                                    <ColumnDefinition Width="125"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="200"></ColumnDefinition>
-                                            <ColumnDefinition Width="75"></ColumnDefinition>
-                                            <ColumnDefinition Width="115"></ColumnDefinition>
-                                            <ColumnDefinition Width="125"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
-                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
-                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedBedrijf}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
                             <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
                         </Border>
@@ -311,53 +237,29 @@
                         </DockPanel>
                     </GroupBox.Header>
                     <StackPanel>
-                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"></ColumnDefinition>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="75"></ColumnDefinition>
-                                    <ColumnDefinition Width="115"></ColumnDefinition>
-                                    <ColumnDefinition Width="125"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <Border BorderBrush="LightGray" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="NAAM" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="1" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="SNELHEIDS COËFFICIËNT" FontWeight="SemiBold" FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="2" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="EURO" FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                                <Border BorderBrush="LightGray" Grid.Column="3" BorderThickness="0,0,2,0">
-                                    <TextBlock Text="STUK TARIEF"  FontWeight="SemiBold"  FontSize="16" Padding="5,0,0,0"></TextBlock>
-                                </Border>
-                            </Grid>
-                        </Border>
-                        <ItemsControl ItemsSource="{Binding ViewSource.View}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="200"></ColumnDefinition>
-                                            <ColumnDefinition Width="75"></ColumnDefinition>
-                                            <ColumnDefinition Width="115"></ColumnDefinition>
-                                            <ColumnDefinition Width="125"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBox Text="{Binding Naam}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="1" Text="{Binding SnelheidsCoëfficiënt, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <TextBox Grid.Column="2" Text="{Binding Euro, StringFormat=N2}" BorderBrush="White"></TextBox>
-                                        <CheckBox Grid.Column="3" IsChecked="{Binding StukTarief}" BorderBrush="White" HorizontalAlignment="Center"></CheckBox>
-                                        <Button Grid.Column="4" Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteCommandEvent}" CommandParameter="{Binding}">
-                                            <Image Source="Resources/Cancel.png" Width="24"></Image>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedOphaling}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
                             <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
                         </Border>

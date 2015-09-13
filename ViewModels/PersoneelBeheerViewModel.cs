@@ -104,7 +104,7 @@ namespace ISIS.ViewModels
             SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
             ctx.Strijkers.Remove(SelectedPersoneel);
         }

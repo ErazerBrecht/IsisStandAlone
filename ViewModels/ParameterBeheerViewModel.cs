@@ -54,7 +54,7 @@ namespace ISIS.ViewModels
             Properties.Settings.Default.Save();
         }
 
-        public override void Delete(object o)
+        public override void Delete()
         {
             throw new NotImplementedException();
         }
