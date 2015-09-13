@@ -33,9 +33,10 @@ namespace ISIS.ViewModels
             Refresh();
         }
 
-        public override void Delete()
+        public override void Delete(object o)
         {
-            throw new NotImplementedException();
+            ctx.Winkels.Remove(o as Winkel);
+            ctx.SaveChanges();
         }
 
         public override void Refresh()

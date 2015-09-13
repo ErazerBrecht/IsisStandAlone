@@ -278,7 +278,7 @@ namespace ISIS.ViewModels
             ctx.Klanten.Add(SelectedKlant);
         }
 
-        public override void Delete()
+        public override void Delete(object o)
         {
             ctx.Klanten.Remove(SelectedKlant);
         }

@@ -32,7 +32,7 @@ namespace ISIS.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.Delete();
+            _viewModel.Delete(parameter);
         }
     }
 }
