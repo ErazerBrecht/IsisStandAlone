@@ -28,6 +28,7 @@ namespace ISIS.ViewModels
                 TestConnection();
                 Workspaces = new ObservableCollection<WorkspaceViewModel>();
                 Workspaces.Add(new BerekenModuleViewModel());
+                Workspaces.Add(new PrestatieBeheerViewModel());
                 Workspaces.Add(new KlantenBeheerViewModel());
                 Workspaces.Add(new PersoneelBeheerViewModel());
                 Workspaces.Add(new ParameterBeheerViewModel());

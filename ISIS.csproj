@@ -168,6 +168,7 @@
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
     <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
     <Compile Include="ViewModels\BedrijfBeheerViewModel.cs" />
+    <Compile Include="ViewModels\PrestatieBeheerViewModel.cs" />
     <Compile Include="ViewModels\SchoolBeheerViewModel.cs" />
     <Compile Include="ViewModels\SearchBoxKlantViewModel.cs" />
     <Compile Include="ViewModels\WinkelBeheerViewModel.cs" />
@@ -190,6 +191,9 @@
     </Compile>
     <Compile Include="Views\PersoneelBeheer.xaml.cs">
       <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrestatieBeheer.xaml.cs">
+      <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
@@ -223,6 +227,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PersoneelBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PrestatieBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
