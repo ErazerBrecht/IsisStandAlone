@@ -29,8 +29,8 @@ namespace ISIS
         public virtual DbSet<Klant> Klanten { get; set; }
         public virtual DbSet<Prestatie> Prestaties { get; set; }
         public virtual DbSet<Winkel> Winkels { get; set; }
+        public virtual DbSet<School> Scholen { get; set; }
         public virtual DbSet<Bedrijf> Bedrijven { get; set; }
         public virtual DbSet<Ophaling> Ophalingen { get; set; }
-        public virtual DbSet<School> Scholen { get; set; }
     }
 }

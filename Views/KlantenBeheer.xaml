@@ -1,0 +1,212 @@
+﻿<UserControl
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ISIS.ViewModels"
+        x:Class="ISIS.Views.KlantenBeheer"
+        FontSize="14">
+    <UserControl.Resources>
+        <Style x:Key="TransparantButton"  TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Name="GridInformation">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel  Grid.ColumnSpan="2"  HorizontalAlignment="Center" Width="250">
+                <Button Style="{StaticResource TransparantButton}" Name="ButtonPrevious" Command="{Binding PreviousCommandEvent}">
+                    <Image Source="Resources/back.png" Width="45"/>
+                </Button>
+                <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Right"  Name="ButtonNext" Command="{Binding NextCommandEvent}">
+                    <Image Source="Resources/next.png" Width="45"/>
+                </Button>
+            </DockPanel>
+
+            <StackPanel Grid.Row="1" Margin="10">
+                <GroupBox Header="Algemene gegevens">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Klnr:  "></TextBlock>
+                        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SelectedKlant.ID, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" IsReadOnly="{Binding IsIdReadOnly}" Name="TextBoxID"></TextBox>
+
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Naam:  "></TextBlock>
+                        <TextBox Grid.Row="1" Margin="0,10,0,0" Grid.Column="1" Text="{Binding SelectedKlant.Naam, Mode=TwoWay,  ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="1" Margin="15,10,0,0" Grid.Column="2" Text="Voornaam:  "></TextBlock>
+                        <TextBox  Grid.Row="1" Margin="0,10,0,0" Grid.Column="3" Text="{Binding SelectedKlant.Voornaam, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="TextBoxVoornaam"></TextBox>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Adres" Margin="0,25,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Straat:  "></TextBlock>
+                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Straat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
+                        <DockPanel Grid.Column="3">
+                            <TextBox Width="60"  Text="{Binding SelectedKlant.Nummer, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
+                            <TextBlock Margin="10,0,10,0">Bus:</TextBlock>
+                            <TextBox></TextBox>
+                        </DockPanel>
+
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Gemeente, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Postcode:  "></TextBlock>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Postcode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Overige gegevens" Margin="0,25,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Telefoon:  "></TextBlock>
+                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Telefoon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
+                        <TextBox Grid.Column="3" Text="{Binding SelectedKlant.Gsm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
+                        <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.AndereNaam, Mode=TwoWay}"></TextBox>
+                        <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="E-mail:  "></TextBlock>
+                        <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Email, Mode=TwoWay}"></TextBox>
+
+                        <TextBlock Text="Betalingswijze:  "  Grid.Row="2"  Margin="0,10,0,0"></TextBlock>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Betalingswijze, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding BetalingswijzeItems}" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0" />
+                        <TextBlock Text="Gebruikersnummer:  " Visibility="{Binding ElektronischBetalenVisibility}"  Grid.Column="2"  Grid.Row="2" Margin="15,10,0,0"></TextBlock>
+                        <TextBox Grid.Column="3"  Grid.Row="2"  Margin="0,10,0,0" Visibility="{Binding ElektronischBetalenVisibility}" Text="{Binding SelectedKlant.Gebruikersnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Overige gegevens" Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
+                        <UniformGrid Grid.Column="1" Rows="1">
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}" />
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantPlaats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="{Binding IsComboBoxSoortKlantPlaatsEnabled}" ItemsSource="{Binding SoortKlantPlaatsItems}"/>
+                        </UniformGrid>
+
+                        <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
+                        <ComboBox SelectedItem="{Binding SelectedKlant.Bericht, Mode=TwoWay}" ItemsSource="{Binding BerichtItems}" Grid.Column="3" />
+
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
+                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
+
+                        <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Tegoed}"></TextBlock>
+                        <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
+                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding SelectedKlant.LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
+                    </Grid>
+                </GroupBox>
+
+                <Grid VerticalAlignment="Center" Grid.Row="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen"  Command="{Binding DeleteCommandEvent}"></Button>
+                    <Button HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddCommandEvent}"></Button>
+                    <Button Grid.Row="1" Margin="0,10,0,0" Content="Opslaan" Command="{Binding SaveCommandEvent}"></Button>
+                    <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorCommandEvent}"></Button>
+                </Grid>
+                
+                <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
+                    <Label Margin="0,0,10,0">Zoeken:</Label>
+                    <vm:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+                </DockPanel>
+            </Grid>
+
+        </Grid>
+        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlant}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="Klnr." Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam, ValidatesOnDataErrors=True}" Header="Voornaam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam, ValidatesOnDataErrors=True}" Header="2de naam" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat, ValidatesOnDataErrors=True}" Header="Straat" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer, ValidatesOnDataErrors=True}" Header="Nr." Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode, ValidatesOnDataErrors=True}" Header="Postcode" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente, ValidatesOnDataErrors=True}" Header="Gemeente" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="telefoonColumn" Binding="{Binding Telefoon, ValidatesOnDataErrors=True}" Header="Telefoon" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gsmColumn" Binding="{Binding Gsm, ValidatesOnDataErrors=True}" Header="Gsm" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email, ValidatesOnDataErrors=True}" Header="Email" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="betalingswijzeColumn" Binding="{Binding Betalingswijze, ValidatesOnDataErrors=True}" Header="Betalingswijze" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="soortKlantColumn" Header="Soort Klant" Width="SizeToCells">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat=" {0} {1}">
+                            <Binding Path="SoortKlant" />
+                            <Binding Path="SoortKlantPlaats" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="laatsteActiviteitColumn" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tegoedColumn" Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

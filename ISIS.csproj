@@ -110,17 +110,27 @@
     <Compile Include="Bedrijf.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="ErrorDatabase.xaml.cs">
-      <DependentUpon>ErrorDatabase.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Commands\AddPersoneel.cs" />
+    <Compile Include="Commands\DeleteExtendCommand.cs" />
+    <Compile Include="Commands\NextErrorCommand.cs" />
+    <Compile Include="Commands\RefreshExtendCommand.cs" />
+    <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\RefreshParameterCommand.cs" />
+    <Compile Include="Commands\BerekenCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Commands\PreviousCommand.cs" />
+    <Compile Include="Commands\NextCommand.cs" />
+    <Compile Include="Commands\AddKlantCommand.cs" />
+    <Compile Include="Commands\OpenFileDialogCommand.cs" />
+    <Compile Include="Commands\ShutDownCommand.cs" />
+    <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
+    <Compile Include="Models\Parameters.cs" />
     <Compile Include="Ophaling.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ParameterBeheer.xaml.cs">
-      <DependentUpon>ParameterBeheer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BerekenModule.xaml.cs">
-      <DependentUpon>BerekenModule.xaml</DependentUpon>
     </Compile>
     <Compile Include="ISIS.Context.cs">
       <AutoGen>True</AutoGen>
@@ -137,61 +147,66 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ISIS.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ISIS_DataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Parameters.cs" />
     <Compile Include="Prestatie.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PrestatieBeheer.xaml.cs">
-      <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="School.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="SoortUitbreiding.cs" />
+    <Compile Include="Services\IErrorDataBaseAlert.cs" />
+    <Compile Include="Services\IMessageBoxService.cs" />
+    <Compile Include="Services\OpenFileDialogService.cs" />
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Compile Include="StrijkerUitbreiding.cs" />
-    <Compile Include="KlantUitbreiding.cs" />
-    <Compile Include="PersoneelBeheer.xaml.cs">
-      <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
+    <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
+    <Compile Include="ViewModels\BerekenModuleViewModel.cs" />
+    <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
+    <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
+    <Compile Include="ViewModels\BedrijfBeheerViewModel.cs" />
+    <Compile Include="ViewModels\PrestatieBeheerViewModel.cs" />
+    <Compile Include="ViewModels\SchoolBeheerViewModel.cs" />
+    <Compile Include="ViewModels\SearchBoxKlantViewModel.cs" />
+    <Compile Include="ViewModels\WinkelBeheerViewModel.cs" />
+    <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
+    <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />
+    <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\WorkspaceViewModel.cs" />
+    <Compile Include="Views\BerekenModule.xaml.cs">
+      <DependentUpon>BerekenModule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\ErrorDatabase.xaml.cs">
+      <DependentUpon>ErrorDatabase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrestatieUitbreiding.cs" />
+    <Compile Include="Views\ParameterBeheer.xaml.cs">
+      <DependentUpon>ParameterBeheer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersoneelBeheer.xaml.cs">
+      <DependentUpon>PersoneelBeheer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrestatieBeheer.xaml.cs">
+      <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
-    <Page Include="ErrorDatabase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ParameterBeheer.xaml">
+    <Page Include="Views\BerekenModule.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="BerekenModule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PrestatieBeheer.xaml">
+    <Page Include="Views\ErrorDatabase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PersoneelBeheer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="KlantenBeheer.xaml">
+    <Page Include="Views\KlantenBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -199,13 +214,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="KlantenBeheer.xaml.cs">
+    <Compile Include="Views\KlantenBeheer.xaml.cs">
       <DependentUpon>KlantenBeheer.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParameterBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PersoneelBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PrestatieBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -233,18 +260,6 @@
     <None Include="ISIS.edmx.diagram">
       <DependentUpon>ISIS.edmx</DependentUpon>
     </None>
-    <None Include="ISIS_DataDataSet.xsc">
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ISIS_DataDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ISIS_DataDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ISIS_DataDataSet.xss">
-      <DependentUpon>ISIS_DataDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ISIS_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -275,10 +290,10 @@
     <Content Include="ISIS_Data_log.ldf">
       <DependentUpon>ISIS_Data.mdf</DependentUpon>
     </Content>
-    <Resource Include="Resources\Cancel.png" />
-    <SplashScreen Include="Resources\SplatchScreen_ISIS.png" />
-    <Resource Include="Resources\back.png" />
-    <Resource Include="Resources\next.png" />
+    <Resource Include="Views\Resources\Cancel.png" />
+    <SplashScreen Include="Views\Resources\SplatchScreen_ISIS.png" />
+    <Resource Include="Views\Resources\back.png" />
+    <Resource Include="Views\Resources\next.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">

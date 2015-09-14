@@ -1,0 +1,267 @@
+﻿<UserControl x:Class="ISIS.Views.ParameterBeheer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ISIS.Views" FontSize="14">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+        <Style x:Key="TransparantButton"  TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Margin="15" x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Parameters" HorizontalAlignment="Left">
+                <Grid x:Name="ParameterGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0">Hemden</TextBlock>
+                    <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterData.ParameterHemden, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                    <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterData.ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                    <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                    <TextBlock Grid.Row="3">Andere strijk</TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterData.ParameterAndereStrijk, Mode=TwoWay, StringFormat=N2, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                    <Button Grid.Row="4" Command="{Binding SaveCommandEvent}" Content="Opslaan"/>
+                    <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshCommandEvent}" Content="Vernieuwen"/>
+                </Grid>
+            </GroupBox>
+            <Grid x:Name="SoortKlantenGrid" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GroupBox DataContext="{Binding WinkelData}" Header="Winkels">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedWinkel}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddWinkel.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddWinkel.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddWinkel.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddWinkel.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+
+                </GroupBox>
+
+                <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSchool}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddSchool.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSchool.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSchool.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSchool.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+
+
+
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}" Header="Bedrijven">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedBedrijf}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddBedrijf.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddBedrijf.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddBedrijf.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddBedrijf.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}" Header="Ophalingen">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedOphaling}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddOphaling.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddOphaling.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddOphaling.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddOphaling.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

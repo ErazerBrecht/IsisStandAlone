@@ -1,0 +1,32 @@
+﻿<UserControl
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ISIS.ViewModels" x:Class="ISIS.Views.PrestatieBeheer"
+        FontSize="14">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
+            <RadioButton IsChecked="{Binding BoolIedereen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >Iedereen</RadioButton>
+            <RadioButton Margin="25,0,0,0">Per klant</RadioButton>
+            <vm:SearchComboBox Margin="25,0,0,0" Width="200" IsEnabled="{Binding EnableSearch}" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="datumColumn"  Binding="{Binding Datum}" Header="Datum" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="klantenNummerColumn" Binding="{Binding KlantenNummer}" Header="KlNr." Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalHemdenColumn" Binding="{Binding AantalHemden}" Header="#Hemden" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalLakens1Column" Binding="{Binding AantalLakens1}" Header="#Lakens 1" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalLakens2Column" Binding="{Binding AantalLakens2}" Header="#Lakens 2" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalAndereStrijkColumn" Binding="{Binding AantalAndereStrijk}" Header="#Andere Strijk" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tijdAndereStrijkColumn" Binding="{Binding TijdAndereStrijk}" Header="Tijd Andere Strijk" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="tijdAdministratieColumn" Binding="{Binding TijdAdministratie}" Header="Tijd Administratie" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="aantalDienstenChecksColumn" Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>
