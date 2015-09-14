@@ -117,7 +117,7 @@
     <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\RefreshParameterCommand.cs" />
-    <Compile Include="Commands\SaveParameterCommand.cs" />
+    <Compile Include="Commands\BerekenCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\PreviousCommand.cs" />
     <Compile Include="Commands\NextCommand.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="Commands\OpenFileDialogCommand.cs" />
     <Compile Include="Commands\ShutDownCommand.cs" />
     <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Models\Parameters.cs" />
@@ -163,6 +164,7 @@
     </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
+    <Compile Include="ViewModels\BerekenModuleViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
     <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
     <Compile Include="ViewModels\BedrijfBeheerViewModel.cs" />
@@ -173,6 +175,9 @@
     <Compile Include="ViewModels\KlantenBeheerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Abstract\WorkspaceViewModel.cs" />
+    <Compile Include="Views\BerekenModule.xaml.cs">
+      <DependentUpon>BerekenModule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorDatabase.xaml.cs">
       <DependentUpon>ErrorDatabase.xaml</DependentUpon>
     </Compile>
@@ -188,6 +193,10 @@
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Page Include="Views\BerekenModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ErrorDatabase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

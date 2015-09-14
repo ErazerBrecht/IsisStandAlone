@@ -18,6 +18,9 @@
             SelectedItem="{Binding SelectedWorkspace}"
             ItemsSource="{Binding Workspaces}">
             <TabControl.Resources>
+                <DataTemplate DataType="{x:Type vm:BerekenModuleViewModel}">
+                    <views:BerekenModule/>
+                </DataTemplate>                
                 <DataTemplate DataType="{x:Type vm:KlantenBeheerViewModel}">
                     <views:KlantenBeheer/>
                 </DataTemplate>
