@@ -8,6 +8,7 @@ using ISIS.Models;
 using ISIS.Commands;
 using System.ComponentModel;
 using System.Windows.Data;
+using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
@@ -45,9 +46,9 @@ namespace ISIS.ViewModels
         {
             get
             {
-                CollectionViewSource cv = new CollectionViewSource();
-                cv.Source = ctx.Klanten.Local;
-                return cv.View;
+                ctx.Klanten.Load();
+                ViewSource.Source = ctx.Klanten.Local;
+                return ViewSource.View;
             }
         }
 
@@ -57,6 +58,7 @@ namespace ISIS.ViewModels
             LoadData();
             AddPrestatie = new Prestatie();
             CurrentParameters = new Parameters();
+            ViewSource = new CollectionViewSource();
             BerekenCommandEvent = new BerekenCommand(this);
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
         }
@@ -70,11 +72,12 @@ namespace ISIS.ViewModels
 
         public void Bereken()
         {
-            //if (_tempKlant == null)
-            //{
-            //    MessageBox.Show("Je hebt nog geen klant gekozen!");
-            //    return;
-            //}
+            if (SelectedKlant == null)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowMessageBox("Je hebt nog geen klant gekozen!");
+                return;
+            }
 
             ////Load parameters from settings! And add them into the Prestatie
             CurrentParameters.LoadParameters();
@@ -95,12 +98,12 @@ namespace ISIS.ViewModels
 
             AddPrestatie.TotaalMinuten = AddPrestatie.TotaalHemden + AddPrestatie.TotaalLakens1 + AddPrestatie.TotaalLakens2 + AddPrestatie.TotaalAndereStrijk + AddPrestatie.TijdAdministratie;
 
-            //AddPrestatie.TotaalBetalen = AddPrestatie.TotaalMinuten - _tempKlant.Tegoed;
-            //AddPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddPrestatie.TotaalBetalen / 60.0));
-            //if (AddPrestatie.TotaalDienstenChecks == 0)
-            //    AddPrestatie.NieuwTegoed = _tempKlant.Tegoed - AddPrestatie.TotaalMinuten;
-            //else
-            //    AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
+            AddPrestatie.TotaalBetalen = AddPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
+            AddPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddPrestatie.TotaalBetalen / 60.0));
+            if (AddPrestatie.TotaalDienstenChecks == 0)
+                AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed - AddPrestatie.TotaalMinuten;
+            else
+                AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
 
             //_ableToSave = true;
         }
