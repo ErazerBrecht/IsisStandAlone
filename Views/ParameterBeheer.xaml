@@ -57,13 +57,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <GroupBox DataContext="{Binding WinkelData}">
-                    <GroupBox.Header>
-                        <DockPanel>
-                            <TextBlock FontSize="12" Foreground="White">WINKELS</TextBlock>
-                            <Image HorizontalAlignment="Right"></Image>
-                        </DockPanel>
-                    </GroupBox.Header>
+                <GroupBox DataContext="{Binding WinkelData}" Header="Winkels">
                     <StackPanel>
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedWinkel}" CanUserAddRows="False">
                             <DataGrid.Columns>
@@ -113,14 +107,8 @@
                     </StackPanel>
 
                 </GroupBox>
-                
-                <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}">
-                    <GroupBox.Header>
-                        <DockPanel>
-                            <TextBlock FontSize="12" Foreground="White">SCHOLEN</TextBlock>
-                            <Image HorizontalAlignment="Right"></Image>
-                        </DockPanel>
-                    </GroupBox.Header>
+
+                <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
                     <StackPanel>
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSchool}" CanUserAddRows="False">
                             <DataGrid.Columns>
@@ -173,13 +161,7 @@
 
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}">
-                    <GroupBox.Header>
-                        <DockPanel>
-                            <TextBlock FontSize="12" Foreground="White">BEDRIJVEN</TextBlock>
-                            <Image HorizontalAlignment="Right"></Image>
-                        </DockPanel>
-                    </GroupBox.Header>
+                <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}" Header="Bedrijven">
                     <StackPanel>
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedBedrijf}" CanUserAddRows="False">
                             <DataGrid.Columns>
@@ -229,13 +211,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}">
-                    <GroupBox.Header>
-                        <DockPanel>
-                            <TextBlock FontSize="12" Foreground="White">OPHALINGEN</TextBlock>
-                            <Image HorizontalAlignment="Right"></Image>
-                        </DockPanel>
-                    </GroupBox.Header>
+                <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}" Header="Ophalingen">
                     <StackPanel>
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedOphaling}" CanUserAddRows="False">
                             <DataGrid.Columns>
