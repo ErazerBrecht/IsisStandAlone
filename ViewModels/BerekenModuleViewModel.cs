@@ -6,21 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using ISIS.Models;
 using ISIS.Commands;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace ISIS.ViewModels
 {
-    class BerekenModuleViewModel : BeheerViewModel
+    class BerekenModuleViewModel : BeheerViewModel, ISelectedKlant
     {
         public Prestatie AddPrestatie { get; private set; }
         public Parameters CurrentParameters { get; private set; }
-
         public BerekenCommand BerekenCommandEvent { get; set; }
+        public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
+
         public override bool IsValid
         {
             get
             {
                 //TODO: Add Datavalidation
                 return true;
+            }
+        }
+
+        private Klant _selectedKlant;
+        public Klant SelectedKlant
+        {
+            get
+            {
+                return _selectedKlant;
+            }
+
+            set
+            {
+                _selectedKlant = value;
+            }
+        }
+
+        public ICollectionView KlantenView
+        {
+            get
+            {
+                CollectionViewSource cv = new CollectionViewSource();
+                cv.Source = ctx.Klanten.Local;
+                return cv.View;
             }
         }
 
@@ -31,6 +58,7 @@ namespace ISIS.ViewModels
             AddPrestatie = new Prestatie();
             CurrentParameters = new Parameters();
             BerekenCommandEvent = new BerekenCommand(this);
+            SearchBoxViewModel = new SearchBoxKlantViewModel(this);
         }
 
         private void LoadData()
