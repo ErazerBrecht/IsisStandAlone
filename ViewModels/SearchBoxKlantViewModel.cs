@@ -71,6 +71,10 @@ namespace ISIS.ViewModels
 
         public Klant SearchBoxSelectedKlant
         {
+            get
+            {
+                return _viewmodel.SelectedKlant;
+            }
             set
             {
                 if (value != null)
