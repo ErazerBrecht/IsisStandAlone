@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace ISIS.ViewModels
 {
@@ -98,5 +100,21 @@ namespace ISIS.ViewModels
     {
        Klant SelectedKlant { get; set; }
        ICollectionView KlantenView { get; }
+    }
+
+    public class SearchComboBox : ComboBox
+    {
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+
+            //Disables automatic selection when DropDownsOpen!
+            if (this.IsEditable && this.IsDropDownOpen == false && this.StaysOpenOnEdit)
+            {
+                this.IsDropDownOpen = true;
+            }
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:ISIS.Views" x:Class="ISIS.Views.PrestatieBeheer"
+        xmlns:vm="clr-namespace:ISIS.ViewModels" x:Class="ISIS.Views.PrestatieBeheer"
         FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
@@ -11,7 +11,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
             <RadioButton IsChecked="{Binding BoolIedereen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >Iedereen</RadioButton>
             <RadioButton Margin="25,0,0,0">Per klant</RadioButton>
-            <local:SearchComboBox Margin="25,0,0,0" Width="200" IsEnabled="{Binding EnableSearch}" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+            <vm:SearchComboBox Margin="25,0,0,0" Width="200" IsEnabled="{Binding EnableSearch}" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>

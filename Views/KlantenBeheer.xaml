@@ -1,7 +1,7 @@
 ﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:ISIS.Views"
+        xmlns:vm="clr-namespace:ISIS.ViewModels"
         x:Class="ISIS.Views.KlantenBeheer"
         FontSize="14">
     <UserControl.Resources>
@@ -177,7 +177,7 @@
                 
                 <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+                    <vm:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
                 </DockPanel>
             </Grid>
 

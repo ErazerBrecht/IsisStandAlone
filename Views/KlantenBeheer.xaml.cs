@@ -29,22 +29,4 @@ namespace ISIS.Views
             InitializeComponent();
         }
     }
-
-    public class SearchComboBox : ComboBox
-    {
-
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            base.OnKeyDown(e);
-
-            //Disables automatic selection when DropDownsOpen!
-            if (this.IsEditable &&
-                this.IsDropDownOpen == false &&
-                this.StaysOpenOnEdit)
-            {
-                this.IsDropDownOpen = true;
-            }
-        }
-
-    }
 }
