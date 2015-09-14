@@ -9,10 +9,21 @@ namespace ISIS.Models
 {
     public class Parameters : INotifyPropertyChanged
     {
-        /*public Parameters()
+        public Parameters()
         {
+            //Load parameters
+            LoadParameters();
         }
 
+        public void LoadParameters()
+        {
+            ParameterHemden = Properties.Settings.Default.ParameterHemden;
+            ParameterLakens1 = Properties.Settings.Default.ParameterLakens1;
+            ParameterLakens2 = Properties.Settings.Default.ParameterLakens2;
+            ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
+        }
+
+        
         public void SaveParameters()
         {
             Properties.Settings.Default.ParameterHemden = ParameterHemden;
@@ -20,7 +31,7 @@ namespace ISIS.Models
             Properties.Settings.Default.ParameterLakens2 = ParameterLakens2;
             Properties.Settings.Default.ParameterAndereStrijk = ParameterAndereStrijk;
             Properties.Settings.Default.Save();
-        }*/
+        }
 
         private decimal _parameterHemden;
         public decimal ParameterHemden

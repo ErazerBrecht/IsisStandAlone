@@ -29,7 +29,6 @@ namespace ISIS.ViewModels
         {
             Header = "ParameterBeheer";
             ParameterData = new Parameters();
-            LoadParameters();
 
             WinkelData = new WinkelBeheerViewModel();
             SchoolData = new SchoolBeheerViewModel();
@@ -39,19 +38,12 @@ namespace ISIS.ViewModels
 
         public void LoadParameters()
         {
-            ParameterData.ParameterHemden = Properties.Settings.Default.ParameterHemden;
-            ParameterData.ParameterLakens1 = Properties.Settings.Default.ParameterLakens1;
-            ParameterData.ParameterLakens2 = Properties.Settings.Default.ParameterLakens2;
-            ParameterData.ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
+            ParameterData.LoadParameters();
         }
 
         public void SaveParameters()
         {
-            Properties.Settings.Default.ParameterHemden = ParameterData.ParameterHemden;
-            Properties.Settings.Default.ParameterLakens1 = ParameterData.ParameterLakens1;
-            Properties.Settings.Default.ParameterLakens2 = ParameterData.ParameterLakens2;
-            Properties.Settings.Default.ParameterAndereStrijk = ParameterData.ParameterAndereStrijk;
-            Properties.Settings.Default.Save();
+            ParameterData.SaveParameters();
         }
 
         public override void Delete()
