@@ -87,7 +87,7 @@ namespace ISIS.ViewModels
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             ctx = new ISIS_DataEntities();
             Prestaties = ctx.Prestaties.ToList();

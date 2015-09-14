@@ -13,8 +13,21 @@ namespace ISIS.ViewModels
 {
     class MainViewModel
     {
+        private WorkspaceViewModel _selectedWorkspace;
+        public WorkspaceViewModel SelectedWorkspace {
+            get
+            {
+                return _selectedWorkspace;
+            }
+            set
+            {
+                _selectedWorkspace = value;
 
-        public WorkspaceViewModel SelectedWorkspace { get;  set; }
+                //Actions that has to happen when Tab is (re)opened.
+                if (value is PrestatieBeheerViewModel)
+                    (value as PrestatieBeheerViewModel).LoadData();
+            }
+        }
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; }
 
         public MainViewModel()
