@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace ISIS.ViewModels
 {
     class PrestatieBeheerViewModel : WorkspaceViewModel, ISelectedKlant
     {
-        ISIS_DataEntities ctx = new ISIS_DataEntities();
+        ISIS_DataEntities ctx;
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
         public List<Prestatie> Prestaties { get; private set; }
 
@@ -88,6 +89,7 @@ namespace ISIS.ViewModels
 
         private void LoadData()
         {
+            ctx = new ISIS_DataEntities();
             Prestaties = ctx.Prestaties.ToList();
             NoticeMe("Prestaties");
         }

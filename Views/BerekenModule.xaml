@@ -92,9 +92,9 @@
                 <TextBlock Grid.Row="13" Grid.Column="4" Text="Nieuw tegoed " HorizontalAlignment="Right"></TextBlock>
                 <TextBlock Grid.Row="13" Grid.Column="5" Text="{Binding AddPrestatie.NieuwTegoed}" Margin="0,0,0,15" HorizontalAlignment="Center"></TextBlock>
 
-                <Button Grid.Row="14" Margin="10" Content="Bereken" Command="{Binding BerekenCommandEvent}"></Button>
-                <Button Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Content="Toevoegen" Command="{Binding SaveCommandEvent}"></Button>
-                <Button Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="2" Margin="10" Name="ButtonChange" Content="Laatste prestatie aanpassen" Click="ButtonChange_Click"></Button>
+                <Button Grid.Row="14" Margin="10" Content="{Binding ButtonBerekenContent}" Command="{Binding BerekenCommandEvent}"></Button>
+                <Button Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" Content="{Binding ButtonToevoegenContent}" Command="{Binding SaveCommandEvent}"></Button>
+                <Button Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="2" Margin="10" Content="{Binding ButtonChangeContent}" Command="{Binding RefreshCommandEvent}"></Button>
             </Grid>
         </Grid>
     </ScrollViewer>

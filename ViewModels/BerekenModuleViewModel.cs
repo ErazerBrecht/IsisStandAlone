@@ -14,18 +14,84 @@ namespace ISIS.ViewModels
 {
     class BerekenModuleViewModel : BeheerViewModel, ISelectedKlant
     {
-        public Prestatie AddPrestatie { get; private set; }
-        public Parameters CurrentParameters { get; private set; }
+        private Prestatie _addPresatie;
+        public Prestatie AddPrestatie
+        {
+            get
+            {
+                return _addPresatie;
+            }
+            private set
+            {
+                _addPresatie = value;
+                NoticeMe("AddPrestatie");
+            }
+        }
+        private Parameters _currentParameters;
+        public Parameters CurrentParameters
+        {
+            get
+            {
+                return _currentParameters;
+            }
+            private set
+            {
+                _currentParameters = value;
+                NoticeMe("CurrentParameters");
+            }
+        }
+
         public BerekenCommand BerekenCommandEvent { get; set; }
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
+        #region ButtonBerekenContent full property
+        private string _buttonBerekenContent;
+
+        public string ButtonBerekenContent
+        {
+            get { return _buttonBerekenContent; }
+            set { _buttonBerekenContent = value; NoticeMe("ButtonBerekenContent"); }
+        }
+        #endregion
+
+        #region ButtonToevoegenContent full property
+        private string _buttonToevoegenContent;
+
+        public string ButtonToevoegenContent
+        {
+            get { return _buttonToevoegenContent; }
+            set { _buttonToevoegenContent = value; NoticeMe("ButtonToevoegenContent"); }
+        }
+
+        #endregion
+
+        #region ButtonChangeContent full property
+        private string _buttonChangeContent;
+
+        public string ButtonChangeContent
+        {
+            get { return _buttonChangeContent; }
+            set { _buttonChangeContent = value; NoticeMe("ButtonChangeContent"); }
+        }
+
+        #endregion
+
+
+        private bool _isValid;
         public override bool IsValid
         {
             get
             {
                 //TODO: Add Datavalidation
-                return true;
+                // if (isValid == true) => check for validation errors
+                return _isValid;
             }
+        }
+
+        //Gonna make use of a seperate set method because this is the only screen that needs a setter
+        private void SetIsValid(bool value)
+        {
+            _isValid = value;
         }
 
         private Klant _selectedKlant;
@@ -63,6 +129,10 @@ namespace ISIS.ViewModels
             BerekenCommandEvent = new BerekenCommand(this);
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             AddPrestatie.Datum = DateTime.Now;
+
+            ButtonBerekenContent = "Bereken";
+            ButtonToevoegenContent = "Toevoegen";
+            ButtonChangeContent = "Laatste prestatie aanpassen";
         }
 
         private void LoadData()
@@ -81,7 +151,7 @@ namespace ISIS.ViewModels
                 return;
             }
 
-            ////Load parameters from settings! And add them into the Prestatie
+            //Load parameters from settings! And add them into the Prestatie
             CurrentParameters.LoadParameters();
 
             //ChangeDataContextColumn(3, _parameters);
@@ -107,7 +177,7 @@ namespace ISIS.ViewModels
             else
                 AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
 
-            //_ableToSave = true;
+            SetIsValid(true);
         }
 
         private void CalculateStrijk()
@@ -131,11 +201,82 @@ namespace ISIS.ViewModels
 
         public override void Refresh()
         {
-            throw new NotImplementedException();
+            SetIsValid(false);
+
+            if (SelectedKlant == null)
+            {
+                MessageBoxService messageBoxService = new MessageBoxService();
+                messageBoxService.ShowMessageBox("Je hebt nog geen klant gekozen!");
+                return;
+            }
+
+            if (ButtonChangeContent == "Laatste prestatie aanpassen")
+            {
+
+                if (ctx.Prestaties.Count() > 0)
+                {
+                    var previousPrestaties = ctx.Prestaties.Where(p => p.KlantenNummer == SelectedKlant.ID);
+
+                    if (previousPrestaties.Count() > 0)
+                        AddPrestatie = previousPrestaties.OrderByDescending(p => p.Id).First();
+                    else
+                    {
+                            MessageBoxService messageBoxService = new MessageBoxService();
+                            messageBoxService.ShowMessageBox("Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                            return;
+                    }
+                }
+                else
+                {
+                    MessageBoxService messageBoxService = new MessageBoxService();
+                    messageBoxService.ShowMessageBox("Er bevinden zich nog geen prestaties in de databank, u kunt niets wijzigen");
+                    return;
+                }
+
+                CurrentParameters.ParameterHemden = AddPrestatie.ParameterHemden;
+                CurrentParameters.ParameterLakens1 = AddPrestatie.ParameterLakens1;
+                CurrentParameters.ParameterLakens2 = AddPrestatie.ParameterLakens2;
+                CurrentParameters.ParameterAndereStrijk = AddPrestatie.ParameterAndereStrijk;
+
+                AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
+
+                CalculateStrijk();
+
+                AddPrestatie.TotaalMinuten = AddPrestatie.TotaalHemden + AddPrestatie.TotaalLakens1 + AddPrestatie.TotaalLakens2 + AddPrestatie.TotaalAndereStrijk + AddPrestatie.TijdAdministratie;
+                if (AddPrestatie.TotaalDienstenChecks > 0)
+                {
+                    AddPrestatie.TotaalBetalen = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.NieuwTegoed;
+                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten - AddPrestatie.TotaalBetalen);
+                }
+                else
+                {
+                    AddPrestatie.TotaalBetalen = 0;
+                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten + AddPrestatie.NieuwTegoed);
+                }
+
+                ButtonBerekenContent = "Herbereken";
+                ButtonToevoegenContent = "Aanpassen";
+                ButtonChangeContent = "Annuleren";
+            }
+            else
+            {
+                ButtonBerekenContent = "Bereken";
+                ButtonToevoegenContent = "Toevoegen";
+                ButtonChangeContent = "Laatste prestatie aanpassen";
+
+                ctx.Entry(AddPrestatie).Reload();
+                ctx.Entry(SelectedKlant).Reload();
+
+                CurrentParameters = new Parameters();
+                AddPrestatie = new Prestatie();
+                AddPrestatie.AddParameters(CurrentParameters);
+            }
         }
 
         public override void SaveChanges()
         {
+            SetIsValid(false);
+
             //The second time you want to add a "prestatie" EF is following the first object
             //If you change the object EF will track the edits
             //This will cause errors because the ID wil change (is normally not possible)
@@ -146,9 +287,9 @@ namespace ISIS.ViewModels
                 ctx.Entry(attachedPrestatie).State = EntityState.Detached;
 
 
-            //if (ButtonToevoegen.Content.ToString() == "Toevoegen")
-            //{
-            int tempId = 1;
+            if (ButtonToevoegenContent == "Toevoegen")
+            {
+                int tempId = 1;
 
             //Search for first valid ID
             while (ctx.Prestaties.Any(p => p.Id == tempId))
@@ -174,32 +315,32 @@ namespace ISIS.ViewModels
 
             ctx.Prestaties.Add(AddPrestatie);
             ctx.SaveChanges();
-            //}
-            //else
-            //{
-            //SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
+            }
+            else
+            {
+                SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
 
-            //var klant = ctx.Klanten.Find(SelectedKlant.ID);
+                var klant = ctx.Klanten.Find(SelectedKlant.ID);
 
-            ////We have it in the entity, need to update.
-            //if (klant != null)
-            //{
-            //    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
-            //}
+                //We have it in the entity, need to update.
+                if (klant != null)
+                {
+                    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
+                }
 
-            //var prestatie = ctx.Prestaties.Find(AddPrestatie.Id);
+                var prestatie = ctx.Prestaties.Find(AddPrestatie.Id);
 
-            ////We have it in the entity, need to update.
-            //if (prestatie != null)
-            //{
-            //    ctx.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
-            //}
+                //We have it in the entity, need to update.
+                if (prestatie != null)
+                {
+                    ctx.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
+                }
 
-            //ctx.SaveChanges();
-            //ButtonBereken.Content = "Bereken";
-            //ButtonToevoegen.Content = "Toevoegen";
-            //ButtonChange.Content = "Laatste prestatie aanpassen";
-            //}
+                ctx.SaveChanges();
+                ButtonBerekenContent = "Bereken";
+                ButtonToevoegenContent = "Toevoegen";
+                ButtonChangeContent = "Laatste prestatie aanpassen";
+            }
         }
     }
 }
