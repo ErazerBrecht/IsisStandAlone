@@ -169,6 +169,7 @@
     <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
     <Compile Include="ViewModels\BedrijfBeheerViewModel.cs" />
     <Compile Include="ViewModels\SchoolBeheerViewModel.cs" />
+    <Compile Include="ViewModels\SearchBoxKlantViewModel.cs" />
     <Compile Include="ViewModels\WinkelBeheerViewModel.cs" />
     <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
     <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />

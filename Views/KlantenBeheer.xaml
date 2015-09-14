@@ -177,7 +177,7 @@
                 
                 <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxResults}" SelectedItem="{Binding SearchBoxSelectedKlant}" />
+                    <local:SearchComboBox IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
                 </DockPanel>
             </Grid>
 
