@@ -35,7 +35,8 @@ namespace ISIS
             "Gemeente",
             "Postcode",
             "RNSZ",
-            "Gebruikersnummer",
+            "Login",
+            "Email",
             "UrenTewerkstelling",
         };
 
@@ -51,6 +52,12 @@ namespace ISIS
                             result = "Naam moet verplicht ingevuld worden!";
                         else if (Naam.Length > 50)
                             result = "Naam mag maximum uit 50 karakters bestaan!";
+                        break;
+                    }
+                case "Voornaam":
+                    {
+                        if (!String.IsNullOrEmpty(Voornaam) && (Voornaam.Length > 50))
+                            result = "Voornaam mag maximum uit 50 karakters bestaan!";
                         break;
                     }
                 case "ID":
@@ -69,6 +76,8 @@ namespace ISIS
                     {
                         if (String.IsNullOrWhiteSpace(Straat))
                             result = "Straat moet verplicht ingevuld worden!";
+                        else if (Straat.Length > 50)
+                            result = "Straat mag maximum uit 50 karakters bestaan!";
                         break;
                     }
 
@@ -82,6 +91,8 @@ namespace ISIS
                     {
                         if (String.IsNullOrWhiteSpace(Gemeente))
                             result = "Gemeente moet verplicht ingevuld worden!";
+                        else if (Gemeente.Length > 50)
+                            result = "Gemeente mag maximum uit 50 karakters bestaan!";
                         break;
                     }
                 case "Postcode":
@@ -94,6 +105,22 @@ namespace ISIS
                     {
                         if (String.IsNullOrWhiteSpace(RNSZ))
                             result = "RNSZ nummer moet verplicht ingevuld worden!";
+                        else if (RNSZ.Length > 50)
+                            result = "RNSZ nummer mag maximum uit 20 karakters bestaan!";      //TODO: Navragen!
+                        break;
+                    }
+                case "Login":
+                    {
+                        if (String.IsNullOrWhiteSpace(Login))
+                            result = "Login nummer moet verplicht ingevuld worden!";
+                        else if (Login.Length > 6)
+                            result = "Login nummer mag maximum uit 6 karakters bestaan!";
+                        break;
+                    }
+                case "Email":
+                    {
+                        if (!String.IsNullOrEmpty(Email) && Email.Length > 50)
+                            result = "E-mail mag maximum uit 50 karakters bestaan!";
                         break;
                     }
                 case "UrenTewerkstelling":

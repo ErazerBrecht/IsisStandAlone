@@ -28,6 +28,7 @@ namespace ISIS
         static readonly string[] ValidatedProperties =
         {
             "Naam",
+            "Voornaam",
             "ID",
             "Straat",
             "Nummer",
@@ -35,6 +36,8 @@ namespace ISIS
             "Postcode",
             "Telefoon",
             "Gsm",
+            "Email",
+            "AndereNaam",
             "Betalingswijze",
             "Gebruikersnummer",
             "SoortKlant",
@@ -56,6 +59,13 @@ namespace ISIS
                         break;
                     }
 
+                case "Voornaam":
+                    {
+                        if (!String.IsNullOrEmpty(Voornaam) && Voornaam.Length > 50)
+                            result = "Voornaam mag maximum uit 50 karakters bestaan!";
+                        break;
+                    }
+
                 case "ID":
                     {
                         if (CanValidateID == true)
@@ -73,6 +83,8 @@ namespace ISIS
                     {
                         if (String.IsNullOrWhiteSpace(Straat))
                             result = "Straat moet verplicht ingevuld worden!";
+                        else if (Straat.Length > 50)
+                            result = "Straat mag maximum uit 50 karakters bestaan!";
                         break;
                     }
 
@@ -86,6 +98,8 @@ namespace ISIS
                     {
                         if (String.IsNullOrWhiteSpace(Gemeente))
                             result = "Gemeente moet verplicht ingevuld worden!";
+                        else if (Gemeente.Length > 50)
+                            result = "Gemeente mag maximum uit 50 karakters bestaan!";
                         break;
                     }
                 case "Postcode":
@@ -120,6 +134,18 @@ namespace ISIS
                         }
                         break;
                     }
+                case "Email":
+                    {
+                        if (!String.IsNullOrEmpty(Email) && Email.Length > 50)
+                            result = "E-mail mag maximum uit 50 karakters bestaan!";
+                        break;
+                    }
+                case "AndereNaam":
+                    {
+                        if (!String.IsNullOrEmpty(AndereNaam) && AndereNaam.Length > 50)
+                            result = "'Andere Naam' mag maximum uit 50 karakters bestaan!";
+                        break;
+                    }
 
                 case "Betalingswijze":
                     {
@@ -132,9 +158,10 @@ namespace ISIS
                     {
                         if (Betalingswijze == "Elektronisch")
                         {
-                                //TODO: Check length!
-                                if (String.IsNullOrWhiteSpace(Gebruikersnummer))
-                                    result = "U hebt gekozen voor Elektronisch betalen dan is een Gebruikersnummer verplicht";
+                            if (String.IsNullOrWhiteSpace(Gebruikersnummer))
+                                result = "U hebt gekozen voor Elektronisch betalen dan is een Gebruikersnummer verplicht";
+                            else if (Gebruikersnummer.Length != 13 || Gebruikersnummer[3] != ' ')
+                                result = "Niet geldig! Structuur = 123 123456789";
                         }
                         break;
                     }
