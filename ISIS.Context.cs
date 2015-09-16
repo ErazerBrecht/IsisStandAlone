@@ -32,5 +32,6 @@ namespace ISIS
         public virtual DbSet<School> Scholen { get; set; }
         public virtual DbSet<Bedrijf> Bedrijven { get; set; }
         public virtual DbSet<Ophaling> Ophalingen { get; set; }
+        public virtual DbSet<StukPrestatie> StukPrestaties { get; set; }
     }
 }

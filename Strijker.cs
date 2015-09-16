@@ -47,5 +47,7 @@ namespace ISIS
         public Nullable<int> UrenTewerkstelling { get { return _urentewerkstelling; } set { _urentewerkstelling = value; OnPropertyChanged("UrenTewerkstelling");} }
     private string _straat;
         public string Straat { get { return _straat; } set { _straat = value; OnPropertyChanged("Straat");} }
+    private string _voornaam;
+        public string Voornaam { get { return _voornaam; } set { _voornaam = value; OnPropertyChanged("Voornaam");} }
     }
 }

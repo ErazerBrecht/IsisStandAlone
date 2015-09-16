@@ -162,6 +162,9 @@
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="StukPrestatie.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\BerekenModuleViewModel.cs" />

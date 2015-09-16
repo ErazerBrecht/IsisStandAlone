@@ -95,6 +95,16 @@
           <Property Name="Bankrekening" Type="nchar" MaxLength="19" />
           <Property Name="IndienstVanaf" Type="date" />
           <Property Name="UrenTewerkstelling" Type="int" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StukPrestaties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+          <Property Name="KlantenNummer" Type="int" Nullable="false" />
+          <Property Name="Totaal" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Winkels">
           <Key>
@@ -105,7 +115,7 @@
           <Property Name="Euro" Type="money" Nullable="false" />
           <Property Name="StukTarief" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="fk_KlantenNummer">
+        <Association Name="FK__Prestatie__Klant__2A164134">
           <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
           <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,6 +127,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StukPrest__Klant__29221CFB">
+          <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
+          <End Role="StukPrestaties" Type="Self.StukPrestaties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klanten">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StukPrestaties">
+              <PropertyRef Name="KlantenNummer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ISIS_DataModelStoreContainer">
           <EntitySet Name="Bedrijven" EntityType="Self.Bedrijven" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klanten" EntityType="Self.Klanten" Schema="dbo" store:Type="Tables" />
@@ -124,10 +146,15 @@
           <EntitySet Name="Prestaties" EntityType="Self.Prestaties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Scholen" EntityType="Self.Scholen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StukPrestaties" EntityType="Self.StukPrestaties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Winkels" EntityType="Self.Winkels" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="fk_KlantenNummer" Association="Self.fk_KlantenNummer">
+          <AssociationSet Name="FK__Prestatie__Klant__2A164134" Association="Self.FK__Prestatie__Klant__2A164134">
             <End Role="Klanten" EntitySet="Klanten" />
             <End Role="Prestaties" EntitySet="Prestaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StukPrest__Klant__29221CFB" Association="Self.FK__StukPrest__Klant__29221CFB">
+            <End Role="Klanten" EntitySet="Klanten" />
+            <End Role="StukPrestaties" EntitySet="StukPrestaties" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -151,6 +178,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UrenTewerkstelling" Type="Int32" />
           <Property Name="Straat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Strijkers" EntityType="ISIS_DataModel.Strijker" />
@@ -164,6 +192,11 @@
           <EntitySet Name="Scholen" EntityType="ISIS_DataModel.School" />
           <EntitySet Name="Bedrijven" EntityType="ISIS_DataModel.Bedrijf" />
           <EntitySet Name="Ophalingen" EntityType="ISIS_DataModel.Ophaling" />
+          <EntitySet Name="StukPrestaties" EntityType="ISIS_DataModel.StukPrestatie" />
+          <AssociationSet Name="FK__StukPrest__Klant__29221CFB" Association="ISIS_DataModel.FK__StukPrest__Klant__29221CFB">
+            <End Role="Klant" EntitySet="Klanten" />
+            <End Role="StukPrestaty" EntitySet="StukPrestaties" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Klant">
           <Key>
@@ -192,6 +225,7 @@
           <Property Name="Tegoed" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.fk_KlantenNummer" FromRole="Klant" ToRole="Prestaty" />
           <Property Name="SoortKlantPlaats" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StukPrestaties" Relationship="ISIS_DataModel.FK__StukPrest__Klant__29221CFB" FromRole="Klant" ToRole="StukPrestaty" />
         </EntityType>
         <EntityType Name="Prestatie">
           <Key>
@@ -261,6 +295,28 @@
           <Property Name="Euro" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="StukTarief" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="StukPrestatie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
+          <Property Name="Totaal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.FK__StukPrest__Klant__29221CFB" FromRole="StukPrestaty" ToRole="Klant" />
+        </EntityType>
+        <Association Name="FK__StukPrest__Klant__29221CFB">
+          <End Type="ISIS_DataModel.Klant" Role="Klant" Multiplicity="1" />
+          <End Type="ISIS_DataModel.StukPrestatie" Role="StukPrestaty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StukPrestaty">
+              <PropertyRef Name="KlantenNummer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,6 +326,7 @@
           <EntitySetMapping Name="Strijkers">
             <EntityTypeMapping TypeName="ISIS_DataModel.Strijker">
               <MappingFragment StoreEntitySet="Strijkers">
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
                 <ScalarProperty Name="Straat" ColumnName="Straat" />
                 <ScalarProperty Name="UrenTewerkstelling" ColumnName="UrenTewerkstelling" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -371,6 +428,16 @@
                 <ScalarProperty Name="Euro" ColumnName="Euro" />
                 <ScalarProperty Name="SnelheidsCoëfficiënt" ColumnName="SnelheidsCoëfficiënt" />
                 <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StukPrestaties">
+            <EntityTypeMapping TypeName="ISIS_DataModel.StukPrestatie">
+              <MappingFragment StoreEntitySet="StukPrestaties">
+                <ScalarProperty Name="Totaal" ColumnName="Totaal" />
+                <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
