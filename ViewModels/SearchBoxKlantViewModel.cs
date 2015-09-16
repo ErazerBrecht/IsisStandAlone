@@ -18,6 +18,11 @@ namespace ISIS.ViewModels
 
         public string SearchBoxText
         {
+            get
+            {
+                return "";          //Disables get error from XAML
+            }
+
             set
             {
                 int tempID;
