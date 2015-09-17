@@ -154,19 +154,20 @@
         </Grid>
         <DataGrid x:Name="strijkersDataGrid" BorderBrush="Black" BorderThickness="2" Grid.Row="2" AutoGenerateColumns="False" FontSize="14" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedPersoneel}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam}" Header="Naam" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat}" Header="Straat" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer}" Header="Nummer" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode}" Header="Postcode" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente}" Header="Gemeente" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel}" Header="Tel" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="rNSZColumn" Binding="{Binding RNSZ}" Header="RNSZ" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login}" Header="Login" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="bankrekeningColumn" Binding="{Binding Bankrekening}" Header="Bankrekening" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID, ValidatesOnDataErrors=True}" Header="ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam, ValidatesOnDataErrors=True}" Header="Voornaam" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat, ValidatesOnDataErrors=True}" Header="Straat" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer, ValidatesOnDataErrors=True}" Header="Nummer" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode, ValidatesOnDataErrors=True}" Header="Postcode" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente, ValidatesOnDataErrors=True}" Header="Gemeente" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel, ValidatesOnDataErrors=True}" Header="Tel" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="rNSZColumn" Binding="{Binding RNSZ, ValidatesOnDataErrors=True}" Header="RNSZ" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email, ValidatesOnDataErrors=True}" Header="Email" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login, ValidatesOnDataErrors=True}" Header="Login" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="bankrekeningColumn" Binding="{Binding Bankrekening, ValidatesOnDataErrors=True}" Header="Bankrekening" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="indienst_VanafColumn" Binding="{Binding IndienstVanaf, StringFormat=dd-MM-yyyy}" Header="Indienst Vanaf" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="urenTewerkstellingColumn" Binding="{Binding UrenTewerkstelling}" Header="Uren Tewerkstelling" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="urenTewerkstellingColumn" Binding="{Binding UrenTewerkstelling, ValidatesOnDataErrors=True}" Header="Uren Tewerkstelling" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
