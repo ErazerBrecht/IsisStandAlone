@@ -140,6 +140,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <UniformGrid Grid.Column="1" Rows="1">
@@ -150,15 +151,20 @@
                         <TextBlock  Grid.Column="2" Text="Bericht:  " Margin="15,0,0,0" VerticalAlignment="Top"></TextBlock>
                         <ComboBox SelectedItem="{Binding SelectedKlant.Bericht, Mode=TwoWay}" ItemsSource="{Binding BerichtItems}" Grid.Column="3" />
 
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
-                        <TextBlock Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Strijkbox:  "></TextBlock>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" SelectedItem="{Binding SelectedKlant.Strijkbox, Mode=TwoWay}" ItemsSource="{Binding StrijkboxItems}" />
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Visibility="{Binding WaarborgVisibility}" Text="Waarborg: "></TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Visibility="{Binding WaarborgVisibility}" Text="{Binding SelectedKlant.Waarborg, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
 
                         <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Tegoed}"></TextBlock>
-                        <TextBlock Grid.Column="2"  Margin="15,10,0,0" Grid.Row="2" Text="Laatste activiteit:  "></TextBlock>
-                        <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="2" Text="{Binding SelectedKlant.LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
+
+                        <TextBlock Grid.Row="3" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
+                        <TextBlock Grid.Row="3"  Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="2"  Margin="15,10,0,0" Text="Laatste activiteit:  "></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
                 </GroupBox>
 

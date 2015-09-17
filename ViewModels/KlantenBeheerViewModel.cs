@@ -45,6 +45,12 @@ namespace ISIS.ViewModels
             }
             else if (e.PropertyName == "Betalingswijze")
                 NoticeMe("ElektronischBetalenVisibility");
+            else if (e.PropertyName == "Strijkbox")
+            {
+                if (SelectedKlant.Strijkbox == 0)
+                    SelectedKlant.Waarborg = 0;                     //If klant doesn't have any strijkboxes, he can't have Waarborg anymore!
+                NoticeMe("WaarborgVisibility");
+            }
         }
 
         #endregion
@@ -115,6 +121,22 @@ namespace ISIS.ViewModels
                 return Visibility.Hidden;
             }
        }
+
+        public Visibility WaarborgVisibility
+        {
+            get
+            {
+                if (SelectedKlant.Strijkbox != null && SelectedKlant.Strijkbox > 0)
+                {
+                    if (SelectedKlant.Waarborg == null)
+                        SelectedKlant.Waarborg = null;      //Force data validation
+
+                    return Visibility.Visible;
+                }
+
+                return Visibility.Hidden;
+            }
+        }
         public bool IsComboBoxSoortKlantPlaatsEnabled
         {
             get
@@ -189,6 +211,21 @@ namespace ISIS.ViewModels
                 data.Add("Neen");
                 data.Add("SMS");
                 data.Add("E-mail");
+                return data;
+            }
+        }
+
+        public List<int> StrijkboxItems
+        {
+            get
+            {
+                List<int> data = new List<int>();
+                data.Add(0);
+                data.Add(1);
+                data.Add(2);
+                data.Add(4);
+                data.Add(5);
+                data.Add(6);
                 return data;
             }
         }
