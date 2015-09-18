@@ -8,10 +8,18 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,20" VerticalAlignment="Top">
             <RadioButton IsChecked="{Binding BoolIedereen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >Iedereen</RadioButton>
             <RadioButton Margin="25,0,0,0">Per klant</RadioButton>
             <vm:SearchComboBox Margin="25,0,0,0" Width="200" IsEnabled="{Binding EnableSearch}" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top">
+            <CheckBox IsChecked="{Binding FilterOpDag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,50,0">Filter op dag(gen)?</CheckBox>
+            <RadioButton IsEnabled="{Binding FilterOpDag}" IsChecked="{Binding BoolDag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Enkele dag</RadioButton>
+            <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateSingle, Mode=OneWayToSource}" Margin="20,0,50,0" Height="10px"></DatePicker>
+            <RadioButton IsEnabled="{Binding FilterOpDag}" >Tussen twee dagen</RadioButton>
+            <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateFirst, Mode=OneWayToSource}" Margin="20,0,10,0" Height="10px"></DatePicker>
+            <DatePicker IsEnabled="{Binding EnableDateSecond}" SelectedDate="{Binding DateSecond, Mode=OneWayToSource}" Height="10px"></DatePicker>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>

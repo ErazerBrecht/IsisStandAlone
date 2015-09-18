@@ -13,8 +13,23 @@ namespace ISIS.ViewModels
     {
         ISIS_DataEntities ctx;
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
-        public List<Prestatie> Prestaties { get; private set; }
 
+        private List<Prestatie> _originalPrestaties;
+
+        private List<Prestatie> _prestaties;
+        public List<Prestatie> Prestaties {
+            get
+            {
+                return _prestaties;
+            }
+            private set
+            {
+                _prestaties = value;
+                NoticeMe("Prestaties");
+            }
+        }
+
+        #region FilterOnName
         private bool _enableSearch;
         public bool EnableSearch
         {
@@ -43,15 +58,105 @@ namespace ISIS.ViewModels
 
                 if (value == true)
                 {
-                    LoadData();
                     EnableSearch = false;
                 }
                 else
                 {
                     EnableSearch = true;
                 }
+
+                Filter();
             }
         }
+        #endregion
+
+        #region FilterOnDate
+
+        private bool _filterOpDag;
+
+        public bool FilterOpDag
+        {
+            get { return _filterOpDag; }
+            set
+            {
+                _filterOpDag = value;
+
+                if(value == false)          //TODO: Set radiobuttons to false and reset text datepickers
+                {
+                    EnableDateSecond = false;
+                    Filter();
+                }
+                NoticeMe("FilterOpDag");
+            }
+        }
+
+
+        private bool _boolDag;
+
+        public bool BoolDag
+        {
+            get
+            {
+                return _boolDag;
+            }
+            set
+            {
+                _boolDag = value;
+                Filter();
+            }
+        }
+
+        private DateTime _dateSingle;
+        public DateTime DateSingle
+        {
+            get
+            {
+                return _dateSingle;
+            }
+            set
+            {
+                _dateSingle = value;
+                Filter();
+            }
+        }
+
+        private DateTime _dateFirst;
+
+        public DateTime DateFirst
+        {
+            get { return _dateFirst; }
+            set
+            {
+                _dateFirst = value;
+
+                Filter();
+
+                if (_dateFirst != null)
+                    EnableDateSecond = true;
+
+                NoticeMe("DateFirst");
+            }
+        }
+
+
+        private bool _enableDateSecond;
+
+        public bool EnableDateSecond
+        {
+            get { return _enableDateSecond; }
+            set { _enableDateSecond = value; NoticeMe("EnableDateSecond"); }
+        }
+
+
+        private DateTime _dateSecond;
+
+        public DateTime DateSecond
+        {
+            get { return _dateSecond; }
+            set { _dateSecond = value; Filter(); NoticeMe("DateSecond"); }
+        }
+
+        #endregion
 
         private Klant _selectedKlant;
         public Klant SelectedKlant
@@ -64,8 +169,7 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedKlant = value;
-                Prestaties = Prestaties.Where(p => p.KlantenNummer == _selectedKlant.ID).ToList();
-                NoticeMe("Prestaties");
+                Filter();
             }
         }
 
@@ -90,8 +194,35 @@ namespace ISIS.ViewModels
         public void LoadData()
         {
             ctx = new ISIS_DataEntities();
-            Prestaties = ctx.Prestaties.ToList();
-            NoticeMe("Prestaties");
+            _originalPrestaties = ctx.Prestaties.ToList();
+            Prestaties = _originalPrestaties;
+        }
+
+        public void Filter()
+        {
+            if (BoolIedereen)
+                Prestaties = _originalPrestaties;
+            else
+            {
+                if (SelectedKlant != null)
+                    Prestaties = _originalPrestaties.Where(p => p.KlantenNummer == _selectedKlant.ID).ToList();
+            }
+
+            if(FilterOpDag)
+            {
+                if (BoolDag)
+                {
+                    if (DateSingle != null)
+                        Prestaties = Prestaties.Where(p => p.Datum.Date == DateSingle.Date).ToList();
+                }
+                else
+                {
+                    if (DateSecond != null && EnableDateSecond)
+                        Prestaties = Prestaties.Where(p => p.Datum.Date >= DateFirst.Date && p.Datum.Date <= DateSecond.Date).ToList();
+                }
+
+            }
+
         }
     }
 }
