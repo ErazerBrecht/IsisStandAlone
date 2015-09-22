@@ -80,12 +80,7 @@ namespace ISIS.ViewModels
             set
             {
                 _filterOpDag = value;
-
-                if(value == false)          //TODO: Set radiobuttons to false and reset text datepickers
-                {
-                    EnableDateSecond = false;
-                    Filter();
-                }
+                Filter();
                 NoticeMe("FilterOpDag");
             }
         }
@@ -103,6 +98,7 @@ namespace ISIS.ViewModels
             {
                 _boolDag = value;
                 Filter();
+                NoticeMe ("BoolDag");
             }
         }
 
@@ -120,37 +116,24 @@ namespace ISIS.ViewModels
             }
         }
 
-        private DateTime _dateFirst;
+        private DateTime? _dateFirst;
 
-        public DateTime DateFirst
+        public DateTime? DateFirst
         {
             get { return _dateFirst; }
             set
             {
                 _dateFirst = value;
-
-                Filter();
-
-                if (_dateFirst != null)
-                    EnableDateSecond = true;
-
                 NoticeMe("DateFirst");
+
+                Filter();    
             }
         }
 
 
-        private bool _enableDateSecond;
+        private DateTime? _dateSecond;
 
-        public bool EnableDateSecond
-        {
-            get { return _enableDateSecond; }
-            set { _enableDateSecond = value; NoticeMe("EnableDateSecond"); }
-        }
-
-
-        private DateTime _dateSecond;
-
-        public DateTime DateSecond
+        public DateTime? DateSecond
         {
             get { return _dateSecond; }
             set { _dateSecond = value; Filter(); NoticeMe("DateSecond"); }
@@ -189,6 +172,7 @@ namespace ISIS.ViewModels
             LoadData();
             BoolIedereen = true;
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
+            BoolDag = true;
         }
 
         public void LoadData()
@@ -217,8 +201,8 @@ namespace ISIS.ViewModels
                 }
                 else
                 {
-                    if (DateSecond != null && EnableDateSecond)
-                        Prestaties = Prestaties.Where(p => p.Datum.Date >= DateFirst.Date && p.Datum.Date <= DateSecond.Date).ToList();
+                    if (DateSecond != null && DateFirst != null)
+                        Prestaties = Prestaties.Where(p => p.Datum.Date >= DateFirst.GetValueOrDefault() && p.Datum.Date <= DateSecond.GetValueOrDefault()).ToList();
                 }
 
             }

@@ -19,7 +19,7 @@
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateSingle, Mode=OneWayToSource}" Margin="20,0,50,0" Height="10px"></DatePicker>
             <RadioButton IsEnabled="{Binding FilterOpDag}" >Tussen twee dagen</RadioButton>
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateFirst, Mode=OneWayToSource}" Margin="20,0,10,0" Height="10px"></DatePicker>
-            <DatePicker IsEnabled="{Binding EnableDateSecond}" SelectedDate="{Binding DateSecond, Mode=OneWayToSource}" Height="10px"></DatePicker>
+            <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateSecond, Mode=OneWayToSource}" Height="10px"></DatePicker>
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
