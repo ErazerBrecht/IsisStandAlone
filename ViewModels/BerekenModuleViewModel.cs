@@ -122,7 +122,6 @@ namespace ISIS.ViewModels
         public BerekenModuleViewModel()
         {
             Header = "Berekenmodule";
-            LoadData();
             AddPrestatie = new Prestatie();
             CurrentParameters = new Parameters();
             ViewSource = new CollectionViewSource();
@@ -133,13 +132,20 @@ namespace ISIS.ViewModels
             ButtonBerekenContent = "Bereken";
             ButtonToevoegenContent = "Toevoegen";
             ButtonChangeContent = "Laatste prestatie aanpassen";
+
+            LoadData();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             ctx = new ISIS_DataEntities();
             ctx.Prestaties.Load();
             ctx.Klanten.Load();
+
+            //Load parameters from settings!
+            CurrentParameters.LoadParameters();
+
+            SetIsValid(false);          //New data loaded so first have to recalculate!!
         }
 
         public void Bereken()
@@ -151,10 +157,7 @@ namespace ISIS.ViewModels
                 return;
             }
 
-            //Load parameters from settings! And add them into the Prestatie
-            CurrentParameters.LoadParameters();
-
-            //ChangeDataContextColumn(3, _parameters);
+            //Add current parameter values into the prestatie!
             AddPrestatie.AddParameters(CurrentParameters);
 
             CalculateStrijk();
