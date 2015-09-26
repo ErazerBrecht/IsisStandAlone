@@ -198,6 +198,9 @@
     <Compile Include="Views\PrestatieBeheer.xaml.cs">
       <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TijdPrestatieView.xaml.cs">
+      <DependentUpon>TijdPrestatieView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Winkel.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -236,6 +239,10 @@
     <Page Include="Views\PrestatieBeheer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TijdPrestatieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
