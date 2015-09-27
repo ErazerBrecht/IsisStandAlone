@@ -10,9 +10,9 @@ namespace ISIS.Commands
 {
     class BerekenCommand : ICommand
     {
-        private BerekenModuleViewModel _viewModel;
+        private IBereken _viewModel;
 
-        public BerekenCommand(BerekenModuleViewModel viewModel)
+        public BerekenCommand(IBereken viewModel)
         {
             _viewModel = viewModel;
         }

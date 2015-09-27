@@ -167,7 +167,9 @@
     </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
-    <Compile Include="ViewModels\BerekenModuleViewModel.cs" />
+    <Compile Include="ViewModels\IBereken.cs" />
+    <Compile Include="ViewModels\StukBerekenModuleViewModel.cs" />
+    <Compile Include="ViewModels\TijdBerekenModuleViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
     <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
     <Compile Include="ViewModels\BedrijfBeheerViewModel.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Views\BerekenModule.xaml.cs">
       <DependentUpon>BerekenModule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BerekenModuleViewModel.cs" />
     <Compile Include="Views\ErrorDatabase.xaml.cs">
       <DependentUpon>ErrorDatabase.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,9 @@
     </Compile>
     <Compile Include="Views\PrestatieBeheer.xaml.cs">
       <DependentUpon>PrestatieBeheer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StukPrestatieView.xaml.cs">
+      <DependentUpon>StukPrestatieView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TijdPrestatieView.xaml.cs">
       <DependentUpon>TijdPrestatieView.xaml</DependentUpon>
@@ -237,6 +243,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PrestatieBeheer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\StukPrestatieView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
