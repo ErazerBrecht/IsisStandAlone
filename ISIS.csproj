@@ -107,9 +107,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Bedrijf.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Commands\AddPersoneel.cs" />
     <Compile Include="Commands\DeleteExtendCommand.cs" />
     <Compile Include="Commands\NextErrorCommand.cs" />
@@ -124,14 +121,6 @@
     <Compile Include="Commands\AddKlantCommand.cs" />
     <Compile Include="Commands\OpenFileDialogCommand.cs" />
     <Compile Include="Commands\ShutDownCommand.cs" />
-    <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
-    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
-    <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
-    <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
-    <Compile Include="Models\Parameters.cs" />
-    <Compile Include="Ophaling.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
     <Compile Include="ISIS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,15 +139,20 @@
     <Compile Include="Klant.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
+    <Compile Include="Models\Parameters.cs" />
     <Compile Include="Prestatie.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="School.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\IErrorDataBaseAlert.cs" />
     <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Services\OpenFileDialogService.cs" />
+    <Compile Include="SoortKlant.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Strijker.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
@@ -206,9 +200,6 @@
     </Compile>
     <Compile Include="Views\TijdPrestatieView.xaml.cs">
       <DependentUpon>TijdPrestatieView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Winkel.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Page Include="Views\BerekenModule.xaml">
       <Generator>MSBuild:Compile</Generator>

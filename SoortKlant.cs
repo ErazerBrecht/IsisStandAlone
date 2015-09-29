@@ -13,7 +13,7 @@ namespace ISIS
     using System.Collections.Generic;
     
     using System.ComponentModel;
-    public partial class Ophaling : INotifyPropertyChanged
+    public partial class SoortKlant : INotifyPropertyChanged
     {
     	public event PropertyChangedEventHandler PropertyChanged;
     	protected virtual void OnPropertyChanged(string propertyName)
@@ -23,11 +23,13 @@ namespace ISIS
     	}
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ophaling()
+        public SoortKlant()
         {
-            this.SnelheidsCoëfficiënt = 1.00m;
+            this.Klanten = new HashSet<Klant>();
         }
     
+    private string _type;
+        public string Type { get { return _type; } set { _type = value; OnPropertyChanged("Type");} }
     private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
     private decimal _snelheidscoëfficiënt;
@@ -36,5 +38,8 @@ namespace ISIS
         public decimal Euro { get { return _euro; } set { _euro = value; OnPropertyChanged("Euro");} }
     private bool _stuktarief;
         public bool StukTarief { get { return _stuktarief; } set { _stuktarief = value; OnPropertyChanged("StukTarief");} }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Klant> Klanten { get; set; }
     }
 }
