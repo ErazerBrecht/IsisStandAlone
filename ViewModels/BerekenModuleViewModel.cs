@@ -12,7 +12,7 @@ namespace ISIS.ViewModels
     class BerekenModuleViewModel: WorkspaceViewModel, ISelectedKlant
     {
         protected ISIS_DataEntities ctx;
-        public WorkspaceViewModel CurrentView { get; set; }
+        public ISelectedKlant CurrentView { get; set; }
 
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
@@ -28,15 +28,6 @@ namespace ISIS.ViewModels
             {
                 _selectedKlant = value;
                 NoticeMe("SelectedKlant");
-            }
-        }
-
-        public ICollectionView KlantenView
-        {
-            get
-            {
-                ctx.Klanten.Load();
-                return CollectionViewSource.GetDefaultView(ctx.Klanten.Local);
             }
         }
 

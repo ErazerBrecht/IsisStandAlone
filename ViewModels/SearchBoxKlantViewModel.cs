@@ -15,6 +15,7 @@ namespace ISIS.ViewModels
     {
         private ISelectedKlant _viewmodel;
         private int _oldLengthSearchBox = 0;
+        private ISIS_DataEntities _ctx;
 
         public string SearchBoxText
         {
@@ -37,10 +38,11 @@ namespace ISIS.ViewModels
                 }
                 else
                 {
-                    tempSearchList = _viewmodel.KlantenView.SourceCollection.Cast<Klant>().ToList();
+                    _ctx = new ISIS_DataEntities();
+                    tempSearchList = _ctx.Klanten.ToList();
                 }
 
-                if (int.TryParse(value, out tempID))            //Check if user only typed numebers (an id)
+                if (int.TryParse(value, out tempID))            //Check if user only typed numbers (an id)
                 {
                     List<Klant> tempList = tempSearchList.Where(k => k.ID.ToString().Contains(value)).ToList();
                     SearchBoxResults = tempList;
@@ -108,7 +110,6 @@ namespace ISIS.ViewModels
     public interface ISelectedKlant
     {
        Klant SelectedKlant { get; set; }
-       ICollectionView KlantenView { get; }
     }
 
     public class SearchComboBox : ComboBox

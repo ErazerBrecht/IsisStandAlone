@@ -229,14 +229,6 @@ namespace ISIS.ViewModels
                 return data;
             }
         }
-
-        public ICollectionView KlantenView
-        {
-            get
-            {
-                return ViewSource.View;
-            }
-        }
         #endregion
 
         public KlantenBeheerViewModel() : base()

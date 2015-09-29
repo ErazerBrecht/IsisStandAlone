@@ -156,16 +156,6 @@ namespace ISIS.ViewModels
             }
         }
 
-        public ICollectionView KlantenView
-        {
-            get
-            {
-                CollectionViewSource viewSource = new CollectionViewSource();
-                viewSource.Source = ctx.Klanten.ToList();
-                return viewSource.View;
-            }
-        }
-
         public PrestatieBeheerViewModel()
         {
             Header = "PrestatieBeheer";
