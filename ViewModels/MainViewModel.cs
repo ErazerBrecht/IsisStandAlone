@@ -26,8 +26,8 @@ namespace ISIS.ViewModels
                 //Actions that has to happen when Tab is (re)opened.
                 if (value is PrestatieBeheerViewModel)
                     (value as PrestatieBeheerViewModel).LoadData();
-                else if (value is BerekenModuleViewModel)
-                    (value as BerekenModuleViewModel).LoadData();
+                //else if (value is BerekenModuleViewModel)
+                    //(value as BerekenModuleViewModel).LoadData();
             }
         }
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; }
