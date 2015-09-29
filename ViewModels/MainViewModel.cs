@@ -37,8 +37,8 @@ namespace ISIS.ViewModels
             Application.Current.MainWindow.Closing += MainWindow_Closing;
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
 
-            //try
-            //{
+            try
+            {
                 AppDomain.CurrentDomain.SetData("DataDirectory", path);
                 TestConnection();
                 Workspaces = new ObservableCollection<WorkspaceViewModel>();
@@ -48,13 +48,13 @@ namespace ISIS.ViewModels
                 Workspaces.Add(new PersoneelBeheerViewModel());
                 Workspaces.Add(new ParameterBeheerViewModel());
                 SelectedWorkspace = Workspaces.First();
-            //}
-            //catch
-            //{
-            //    var errorWindow = new ErrorDataBaseWindowService();
-            //    errorWindow.Show(new ErrorWindowViewModel());
-            //    Application.Current.MainWindow.Close();
-            //}
+            }
+            catch
+            {
+                var errorWindow = new ErrorDataBaseWindowService();
+                errorWindow.Show(new ErrorWindowViewModel());
+                Application.Current.MainWindow.Close();
+            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
