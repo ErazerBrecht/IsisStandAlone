@@ -27,6 +27,7 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedKlant = value;
+                CurrentView.SelectedKlant = value;
                 NoticeMe("SelectedKlant");
             }
         }

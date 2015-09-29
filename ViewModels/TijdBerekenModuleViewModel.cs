@@ -12,7 +12,7 @@ using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
-    class TijdBerekenModuleViewModel : BeheerViewModel, IBereken
+    class TijdBerekenModuleViewModel : BeheerViewModel, IBereken, ISelectedKlant
     {
         private Prestatie _addPresatie;
         public Prestatie AddPrestatie

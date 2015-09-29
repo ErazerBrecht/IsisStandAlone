@@ -12,7 +12,7 @@ using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
-    class StukBerekenModuleViewModel : BeheerViewModel, IBereken
+    class StukBerekenModuleViewModel : BeheerViewModel, IBereken, ISelectedKlant
     {
         private Prestatie _addPresatie;
         public Prestatie AddPrestatie
