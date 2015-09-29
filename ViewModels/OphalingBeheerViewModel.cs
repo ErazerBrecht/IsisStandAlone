@@ -12,8 +12,8 @@ namespace ISIS.ViewModels
     class OphalingBeheerViewModel : BeheerViewModel
     {
         #region AddOphaling fullproperty
-        private Ophaling _addOphaling;
-        public Ophaling AddOphaling
+        private SoortKlant _addOphaling;
+        public SoortKlant AddOphaling
         {
             get
             {
@@ -28,23 +28,23 @@ namespace ISIS.ViewModels
         #endregion
 
         #region SelectedOphaling fullproperty + propertychanged event
-        private Ophaling _selectedOphaling;
-        public Ophaling SelectedOphaling
+        private SoortKlant _selectedSoort;
+        public SoortKlant SelectedSoort
         {
             get
             {
-                return _selectedOphaling;
+                return _selectedSoort;
             }
             set
             {
-                _selectedOphaling = value;
-                NoticeMe("SelectedOphaling");
+                _selectedSoort = value;
+                NoticeMe("SelectedSoort");
                 if (value != null)
-                    _selectedOphaling.PropertyChanged += _selectedOphaling_PropertyChanged;
+                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
             }
         }
 
-        private void _selectedOphaling_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             //ADD Datavalidation
             //SelectedOphaling.Check();
@@ -66,7 +66,8 @@ namespace ISIS.ViewModels
         public OphalingBeheerViewModel()
         {
             LoadData();
-            AddOphaling = new Ophaling();
+            AddOphaling = new SoortKlant();
+            AddOphaling.Type = "Ophaling";
         }
 
         public void LoadData()
@@ -76,15 +77,15 @@ namespace ISIS.ViewModels
 
         public override void Delete()
         {
-            ctx.Ophalingen.Remove(SelectedOphaling);
+            ctx.SoortKlant.Remove(SelectedSoort);
             ctx.SaveChanges();
         }
 
         public override void Refresh()
         {
             ctx = new ISIS_DataEntities();
-            ctx.Ophalingen.Load();
-            ViewSource.Source = ctx.Ophalingen.Local;
+            ctx.SoortKlant.Load();
+            ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "Ophaling");
         }
 
         public override void Add()
@@ -94,9 +95,10 @@ namespace ISIS.ViewModels
 
         public override void SaveChanges()
         {
-            ctx.Ophalingen.Add(AddOphaling);
+            ctx.SoortKlant.Add(AddOphaling);
             ctx.SaveChanges();
-            AddOphaling = new Ophaling();
+            AddOphaling = new SoortKlant();
+            AddOphaling.Type = "Ophaling";
         }
     }
 }
