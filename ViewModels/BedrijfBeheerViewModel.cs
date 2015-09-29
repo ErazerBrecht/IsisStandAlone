@@ -12,8 +12,8 @@ namespace ISIS.ViewModels
     class BedrijfBeheerViewModel : BeheerViewModel
     {
         #region AddBedrijf fullproperty
-        private Bedrijf _addBedrijf;
-        public Bedrijf AddBedrijf
+        private SoortKlant _addBedrijf;
+        public SoortKlant AddBedrijf
         {
             get
             {
@@ -28,23 +28,23 @@ namespace ISIS.ViewModels
         #endregion
 
         #region SelectedBedrijf fullproperty + propertychanged event
-        private Bedrijf _selectedBedrijf;
-        public Bedrijf SelectedBedrijf
+        private SoortKlant _selectedSoort;
+        public SoortKlant SelectedSoort
         {
             get
             {
-                return _selectedBedrijf;
+                return _selectedSoort;
             }
             set
             {
-                _selectedBedrijf = value;
-                NoticeMe("SelectedBedrijf");
+                _selectedSoort = value;
+                NoticeMe("SelectedSoort");
                 if (value != null)
-                    _selectedBedrijf.PropertyChanged += _selectedBedrijf_PropertyChanged;
+                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
             }
         }
 
-        private void _selectedBedrijf_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             //ADD Datavalidation
             //SelectedBedrijf.Check();
@@ -66,7 +66,8 @@ namespace ISIS.ViewModels
         public BedrijfBeheerViewModel()
         {
             LoadData();
-            AddBedrijf = new Bedrijf();
+            AddBedrijf = new SoortKlant();
+            AddBedrijf.Type = "Bedrijf";
         }
 
         public void LoadData()
@@ -76,15 +77,15 @@ namespace ISIS.ViewModels
 
         public override void Delete()
         {
-            ctx.Bedrijven.Remove(SelectedBedrijf);
+            ctx.SoortKlant.Remove(SelectedSoort);
             ctx.SaveChanges();
         }
 
         public override void Refresh()
         {
             ctx = new ISIS_DataEntities();
-            ctx.Bedrijven.Load();
-            ViewSource.Source = ctx.Bedrijven.Local;
+            ctx.SoortKlant.Load();
+            ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "Bedrijf");
         }
 
         public override void Add()
@@ -94,9 +95,10 @@ namespace ISIS.ViewModels
 
         public override void SaveChanges()
         {
-            ctx.Bedrijven.Add(AddBedrijf);
+            ctx.SoortKlant.Add(AddBedrijf);
             ctx.SaveChanges();
-            AddBedrijf = new Bedrijf();
+            AddBedrijf = new SoortKlant();
+            AddBedrijf.Type = "Bedrijf";
         }
     }
 }

@@ -12,8 +12,8 @@ namespace ISIS.ViewModels
     class WinkelBeheerViewModel : BeheerViewModel
     {
         #region AddWinkel fullproperty
-        private Winkel _addWinkel;
-        public Winkel AddWinkel
+        private SoortKlant _addWinkel;
+        public SoortKlant AddWinkel
         {
             get
             {
@@ -28,22 +28,22 @@ namespace ISIS.ViewModels
         #endregion
 
         #region SelectedWinkel fullproperty + propertychanged event
-        private Winkel _selectedWinkel;
-        public Winkel SelectedWinkel {
+        private SoortKlant _selectedSoort;
+        public SoortKlant SelectedSoort {
             get
             {
-                return _selectedWinkel;
+                return _selectedSoort;
             }
             set
             {
-                _selectedWinkel = value;
-                NoticeMe("SelectedWinkel");
+                _selectedSoort = value;
+                NoticeMe("SelectedSoort");
                 if (value != null)
-                    _selectedWinkel.PropertyChanged += _selectedWinkel_PropertyChanged;
+                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
             }
         }
 
-        private void _selectedWinkel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             //ADD Datavalidation
             //SelectedWinkel.Check();
@@ -64,7 +64,8 @@ namespace ISIS.ViewModels
         public WinkelBeheerViewModel()
         {
             LoadData();
-            AddWinkel = new Winkel();
+            AddWinkel = new SoortKlant();
+            AddWinkel.Type = "Winkel";
         }
 
         public void LoadData()
@@ -74,15 +75,15 @@ namespace ISIS.ViewModels
 
         public override void Delete()
         {
-            ctx.Winkels.Remove(SelectedWinkel);
+            ctx.SoortKlant.Remove(SelectedSoort);
             ctx.SaveChanges();
         }
 
         public override void Refresh()
         {
             ctx = new ISIS_DataEntities();
-            ctx.Winkels.Load();
-            ViewSource.Source = ctx.Winkels.Local;
+            ctx.SoortKlant.Load();
+            ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "Winkel");
         }
 
         public override void Add()
@@ -92,9 +93,10 @@ namespace ISIS.ViewModels
 
         public override void SaveChanges()
         {
-            ctx.Winkels.Add(AddWinkel);
+            ctx.SoortKlant.Add(AddWinkel);
             ctx.SaveChanges();
-            AddWinkel = new Winkel();
+            AddWinkel = new SoortKlant();
+            AddWinkel.Type = "Winkel";
         }
     }
 }

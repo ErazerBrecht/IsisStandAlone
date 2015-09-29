@@ -10,31 +10,7 @@ using System.Data.Entity;
 
 namespace ISIS
 {
-    public partial class Bedrijf
-    {
-        public override string ToString()
-        {
-            return this.Naam;
-        }
-    }
-
-    public partial class Winkel
-    {
-        public override string ToString()
-        {
-            return this.Naam;
-        }
-    }
-
-    public partial class Ophaling
-    {
-        public override string ToString()
-        {
-            return this.Naam;
-        }
-    }
-
-    public partial class School
+    public partial class SoortKlant
     {
         public override string ToString()
         {

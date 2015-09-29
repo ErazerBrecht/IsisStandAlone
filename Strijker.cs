@@ -25,6 +25,8 @@ namespace ISIS
         public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
     private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; OnPropertyChanged("Naam");} }
+    private string _straat;
+        public string Straat { get { return _straat; } set { _straat = value; OnPropertyChanged("Straat");} }
     private Nullable<int> _nummer;
         public Nullable<int> Nummer { get { return _nummer; } set { _nummer = value; OnPropertyChanged("Nummer");} }
     private Nullable<int> _postcode;
@@ -35,18 +37,16 @@ namespace ISIS
         public Nullable<int> Tel { get { return _tel; } set { _tel = value; OnPropertyChanged("Tel");} }
     private string _rnsz;
         public string RNSZ { get { return _rnsz; } set { _rnsz = value; OnPropertyChanged("RNSZ");} }
+    private string _email;
+        public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private string _login;
         public string Login { get { return _login; } set { _login = value; OnPropertyChanged("Login");} }
     private string _bankrekening;
         public string Bankrekening { get { return _bankrekening; } set { _bankrekening = value; OnPropertyChanged("Bankrekening");} }
     private Nullable<System.DateTime> _indienstvanaf;
         public Nullable<System.DateTime> IndienstVanaf { get { return _indienstvanaf; } set { _indienstvanaf = value; OnPropertyChanged("IndienstVanaf");} }
-    private string _email;
-        public string Email { get { return _email; } set { _email = value; OnPropertyChanged("Email");} }
     private Nullable<int> _urentewerkstelling;
         public Nullable<int> UrenTewerkstelling { get { return _urentewerkstelling; } set { _urentewerkstelling = value; OnPropertyChanged("UrenTewerkstelling");} }
-    private string _straat;
-        public string Straat { get { return _straat; } set { _straat = value; OnPropertyChanged("Straat");} }
     private string _voornaam;
         public string Voornaam { get { return _voornaam; } set { _voornaam = value; OnPropertyChanged("Voornaam");} }
     }

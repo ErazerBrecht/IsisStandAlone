@@ -57,6 +57,8 @@ namespace ISIS
         public string Betalingswijze { get { return _betalingswijze; } set { _betalingswijze = value; OnPropertyChanged("Betalingswijze");} }
     private string _soortklant;
         public string SoortKlant { get { return _soortklant; } set { _soortklant = value; OnPropertyChanged("SoortKlant");} }
+    private string _soortklantplaats;
+        public string SoortKlantPlaats { get { return _soortklantplaats; } set { _soortklantplaats = value; OnPropertyChanged("SoortKlantPlaats");} }
     private Nullable<int> _actief;
         public Nullable<int> Actief { get { return _actief; } set { _actief = value; OnPropertyChanged("Actief");} }
     private Nullable<int> _strijkbox;
@@ -71,9 +73,8 @@ namespace ISIS
         public Nullable<System.DateTime> LaatsteActiviteit { get { return _laatsteactiviteit; } set { _laatsteactiviteit = value; OnPropertyChanged("LaatsteActiviteit");} }
     private byte _tegoed;
         public byte Tegoed { get { return _tegoed; } set { _tegoed = value; OnPropertyChanged("Tegoed");} }
-    private string _soortklantplaats;
-        public string SoortKlantPlaats { get { return _soortklantplaats; } set { _soortklantplaats = value; OnPropertyChanged("SoortKlantPlaats");} }
     
+        public virtual SoortKlant SoortKlant1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestatie> Prestaties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
