@@ -141,7 +141,7 @@ namespace ISIS.ViewModels
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(SelectedKlant.SoortKlant))
+                if (String.IsNullOrWhiteSpace(SelectedKlant.SoortKlantType))
                     return false;
                 return true;
             }
@@ -167,7 +167,7 @@ namespace ISIS.ViewModels
             get
             {
                 ctx.SoortKlant.Load();
-                var temp = ctx.SoortKlant.Where(s => s.Type == SelectedKlant.SoortKlant).ToList();       //First load the correct one before using the To String method (next statement), this will crash when you don't get the data (ToList)
+                var temp = ctx.SoortKlant.Where(s => s.Type == SelectedKlant.SoortKlantType).ToList();       //First load the correct one before using the To String method (next statement), this will crash when you don't get the data (ToList)
                 return temp.Select(s => s.ToString()).ToList();                                          //This is the reason why I can't do it in one step!
             }
         }

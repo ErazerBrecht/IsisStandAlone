@@ -168,7 +168,7 @@ namespace ISIS
 
                 case "SoortKlant":
                     {
-                        if (String.IsNullOrWhiteSpace(SoortKlant))
+                        if (String.IsNullOrWhiteSpace(SoortKlantType))
                             result = "Soort klant moet verplicht gekozen worden!";
                         break;
                     }

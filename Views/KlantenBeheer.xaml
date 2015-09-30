@@ -144,7 +144,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Soort klant:  " Height="28" VerticalAlignment="Top"></TextBlock>
                         <UniformGrid Grid.Column="1" Rows="1">
-                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}" />
+                            <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ItemsSource="{Binding SoortKlantItems}" />
                             <ComboBox SelectedItem="{Binding SelectedKlant.SoortKlantPlaats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Margin="15,0,0,0" IsEnabled="{Binding IsComboBoxSoortKlantPlaatsEnabled}" ItemsSource="{Binding SoortKlantPlaatsItems}"/>
                         </UniformGrid>
 
@@ -205,7 +205,7 @@
                 <DataGridTextColumn x:Name="soortKlantColumn" Header="Soort Klant" Width="SizeToCells">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat=" {0} {1}">
-                            <Binding Path="SoortKlant" />
+                            <Binding Path="SoortKlantType" />
                             <Binding Path="SoortKlantPlaats" />
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
