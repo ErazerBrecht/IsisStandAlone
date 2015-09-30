@@ -22,7 +22,7 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="AndereNaam" Type="varchar" MaxLength="50" />
           <Property Name="Betalingswijze" Type="varchar" MaxLength="12" />
-          <Property Name="SoortKlant" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoortKlantType" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SoortKlantPlaats" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Actief" Type="int" />
           <Property Name="Strijkbox" Type="int" />
@@ -99,7 +99,7 @@
               <PropertyRef Name="Naam" />
             </Principal>
             <Dependent Role="Klanten">
-              <PropertyRef Name="SoortKlant" />
+              <PropertyRef Name="SoortKlantType" />
               <PropertyRef Name="SoortKlantPlaats" />
             </Dependent>
           </ReferentialConstraint>
@@ -169,7 +169,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AndereNaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Betalingswijze" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="SoortKlant" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoortKlantType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SoortKlantPlaats" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Actief" Type="Int32" />
           <Property Name="Strijkbox" Type="Int32" />
@@ -178,7 +178,7 @@
           <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
           <Property Name="Tegoed" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="SoortKlant1" Relationship="Self.FK__Klanten__6166761E" FromRole="Klanten" ToRole="SoortKlant" />
+          <NavigationProperty Name="SoortKlant" Relationship="Self.FK__Klanten__6166761E" FromRole="Klanten" ToRole="SoortKlant" />
           <NavigationProperty Name="Prestaties" Relationship="Self.FK__Prestatie__Klant__607251E5" FromRole="Klanten" ToRole="Prestaties" />
           <NavigationProperty Name="StukPrestaties" Relationship="Self.FK__StukPrest__Klant__5F7E2DAC" FromRole="Klanten" ToRole="StukPrestaties" />
         </EntityType>
@@ -252,7 +252,7 @@
               <PropertyRef Name="Naam" />
             </Principal>
             <Dependent Role="Klanten">
-              <PropertyRef Name="SoortKlant" />
+              <PropertyRef Name="SoortKlantType" />
               <PropertyRef Name="SoortKlantPlaats" />
             </Dependent>
           </ReferentialConstraint>
@@ -322,7 +322,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="AndereNaam" ColumnName="AndereNaam" />
                 <ScalarProperty Name="Betalingswijze" ColumnName="Betalingswijze" />
-                <ScalarProperty Name="SoortKlant" ColumnName="SoortKlant" />
+                <ScalarProperty Name="SoortKlantType" ColumnName="SoortKlantType" />
                 <ScalarProperty Name="SoortKlantPlaats" ColumnName="SoortKlantPlaats" />
                 <ScalarProperty Name="Actief" ColumnName="Actief" />
                 <ScalarProperty Name="Strijkbox" ColumnName="Strijkbox" />

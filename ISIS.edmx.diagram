@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="04355829cf384bba8a6c6864d75b2a6c" Name="Diagram1">
+      <Diagram DiagramId="3dcca8c4d6324cc895eeba807987073e" Name="Diagram1">
         <EntityTypeShape EntityType="ISIS_DataModel.Klant" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ISIS_DataModel.Prestatie" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ISIS_DataModel.SoortKlant" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
