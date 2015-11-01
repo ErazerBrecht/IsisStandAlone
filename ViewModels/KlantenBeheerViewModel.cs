@@ -38,7 +38,7 @@ namespace ISIS.ViewModels
 
         private void _selectedKlant_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SoortKlant")
+            if (e.PropertyName == "SoortKlantType")
             {
                 NoticeMe("SoortKlantPlaatsItems");                  //If SoortKlant is adjusted the ItemSource of the combobox for SoortKlantPlaats should also change!
                 NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
