@@ -115,12 +115,16 @@
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\RefreshParameterCommand.cs" />
     <Compile Include="Commands\BerekenCommand.cs" />
+    <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\PreviousCommand.cs" />
     <Compile Include="Commands\NextCommand.cs" />
     <Compile Include="Commands\AddKlantCommand.cs" />
     <Compile Include="Commands\OpenFileDialogCommand.cs" />
     <Compile Include="Commands\ShutDownCommand.cs" />
+    <Compile Include="Datum.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ISIS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,7 +144,8 @@
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
-    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
+    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding..cs" />
+    <Compile Include="Models\ModelExtensions\TijdPrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Models\Parameters.cs" />
@@ -159,9 +164,13 @@
     <Compile Include="StukPrestatie.cs">
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
+    <Compile Include="TijdPrestatie.cs">
+      <DependentUpon>ISIS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\IBereken.cs" />
+    <Compile Include="ViewModels\SearchBoxStrijkerViewModel.cs" />
     <Compile Include="ViewModels\StukBerekenModuleViewModel.cs" />
     <Compile Include="ViewModels\TijdBerekenModuleViewModel.cs" />
     <Compile Include="ViewModels\ErrorWindowViewModel.cs" />
@@ -170,6 +179,7 @@
     <Compile Include="ViewModels\PrestatieBeheerViewModel.cs" />
     <Compile Include="ViewModels\SchoolBeheerViewModel.cs" />
     <Compile Include="ViewModels\SearchBoxKlantViewModel.cs" />
+    <Compile Include="ViewModels\DatumBeheerViewModel.cs" />
     <Compile Include="ViewModels\WinkelBeheerViewModel.cs" />
     <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
     <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />

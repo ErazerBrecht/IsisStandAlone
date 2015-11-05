@@ -21,6 +21,17 @@ namespace ISIS
     			PropertyChangedEventHandler handler = PropertyChanged;
     			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
     	}
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Strijker()
+        {
+            this.Datum1 = new HashSet<Datum>();
+            this.Datum2 = new HashSet<Datum>();
+            this.Datum3 = new HashSet<Datum>();
+            this.Datum4 = new HashSet<Datum>();
+            this.Datum5 = new HashSet<Datum>();
+        }
+    
     private int _id;
         public int ID { get { return _id; } set { _id = value; OnPropertyChanged("ID");} }
     private string _naam;
@@ -49,5 +60,16 @@ namespace ISIS
         public Nullable<int> UrenTewerkstelling { get { return _urentewerkstelling; } set { _urentewerkstelling = value; OnPropertyChanged("UrenTewerkstelling");} }
     private string _voornaam;
         public string Voornaam { get { return _voornaam; } set { _voornaam = value; OnPropertyChanged("Voornaam");} }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Datum> Datum1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Datum> Datum2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Datum> Datum3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Datum> Datum4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Datum> Datum5 { get; set; }
     }
 }

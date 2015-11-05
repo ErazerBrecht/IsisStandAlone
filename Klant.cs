@@ -26,7 +26,6 @@ namespace ISIS
         public Klant()
         {
             this.Prestaties = new HashSet<Prestatie>();
-            this.StukPrestaties = new HashSet<StukPrestatie>();
         }
     
     private int _id;
@@ -77,7 +76,5 @@ namespace ISIS
         public virtual SoortKlant SoortKlant { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestatie> Prestaties { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StukPrestatie> StukPrestaties { get; set; }
     }
 }

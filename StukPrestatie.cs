@@ -23,13 +23,9 @@ namespace ISIS
     	}
     private int _id;
         public int Id { get { return _id; } set { _id = value; OnPropertyChanged("Id");} }
-    private System.DateTime _datum;
-        public System.DateTime Datum { get { return _datum; } set { _datum = value; OnPropertyChanged("Datum");} }
-    private int _klantennummer;
-        public int KlantenNummer { get { return _klantennummer; } set { _klantennummer = value; OnPropertyChanged("KlantenNummer");} }
     private int _totaal;
         public int Totaal { get { return _totaal; } set { _totaal = value; OnPropertyChanged("Totaal");} }
     
-        public virtual Klant Klanten { get; set; }
+        public virtual Prestatie Prestaties { get; set; }
     }
 }

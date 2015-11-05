@@ -4,7 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ISIS_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ISIS_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Datum">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Strijker1_ID" Type="int" Nullable="false" />
+          <Property Name="Strijker2_ID" Type="int" />
+          <Property Name="Strijker3_ID" Type="int" />
+          <Property Name="Strijker4_ID" Type="int" />
+          <Property Name="Strijker5_ID" Type="int" />
+        </EntityType>
         <EntityType Name="Klanten">
           <Key>
             <PropertyRef Name="ID" />
@@ -37,18 +49,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Datum" Type="datetime" Nullable="false" />
           <Property Name="KlantenNummer" Type="int" Nullable="false" />
-          <Property Name="AantalHemden" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterHemden" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalLakens1" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterLakens1" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalLakens2" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterLakens2" Type="decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalAndereStrijk" Type="tinyint" Nullable="false" />
-          <Property Name="TijdAndereStrijk" Type="tinyint" Nullable="false" />
-          <Property Name="ParameterAndereStrijk" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
           <Property Name="TotaalDienstenChecks" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="SoortKlant">
@@ -86,9 +87,23 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Datum" Type="datetime" Nullable="false" />
-          <Property Name="KlantenNummer" Type="int" Nullable="false" />
           <Property Name="Totaal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TijdPrestaties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AantalHemden" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterHemden" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="AantalLakens1" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="AantalLakens2" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="AantalAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="TijdAndereStrijk" Type="tinyint" Nullable="false" />
+          <Property Name="ParameterAndereStrijk" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="TijdAdministratie" Type="tinyint" Nullable="false" />
         </EntityType>
         <Association Name="FK__Klanten__6166761E">
           <End Role="SoortKlant" Type="Self.SoortKlant" Multiplicity="1" />
@@ -104,7 +119,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestatie__Klant__607251E5">
+        <Association Name="FK__Prestatie__Klant__22401542">
           <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
           <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="*" />
           <ReferentialConstraint>
@@ -116,39 +131,152 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__StukPrest__Klant__5F7E2DAC">
-          <End Role="Klanten" Type="Self.Klanten" Multiplicity="1" />
-          <End Role="StukPrestaties" Type="Self.StukPrestaties" Multiplicity="*" />
+        <Association Name="FK__StukPrestati__Id__2334397B">
+          <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="1" />
+          <End Role="StukPrestaties" Type="Self.StukPrestaties" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Klanten">
-              <PropertyRef Name="ID" />
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="StukPrestaties">
-              <PropertyRef Name="KlantenNummer" />
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TijdPrestati__Id__24285DB4">
+          <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="1" />
+          <End Role="TijdPrestaties" Type="Self.TijdPrestaties" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TijdPrestaties">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Id_Prestaties">
+          <End Role="Prestaties" Type="Self.Prestaties" Multiplicity="1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker1_Strijkers">
+          <End Role="Strijkers" Type="Self.Strijkers" Multiplicity="1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijkers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker1_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker2_Strijkers">
+          <End Role="Strijkers" Type="Self.Strijkers" Multiplicity="0..1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijkers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker2_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker3_Strijkers">
+          <End Role="Strijkers" Type="Self.Strijkers" Multiplicity="0..1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijkers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker3_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker4_Strijkers">
+          <End Role="Strijkers" Type="Self.Strijkers" Multiplicity="0..1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijkers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker4_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker5_Strijkers">
+          <End Role="Strijkers" Type="Self.Strijkers" Multiplicity="0..1" />
+          <End Role="Datum" Type="Self.Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijkers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker5_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ISIS_DataModelStoreContainer">
+          <EntitySet Name="Datum" EntityType="Self.Datum" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klanten" EntityType="Self.Klanten" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prestaties" EntityType="Self.Prestaties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SoortKlant" EntityType="Self.SoortKlant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Strijkers" EntityType="Self.Strijkers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StukPrestaties" EntityType="Self.StukPrestaties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TijdPrestaties" EntityType="Self.TijdPrestaties" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Klanten__6166761E" Association="Self.FK__Klanten__6166761E">
             <End Role="SoortKlant" EntitySet="SoortKlant" />
             <End Role="Klanten" EntitySet="Klanten" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prestatie__Klant__607251E5" Association="Self.FK__Prestatie__Klant__607251E5">
+          <AssociationSet Name="FK__Prestatie__Klant__22401542" Association="Self.FK__Prestatie__Klant__22401542">
             <End Role="Klanten" EntitySet="Klanten" />
             <End Role="Prestaties" EntitySet="Prestaties" />
           </AssociationSet>
-          <AssociationSet Name="FK__StukPrest__Klant__5F7E2DAC" Association="Self.FK__StukPrest__Klant__5F7E2DAC">
-            <End Role="Klanten" EntitySet="Klanten" />
+          <AssociationSet Name="FK__StukPrestati__Id__2334397B" Association="Self.FK__StukPrestati__Id__2334397B">
+            <End Role="Prestaties" EntitySet="Prestaties" />
             <End Role="StukPrestaties" EntitySet="StukPrestaties" />
           </AssociationSet>
+          <AssociationSet Name="FK__TijdPrestati__Id__24285DB4" Association="Self.FK__TijdPrestati__Id__24285DB4">
+            <End Role="Prestaties" EntitySet="Prestaties" />
+            <End Role="TijdPrestaties" EntitySet="TijdPrestaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Id_Prestaties" Association="Self.FK_Id_Prestaties">
+            <End Role="Prestaties" EntitySet="Prestaties" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker1_Strijkers" Association="Self.FK_Strijker1_Strijkers">
+            <End Role="Strijkers" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker2_Strijkers" Association="Self.FK_Strijker2_Strijkers">
+            <End Role="Strijkers" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker3_Strijkers" Association="Self.FK_Strijker3_Strijkers">
+            <End Role="Strijkers" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker4_Strijkers" Association="Self.FK_Strijker4_Strijkers">
+            <End Role="Strijkers" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker5_Strijkers" Association="Self.FK_Strijker5_Strijkers">
+            <End Role="Strijkers" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ISIS_DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -179,28 +307,7 @@
           <Property Name="LaatsteActiviteit" Type="DateTime" Precision="0" />
           <Property Name="Tegoed" Type="Byte" Nullable="false" />
           <NavigationProperty Name="SoortKlant" Relationship="Self.FK__Klanten__6166761E" FromRole="Klanten" ToRole="SoortKlant" />
-          <NavigationProperty Name="Prestaties" Relationship="Self.FK__Prestatie__Klant__607251E5" FromRole="Klanten" ToRole="Prestaties" />
-          <NavigationProperty Name="StukPrestaties" Relationship="Self.FK__StukPrest__Klant__5F7E2DAC" FromRole="Klanten" ToRole="StukPrestaties" />
-        </EntityType>
-        <EntityType Name="Prestatie">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
-          <Property Name="AantalHemden" Type="Byte" Nullable="false" />
-          <Property Name="ParameterHemden" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalLakens1" Type="Byte" Nullable="false" />
-          <Property Name="ParameterLakens1" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalLakens2" Type="Byte" Nullable="false" />
-          <Property Name="ParameterLakens2" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
-          <Property Name="AantalAndereStrijk" Type="Byte" Nullable="false" />
-          <Property Name="TijdAndereStrijk" Type="Byte" Nullable="false" />
-          <Property Name="ParameterAndereStrijk" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="TijdAdministratie" Type="Byte" Nullable="false" />
-          <Property Name="TotaalDienstenChecks" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Klanten" Relationship="Self.FK__Prestatie__Klant__607251E5" FromRole="Prestaties" ToRole="Klanten" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.FK__Prestatie__Klant__22401542" FromRole="Klant" ToRole="Prestaties" />
         </EntityType>
         <EntityType Name="SoortKlant">
           <Key>
@@ -232,17 +339,12 @@
           <Property Name="IndienstVanaf" Type="DateTime" Precision="0" />
           <Property Name="UrenTewerkstelling" Type="Int32" />
           <Property Name="Voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="StukPrestatie">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
-          <Property Name="Totaal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Klanten" Relationship="Self.FK__StukPrest__Klant__5F7E2DAC" FromRole="StukPrestaties" ToRole="Klanten" />
-        </EntityType>
+          <NavigationProperty Name="Datum1" Relationship="ISIS_DataModel.FK_Strijker1_Strijkers" FromRole="Strijker" ToRole="Datum" />
+          <NavigationProperty Name="Datum2" Relationship="ISIS_DataModel.FK_Strijker2_Strijkers" FromRole="Strijker" ToRole="Datum" />
+          <NavigationProperty Name="Datum3" Relationship="ISIS_DataModel.FK_Strijker3_Strijkers" FromRole="Strijker" ToRole="Datum" />
+          <NavigationProperty Name="Datum4" Relationship="ISIS_DataModel.FK_Strijker4_Strijkers" FromRole="Strijker" ToRole="Datum" />
+          <NavigationProperty Name="Datum5" Relationship="ISIS_DataModel.FK_Strijker5_Strijkers" FromRole="Strijker" ToRole="Datum" />
+          </EntityType>
         <Association Name="FK__Klanten__6166761E">
           <End Role="SoortKlant" Type="Self.SoortKlant" Multiplicity="1" />
           <End Role="Klanten" Type="ISIS_DataModel.Klant" Multiplicity="*" />
@@ -257,11 +359,187 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prestatie__Klant__607251E5">
-          <End Role="Klanten" Type="ISIS_DataModel.Klant" Multiplicity="1" />
-          <End Role="Prestaties" Type="ISIS_DataModel.Prestatie" Multiplicity="*" />
+        <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Klanten" EntityType="ISIS_DataModel.Klant" />
+          <EntitySet Name="SoortKlant" EntityType="Self.SoortKlant" />
+          <EntitySet Name="Strijkers" EntityType="ISIS_DataModel.Strijker" />
+          <AssociationSet Name="FK__Klanten__6166761E" Association="Self.FK__Klanten__6166761E">
+            <End Role="SoortKlant" EntitySet="SoortKlant" />
+            <End Role="Klanten" EntitySet="Klanten" />
+          </AssociationSet>
+          <EntitySet Name="Datum" EntityType="ISIS_DataModel.Datum" />
+          <AssociationSet Name="FK_Strijker1_Strijkers" Association="ISIS_DataModel.FK_Strijker1_Strijkers">
+            <End Role="Strijker" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker2_Strijkers" Association="ISIS_DataModel.FK_Strijker2_Strijkers">
+            <End Role="Strijker" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker3_Strijkers" Association="ISIS_DataModel.FK_Strijker3_Strijkers">
+            <End Role="Strijker" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker4_Strijkers" Association="ISIS_DataModel.FK_Strijker4_Strijkers">
+            <End Role="Strijker" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Strijker5_Strijkers" Association="ISIS_DataModel.FK_Strijker5_Strijkers">
+            <End Role="Strijker" EntitySet="Strijkers" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <EntitySet Name="Prestaties" EntityType="ISIS_DataModel.Prestatie" />
+          <EntitySet Name="StukPrestaties" EntityType="ISIS_DataModel.StukPrestatie" />
+          <EntitySet Name="TijdPrestaties" EntityType="ISIS_DataModel.TijdPrestatie" />
+          <AssociationSet Name="FK_Id_Prestaties" Association="ISIS_DataModel.FK_Id_Prestaties">
+            <End Role="Prestaties" EntitySet="Prestaties" />
+            <End Role="Datum" EntitySet="Datum" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prestatie__Klant__22401542" Association="ISIS_DataModel.FK__Prestatie__Klant__22401542">
+            <End Role="Klant" EntitySet="Klanten" />
+            <End Role="Prestaties" EntitySet="Prestaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StukPrestati__Id__2334397B" Association="ISIS_DataModel.FK__StukPrestati__Id__2334397B">
+            <End Role="Prestaties" EntitySet="Prestaties" />
+            <End Role="StukPrestaties" EntitySet="StukPrestaties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TijdPrestati__Id__24285DB4" Association="ISIS_DataModel.FK__TijdPrestati__Id__24285DB4">
+            <End Role="Prestaties" EntitySet="Prestaties" />
+            <End Role="TijdPrestaties" EntitySet="TijdPrestaties" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Datum">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Strijker1_ID" Type="Int32" Nullable="false" />
+          <Property Name="Strijker2_ID" Type="Int32" />
+          <Property Name="Strijker3_ID" Type="Int32" />
+          <Property Name="Strijker4_ID" Type="Int32" />
+          <Property Name="Strijker5_ID" Type="Int32" />
+          <NavigationProperty Name="Strijker1" Relationship="ISIS_DataModel.FK_Strijker1_Strijkers" FromRole="Datum" ToRole="Strijker" />
+          <NavigationProperty Name="Strijker2" Relationship="ISIS_DataModel.FK_Strijker2_Strijkers" FromRole="Datum" ToRole="Strijker" />
+          <NavigationProperty Name="Strijker3" Relationship="ISIS_DataModel.FK_Strijker3_Strijkers" FromRole="Datum" ToRole="Strijker" />
+          <NavigationProperty Name="Strijker4" Relationship="ISIS_DataModel.FK_Strijker4_Strijkers" FromRole="Datum" ToRole="Strijker" />
+          <NavigationProperty Name="Strijker5" Relationship="ISIS_DataModel.FK_Strijker5_Strijkers" FromRole="Datum" ToRole="Strijker" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.FK_Id_Prestaties" FromRole="Datum" ToRole="Prestaties" />
+        </EntityType>
+        <Association Name="FK_Strijker1_Strijkers">
+          <End Type="ISIS_DataModel.Strijker" Role="Strijker" Multiplicity="1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Klanten">
+            <Principal Role="Strijker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker1_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker2_Strijkers">
+          <End Type="ISIS_DataModel.Strijker" Role="Strijker" Multiplicity="0..1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker2_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker3_Strijkers">
+          <End Type="ISIS_DataModel.Strijker" Role="Strijker" Multiplicity="0..1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker3_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker4_Strijkers">
+          <End Type="ISIS_DataModel.Strijker" Role="Strijker" Multiplicity="0..1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker4_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Strijker5_Strijkers">
+          <End Type="ISIS_DataModel.Strijker" Role="Strijker" Multiplicity="0..1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strijker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Strijker5_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Prestatie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="KlantenNummer" Type="Int32" Nullable="false" />
+          <Property Name="TotaalDienstenChecks" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Datum" Relationship="ISIS_DataModel.FK_Id_Prestaties" FromRole="Prestaties" ToRole="Datum" />
+          <NavigationProperty Name="Klanten" Relationship="ISIS_DataModel.FK__Prestatie__Klant__22401542" FromRole="Prestaties" ToRole="Klant" />
+          <NavigationProperty Name="StukPrestaties" Relationship="ISIS_DataModel.FK__StukPrestati__Id__2334397B" FromRole="Prestaties" ToRole="StukPrestaties" />
+          <NavigationProperty Name="TijdPrestaties" Relationship="ISIS_DataModel.FK__TijdPrestati__Id__24285DB4" FromRole="Prestaties" ToRole="TijdPrestaties" />
+        </EntityType>
+        <EntityType Name="StukPrestatie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Totaal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.FK__StukPrestati__Id__2334397B" FromRole="StukPrestaties" ToRole="Prestaties" />
+        </EntityType>
+        <EntityType Name="TijdPrestatie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AantalHemden" Type="Byte" Nullable="false" />
+          <Property Name="ParameterHemden" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="AantalLakens1" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens1" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="AantalLakens2" Type="Byte" Nullable="false" />
+          <Property Name="ParameterLakens2" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="AantalAndereStrijk" Type="Byte" Nullable="false" />
+          <Property Name="TijdAndereStrijk" Type="Byte" Nullable="false" />
+          <Property Name="ParameterAndereStrijk" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="TijdAdministratie" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Prestaties" Relationship="ISIS_DataModel.FK__TijdPrestati__Id__24285DB4" FromRole="TijdPrestaties" ToRole="Prestaties" />
+        </EntityType>
+        <Association Name="FK_Id_Prestaties">
+          <End Type="ISIS_DataModel.Prestatie" Role="Prestaties" Multiplicity="1" />
+          <End Type="ISIS_DataModel.Datum" Role="Datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Datum">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prestatie__Klant__22401542">
+          <End Type="ISIS_DataModel.Klant" Role="Klant" Multiplicity="1" />
+          <End Type="ISIS_DataModel.Prestatie" Role="Prestaties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Prestaties">
@@ -269,38 +547,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__StukPrest__Klant__5F7E2DAC">
-          <End Role="Klanten" Type="ISIS_DataModel.Klant" Multiplicity="1" />
-          <End Role="StukPrestaties" Type="ISIS_DataModel.StukPrestatie" Multiplicity="*" />
+        <Association Name="FK__StukPrestati__Id__2334397B">
+          <End Type="ISIS_DataModel.Prestatie" Role="Prestaties" Multiplicity="1" />
+          <End Type="ISIS_DataModel.StukPrestatie" Role="StukPrestaties" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Klanten">
-              <PropertyRef Name="ID" />
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="StukPrestaties">
-              <PropertyRef Name="KlantenNummer" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ISIS_DataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Klanten" EntityType="ISIS_DataModel.Klant" />
-          <EntitySet Name="Prestaties" EntityType="ISIS_DataModel.Prestatie" />
-          <EntitySet Name="SoortKlant" EntityType="Self.SoortKlant" />
-          <EntitySet Name="Strijkers" EntityType="ISIS_DataModel.Strijker" />
-          <EntitySet Name="StukPrestaties" EntityType="ISIS_DataModel.StukPrestatie" />
-          <AssociationSet Name="FK__Klanten__6166761E" Association="Self.FK__Klanten__6166761E">
-            <End Role="SoortKlant" EntitySet="SoortKlant" />
-            <End Role="Klanten" EntitySet="Klanten" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prestatie__Klant__607251E5" Association="Self.FK__Prestatie__Klant__607251E5">
-            <End Role="Klanten" EntitySet="Klanten" />
-            <End Role="Prestaties" EntitySet="Prestaties" />
-          </AssociationSet>
-          <AssociationSet Name="FK__StukPrest__Klant__5F7E2DAC" Association="Self.FK__StukPrest__Klant__5F7E2DAC">
-            <End Role="Klanten" EntitySet="Klanten" />
-            <End Role="StukPrestaties" EntitySet="StukPrestaties" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK__TijdPrestati__Id__24285DB4">
+          <End Type="ISIS_DataModel.Prestatie" Role="Prestaties" Multiplicity="1" />
+          <End Type="ISIS_DataModel.TijdPrestatie" Role="TijdPrestaties" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Prestaties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TijdPrestaties">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -331,26 +602,6 @@
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="LaatsteActiviteit" ColumnName="LaatsteActiviteit" />
                 <ScalarProperty Name="Tegoed" ColumnName="Tegoed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Prestaties">
-            <EntityTypeMapping TypeName="ISIS_DataModel.Prestatie">
-              <MappingFragment StoreEntitySet="Prestaties">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
-                <ScalarProperty Name="AantalHemden" ColumnName="AantalHemden" />
-                <ScalarProperty Name="ParameterHemden" ColumnName="ParameterHemden" />
-                <ScalarProperty Name="AantalLakens1" ColumnName="AantalLakens1" />
-                <ScalarProperty Name="ParameterLakens1" ColumnName="ParameterLakens1" />
-                <ScalarProperty Name="AantalLakens2" ColumnName="AantalLakens2" />
-                <ScalarProperty Name="ParameterLakens2" ColumnName="ParameterLakens2" />
-                <ScalarProperty Name="AantalAndereStrijk" ColumnName="AantalAndereStrijk" />
-                <ScalarProperty Name="TijdAndereStrijk" ColumnName="TijdAndereStrijk" />
-                <ScalarProperty Name="ParameterAndereStrijk" ColumnName="ParameterAndereStrijk" />
-                <ScalarProperty Name="TijdAdministratie" ColumnName="TijdAdministratie" />
-                <ScalarProperty Name="TotaalDienstenChecks" ColumnName="TotaalDienstenChecks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -385,13 +636,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Datum">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Datum">
+              <MappingFragment StoreEntitySet="Datum">
+                <ScalarProperty Name="Strijker5_ID" ColumnName="Strijker5_ID" />
+                <ScalarProperty Name="Strijker4_ID" ColumnName="Strijker4_ID" />
+                <ScalarProperty Name="Strijker3_ID" ColumnName="Strijker3_ID" />
+                <ScalarProperty Name="Strijker2_ID" ColumnName="Strijker2_ID" />
+                <ScalarProperty Name="Strijker1_ID" ColumnName="Strijker1_ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prestaties">
+            <EntityTypeMapping TypeName="ISIS_DataModel.Prestatie">
+              <MappingFragment StoreEntitySet="Prestaties">
+                <ScalarProperty Name="TotaalDienstenChecks" ColumnName="TotaalDienstenChecks" />
+                <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="StukPrestaties">
             <EntityTypeMapping TypeName="ISIS_DataModel.StukPrestatie">
               <MappingFragment StoreEntitySet="StukPrestaties">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="KlantenNummer" ColumnName="KlantenNummer" />
                 <ScalarProperty Name="Totaal" ColumnName="Totaal" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TijdPrestaties">
+            <EntityTypeMapping TypeName="ISIS_DataModel.TijdPrestatie">
+              <MappingFragment StoreEntitySet="TijdPrestaties">
+                <ScalarProperty Name="TijdAdministratie" ColumnName="TijdAdministratie" />
+                <ScalarProperty Name="ParameterAndereStrijk" ColumnName="ParameterAndereStrijk" />
+                <ScalarProperty Name="TijdAndereStrijk" ColumnName="TijdAndereStrijk" />
+                <ScalarProperty Name="AantalAndereStrijk" ColumnName="AantalAndereStrijk" />
+                <ScalarProperty Name="ParameterLakens2" ColumnName="ParameterLakens2" />
+                <ScalarProperty Name="AantalLakens2" ColumnName="AantalLakens2" />
+                <ScalarProperty Name="ParameterLakens1" ColumnName="ParameterLakens1" />
+                <ScalarProperty Name="AantalLakens1" ColumnName="AantalLakens1" />
+                <ScalarProperty Name="ParameterHemden" ColumnName="ParameterHemden" />
+                <ScalarProperty Name="AantalHemden" ColumnName="AantalHemden" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

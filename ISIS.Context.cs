@@ -26,9 +26,11 @@ namespace ISIS
         }
     
         public virtual DbSet<Klant> Klanten { get; set; }
-        public virtual DbSet<Prestatie> Prestaties { get; set; }
         public virtual DbSet<SoortKlant> SoortKlant { get; set; }
         public virtual DbSet<Strijker> Strijkers { get; set; }
+        public virtual DbSet<Datum> Datum { get; set; }
+        public virtual DbSet<Prestatie> Prestaties { get; set; }
         public virtual DbSet<StukPrestatie> StukPrestaties { get; set; }
+        public virtual DbSet<TijdPrestatie> TijdPrestaties { get; set; }
     }
 }
