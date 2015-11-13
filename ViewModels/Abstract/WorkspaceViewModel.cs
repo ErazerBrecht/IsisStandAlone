@@ -20,6 +20,9 @@ namespace ISIS.ViewModels
             }
         }
 
+        //TODO: property
+        public ISIS_DataEntities ctx;
+
         #region INotifyPropertyChanged
         protected void NoticeMe(string property)
         {
