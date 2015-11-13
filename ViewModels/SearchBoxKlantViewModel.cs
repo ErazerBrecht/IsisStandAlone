@@ -38,7 +38,6 @@ namespace ISIS.ViewModels
                 }
                 else
                 {
-                    _ctx = new ISIS_DataEntities();
                     tempSearchList = _ctx.Klanten.ToList();
                 }
 
@@ -91,6 +90,7 @@ namespace ISIS.ViewModels
         public SearchBoxKlantViewModel(ISelectedKlant viewmodel)
         {
             _viewmodel = viewmodel;
+            _ctx = ((WorkspaceViewModel) viewmodel).ctx;
         }
 
 

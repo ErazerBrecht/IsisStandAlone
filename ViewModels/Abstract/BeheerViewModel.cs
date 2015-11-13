@@ -13,10 +13,10 @@ namespace ISIS.ViewModels
 {
     abstract class BeheerViewModel : WorkspaceViewModel
     {
-        protected ISIS_DataEntities ctx;
         public CollectionViewSource ViewSource { get; protected set; }
 
         #region Commands
+        public ICommand AddCommandEvent { get; protected set; }
         public ICommand SaveCommandEvent { get; protected set; }
         public ICommand DeleteCommandEvent { get; protected set; }
         public ICommand RefreshCommandEvent { get; protected set; }
@@ -27,6 +27,7 @@ namespace ISIS.ViewModels
         public BeheerViewModel()
         {
             ViewSource = new CollectionViewSource();
+            AddCommandEvent = new AddCommand(this);
             SaveCommandEvent = new SaveCommand(this);
             DeleteCommandEvent = new DeleteCommand(this);
             RefreshCommandEvent = new RefreshCommand(this);
@@ -36,6 +37,8 @@ namespace ISIS.ViewModels
         public abstract void Refresh();
         public abstract void Add();
         public abstract void SaveChanges();
+
+        //TODO: It could be this has to change to WorkspaceViewModel, don't forgot to think about this!!!
         public virtual bool Close()
         {
             if (ctx.ChangeTracker.HasChanges())

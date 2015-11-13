@@ -11,7 +11,7 @@ namespace ISIS.ViewModels
 {
     class BerekenModuleViewModel: WorkspaceViewModel, ISelectedKlant
     {
-        protected ISIS_DataEntities ctx;
+        public DatumBeheerViewModel DatumViewModel { get; set; }
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
         #region CurrentView full property
@@ -45,7 +45,7 @@ namespace ISIS.ViewModels
                 if (_selectedKlant.SoortKlant.StukTarief)
                     CurrentView = new StukBerekenModuleViewModel();
                 else
-                    CurrentView = new TijdBerekenModuleViewModel();
+                    CurrentView = new TijdBerekenModuleViewModel(ctx);
                 CurrentView.SelectedKlant = value;
                 NoticeMe("SelectedKlant");
             }
@@ -54,9 +54,10 @@ namespace ISIS.ViewModels
         public BerekenModuleViewModel()
         {
             Header = "Berekenmodule";
+            ctx = new ISIS_DataEntities();
+            DatumViewModel = new DatumBeheerViewModel();
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             CurrentView = new StukBerekenModuleViewModel();
-            ctx = new ISIS_DataEntities();
         }
     }
 }

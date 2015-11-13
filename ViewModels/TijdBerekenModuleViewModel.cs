@@ -14,6 +14,7 @@ namespace ISIS.ViewModels
 {
     class TijdBerekenModuleViewModel : BeheerViewModel, IBereken, ISelectedKlant
     {
+        #region AddPrestatie full property
         private Prestatie _addPresatie;
         public Prestatie AddPrestatie
         {
@@ -27,6 +28,9 @@ namespace ISIS.ViewModels
                 NoticeMe("AddPrestatie");
             }
         }
+        #endregion
+
+        #region CurrentParameter full property
         private Parameters _currentParameters;
         public Parameters CurrentParameters
         {
@@ -40,6 +44,7 @@ namespace ISIS.ViewModels
                 NoticeMe("CurrentParameters");
             }
         }
+        #endregion
 
         #region Selected klant full property
         private Klant _selectedKlant;
@@ -110,35 +115,34 @@ namespace ISIS.ViewModels
             _isValid = value;
         }
 
-        public TijdBerekenModuleViewModel()
+        public TijdBerekenModuleViewModel(ISIS_DataEntities context)
         {
             AddPrestatie = new Prestatie();
+            AddPrestatie.TijdPrestaties = new TijdPrestatie();
             CurrentParameters = new Parameters();
             ViewSource = new CollectionViewSource();
             BerekenCommandEvent = new BerekenCommand(this);
-            AddPrestatie.Datum = DateTime.Now;
+            //In the near future this will not work, so disabled it already
+            //Adding dates will change!
+            //AddPrestatie.Datum = DateTime.Now;
 
             ButtonBerekenContent = "Bereken";
             ButtonToevoegenContent = "Toevoegen";
             ButtonChangeContent = "Laatste prestatie aanpassen";
 
-            LoadData();
-        }
-
-        public void LoadData()
-        {
-            ctx = new ISIS_DataEntities();
+            ctx = context;
             ctx.Prestaties.Load();
-            ctx.Klanten.Load();
 
             //Load parameters from settings!
             CurrentParameters.LoadParameters();
 
-            SetIsValid(false);          //New data loaded so first have to recalculate!!
+            //Data is just loaded so first have to recalculate before we can save!!
+            SetIsValid(false);         
         }
 
         public void Bereken()
         {
+            //Check if there is a klant selected
             if (SelectedKlant == null)
             {
                 MessageBoxService messageService = new MessageBoxService();
@@ -147,20 +151,22 @@ namespace ISIS.ViewModels
             }
 
             //Add current parameter values into the prestatie!
-            AddPrestatie.AddParameters(CurrentParameters);
+            AddPrestatie.TijdPrestaties.AddParameters(CurrentParameters);
 
+            //Calculate how long every part takes
             CalculateStrijk();
 
-            if (AddPrestatie.TotaalStrijk < 20)
-                AddPrestatie.TijdAdministratie = 5;
-            else if (AddPrestatie.TotaalStrijk < 40)
-                AddPrestatie.TijdAdministratie = 10;
-            else if (AddPrestatie.TotaalStrijk < 80)
-                AddPrestatie.TijdAdministratie = 15;
+            //Calculate the "administratie" time
+            if (AddPrestatie.TijdPrestaties.TotaalStrijk < 20)
+                AddPrestatie.TijdPrestaties.TijdAdministratie = 5;
+            else if (AddPrestatie.TijdPrestaties.TotaalStrijk < 40)
+                AddPrestatie.TijdPrestaties.TijdAdministratie = 10;
+            else if (AddPrestatie.TijdPrestaties.TotaalStrijk < 80)
+                AddPrestatie.TijdPrestaties.TijdAdministratie = 15;
             else
-                AddPrestatie.TijdAdministratie = 20;
+                AddPrestatie.TijdPrestaties.TijdAdministratie = 20;
 
-            AddPrestatie.TotaalMinuten = AddPrestatie.TotaalHemden + AddPrestatie.TotaalLakens1 + AddPrestatie.TotaalLakens2 + AddPrestatie.TotaalAndereStrijk + AddPrestatie.TijdAdministratie;
+            AddPrestatie.TotaalMinuten = AddPrestatie.TijdPrestaties.TotaalHemden + AddPrestatie.TijdPrestaties.TotaalLakens1 + AddPrestatie.TijdPrestaties.TotaalLakens2 + AddPrestatie.TijdPrestaties.TotaalAndereStrijk + AddPrestatie.TijdPrestaties.TijdAdministratie;
 
             AddPrestatie.TotaalBetalen = AddPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
             AddPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddPrestatie.TotaalBetalen / 60.0));
@@ -169,16 +175,17 @@ namespace ISIS.ViewModels
             else
                 AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
 
+            //The "prestatie" is calculated you're know able to save it!
             SetIsValid(true);
         }
 
         private void CalculateStrijk()
         {
-            AddPrestatie.TotaalHemden = (int)Math.Ceiling(AddPrestatie.AantalHemden * AddPrestatie.ParameterHemden);
-            AddPrestatie.TotaalLakens1 = (int)Math.Ceiling(AddPrestatie.AantalLakens1 * AddPrestatie.ParameterLakens1);
-            AddPrestatie.TotaalLakens2 = (int)Math.Ceiling(AddPrestatie.AantalLakens2 * AddPrestatie.ParameterLakens2);
-            AddPrestatie.TotaalAndereStrijk = (int)Math.Ceiling(AddPrestatie.TijdAndereStrijk * AddPrestatie.ParameterAndereStrijk);
-            AddPrestatie.TotaalStrijk = (AddPrestatie.AantalHemden + AddPrestatie.AantalLakens1 + AddPrestatie.AantalLakens2 + AddPrestatie.AantalAndereStrijk);
+            AddPrestatie.TijdPrestaties.TotaalHemden = (int)Math.Ceiling(AddPrestatie.TijdPrestaties.AantalHemden * AddPrestatie.TijdPrestaties.ParameterHemden);
+            AddPrestatie.TijdPrestaties.TotaalLakens1 = (int)Math.Ceiling(AddPrestatie.TijdPrestaties.AantalLakens1 * AddPrestatie.TijdPrestaties.ParameterLakens1);
+            AddPrestatie.TijdPrestaties.TotaalLakens2 = (int)Math.Ceiling(AddPrestatie.TijdPrestaties.AantalLakens2 * AddPrestatie.TijdPrestaties.ParameterLakens2);
+            AddPrestatie.TijdPrestaties.TotaalAndereStrijk = (int)Math.Ceiling(AddPrestatie.TijdPrestaties.TijdAndereStrijk * AddPrestatie.TijdPrestaties.ParameterAndereStrijk);
+            AddPrestatie.TijdPrestaties.TotaalStrijk = (AddPrestatie.TijdPrestaties.AantalHemden + AddPrestatie.TijdPrestaties.AantalLakens1 + AddPrestatie.TijdPrestaties.AantalLakens2 + AddPrestatie.TijdPrestaties.AantalAndereStrijk);
         }
 
         public override void Add()
@@ -205,17 +212,24 @@ namespace ISIS.ViewModels
             if (ButtonChangeContent == "Laatste prestatie aanpassen")
             {
 
-                if (ctx.Prestaties.Count() > 0)
+                if (ctx.Prestaties.Any())
                 {
-                    var previousPrestaties = ctx.Prestaties.Where(p => p.KlantenNummer == SelectedKlant.ID);
+                    //Get all previous TijdPrestaties of the selected klant
+                    var previousPrestaties = ctx.TijdPrestaties.Where(p => p.Prestaties.KlantenNummer == SelectedKlant.ID);
 
-                    if (previousPrestaties.Count() > 0)
-                        AddPrestatie = previousPrestaties.OrderByDescending(p => p.Id).First();
+                    if (previousPrestaties.Any())
+                    {
+                        //Get the id of the latest tijdprestatie
+                        var tempId = previousPrestaties.OrderByDescending(p => p.Id).First().Id;
+                        //Get the prestatie with the same id of the latest tijdprestatie
+                        AddPrestatie = ctx.Prestaties.First(p => p.Id == tempId);
+                    }
                     else
                     {
-                            MessageBoxService messageBoxService = new MessageBoxService();
-                            messageBoxService.ShowMessageBox("Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
-                            return;
+                        MessageBoxService messageBoxService = new MessageBoxService();
+                        messageBoxService.ShowMessageBox(
+                            "Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                        return;
                     }
                 }
                 else
@@ -225,16 +239,20 @@ namespace ISIS.ViewModels
                     return;
                 }
 
-                CurrentParameters.ParameterHemden = AddPrestatie.ParameterHemden;
-                CurrentParameters.ParameterLakens1 = AddPrestatie.ParameterLakens1;
-                CurrentParameters.ParameterLakens2 = AddPrestatie.ParameterLakens2;
-                CurrentParameters.ParameterAndereStrijk = AddPrestatie.ParameterAndereStrijk;
+                //Change the current parameters to the parameters that where active at the time the parameter was made!
+                CurrentParameters.ParameterHemden = AddPrestatie.TijdPrestaties.ParameterHemden;
+                CurrentParameters.ParameterLakens1 = AddPrestatie.TijdPrestaties.ParameterLakens1;
+                CurrentParameters.ParameterLakens2 = AddPrestatie.TijdPrestaties.ParameterLakens2;
+                CurrentParameters.ParameterAndereStrijk = AddPrestatie.TijdPrestaties.ParameterAndereStrijk;
 
+                //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
                 AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
 
                 CalculateStrijk();
 
-                AddPrestatie.TotaalMinuten = AddPrestatie.TotaalHemden + AddPrestatie.TotaalLakens1 + AddPrestatie.TotaalLakens2 + AddPrestatie.TotaalAndereStrijk + AddPrestatie.TijdAdministratie;
+                AddPrestatie.TotaalMinuten = AddPrestatie.TijdPrestaties.TotaalHemden + AddPrestatie.TijdPrestaties.TotaalLakens1 + AddPrestatie.TijdPrestaties.TotaalLakens2 + AddPrestatie.TijdPrestaties.TotaalAndereStrijk + AddPrestatie.TijdPrestaties.TijdAdministratie;
+
+                //Recalculate the previous Tegoed of the klant
                 if (AddPrestatie.TotaalDienstenChecks > 0)
                 {
                     AddPrestatie.TotaalBetalen = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.NieuwTegoed;
@@ -261,12 +279,15 @@ namespace ISIS.ViewModels
 
                 CurrentParameters = new Parameters();
                 AddPrestatie = new Prestatie();
-                AddPrestatie.AddParameters(CurrentParameters);
+                AddPrestatie.TijdPrestaties = new TijdPrestatie();
+                AddPrestatie.TijdPrestaties.AddParameters(CurrentParameters);
             }
         }
 
         public override void SaveChanges()
         {
+            //The "prestatie" will be saved, the next "prestatie" has to be calculated first!
+            //Setting this one false, disbales the save button
             SetIsValid(false);
 
             //The second time you want to add a "prestatie" EF is following the first object
@@ -279,35 +300,37 @@ namespace ISIS.ViewModels
                 ctx.Entry(attachedPrestatie).State = EntityState.Detached;
 
 
+            //Adding new prestatie
             if (ButtonToevoegenContent == "Toevoegen")
             {
                 int tempId = 1;
 
-            //Search for first valid ID
-            while (ctx.Prestaties.Any(p => p.Id == tempId))
-            {
-                tempId++;
+                //Search for first valid ID
+                while (ctx.Prestaties.Any(p => p.Id == tempId))
+                {
+                    tempId++;
+                }
+
+                AddPrestatie.Id = tempId;
+                AddPrestatie.KlantenNummer = SelectedKlant.ID;
+
+                SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
+                //SelectedKlant.LaatsteActiviteit = AddPrestatie.Datum;
+
+
+                //We query local context first to see if it's there.
+                var klant = ctx.Klanten.Find(SelectedKlant.ID);
+
+                //We have it in the entity, need to update the "klant".
+                if (klant != null)
+                {
+                    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);        //Update "LaatsteActiviteit" in the correct "klant"!
+                }
+
+                ctx.Prestaties.Add(AddPrestatie);
+                ctx.SaveChanges();
             }
-
-            AddPrestatie.Id = tempId;
-            AddPrestatie.KlantenNummer = SelectedKlant.ID;
-
-            SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
-            SelectedKlant.LaatsteActiviteit = AddPrestatie.Datum;
-
-
-            //We query local context first to see if it's there.
-            var klant = ctx.Klanten.Find(SelectedKlant.ID);
-
-            //We have it in the entity, need to update.
-            if (klant != null)
-            {
-                ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
-            }
-
-            ctx.Prestaties.Add(AddPrestatie);
-            ctx.SaveChanges();
-            }
+            //Updating last prestatie
             else
             {
                 SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
