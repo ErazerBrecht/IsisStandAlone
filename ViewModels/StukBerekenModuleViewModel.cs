@@ -14,6 +14,7 @@ namespace ISIS.ViewModels
 {
     class StukBerekenModuleViewModel : BeheerViewModel, IBereken, ISelectedKlant
     {
+        #region AddPrestatie full property
         private Prestatie _addPresatie;
         public Prestatie AddPrestatie
         {
@@ -27,6 +28,7 @@ namespace ISIS.ViewModels
                 NoticeMe("AddPrestatie");
             }
         }
+        #endregion
 
         #region SelectedKlant full property
         private Klant _selectedKlant;
@@ -98,27 +100,25 @@ namespace ISIS.ViewModels
             _isValid = value;
         }
 
-        public StukBerekenModuleViewModel()
+        public StukBerekenModuleViewModel(ISIS_DataEntities context)
         {
             AddPrestatie = new Prestatie();
+            AddPrestatie.StukPrestaties = new StukPrestatie();
             ViewSource = new CollectionViewSource();
             BerekenCommandEvent = new BerekenCommand(this);
-            AddPrestatie.Datum = DateTime.Now;
+            //In the near future this will not work, so disabled it already
+            //Adding dates will change!
+            //AddPrestatie.Datum = DateTime.Now;
 
             ButtonBerekenContent = "Bereken";
             ButtonToevoegenContent = "Toevoegen";
             ButtonChangeContent = "Laatste prestatie aanpassen";
 
-            LoadData();
-        }
-
-        public void LoadData()
-        {
-            ctx = new ISIS_DataEntities();
+            ctx = context;
             ctx.Prestaties.Load();
-            ctx.Klanten.Load();
 
-            SetIsValid(false);          //New data loaded so first have to recalculate!!
+            //Data is just loaded so first have to recalculate before we can save!!
+            SetIsValid(false);         
         }
 
         public void Bereken()
@@ -130,6 +130,10 @@ namespace ISIS.ViewModels
                 return;
             }
 
+            //Totaal needs to be saved in StukPrestaties otherwise it won't be placed in the DB
+            AddPrestatie.TotaalMinuten = AddPrestatie.StukPrestaties.Totaal;
+
+            //Calculate...
             AddPrestatie.TotaalBetalen = AddPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
             AddPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddPrestatie.TotaalBetalen / 60.0));
             if (AddPrestatie.TotaalDienstenChecks == 0)
@@ -164,17 +168,23 @@ namespace ISIS.ViewModels
             if (ButtonChangeContent == "Laatste prestatie aanpassen")
             {
 
-                if (ctx.Prestaties.Count() > 0)
+                if (ctx.StukPrestaties.Any())
                 {
-                    var previousPrestaties = ctx.Prestaties.Where(p => p.KlantenNummer == SelectedKlant.ID);
+                    var previousPrestaties = ctx.StukPrestaties.Where(p => p.Prestaties.KlantenNummer == SelectedKlant.ID);
 
-                    if (previousPrestaties.Count() > 0)
-                        AddPrestatie = previousPrestaties.OrderByDescending(p => p.Id).First();
+                    if (previousPrestaties.Any())
+                    {
+                        //Get the id of the latest stukprestatie
+                        var tempId = previousPrestaties.OrderByDescending(p => p.Id).First().Id;
+                        //Get the prestatie with the same id of the latest stukprestatie
+                        AddPrestatie = ctx.Prestaties.First(p => p.Id == tempId);
+                    }
                     else
                     {
-                            MessageBoxService messageBoxService = new MessageBoxService();
-                            messageBoxService.ShowMessageBox("Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
-                            return;
+                        MessageBoxService messageBoxService = new MessageBoxService();
+                        messageBoxService.ShowMessageBox(
+                            "Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                        return;
                     }
                 }
                 else
@@ -184,15 +194,18 @@ namespace ISIS.ViewModels
                     return;
                 }
 
+                //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
+                AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
+
                 if (AddPrestatie.TotaalDienstenChecks > 0)
                 {
                     AddPrestatie.TotaalBetalen = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.NieuwTegoed;
-                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten - AddPrestatie.TotaalBetalen);
+                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.StukPrestaties.Totaal - AddPrestatie.TotaalBetalen);
                 }
                 else
                 {
                     AddPrestatie.TotaalBetalen = 0;
-                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten + AddPrestatie.NieuwTegoed);
+                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.StukPrestaties.Totaal + AddPrestatie.NieuwTegoed);
                 }
 
                 ButtonBerekenContent = "Herbereken";
@@ -209,11 +222,14 @@ namespace ISIS.ViewModels
                 ctx.Entry(SelectedKlant).Reload();
 
                 AddPrestatie = new Prestatie();
+                AddPrestatie.StukPrestaties = new StukPrestatie();
             }
         }
 
         public override void SaveChanges()
         {
+            //The "prestatie" will be saved, the next "prestatie" has to be calculated first!
+            //Setting this one false, disbales the save button
             SetIsValid(false);
 
             //The second time you want to add a "prestatie" EF is following the first object
@@ -226,34 +242,38 @@ namespace ISIS.ViewModels
                 ctx.Entry(attachedPrestatie).State = EntityState.Detached;
 
 
+            //Adding new prestatie
             if (ButtonToevoegenContent == "Toevoegen")
             {
                 int tempId = 1;
 
-            //Search for first valid ID
-            while (ctx.Prestaties.Any(p => p.Id == tempId))
-            {
-                tempId++;
-            }
+                //Search for first valid ID
+                while (ctx.Prestaties.Any(p => p.Id == tempId))
+                {
+                    tempId++;
+                }
 
-            AddPrestatie.Id = tempId;
-            AddPrestatie.KlantenNummer = SelectedKlant.ID;
+                AddPrestatie.Id = tempId;
+                AddPrestatie.KlantenNummer = SelectedKlant.ID;
 
-            SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
-            SelectedKlant.LaatsteActiviteit = AddPrestatie.Datum;
+                SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
+                
+                //TODO: Reanable this!!!!
+                //TODO: After the new data adding functionality is done
+                //SelectedKlant.LaatsteActiviteit = AddPrestatie.Datum;
 
 
-            //We query local context first to see if it's there.
-            var klant = ctx.Klanten.Find(SelectedKlant.ID);
+                //We query local context first to see if it's there.
+                var klant = ctx.Klanten.Find(SelectedKlant.ID);
 
-            //We have it in the entity, need to update.
-            if (klant != null)
-            {
-                ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
-            }
+                //We have it in the entity, need to update.
+                if (klant != null)
+                {
+                    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
+                }
 
-            ctx.Prestaties.Add(AddPrestatie);
-            ctx.SaveChanges();
+                ctx.Prestaties.Add(AddPrestatie);
+                ctx.SaveChanges();
             }
             else
             {

@@ -43,7 +43,7 @@ namespace ISIS.ViewModels
             {
                 _selectedKlant = value;
                 if (_selectedKlant.SoortKlant.StukTarief)
-                    CurrentView = new StukBerekenModuleViewModel();
+                    CurrentView = new StukBerekenModuleViewModel(ctx);
                 else
                     CurrentView = new TijdBerekenModuleViewModel(ctx);
                 CurrentView.SelectedKlant = value;
@@ -57,7 +57,7 @@ namespace ISIS.ViewModels
             ctx = new ISIS_DataEntities();
             DatumViewModel = new DatumBeheerViewModel();
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
-            CurrentView = new StukBerekenModuleViewModel();
+            //CurrentView = new StukBerekenModuleViewModel(ctx);
         }
     }
 }
