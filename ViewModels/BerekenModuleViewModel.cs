@@ -57,7 +57,7 @@ namespace ISIS.ViewModels
             ctx = new ISIS_DataEntities();
             DatumViewModel = new DatumBeheerViewModel();
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
-            //CurrentView = new StukBerekenModuleViewModel(ctx);
+            CurrentView = new StukBerekenModuleViewModel(ctx);
         }
     }
 }
