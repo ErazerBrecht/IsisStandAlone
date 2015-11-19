@@ -59,7 +59,7 @@
                 </Grid.ColumnDefinitions>
                 <GroupBox DataContext="{Binding WinkelData}" Header="Winkels">
                     <StackPanel>
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedWinkel}" CanUserAddRows="False">
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSoort}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
                                 <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
@@ -97,10 +97,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding AddWinkel.Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding AddWinkel.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding AddWinkel.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding AddWinkel.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <TextBox Text="{Binding AddSoort.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSoort.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSoort.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSoort.StukTarief}" HorizontalAlignment="Center"></CheckBox>
                             <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
@@ -110,7 +110,7 @@
 
                 <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
                     <StackPanel>
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSchool}" CanUserAddRows="False">
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSoort}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
                                 <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
@@ -148,10 +148,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding AddSchool.Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding AddSchool.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding AddSchool.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSchool.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <TextBox Text="{Binding AddSoort.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSoort.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSoort.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSoort.StukTarief}" HorizontalAlignment="Center"></CheckBox>
                             <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
@@ -163,7 +163,7 @@
 
                 <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}" Header="Bedrijven">
                     <StackPanel>
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedBedrijf}" CanUserAddRows="False">
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSoort}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
                                 <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
@@ -201,10 +201,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding AddBedrijf.Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding AddBedrijf.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding AddBedrijf.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding AddBedrijf.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <TextBox Text="{Binding AddSoort.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSoort.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSoort.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSoort.StukTarief}" HorizontalAlignment="Center"></CheckBox>
                             <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
@@ -213,7 +213,7 @@
 
                 <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}" Header="Ophalingen">
                     <StackPanel>
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedOphaling}" CanUserAddRows="False">
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSoort}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
                                 <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
@@ -251,10 +251,10 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBox Text="{Binding AddOphaling.Naam}" Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="1" Text="{Binding AddOphaling.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
-                            <TextBox Grid.Column="2" Text="{Binding AddOphaling.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
-                            <CheckBox Grid.Column="3" IsChecked="{Binding AddOphaling.StukTarief}" HorizontalAlignment="Center"></CheckBox>
+                            <TextBox Text="{Binding AddSoort.Naam}" Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="1" Text="{Binding AddSoort.SnelheidsCoëfficiënt}"  Margin="0,0,5,0"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding AddSoort.Euro, StringFormat=N2}"  Margin="0,0,5,0"></TextBox>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddSoort.StukTarief}" HorizontalAlignment="Center"></CheckBox>
                             <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 

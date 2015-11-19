@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\SoortKlantViewModel.cs" />
     <Compile Include="ViewModels\IBereken.cs" />
     <Compile Include="ViewModels\SearchBoxStrijkerViewModel.cs" />
     <Compile Include="ViewModels\StukBerekenModuleViewModel.cs" />

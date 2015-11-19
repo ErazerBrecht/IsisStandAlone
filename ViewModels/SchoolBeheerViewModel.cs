@@ -9,96 +9,23 @@ using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class SchoolBeheerViewModel : BeheerViewModel
+    class SchoolBeheerViewModel : SoortKlantBeheerViewModel
     {
-        #region AddSchool fullproperty
-        private SoortKlant _addSchool;
-        public SoortKlant AddSchool
-        {
-            get
-            {
-                return _addSchool;
-            }
-            private set
-            {
-                _addSchool = value;
-                NoticeMe("AddSchool");
-            }
-        }
-        #endregion
-
-        #region SelectedSchool fullproperty + propertychanged event
-        private SoortKlant _selectedSoort;
-        public SoortKlant SelectedSoort
-        {
-            get
-            {
-                return _selectedSoort;
-            }
-            set
-            {
-                _selectedSoort = value;
-                NoticeMe("SelectedSoort");
-                if (value != null)
-                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
-            }
-        }
-
-        private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            //ADD Datavalidation
-            //SelectedSchool.Check();
-
-            ctx.SaveChanges();
-        }
-
-        #endregion
-
-        public override bool IsValid
-        {
-            get
-            {
-                //TODO: Add Datavalidation
-                return true;
-            }
-        }
-
         public SchoolBeheerViewModel()
         {
-            LoadData();
-            AddSchool = new SoortKlant();
-            AddSchool.Type = "School";
-        }
-
-        public void LoadData()
-        {
-            Refresh();
-        }
-
-        public override void Delete()
-        {
-            ctx.SoortKlant.Remove(SelectedSoort);
-            ctx.SaveChanges();
+            AddSoort.Type = "School";
         }
 
         public override void Refresh()
         {
-            ctx = new ISIS_DataEntities();
-            ctx.SoortKlant.Load();
+            base.Refresh();
             ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "School");
-        }
-
-        public override void Add()
-        {
-            throw new NotImplementedException();
         }
 
         public override void SaveChanges()
         {
-            ctx.SoortKlant.Add(AddSchool);
-            ctx.SaveChanges();
-            AddSchool = new SoortKlant();
-            AddSchool.Type = "School";
+            base.SaveChanges();
+            AddSoort.Type = "School";
         }
     }
 }
