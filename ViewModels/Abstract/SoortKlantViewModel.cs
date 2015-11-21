@@ -78,6 +78,7 @@ namespace ISIS.ViewModels
         {
             ctx.SoortKlant.Remove(SelectedSoort);
             ctx.SaveChanges();
+            Refresh();
         }
 
         public override void Refresh()
