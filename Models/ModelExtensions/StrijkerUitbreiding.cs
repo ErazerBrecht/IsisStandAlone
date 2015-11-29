@@ -167,5 +167,10 @@ namespace ISIS
             }
         }
         #endregion
+
+        public override string ToString()
+        {
+            return ID + "  " + Naam + "  " + Voornaam; ;
+        }
     }
 }
