@@ -57,7 +57,7 @@ namespace ISIS.ViewModels
         {
             Header = "Berekenmodule";
             ctx = new ISIS_DataEntities();
-            DatumViewModel = new DatumBeheerViewModel();
+            DatumViewModel = new DatumBeheerViewModel(ctx);
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             CurrentView = new StukBerekenModuleViewModel(ctx);
             BerekenCommandEvent = new BerekenCommand(this);

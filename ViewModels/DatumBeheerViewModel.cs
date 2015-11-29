@@ -28,6 +28,8 @@ namespace ISIS.ViewModels
         }
         #endregion
 
+        public ISIS_DataEntities ctx { get; set; }
+
         public SearchBoxStrijkerViewModel[] SearchBoxViewModel { get; set; }
         public ObservableCollection<Datum> CurrentDates { get; set; }
 
@@ -40,8 +42,9 @@ namespace ISIS.ViewModels
             }
         }
 
-        public DatumBeheerViewModel()
+        public DatumBeheerViewModel(ISIS_DataEntities context)
         {
+            ctx = context;
             CurrentDates = new ObservableCollection<Datum>();
 
             AddDatum = new Datum { Date = DateTime.Now };
@@ -94,7 +97,17 @@ namespace ISIS.ViewModels
 
         public override void Add()
         {
+            ctx.Datum.Add(AddDatum);
+
+            //Load the correct Strijkers into "AddDatum"
+            ctx.Entry(AddDatum).Reference(d => d.Strijker1).Load();
+            ctx.Entry(AddDatum).Reference(d => d.Strijker2).Load();
+            ctx.Entry(AddDatum).Reference(d => d.Strijker3).Load();
+            ctx.Entry(AddDatum).Reference(d => d.Strijker4).Load();
+            ctx.Entry(AddDatum).Reference(d => d.Strijker5).Load();
+
             CurrentDates.Add(AddDatum);
+
             AddDatum = new Datum { Date = DateTime.Now };
         }
 
