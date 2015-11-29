@@ -160,7 +160,6 @@ namespace ISIS.ViewModels
                 }
 
                 ctx.Prestaties.Add(AddPrestatie);
-                ctx.SaveChanges();
             }
             else
             {
@@ -182,7 +181,6 @@ namespace ISIS.ViewModels
                     ctx.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
                 }
 
-                ctx.SaveChanges();
                 ButtonBerekenContent = "Bereken";
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";

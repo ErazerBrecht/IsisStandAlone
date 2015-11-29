@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using ISIS.Commands;
+using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
@@ -79,7 +80,22 @@ namespace ISIS.ViewModels
 
         public override void SaveChanges()
         {
+            if (DatumViewModel.CurrentDates.Count < 1)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowMessageBox("Je hebt nog geen datum gekozen!");
+                return;
+            }
+
             CurrentView.SaveChanges();
+
+            foreach (var d in DatumViewModel.CurrentDates)
+            {
+                d.Id = CurrentView.AddPrestatie.Id;
+            }
+
+            ctx.Datum.AddRange(DatumViewModel.CurrentDates);
+            ctx.SaveChanges();
         }
 
         public override void Delete()

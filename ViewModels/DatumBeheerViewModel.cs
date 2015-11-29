@@ -64,19 +64,19 @@ namespace ISIS.ViewModels
             switch (i)
             {
                 case 0:
-                    AddDatum.Strijker1 = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker;
+                    AddDatum.Strijker1_ID = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker.ID;
                     break;
                 case 1:
-                    AddDatum.Strijker2 = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker;
+                    AddDatum.Strijker2_ID = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker.ID;
                     break;
                 case 2:
-                    AddDatum.Strijker3 = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker;
+                    AddDatum.Strijker3_ID = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker.ID;
                     break;
                 case 3:
-                    AddDatum.Strijker4 = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker;
+                    AddDatum.Strijker4_ID = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker.ID;
                     break;
                 case 4:
-                    AddDatum.Strijker5 = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker;
+                    AddDatum.Strijker5_ID = ((SearchBoxStrijkerViewModel)sender).SearchBoxSelectedStrijker.ID;
                     break;
             }
             
