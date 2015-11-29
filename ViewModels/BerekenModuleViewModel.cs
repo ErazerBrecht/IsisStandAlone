@@ -15,9 +15,8 @@ namespace ISIS.ViewModels
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
         #region CurrentView full property
-        private ISelectedKlant _currentView;
-
-        public ISelectedKlant CurrentView
+        private PrestatieBerekenModuleViewModel _currentView;
+        public PrestatieBerekenModuleViewModel CurrentView
         {
             get
             {
