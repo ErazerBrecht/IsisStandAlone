@@ -75,7 +75,7 @@ namespace ISIS.ViewModels
                 AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
 
             //The "prestatie" is calculated you're know able to save it!
-            SetIsValid(true);
+            IsValid = true;
         }
 
         private void CalculateStrijk()
@@ -89,7 +89,7 @@ namespace ISIS.ViewModels
 
         public override void Refresh()
         {
-            SetIsValid(false);
+            IsValid = false;
 
             if (SelectedKlant == null)
             {

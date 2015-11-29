@@ -12,7 +12,7 @@ using ISIS.Services;
 
 namespace ISIS.ViewModels
 {
-    abstract class PrestatieBerekenModuleViewModel : BeheerViewModel, IBereken
+    abstract class PrestatieBerekenModuleViewModel : WorkspaceViewModel
     {
         #region AddPrestatie full property
         private Prestatie _addPresatie;
@@ -47,8 +47,6 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public BerekenCommand BerekenCommandEvent { get; set; }
-
         #region ButtonBerekenContent full property
         private string _buttonBerekenContent;
 
@@ -81,9 +79,9 @@ namespace ISIS.ViewModels
 
         #endregion
 
-
+        #region IsValid full property => used for enable "save" button
         private bool _isValid;
-        public override bool IsValid
+        public bool IsValid
         {
             get
             {
@@ -91,19 +89,13 @@ namespace ISIS.ViewModels
                 // if (isValid == true) => check for validation errors
                 return _isValid;
             }
+            set { _isValid = value; }
         }
-
-        //Gonna make use of a seperate set method because this is the only screen that needs a setter
-        protected void SetIsValid(bool value)
-        {
-            _isValid = value;
-        }
+        #endregion
 
         public PrestatieBerekenModuleViewModel(ISIS_DataEntities context)
         {
             AddPrestatie = new Prestatie();
-            ViewSource = new CollectionViewSource();
-            BerekenCommandEvent = new BerekenCommand(this);
 
             ButtonBerekenContent = "Bereken";
             ButtonToevoegenContent = "Toevoegen";
@@ -113,19 +105,19 @@ namespace ISIS.ViewModels
             ctx.Prestaties.Load();
 
             //Data is just loaded so first have to recalculate before we can save!!
-            SetIsValid(false);         
+            IsValid = false;         
         }
 
         public abstract void Bereken();
 
-        public override abstract void Refresh();
+        public abstract void Refresh();
 
 
-        public override void SaveChanges()
+        public virtual void SaveChanges()
         {
             //The "prestatie" will be saved, the next "prestatie" has to be calculated first!
             //Setting this one false, disbales the save button
-            SetIsValid(false);
+            IsValid = false;
 
             //The second time you want to add a "prestatie" EF is following the first object
             //If you change the object EF will track the edits
@@ -195,16 +187,6 @@ namespace ISIS.ViewModels
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";
             }
-        }
-
-        public override void Add()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Delete()
-        {
-            throw new NotImplementedException();
         }
     }
 }

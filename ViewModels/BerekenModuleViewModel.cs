@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ISIS.Commands;
 
 namespace ISIS.ViewModels
 {
-    class BerekenModuleViewModel: WorkspaceViewModel, ISelectedKlant
+    class BerekenModuleViewModel: BeheerViewModel, ISelectedKlant, IBereken
     {
         public DatumBeheerViewModel DatumViewModel { get; set; }
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
+        public BerekenCommand BerekenCommandEvent { get; set; }
 
         #region CurrentView full property
         private PrestatieBerekenModuleViewModel _currentView;
@@ -57,6 +59,36 @@ namespace ISIS.ViewModels
             DatumViewModel = new DatumBeheerViewModel();
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             CurrentView = new StukBerekenModuleViewModel(ctx);
+            BerekenCommandEvent = new BerekenCommand(this);
+        }
+
+        public override bool IsValid
+        {
+            get { return CurrentView.IsValid; }
+        }
+
+        public void Bereken()
+        {
+            CurrentView.Bereken();
+        }
+
+        public override void Refresh()
+        {
+            CurrentView.Refresh();
+        }
+
+        public override void SaveChanges()
+        {
+            CurrentView.SaveChanges();
+        }
+
+        public override void Delete()
+        {
+            throw new NotImplementedException();
+        }
+        public override void Add()
+        {
+            throw new NotImplementedException();
         }
     }
 }

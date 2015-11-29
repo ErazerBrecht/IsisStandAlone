@@ -16,7 +16,7 @@ namespace ISIS.ViewModels
     {
         public StukBerekenModuleViewModel(ISIS_DataEntities context) : base(context)
         {
-            AddPrestatie.StukPrestaties = new StukPrestatie();         
+            AddPrestatie.StukPrestaties = new StukPrestatie();
         }
 
         public override void Bereken()
@@ -39,12 +39,12 @@ namespace ISIS.ViewModels
             else
                 AddPrestatie.NieuwTegoed = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.TotaalBetalen;
 
-            SetIsValid(true);
+            IsValid = true;
         }
 
         public override void Refresh()
         {
-            SetIsValid(false);
+            IsValid = false;
 
             if (SelectedKlant == null)
             {
@@ -70,8 +70,7 @@ namespace ISIS.ViewModels
                     else
                     {
                         MessageBoxService messageBoxService = new MessageBoxService();
-                        messageBoxService.ShowMessageBox(
-                            "Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                        messageBoxService.ShowMessageBox("Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
                         return;
                     }
                 }
