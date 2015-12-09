@@ -39,7 +39,7 @@
                 </GroupBox>
 
                 <GroupBox Grid.Column="1" Header="Datums toevoegen">
-                    <StackPanel DataContext="{Binding DatumViewModel}">
+                    <StackPanel Name="DatumView" DataContext="{Binding DatumViewModel}">
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding CurrentDates}" SelectedItem="{Binding SelectedDatum}" CanUserAddRows="False" HorizontalAlignment="Left" >
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Header="Datum" Width="200" CanUserSort="True" SortMemberPath="Date">
@@ -54,11 +54,66 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker1.Naam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Strijker 1" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Strijker2.Naam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Strijker 2" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Strijker3.Naam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Strijker 3" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Strijker4.Naam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Strijker 4" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Strijker5.Naam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Strijker 5" Width="200"/>
+                                <DataGridTemplateColumn Header="Strijker 1" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Strijker1.Naam}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <toolkit:AutoCompleteBox ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker1, Mode=TwoWay}" ItemFilter="{Binding DataContext.StrijkerFilter, ElementName=DatumView}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Strijker 2" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Strijker2.Naam}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <toolkit:AutoCompleteBox ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker2, Mode=TwoWay}" ItemFilter="{Binding DataContext.StrijkerFilter, ElementName=DatumView}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Strijker 3" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Strijker3.Naam}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <toolkit:AutoCompleteBox ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker3, Mode=TwoWay}" ItemFilter="{Binding DataContext.StrijkerFilter, ElementName=DatumView}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Strijker 4" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Strijker4.Naam}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <toolkit:AutoCompleteBox ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker4, Mode=TwoWay}" ItemFilter="{Binding DataContext.StrijkerFilter, ElementName=DatumView}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Strijker 5" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Strijker5.Naam}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <toolkit:AutoCompleteBox ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker5, Mode=TwoWay}" ItemFilter="{Binding DataContext.StrijkerFilter, ElementName=DatumView}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 
