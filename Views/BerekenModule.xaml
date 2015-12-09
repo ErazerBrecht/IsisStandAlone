@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:views="clr-namespace:ISIS.Views"
+             xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:vm="clr-namespace:ISIS.ViewModels" FontSize="14">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}">
@@ -80,11 +81,11 @@
                             </Grid.RowDefinitions>
 
                             <DatePicker Margin="0,0,5,0" SelectedDate="{Binding AddDatum.Date, Mode=TwoWay}"></DatePicker>
-                            <vm:SearchComboBox Grid.Column="1" Margin="0,0,5,0" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel[0].SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel[0].SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel[0].SearchBoxSelectedStrijker}" />
-                            <vm:SearchComboBox Grid.Column="2" Margin="0,0,5,0" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel[1].SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel[1].SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel[1].SearchBoxSelectedStrijker}" />
-                            <vm:SearchComboBox Grid.Column="3" Margin="0,0,5,0" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel[2].SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel[2].SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel[2].SearchBoxSelectedStrijker}" />
-                            <vm:SearchComboBox Grid.Column="4" Margin="0,0,5,0" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel[3].SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel[3].SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel[3].SearchBoxSelectedStrijker}" />
-                            <vm:SearchComboBox Grid.Column="5" Margin="0,0,5,0" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel[4].SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel[4].SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel[4].SearchBoxSelectedStrijker}" />
+                            <toolkit:AutoCompleteBox Grid.Column="1" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker1, Mode=TwoWay}" ItemFilter="{Binding StrijkerFilter}"/>
+                            <toolkit:AutoCompleteBox Grid.Column="2" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker2, Mode=TwoWay}" ItemFilter="{Binding StrijkerFilter}"/>
+                            <toolkit:AutoCompleteBox Grid.Column="3" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker3, Mode=TwoWay}" ItemFilter="{Binding StrijkerFilter}"/>
+                            <toolkit:AutoCompleteBox Grid.Column="4" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker4, Mode=TwoWay}" ItemFilter="{Binding StrijkerFilter}"/>
+                            <toolkit:AutoCompleteBox Grid.Column="5" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker5, Mode=TwoWay}" ItemFilter="{Binding StrijkerFilter}"/>
                             <Button Grid.Column="6" HorizontalAlignment="Center" Content="Toevoegen" FontSize="10" Command="{Binding AddCommandEvent}" Padding="10,0,10,0"></Button>
                         </Grid>
 
