@@ -156,7 +156,7 @@
       <DependentUpon>ISIS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
-    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding..cs" />
+    <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\TijdPrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
