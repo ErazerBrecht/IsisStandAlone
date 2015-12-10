@@ -35,8 +35,13 @@ namespace ISIS.ViewModels
             AddPrestatie.TijdPrestaties = new TijdPrestatie();
             CurrentParameters = new Parameters();
 
+            LoadData();
+        }
+
+        public override void LoadData()
+        {
             //Load parameters from settings!
-            CurrentParameters.LoadParameters();       
+            CurrentParameters.LoadParameters();
         }
 
         public override void Bereken()

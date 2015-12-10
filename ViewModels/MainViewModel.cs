@@ -14,7 +14,8 @@ namespace ISIS.ViewModels
     class MainViewModel
     {
         private WorkspaceViewModel _selectedWorkspace;
-        public WorkspaceViewModel SelectedWorkspace {
+        public WorkspaceViewModel SelectedWorkspace
+        {
             get
             {
                 return _selectedWorkspace;
@@ -24,10 +25,7 @@ namespace ISIS.ViewModels
                 _selectedWorkspace = value;
 
                 //Actions that has to happen when Tab is (re)opened.
-                if (value is PrestatieBeheerViewModel)
-                    (value as PrestatieBeheerViewModel).LoadData();
-                //else if (value is BerekenModuleViewModel)
-                    //(value as BerekenModuleViewModel).LoadData();
+                _selectedWorkspace.LoadData();
             }
         }
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; }
@@ -43,7 +41,7 @@ namespace ISIS.ViewModels
                 TestConnection();
                 Workspaces = new ObservableCollection<WorkspaceViewModel>();
                 Workspaces.Add(new BerekenModuleViewModel());
-                Workspaces.Add(new PrestatieBeheerViewModel());
+                //Workspaces.Add(new PrestatieBeheerViewModel());
                 Workspaces.Add(new KlantenBeheerViewModel());
                 Workspaces.Add(new PersoneelBeheerViewModel());
                 Workspaces.Add(new ParameterBeheerViewModel());
@@ -76,13 +74,13 @@ namespace ISIS.ViewModels
         }
 
         private void TestConnection()
-    {
-        using (var db = new ISIS_DataEntities())
         {
-            DbConnection conn = db.Database.Connection;
-            conn.Open();   // check the database connection
+            using (var db = new ISIS_DataEntities())
+            {
+                DbConnection conn = db.Database.Connection;
+                conn.Open();   // check the database connection
+            }
         }
-    }
 
-}
+    }
 }

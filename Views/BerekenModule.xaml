@@ -40,7 +40,7 @@
 
                 <GroupBox Grid.Column="1" Header="Datums toevoegen">
                     <StackPanel Name="DatumView" DataContext="{Binding DatumViewModel}">
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding CurrentDates}" SelectedItem="{Binding SelectedDatum}" CanUserAddRows="False" HorizontalAlignment="Left" >
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding CurrentDates}" CanUserAddRows="False" HorizontalAlignment="Left" >
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Header="Datum" Width="200" CanUserSort="True" SortMemberPath="Date">
                                     <DataGridTemplateColumn.CellTemplate>

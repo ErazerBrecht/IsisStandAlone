@@ -106,5 +106,11 @@ namespace ISIS.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        public override void LoadData()
+        {
+            DatumViewModel.LoadData();
+            CurrentView.LoadData();
+        }
     }
 }

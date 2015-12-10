@@ -30,8 +30,20 @@ namespace ISIS.ViewModels
         #endregion
 
         public ISIS_DataEntities ctx { get; set; }
-        public IEnumerable<Strijker> Strijkers { get; set; }
         public ObservableCollection<Datum> CurrentDates { get; set; }
+
+        #region Strijkers list for searchbox full property
+        private IEnumerable<Strijker> _strijkers;
+        public IEnumerable<Strijker> Strijkers
+        {
+            get { return _strijkers; }
+            set
+            {
+                _strijkers = value;
+                NoticeMe("Strijkers");
+            }
+        }
+        #endregion
 
         public override bool IsValid        //Used to disable or Enable Toevoegen button
         {
@@ -48,13 +60,15 @@ namespace ISIS.ViewModels
             CurrentDates = new ObservableCollection<Datum>();
 
             AddDatum = new Datum { Date = DateTime.Now };
-            
-            LoadData();
         }
 
-        public void LoadData()
+        //Gets called by MainvViewModel
+        public override void LoadData()
         {
-            Strijkers = ctx.Strijkers.ToList();
+            using (var context = new ISIS_DataEntities())
+            {
+                Strijkers = context.Strijkers.ToList();
+            }
         }
 
         public AutoCompleteFilterPredicate<object> StrijkerFilter

@@ -20,8 +20,12 @@ namespace ISIS.ViewModels
             }
         }
 
-        //TODO: property
-        public ISIS_DataEntities ctx;
+        public ISIS_DataEntities ctx { get; set; }
+
+        public virtual void LoadData()
+        {
+            //TODO
+        }
 
         #region INotifyPropertyChanged
         protected void NoticeMe(string property)
