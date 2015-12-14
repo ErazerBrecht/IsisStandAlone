@@ -21,18 +21,18 @@
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateFirst, Mode=OneWayToSource}" Margin="20,0,10,0" Height="10px"></DatePicker>
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateSecond, Mode=OneWayToSource}" Height="10px"></DatePicker>
         </StackPanel>
-        <DataGrid Grid.Row="1" x:Name="prestatiesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="datumColumn"  Binding="{Binding Datum}" Header="Datum" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="klantenNummerColumn" Binding="{Binding KlantenNummer}" Header="KlNr." Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="aantalHemdenColumn" Binding="{Binding AantalHemden}" Header="#Hemden" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="aantalLakens1Column" Binding="{Binding AantalLakens1}" Header="#Lakens 1" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="aantalLakens2Column" Binding="{Binding AantalLakens2}" Header="#Lakens 2" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="aantalAndereStrijkColumn" Binding="{Binding AantalAndereStrijk}" Header="#Andere Strijk" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="tijdAndereStrijkColumn" Binding="{Binding TijdAndereStrijk}" Header="Tijd Andere Strijk" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="tijdAdministratieColumn" Binding="{Binding TijdAdministratie}" Header="Tijd Administratie" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="aantalDienstenChecksColumn" Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding Datum}" Header="Datum" Width="SizeToCells"/>
+                <DataGridTextColumn Binding="{Binding Prestaties.KlantenNummer}" Header="KlNr." Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding AantalHemden}" Header="#Hemden" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding AantalLakens1}" Header="#Lakens 1" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding AantalLakens2}" Header="#Lakens 2" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding AantalAndereStrijk}" Header="#Andere Strijk" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TijdAndereStrijk}" Header="Tijd Andere Strijk" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TijdAdministratie}" Header="Tijd Administratie" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
 

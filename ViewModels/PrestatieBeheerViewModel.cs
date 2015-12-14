@@ -14,20 +14,21 @@ namespace ISIS.ViewModels
         ISIS_DataEntities ctx;
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
-        //private List<Prestatie> _originalPrestaties;
+        private List<TijdPrestatie> _originalPrestaties;
 
-        //private List<Prestatie> _prestaties;
-        //public List<Prestatie> Prestaties {
-        //    get
-        //    {
-        //        return _prestaties;
-        //    }
-        //    private set
-        //    {
-        //        _prestaties = value;
-        //        NoticeMe("Prestaties");
-        //    }
-        //}
+        private List<TijdPrestatie> _prestaties;
+        public List<TijdPrestatie> Prestaties
+        {
+            get
+            {
+                return _prestaties;
+            }
+            private set
+            {
+                _prestaties = value;
+                NoticeMe("Prestaties");
+            }
+        }
 
         //#region FilterOnName
         //private bool _enableSearch;
@@ -158,18 +159,18 @@ namespace ISIS.ViewModels
 
         public PrestatieBeheerViewModel()
         {
-            //Header = "PrestatieBeheer";
-            //LoadData();
+            Header = "PrestatieBeheer";
+            LoadData();
             //BoolIedereen = true;
-            //SearchBoxViewModel = new SearchBoxKlantViewModel(this);
+            SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             //BoolDag = true;
         }
 
-        public void LoadData()
+        public override void LoadData()
         {
-            //ctx = new ISIS_DataEntities();
-            //_originalPrestaties = ctx.Prestaties.ToList();
-            //Prestaties = _originalPrestaties;
+            ctx = new ISIS_DataEntities();
+            _originalPrestaties = ctx.TijdPrestaties.ToList();
+            Prestaties = _originalPrestaties;
         }
 
         public void Filter()
