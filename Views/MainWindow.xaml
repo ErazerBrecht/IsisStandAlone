@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:ISIS.ViewModels"
         xmlns:views="clr-namespace:ISIS.Views"
-        Title="MainWindow" Height="900" MinWidth="960">
+        Title="MainWindow" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="MaxLines" Value="1" />
