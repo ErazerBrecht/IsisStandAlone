@@ -19,7 +19,7 @@ namespace ISIS.ViewModels
         public override void Refresh()
         {
             base.Refresh();
-            ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "Winkel");
+            ViewSource.Source = ctx.SoortKlant.Local.Where(s => s.Type == "Winkel").ToList();
         }
 
         public override void SaveChanges()
