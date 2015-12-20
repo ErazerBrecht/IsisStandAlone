@@ -32,7 +32,7 @@ namespace ISIS.ViewModels
                     NoticeMe("SoortKlantPlaatsItems");
                     NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
                     NoticeMe("ElektronischBetalenVisibility");
-                    //_selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
+                    _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
                 }
             }
         }

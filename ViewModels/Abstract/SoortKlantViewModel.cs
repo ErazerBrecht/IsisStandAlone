@@ -39,14 +39,14 @@ namespace ISIS.ViewModels
             {
                 _selectedSoort = value;
                 NoticeMe("SelectedSoort");
-                //if (value != null)
-                    //_selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
+                if (value != null)
+                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
             }
         }
 
         private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //ADD Datavalidation
+            //TODO: ADD Datavalidation
             //SelectedOphaling.Check();
 
             ctx.SaveChanges();

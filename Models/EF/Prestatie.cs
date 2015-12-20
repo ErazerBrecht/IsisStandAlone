@@ -1,3 +1,5 @@
+using PropertyChanged;
+
 namespace ISIS.Models
 {
     using System;
@@ -6,9 +8,9 @@ namespace ISIS.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [ImplementPropertyChanged]
     public partial class Prestatie
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Prestatie()
         {
             Datum = new HashSet<Datum>();
@@ -21,7 +23,6 @@ namespace ISIS.Models
 
         public byte TotaalDienstenChecks { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Datum> Datum { get; set; }
 
         public virtual Klant Klanten { get; set; }

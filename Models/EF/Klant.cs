@@ -1,3 +1,8 @@
+using PropertyChanged;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using ISIS.Annotations;
+
 namespace ISIS.Models
 {
     using System;
@@ -6,10 +11,10 @@ namespace ISIS.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [ImplementPropertyChanged]
     [Table("Klanten")]
-    public partial class Klant
+    public partial class Klant : INotifyPropertyChanged
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Klant()
         {
             Prestaties = new HashSet<Prestatie>();
@@ -80,7 +85,15 @@ namespace ISIS.Models
 
         public virtual SoortKlant SoortKlant { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestatie> Prestaties { get; set; }
+
+        #region PropertyChanged implementation
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }

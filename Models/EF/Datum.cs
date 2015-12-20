@@ -1,3 +1,5 @@
+using PropertyChanged;
+
 namespace ISIS.Models
 {
     using System;
@@ -6,6 +8,7 @@ namespace ISIS.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [ImplementPropertyChanged]
     [Table("Datum")]
     public partial class Datum
     {
