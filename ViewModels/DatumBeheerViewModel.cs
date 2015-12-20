@@ -29,9 +29,18 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public ISIS_DataEntities ctx { get; set; }
-        public ObservableCollection<Datum> CurrentDates { get; set; }
+        private ObservableCollection<Datum> _currentDates;
 
+        public ObservableCollection<Datum> CurrentDates
+        {
+            get { return _currentDates; }
+            set
+            {
+                _currentDates = value;
+                NoticeMe("CurrentDates");
+            }
+        }
+        
         #region Strijkers list for searchbox full property
         private IEnumerable<Strijker> _strijkers;
         public IEnumerable<Strijker> Strijkers
@@ -54,11 +63,9 @@ namespace ISIS.ViewModels
             }
         }
 
-        public DatumBeheerViewModel(ISIS_DataEntities context)
+        public DatumBeheerViewModel()
         {
-            ctx = context;
             CurrentDates = new ObservableCollection<Datum>();
-
             AddDatum = new Datum { Date = DateTime.Now };
         }
 
@@ -87,31 +94,12 @@ namespace ISIS.ViewModels
 
         public override void Refresh()
         {
-            throw new NotImplementedException();
+            CurrentDates = new ObservableCollection<Datum>();
         }
 
         public override void Add()
         {
             CurrentDates.Add(AddDatum);
-            ctx.Datum.Add(AddDatum);
-
-            //EF is retarded and thinks that I readded the Strijkers to the db, while I didn't.
-            //I Just use them as foreign relantionschip, I can't just use the id, because I need the name
-            //Manually said this is not true
-            //https://msdn.microsoft.com/en-us/magazine/dn166926.aspx
-            //This link explains it!
-
-            if (AddDatum.Strijker1 != null)
-                ctx.Entry(AddDatum.Strijker1).State = EntityState.Unchanged;
-            if (AddDatum.Strijker2 != null)
-                ctx.Entry(AddDatum.Strijker2).State = EntityState.Unchanged;
-            if (AddDatum.Strijker3 != null)
-                ctx.Entry(AddDatum.Strijker3).State = EntityState.Unchanged;
-            if (AddDatum.Strijker4 != null)
-                ctx.Entry(AddDatum.Strijker4).State = EntityState.Unchanged;
-            if (AddDatum.Strijker5 != null)
-                ctx.Entry(AddDatum.Strijker5).State = EntityState.Unchanged;
-
             AddDatum = new Datum { Date = DateTime.Now };
         }
 
