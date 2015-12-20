@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
 
-namespace ISIS
+namespace ISIS.Models
 {
     partial class Klant : IDataErrorInfo
     {
@@ -123,12 +124,12 @@ namespace ISIS
 
                 case "Gsm":
                     {
-                        if (String.IsNullOrEmpty(_gsm))
+                        if (String.IsNullOrEmpty(Gsm))
                         {
                             if (String.IsNullOrEmpty(Telefoon))
                                 result = "U dient ofwel een telefoon of gsm in te vullen!";
                         }
-                        else if (!_gsm.All(char.IsDigit) || _gsm.Length != 10)
+                        else if (!Gsm.All(char.IsDigit) || Gsm.Length != 10)
                         {
                             result = "Geen geldig gsmnummer!";
                         }
@@ -201,20 +202,10 @@ namespace ISIS
         }
         #endregion
 
-        #region CanValidate ID fullproperty
         //Is used to check if we have to validate the id of the Klant
         //The validation of a klant only has to happen when the user is in the add mode (=> ButtonContent = Annuleren)
-        private bool _canValidateID;
-        public bool CanValidateID
-        {
-            get { return _canValidateID; }
-            set
-            {
-                _canValidateID = value;
-                OnPropertyChanged("CanValidateID");
-            }
-        }
-        #endregion
+        [NotMapped]
+        public bool CanValidateID { get; set; }
 
         public override string ToString()
         {

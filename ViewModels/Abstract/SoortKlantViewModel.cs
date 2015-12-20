@@ -39,8 +39,8 @@ namespace ISIS.ViewModels
             {
                 _selectedSoort = value;
                 NoticeMe("SelectedSoort");
-                if (value != null)
-                    _selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
+                //if (value != null)
+                    //_selectedSoort.PropertyChanged += _selectedSoort_PropertyChanged;
             }
         }
 

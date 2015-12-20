@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
 
-namespace ISIS
+namespace ISIS.Models
 {
     partial class Strijker : IDataErrorInfo
     {
@@ -155,18 +156,8 @@ namespace ISIS
         }
         #endregion
 
-        #region CanValidate ID fullproperty
-        private bool _canValidateID;
-        public bool CanValidateID
-        {
-            get { return _canValidateID; }
-            set
-            {
-                _canValidateID = value;
-                OnPropertyChanged("CanValidateID");
-            }
-        }
-        #endregion
+        [NotMapped]
+        public bool CanValidateID { get; set; }
 
         public override string ToString()
         {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ISIS.Services;
+using ISIS.Models;
 
 namespace ISIS.ViewModels
 {

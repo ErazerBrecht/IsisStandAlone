@@ -134,51 +134,23 @@
     <Compile Include="Commands\AddKlantCommand.cs" />
     <Compile Include="Commands\OpenFileDialogCommand.cs" />
     <Compile Include="Commands\ShutDownCommand.cs" />
-    <Compile Include="Datum.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ISIS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISIS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ISIS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ISIS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISIS.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Klant.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EF\Datum.cs" />
+    <Compile Include="Models\EF\ISIS.cs" />
+    <Compile Include="Models\EF\Klant.cs" />
+    <Compile Include="Models\EF\Prestatie.cs" />
+    <Compile Include="Models\EF\SoortKlant.cs" />
+    <Compile Include="Models\EF\Strijker.cs" />
+    <Compile Include="Models\EF\StukPrestatie.cs" />
+    <Compile Include="Models\EF\TijdPrestatie.cs" />
     <Compile Include="Models\ModelExtensions\KlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\PrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\TijdPrestatieUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Models\Parameters.cs" />
-    <Compile Include="Prestatie.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Services\IErrorDataBaseAlert.cs" />
     <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Services\OpenFileDialogService.cs" />
-    <Compile Include="SoortKlant.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Strijker.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StukPrestatie.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TijdPrestatie.cs">
-      <DependentUpon>ISIS.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Abstract\BeheerExtendViewModel.cs" />
     <Compile Include="ViewModels\Abstract\BeheerViewModel.cs" />
     <Compile Include="ViewModels\Abstract\SoortKlantViewModel.cs" />
@@ -287,13 +259,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ISIS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ISIS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ISIS.edmx.diagram">
-      <DependentUpon>ISIS.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -310,16 +275,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ISIS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ISIS.edmx</DependentUpon>
-      <LastGenOutput>ISIS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ISIS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ISIS.edmx</DependentUpon>
-      <LastGenOutput>ISIS.cs</LastGenOutput>
-    </Content>
     <Content Include="ISIS_Data.mdf" />
     <Content Include="ISIS_Data_log.ldf">
       <DependentUpon>ISIS_Data.mdf</DependentUpon>
