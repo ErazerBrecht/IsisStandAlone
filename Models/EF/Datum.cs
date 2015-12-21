@@ -32,15 +32,75 @@ namespace ISIS.Models
 
         public virtual Prestatie Prestaties { get; set; }
 
-        public virtual Strijker Strijker1 { get; set; }
+        private Strijker _strijker1;
 
-        public virtual Strijker Strijker2 { get; set; }
+        public virtual Strijker Strijker1
+        {
+            get { return _strijker1; }
+            set
+            {
+                _strijker1 = value;
+                OnPropertyChanged("Strijker1");
+                OnPropertyChanged("Strijker2");
+                OnPropertyChanged("Strijker3");
+                OnPropertyChanged("Strijker4");
+                OnPropertyChanged("Strijker5");
+            }
+        }
 
-        public virtual Strijker Strijker3 { get; set; }
+        private Strijker _strijker2;
 
-        public virtual Strijker Strijker4 { get; set; }
+        public virtual Strijker Strijker2
+        {
+            get { return _strijker2; }
+            set
+            {
+                _strijker2 = value;
+                OnPropertyChanged("Strijker2");
+                OnPropertyChanged("Strijker3");
+                OnPropertyChanged("Strijker4");
+                OnPropertyChanged("Strijker5");
+            }
+        }
 
-        public virtual Strijker Strijker5 { get; set; }
+        private Strijker _strijker3;
+
+        public virtual Strijker Strijker3
+        {
+            get { return _strijker3; }
+            set
+            {
+                _strijker3= value;
+                OnPropertyChanged("Strijker3");
+                OnPropertyChanged("Strijker4");
+                OnPropertyChanged("Strijker5");
+            }
+        }
+
+        private Strijker _strijker4;
+
+        public virtual Strijker Strijker4
+        {
+            get { return _strijker4; }
+            set
+            {
+                _strijker4 = value;
+                OnPropertyChanged("Strijker4");
+                OnPropertyChanged("Strijker5");
+            }
+        }
+
+        private Strijker _strijker5;
+
+        public virtual Strijker Strijker5
+        {
+            get { return _strijker5; }
+            set
+            {
+                _strijker5 = value;
+                OnPropertyChanged("Strijker5");
+            }
+        }
 
 
         #region PropertyChanged implementation

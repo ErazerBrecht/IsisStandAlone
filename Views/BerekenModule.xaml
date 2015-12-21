@@ -62,63 +62,35 @@
                                 <DataGridTemplateColumn Header="Strijkster 1" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox  Margin="0,0,5,0" FontSize="16" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                                            <ComboBox  Margin="0,0,5,0" FontSize="16" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker1, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Strijkster 2" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                                <ComboBox.IsEnabled>
-                                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                                        <Binding Path="Strijker1"></Binding>
-                                                        <Binding Path=""></Binding>
-                                                    </MultiBinding>
-                                                </ComboBox.IsEnabled>
-                                            </ComboBox>
+                                            <ComboBox Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding Strijker1, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Strijkster 3" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                                <ComboBox.IsEnabled>
-                                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                                        <Binding Path="Strijker2"></Binding>
-                                                        <Binding Path=""></Binding>
-                                                    </MultiBinding>
-                                                </ComboBox.IsEnabled>
-                                            </ComboBox>
+                                            <ComboBox Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding Strijker2, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Strijkster 4" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox  Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                                <ComboBox.IsEnabled>
-                                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                                        <Binding Path="Strijker3"></Binding>
-                                                        <Binding Path=""></Binding>
-                                                    </MultiBinding>
-                                                </ComboBox.IsEnabled>
-                                            </ComboBox>
+                                            <ComboBox  Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding Strijker3, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="Strijkster 5" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox  Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                                <ComboBox.IsEnabled>
-                                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                                        <Binding Path="Strijker4"></Binding>
-                                                        <Binding Path=""></Binding>
-                                                    </MultiBinding>
-                                                </ComboBox.IsEnabled>
-                                            </ComboBox>
+                                            <ComboBox  Margin="0,0,5,0" FontSize="16" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding Strijker1, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding DataContext.Strijkers, ElementName=DatumView}" SelectedItem="{Binding Strijker5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -145,38 +117,10 @@
 
                             <DatePicker FontSize="16" Margin="0,0,5,0" SelectedDate="{Binding AddDatum.Date, Mode=TwoWay}"/>
                             <ComboBox FontSize="16" Grid.Column="1" Margin="0,0,5,0" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
-                            <ComboBox FontSize="16" Grid.Column="2" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker2, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                <ComboBox.IsEnabled>
-                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                        <Binding Path="AddDatum.Strijker1"></Binding>
-                                        <Binding Path="AddDatum"></Binding>
-                                    </MultiBinding>
-                                </ComboBox.IsEnabled>
-                            </ComboBox>
-                            <ComboBox FontSize="16" Grid.Column="3" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker3, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                <ComboBox.IsEnabled>
-                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                        <Binding Path="AddDatum.Strijker2"></Binding>
-                                        <Binding Path="AddDatum"></Binding>
-                                    </MultiBinding>
-                                </ComboBox.IsEnabled>
-                            </ComboBox>
-                            <ComboBox FontSize="16" Grid.Column="4" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker4, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                <ComboBox.IsEnabled>
-                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                        <Binding Path="AddDatum.Strijker3"></Binding>
-                                        <Binding Path="AddDatum"></Binding>
-                                    </MultiBinding>
-                                </ComboBox.IsEnabled>
-                            </ComboBox>
-                            <ComboBox FontSize="16" Grid.Column="5" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker5, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
-                                <ComboBox.IsEnabled>
-                                    <MultiBinding Converter="{StaticResource NullToBooleanConverter}">
-                                        <Binding Path="AddDatum.Strijker4"></Binding>
-                                        <Binding Path="AddDatum"></Binding>
-                                    </MultiBinding>
-                                </ComboBox.IsEnabled>
-                            </ComboBox>
+                            <ComboBox FontSize="16" Grid.Column="2" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding AddDatum.Strijker1, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker2, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                            <ComboBox FontSize="16" Grid.Column="3" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding AddDatum.Strijker2, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker3, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                            <ComboBox FontSize="16" Grid.Column="4" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding AddDatum.Strijker3, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker4, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                            <ComboBox FontSize="16" Grid.Column="5" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding AddDatum.Strijker4, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker5, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                             <Button Grid.Column="6" HorizontalAlignment="Center" Content="Toevoegen" FontSize="16" Command="{Binding AddCommandEvent}" Padding="10,0,10,0"/>
                         </Grid>
 

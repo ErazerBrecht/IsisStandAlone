@@ -53,6 +53,7 @@ namespace ISIS.ViewModels
 
         private void Datum_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            //I only check for properties that start with a 'S', so if it doesn't start with a 'S' => immediately stop with checking!
             if (e.PropertyName[0] != 'S')
                 return;
 
@@ -63,6 +64,12 @@ namespace ISIS.ViewModels
                 {
                     if (date.Strijker2 != null)
                     {
+                        //Why this works I don't f*cking know
+                        //First I did this:
+                        //date.Strijker1 = date.Strijker2;
+                        //date.Strijker2 = null;
+                        //This didn't work...
+                        //This works, I don't know why...
                         var temp = date.Strijker2;
                         date.Strijker2 = null;
                         date.Strijker1 = temp;
@@ -143,7 +150,6 @@ namespace ISIS.ViewModels
             CurrentDates.Add(AddDatum);
             AddDatum = new Datum { Date = DateTime.Now };
             AddDatum.PropertyChanged += Datum_PropertyChanged;
-
         }
 
         public override void SaveChanges()
@@ -152,19 +158,18 @@ namespace ISIS.ViewModels
         }
     }
 
-    public class NullToBooleanConverter : IMultiValueConverter
+    public class NullToBooleanConverter : IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] is Strijker && values[1] is Datum)
-            {
-                if (((Strijker)values[0]) != null && ((Datum)values[1]).CanSave)
-                    return true;
-            }
+            var tempStrijker = value as Strijker;
+
+            if (tempStrijker != null)
+                return true;
             return false;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
