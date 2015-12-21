@@ -19,19 +19,27 @@ namespace ISIS.ViewModels
     {
 
         public Datum AddDatum { get; set; }
-        public ObservableCollection<Datum> CurrentDates { get; set; }   
+        public ObservableCollection<Datum> CurrentDates { get; set; }
         public IEnumerable<Strijker> Strijkers { get; set; }
 
-        #region Strings that will overwrite text in searchbox for strijksters, will use these to clear them after adding a data
-        public string ClearAutoCompleteBox1 { get; set; }
-        public string ClearAutoCompleteBox2 { get; set; }
-        public string ClearAutoCompleteBox3 { get; set; }
-        public string ClearAutoCompleteBox4 { get; set; }
-        public string ClearAutoCompleteBox5 { get; set; }
+        #region SelectedDatum full prop
+        private Datum _selectedDatum;
+        public Datum SelectedDatum
+        {
+            get { return _selectedDatum; }
+            set
+            {
+                _selectedDatum = value;
+                if (_selectedDatum != null)
+                {
+                    _selectedDatum.PropertyChanged += Datum_PropertyChanged;
+                }
+            }
+        }
         #endregion
 
         //Used to disable or Enable Toevoegen button
-        public override bool IsValid        
+        public override bool IsValid
         {
             get { return AddDatum.CanSave; }
         }
@@ -40,63 +48,63 @@ namespace ISIS.ViewModels
         {
             CurrentDates = new ObservableCollection<Datum>();
             AddDatum = new Datum { Date = DateTime.Now };
-            AddDatum.PropertyChanged += AddDatum_PropertyChanged;
+            AddDatum.PropertyChanged += Datum_PropertyChanged;
         }
 
-        private void AddDatum_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Datum_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName[0] != 'S')
+                return;
+
+            var date = (Datum)sender;
             if (e.PropertyName == "Strijker1")
             {
-                if (AddDatum.Strijker1 == null)
+                if (date.Strijker1 == null)
                 {
-                    if (AddDatum.Strijker2 != null)
+                    if (date.Strijker2 != null)
                     {
-                        var temp = AddDatum.Strijker2;
-                        AddDatum.Strijker2 = null;
-                        AddDatum.Strijker1 = temp;
-                        //AddDatum.Strijker2 = null;
+                        var temp = date.Strijker2;
+                        date.Strijker2 = null;
+                        date.Strijker1 = temp;
                     }
                 }
             }
 
             else if (e.PropertyName == "Strijker2")
             {
-                if (AddDatum.Strijker2?.Naam == null)
+                if (date.Strijker2 == null)
                 {
-                    if (AddDatum.Strijker3 != null)
+                    if (date.Strijker3 != null)
                     {
-                        var temp = AddDatum.Strijker3;
-                        AddDatum.Strijker3 = null;
-                        AddDatum.Strijker2 = temp;
-                        //AddDatum.Strijker3 = null;
+                        var temp = date.Strijker3;
+                        date.Strijker3 = null;
+                        date.Strijker2 = temp;
                     }
                 }
             }
 
             else if (e.PropertyName == "Strijker3")
             {
-                if (AddDatum.Strijker3?.Naam == null)
+                if (date.Strijker3 == null)
                 {
-                    if (AddDatum.Strijker4 != null)
+                    if (date.Strijker4 != null)
                     {
-                        var temp = AddDatum.Strijker4;
-                        AddDatum.Strijker4 = null;
-                        AddDatum.Strijker3 = temp;
-                       // AddDatum.Strijker4 = null;
+                        var temp = date.Strijker4;
+                        date.Strijker4 = null;
+                        date.Strijker3 = temp;
                     }
                 }
             }
 
             else if (e.PropertyName == "Strijker4")
             {
-                if (AddDatum.Strijker4?.Naam == null)
+                if (date.Strijker4 == null)
                 {
-                    if (AddDatum.Strijker5 != null)
+                    if (date.Strijker5 != null)
                     {
-                        var temp = AddDatum.Strijker5;
-                        AddDatum.Strijker5 = null;
-                        AddDatum.Strijker4 = temp;
-                       // AddDatum.Strijker5 = null;
+                        var temp = date.Strijker5;
+                        date.Strijker5 = null;
+                        date.Strijker4 = temp;
                     }
                 }
             }
@@ -134,7 +142,7 @@ namespace ISIS.ViewModels
         {
             CurrentDates.Add(AddDatum);
             AddDatum = new Datum { Date = DateTime.Now };
-            AddDatum.PropertyChanged += AddDatum_PropertyChanged;
+            AddDatum.PropertyChanged += Datum_PropertyChanged;
 
         }
 
@@ -150,29 +158,13 @@ namespace ISIS.ViewModels
         {
             if (values[0] is Strijker && values[1] is Datum)
             {
-                if (((Strijker) values[0]) != null && ((Datum) values[1]).CanSave)
+                if (((Strijker)values[0]) != null && ((Datum)values[1]).CanSave)
                     return true;
             }
             return false;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class StrijkerStringConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null)
-                return "";
-            else
-                return value.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

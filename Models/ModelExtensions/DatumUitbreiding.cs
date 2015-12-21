@@ -62,7 +62,7 @@ namespace ISIS.Models
                     }
                 case "Strijker4":
                     {
-                        if ((Strijker4 != null) && (Strijker4.ID == Strijker1?.ID || Strijker4.ID == Strijker2.ID || Strijker4.ID == Strijker3?.ID))
+                        if ((Strijker4 != null) && (Strijker4.ID == Strijker1?.ID || Strijker4.ID == Strijker2?.ID || Strijker4.ID == Strijker3?.ID))
                             result = "Deze strijkster is al toegevoegd!";
                         break;
                     }
