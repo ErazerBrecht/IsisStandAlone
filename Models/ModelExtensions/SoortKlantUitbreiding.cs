@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace ISIS
+namespace ISIS.Models
 {
     public partial class SoortKlant
     {

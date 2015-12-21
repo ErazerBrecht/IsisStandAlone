@@ -46,7 +46,7 @@ namespace ISIS.ViewModels
 
         private void _selectedSoort_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //ADD Datavalidation
+            //TODO: ADD Datavalidation
             //SelectedOphaling.Check();
 
             ctx.SaveChanges();
@@ -65,12 +65,8 @@ namespace ISIS.ViewModels
 
         public SoortKlantBeheerViewModel()
         {
-            LoadData();
             AddSoort = new SoortKlant();
-        }
-
-        public void LoadData()
-        {
+            ctx = new ISIS_DataEntities();
             Refresh();
         }
 
@@ -79,12 +75,6 @@ namespace ISIS.ViewModels
             ctx.SoortKlant.Remove(SelectedSoort);
             ctx.SaveChanges();
             Refresh();
-        }
-
-        public override void Refresh()
-        {
-            ctx = new ISIS_DataEntities();
-            ctx.SoortKlant.Load();
         }
 
         public override void Add()

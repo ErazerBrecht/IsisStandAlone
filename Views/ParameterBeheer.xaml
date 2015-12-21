@@ -108,7 +108,7 @@
 
                 </GroupBox>
 
-                <GroupBox Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
+                <GroupBox Grid.Column="0" Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
                     <StackPanel>
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedSoort}" CanUserAddRows="False">
                             <DataGrid.Columns>

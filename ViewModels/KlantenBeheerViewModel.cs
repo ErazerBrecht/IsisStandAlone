@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Data.Entity;
-using ISIS.Commands;
 using System.Windows;
+using ISIS.Commands;
+using ISIS.Models;
 
 namespace ISIS.ViewModels
 {
