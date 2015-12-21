@@ -161,7 +161,7 @@ namespace ISIS.Models
 
         public override string ToString()
         {
-            return ID + "  " + Naam + "  " + Voornaam; ;
+            return Naam + " " + Voornaam; ;
         }
     }
 }

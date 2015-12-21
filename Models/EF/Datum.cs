@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using ISIS.Annotations;
 using PropertyChanged;
 
 namespace ISIS.Models
@@ -10,7 +13,7 @@ namespace ISIS.Models
 
     [ImplementPropertyChanged]
     [Table("Datum")]
-    public partial class Datum
+    public partial class Datum : INotifyPropertyChanged
     {
         [Key]
         public DateTime Date { get; set; }
@@ -38,5 +41,15 @@ namespace ISIS.Models
         public virtual Strijker Strijker4 { get; set; }
 
         public virtual Strijker Strijker5 { get; set; }
+
+
+        #region PropertyChanged implementation
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
