@@ -19,7 +19,6 @@ namespace ISIS.ViewModels
     {
         public DatumBeheerViewModel DatumViewModel { get; set; }
         public PrestatieBerekenModuleViewModel CurrentView { get; set; }
-        //public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
 
         //Extra button
         public BerekenCommand BerekenCommandEvent { get; set; }
@@ -157,6 +156,7 @@ namespace ISIS.ViewModels
             CurrentView.LoadData();
         }
 
+        #region Datavalidation implementation
         public string this[string propertyName]
         {
             get
@@ -181,5 +181,6 @@ namespace ISIS.ViewModels
         }
 
         public string Error { get; }
+        #endregion
     }
 }

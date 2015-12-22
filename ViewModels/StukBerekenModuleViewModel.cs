@@ -95,13 +95,13 @@ namespace ISIS.ViewModels
                     SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.StukPrestaties.Totaal + AddPrestatie.NieuwTegoed);
                 }
 
-                ButtonBerekenContent = "Herbereken";
+                ButtonBerekenContent = "Herberekenen";
                 ButtonToevoegenContent = "Aanpassen";
                 ButtonChangeContent = "Annuleren";
             }
             else
             {
-                ButtonBerekenContent = "Bereken";
+                ButtonBerekenContent = "Berekenen";
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";
 

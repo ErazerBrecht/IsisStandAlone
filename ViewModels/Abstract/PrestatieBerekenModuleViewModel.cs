@@ -97,7 +97,7 @@ namespace ISIS.ViewModels
         {
             AddPrestatie = new Prestatie();
 
-            ButtonBerekenContent = "Bereken";
+            ButtonBerekenContent = "Berekenen";
             ButtonToevoegenContent = "Toevoegen";
             ButtonChangeContent = "Laatste prestatie aanpassen";
 
@@ -181,7 +181,7 @@ namespace ISIS.ViewModels
                     ctx.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
                 }
 
-                ButtonBerekenContent = "Bereken";
+                ButtonBerekenContent = "Berekenen";
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";
             }

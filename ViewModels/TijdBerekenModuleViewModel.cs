@@ -158,13 +158,13 @@ namespace ISIS.ViewModels
                     SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten + AddPrestatie.NieuwTegoed);
                 }
 
-                ButtonBerekenContent = "Herbereken";
+                ButtonBerekenContent = "Herberekenen";
                 ButtonToevoegenContent = "Aanpassen";
                 ButtonChangeContent = "Annuleren";
             }
             else
             {
-                ButtonBerekenContent = "Bereken";
+                ButtonBerekenContent = "Berekenen";
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";
 
