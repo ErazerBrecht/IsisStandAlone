@@ -14,8 +14,7 @@
             <!-- Style I lend for ErrorHighlighting from a user (Fredrik Hedblad) on stackoverflow: http://stackoverflow.com/q/7434245/2961887 -->
             <ControlTemplate x:Key="errorTemplateSilverlightStyle">
                 <StackPanel Orientation="Horizontal">
-                    <Border BorderThickness="2.5" BorderBrush="#FFdc000c" CornerRadius="0.7"
-                VerticalAlignment="Top">
+                    <Border BorderThickness="2.5" BorderBrush="#FFdc000c" CornerRadius="0.7" VerticalAlignment="Top">
                         <Grid>
                             <Polygon x:Name="toolTipCorner"
                          Grid.ZIndex="2"
@@ -47,15 +46,14 @@
                                   Direction="315"
                                   BlurRadius="4"/>
                         </Border.Effect>
-                        <TextBlock Text="{Binding ElementName=adorner,
-                                      Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                        <TextBlock Text="{Binding ElementName=adorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
                        Foreground="White" Margin="8,3,8,3" TextWrapping="Wrap"/>
                     </Border>
                 </StackPanel>
                 <ControlTemplate.Triggers>
                     <DataTrigger Value="True">
                         <DataTrigger.Binding>
-                            <Binding ElementName="adorner" Path="AdornedElement.IsKeyboardFocused" />
+                            <Binding ElementName="adorner" Path="AdornedElement.IsFocused" />
                         </DataTrigger.Binding>
                         <DataTrigger.EnterActions>
                             <BeginStoryboard x:Name="fadeInStoryboard">
@@ -90,6 +88,46 @@
                         </DataTrigger.ExitActions>
                     </DataTrigger>
                 </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="validationErrorTemplate">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,5,5">
+                         <Grid Width="14" Height="14">
+                            <Ellipse Width="14" Height="14" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="White" FontWeight="Heavy" 
+                                FontSize="12" HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" TextAlignment="Center"
+                                ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                X
+                            </TextBlock>
+                        </Grid>
+                        <TextBlock Foreground="Red" FontWeight="12" Margin="2,0,0,0" 
+                            Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                    </StackPanel>
+                    <Border BorderThickness="3" BorderBrush="Red" CornerRadius="0.7" VerticalAlignment="Top">
+                        <Grid>
+                            <Polygon x:Name="toolTipCorner"
+                         Grid.ZIndex="2"
+                         Margin="-1"
+                         Points="6,6 6,0 0,0" 
+                         Fill="Red" 
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Top"
+                         IsHitTestVisible="True"/>
+                            <Polyline Grid.ZIndex="3"
+                          Points="7,7 0,0" Margin="-1" HorizontalAlignment="Right" 
+                          StrokeThickness="1.5"
+                          StrokeEndLineCap="Round"
+                          StrokeStartLineCap="Round"
+                          Stroke="White"
+                          VerticalAlignment="Top"
+                          IsHitTestVisible="True"/>
+                            <AdornedElementPlaceholder x:Name="adorner"/>
+                        </Grid>
+                    </Border>
+                    <AdornedElementPlaceholder x:Name="ErrorAdorner"/>
+                </DockPanel>
             </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>

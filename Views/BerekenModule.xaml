@@ -12,7 +12,7 @@
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
         </Style>
         <Style TargetType="{x:Type toolkit:AutoCompleteBox}">
-            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource validationErrorTemplate}" />
         </Style>
         <vm:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
     </UserControl.Resources>
@@ -40,8 +40,8 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="Zoek klant: "></TextBlock>
-                        <toolkit:AutoCompleteBox Margin="10" Grid.Row="0" Grid.Column="1" Width="300" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,30,10,10" Text="Zoek klant: "></TextBlock>
+                        <toolkit:AutoCompleteBox Margin="10,30,10,10" Grid.Row="0" Grid.Column="1" Width="300" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
                     </Grid>
                 </GroupBox>
 
