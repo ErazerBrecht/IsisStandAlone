@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using ISIS.Models;
 using ISIS.Commands;
+using ISIS.Services;
 using PropertyChanged;
 
 namespace ISIS.ViewModels
@@ -138,9 +139,19 @@ namespace ISIS.ViewModels
 
         public override void Add()
         {
-            CurrentDates.Add(AddDatum);
-            AddDatum = new Datum { Date = DateTime.Now };
-            AddDatum.PropertyChanged += Datum_PropertyChanged;
+            var duplicate = CurrentDates.FirstOrDefault(d => d.Date.Date == AddDatum.Date.Date);
+            if (duplicate == null)
+            {
+                CurrentDates.Add(AddDatum);
+                CurrentDates = new ObservableCollection<Datum>(CurrentDates.OrderBy(d => d.Date.Date));
+                AddDatum = new Datum {Date = DateTime.Now};
+                AddDatum.PropertyChanged += Datum_PropertyChanged;
+            }
+            else
+            {
+                MessageBoxService messageBoxService = new MessageBoxService();
+                messageBoxService.ShowMessageBox("Deze datum is al toegevoegd!");
+            }
         }
 
         public override void SaveChanges()
