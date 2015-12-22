@@ -5,19 +5,26 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 using ISIS.Commands;
 using ISIS.Services;
 using ISIS.Models;
+using PropertyChanged;
 
 namespace ISIS.ViewModels
 {
-    class BerekenModuleViewModel: BeheerViewModel, ISelectedKlant, IBereken
+    [ImplementPropertyChanged]
+    class BerekenModuleViewModel: BeheerViewModel, IBereken, IDataErrorInfo
     {
         public DatumBeheerViewModel DatumViewModel { get; set; }
-        public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
+        public PrestatieBerekenModuleViewModel CurrentView { get; set; }
+        //public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
+
+        //Extra button
         public BerekenCommand BerekenCommandEvent { get; set; }
 
+        #region SelectedKlant LOGIC
         public bool IsKlantSelected
         {
             get
@@ -27,22 +34,6 @@ namespace ISIS.ViewModels
                 return false;
             }
         }
-
-        #region CurrentView full property
-        private PrestatieBerekenModuleViewModel _currentView;
-        public PrestatieBerekenModuleViewModel CurrentView
-        {
-            get
-            {
-                return _currentView;
-            }
-            set
-            {
-                _currentView = value;
-                NoticeMe("CurrentView");
-            }
-        }
-        #endregion
 
         private Klant _selectedKlant;
         public Klant SelectedKlant
@@ -55,22 +46,41 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedKlant = value;
-                if (_selectedKlant.SoortKlant.StukTarief)
-                    CurrentView = new StukBerekenModuleViewModel(ctx);
-                else
-                    CurrentView = new TijdBerekenModuleViewModel(ctx);
+                if (_selectedKlant != null)
+                {
+                    if (_selectedKlant.SoortKlant.StukTarief)
+                        CurrentView = new StukBerekenModuleViewModel(ctx);
+                    else
+                        CurrentView = new TijdBerekenModuleViewModel(ctx);
+                }
                 CurrentView.SelectedKlant = value;
                 DatumViewModel.Refresh();
                 NoticeMe("SelectedKlant");
+                NoticeMe("IsKlantSelected");
             }
         }
+        #endregion
+
+        #region Searchbox Klant LOGIC
+        public IEnumerable<Klant> Klanten { get; set; }
+        public AutoCompleteFilterPredicate<object> KlantenFilter
+        {
+            get
+            {
+                return (searchText, obj) =>
+                {
+                    var klant = obj as Klant;
+                    return klant != null && (klant.ToString().Trim().ToUpper().Contains(searchText.ToUpper()));
+                };
+            }
+        }
+        #endregion
 
         public BerekenModuleViewModel()
         {
             Header = "Berekenmodule";
             ctx = new ISIS_DataEntities();
             DatumViewModel = new DatumBeheerViewModel();
-            SearchBoxViewModel = new SearchBoxKlantViewModel(this);
             CurrentView = new TijdBerekenModuleViewModel(ctx);
             BerekenCommandEvent = new BerekenCommand(this);
         }
@@ -142,8 +152,34 @@ namespace ISIS.ViewModels
 
         public override void LoadData()
         {
+            Klanten = ctx.Klanten.ToList();
             DatumViewModel.LoadData();
             CurrentView.LoadData();
         }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = null;
+
+                switch (propertyName)
+                {
+                    case "SelectedKlant":
+                    {
+                        if (SelectedKlant == null)
+                        {
+                            result = "Selecteer een klant voor je verder gaat!";
+                        }
+
+                        break;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public string Error { get; }
     }
 }

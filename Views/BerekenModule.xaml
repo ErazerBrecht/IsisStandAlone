@@ -11,6 +11,9 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
         </Style>
+        <Style TargetType="{x:Type toolkit:AutoCompleteBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
         <vm:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
     </UserControl.Resources>
     <ScrollViewer>
@@ -38,7 +41,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Text="Zoek klant: "></TextBlock>
-                        <vm:SearchComboBox Margin="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Width="200" IsEditable="True" StaysOpenOnEdit="True" Text="{Binding SearchBoxViewModel.SearchBoxText, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchBoxViewModel.SearchBoxResults}" SelectedItem="{Binding SearchBoxViewModel.SearchBoxSelectedKlant}" />
+                        <toolkit:AutoCompleteBox Margin="10" Grid.Row="0" Grid.Column="1" Width="300" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
                     </Grid>
                 </GroupBox>
 
