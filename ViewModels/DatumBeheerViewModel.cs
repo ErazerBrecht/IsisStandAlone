@@ -126,15 +126,6 @@ namespace ISIS.ViewModels
             }
         }
 
-        public AutoCompleteFilterPredicate<object> StrijkerFilter
-        {
-            get
-            {
-                return (searchText, obj) =>
-                    Convert.ToString((obj as Strijker).ID).Contains(searchText) || (obj as Strijker).Naam.Contains(searchText);
-            }
-        }
-
         public override void Delete()
         {
             //TODO

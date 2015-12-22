@@ -42,7 +42,7 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" Header="Datums toevoegen">
+                <GroupBox Grid.Column="1" Header="Datums toevoegen" IsEnabled="{Binding IsKlantSelected}">
                     <StackPanel Name="DatumView" DataContext="{Binding DatumViewModel}">
 
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding CurrentDates}" SelectedItem="{Binding SelectedDatum}" CanUserAddRows="False" HorizontalAlignment="Left" >
@@ -127,7 +127,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="Strijk">
+                <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="Strijk" IsEnabled="{Binding IsKlantSelected}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>

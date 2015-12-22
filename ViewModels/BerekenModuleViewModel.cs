@@ -18,6 +18,16 @@ namespace ISIS.ViewModels
         public SearchBoxKlantViewModel SearchBoxViewModel { get; set; }
         public BerekenCommand BerekenCommandEvent { get; set; }
 
+        public bool IsKlantSelected
+        {
+            get
+            {
+                if (SelectedKlant != null)
+                    return true;
+                return false;
+            }
+        }
+
         #region CurrentView full property
         private PrestatieBerekenModuleViewModel _currentView;
         public PrestatieBerekenModuleViewModel CurrentView
@@ -61,7 +71,7 @@ namespace ISIS.ViewModels
             ctx = new ISIS_DataEntities();
             DatumViewModel = new DatumBeheerViewModel();
             SearchBoxViewModel = new SearchBoxKlantViewModel(this);
-            CurrentView = new StukBerekenModuleViewModel(ctx);
+            CurrentView = new TijdBerekenModuleViewModel(ctx);
             BerekenCommandEvent = new BerekenCommand(this);
         }
 
