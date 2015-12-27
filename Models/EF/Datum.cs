@@ -15,9 +15,10 @@ namespace ISIS.Models
     [Table("Datum")]
     public partial class Datum : INotifyPropertyChanged
     {
-        [Key]
+        [Key, Column(Order = 0)]
         public DateTime Date { get; set; }
 
+        [Key, Column(Order = 1)]
         public int Id { get; set; }
 
         public int Strijker1_ID { get; set; }
