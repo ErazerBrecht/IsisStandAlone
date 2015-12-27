@@ -93,41 +93,29 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public PrestatieBerekenModuleViewModel(ISIS_DataEntities context)
+        public PrestatieBerekenModuleViewModel()
         {
-            AddPrestatie = new Prestatie();
+            Init();
 
             ButtonBerekenContent = "Berekenen";
             ButtonToevoegenContent = "Toevoegen";
             ButtonChangeContent = "Laatste prestatie aanpassen";
 
-            ctx = context;
-            ctx.Prestaties.Load();
-
             //Data is just loaded so first have to recalculate before we can save!!
             IsValid = false;         
         }
+
+        public abstract void Init();
 
         public abstract void Bereken();
 
         public abstract void Refresh();
 
-
-        public virtual void SaveChanges()
+        public virtual void SaveChanges(ISIS_DataEntities context)
         {
             //The "prestatie" will be saved, the next "prestatie" has to be calculated first!
             //Setting this one false, disbales the save button
             IsValid = false;
-
-            //The second time you want to add a "prestatie" EF is following the first object
-            //If you change the object EF will track the edits
-            //This will cause errors because the ID wil change (is normally not possible)
-            //But in our case it's a new "prestatie" so the ID should change
-            //To solve this we have to detach the object if EF is tracking it
-            Prestatie attachedPrestatie = ctx.Prestaties.Find(AddPrestatie.Id);
-            if (attachedPrestatie != null)
-                ctx.Entry(attachedPrestatie).State = EntityState.Detached;
-
 
             //Adding new prestatie
             if (ButtonToevoegenContent == "Toevoegen")
@@ -135,7 +123,7 @@ namespace ISIS.ViewModels
                 int tempId = 1;
 
                 //Search for first valid ID
-                while (ctx.Prestaties.Any(p => p.Id == tempId))
+                while (context.Prestaties.Any(p => p.Id == tempId))
                 {
                     tempId++;
                 }
@@ -151,34 +139,34 @@ namespace ISIS.ViewModels
 
 
                 //We query local context first to see if it's there.
-                var klant = ctx.Klanten.Find(SelectedKlant.ID);
+                var klant = context.Klanten.Find(SelectedKlant.ID);
 
                 //We have it in the entity, need to update.
                 if (klant != null)
                 {
-                    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
+                    context.Entry(klant).CurrentValues.SetValues(SelectedKlant);
                 }
 
-                ctx.Prestaties.Add(AddPrestatie);
+                context.Prestaties.Add(AddPrestatie);
             }
             else
             {
                 SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.NieuwTegoed);
 
-                var klant = ctx.Klanten.Find(SelectedKlant.ID);
+                var klant = context.Klanten.Find(SelectedKlant.ID);
 
                 //We have it in the entity, need to update.
                 if (klant != null)
                 {
-                    ctx.Entry(klant).CurrentValues.SetValues(SelectedKlant);
+                    context.Entry(klant).CurrentValues.SetValues(SelectedKlant);
                 }
 
-                var prestatie = ctx.Prestaties.Find(AddPrestatie.Id);
+                var prestatie = context.Prestaties.Find(AddPrestatie.Id);
 
                 //We have it in the entity, need to update.
                 if (prestatie != null)
                 {
-                    ctx.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
+                    context.Entry(prestatie).CurrentValues.SetValues(AddPrestatie);
                 }
 
                 ButtonBerekenContent = "Berekenen";

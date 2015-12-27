@@ -30,12 +30,16 @@ namespace ISIS.ViewModels
         }
         #endregion
 
-        public TijdBerekenModuleViewModel(ISIS_DataEntities context) : base(context)
+        public TijdBerekenModuleViewModel() : base()
         {
-            AddPrestatie.TijdPrestaties = new TijdPrestatie();
             CurrentParameters = new Parameters();
-
             LoadData();
+        }
+
+        public override void Init()
+        {
+            AddPrestatie = new Prestatie();
+            AddPrestatie.TijdPrestaties = new TijdPrestatie();
         }
 
         public override void LoadData()
@@ -105,62 +109,70 @@ namespace ISIS.ViewModels
 
             if (ButtonChangeContent == "Laatste prestatie aanpassen")
             {
-
-                if (ctx.Prestaties.Any())
+                using (var context = new ISIS_DataEntities())
                 {
-                    //Get all previous TijdPrestaties of the selected klant
-                    var previousPrestaties = ctx.TijdPrestaties.Where(p => p.Prestaties.KlantenNummer == SelectedKlant.ID);
-
-                    if (previousPrestaties.Any())
+                    if (context.Prestaties.Any())
                     {
-                        //Get the id of the latest tijdprestatie
-                        var tempId = previousPrestaties.OrderByDescending(p => p.Id).First().Id;
-                        //Get the prestatie with the same id of the latest tijdprestatie
-                        AddPrestatie = ctx.Prestaties.First(p => p.Id == tempId);
+                        //Get all previous TijdPrestaties of the selected klant
+                        var previousPrestaties =
+                            context.TijdPrestaties.Where(p => p.Prestaties.KlantenNummer == SelectedKlant.ID);
+
+                        if (previousPrestaties.Any())
+                        {
+                            //Get the id of the latest tijdprestatie
+                            var tempId = previousPrestaties.OrderByDescending(p => p.Id).First().Id;
+                            //Get the prestatie with the same id of the latest tijdprestatie
+                            AddPrestatie = context.Prestaties.First(p => p.Id == tempId);
+                        }
+                        else
+                        {
+                            MessageBoxService messageBoxService = new MessageBoxService();
+                            messageBoxService.ShowMessageBox(
+                                "Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                            return;
+                        }
                     }
                     else
                     {
                         MessageBoxService messageBoxService = new MessageBoxService();
                         messageBoxService.ShowMessageBox(
-                            "Deze klant heeft geen vorige prestaties, u kunt niets wijzigen");
+                            "Er bevinden zich nog geen prestaties in de databank, u kunt niets wijzigen");
                         return;
                     }
+
+                    //Change the current parameters to the parameters that where active at the time the parameter was made!
+                    CurrentParameters.ParameterHemden = AddPrestatie.TijdPrestaties.ParameterHemden;
+                    CurrentParameters.ParameterLakens1 = AddPrestatie.TijdPrestaties.ParameterLakens1;
+                    CurrentParameters.ParameterLakens2 = AddPrestatie.TijdPrestaties.ParameterLakens2;
+                    CurrentParameters.ParameterAndereStrijk = AddPrestatie.TijdPrestaties.ParameterAndereStrijk;
+
+                    //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
+                    AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
+
+                    CalculateStrijk();
+
+                    AddPrestatie.TotaalMinuten = AddPrestatie.TijdPrestaties.TotaalHemden +
+                                                 AddPrestatie.TijdPrestaties.TotaalLakens1 +
+                                                 AddPrestatie.TijdPrestaties.TotaalLakens2 +
+                                                 AddPrestatie.TijdPrestaties.TotaalAndereStrijk +
+                                                 AddPrestatie.TijdPrestaties.TijdAdministratie;
+
+                    //Recalculate the previous Tegoed of the klant
+                    if (AddPrestatie.TotaalDienstenChecks > 0)
+                    {
+                        AddPrestatie.TotaalBetalen = (AddPrestatie.TotaalDienstenChecks*60) - AddPrestatie.NieuwTegoed;
+                        SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten - AddPrestatie.TotaalBetalen);
+                    }
+                    else
+                    {
+                        AddPrestatie.TotaalBetalen = 0;
+                        SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten + AddPrestatie.NieuwTegoed);
+                    }
+
+                    ButtonBerekenContent = "Herberekenen";
+                    ButtonToevoegenContent = "Aanpassen";
+                    ButtonChangeContent = "Annuleren";
                 }
-                else
-                {
-                    MessageBoxService messageBoxService = new MessageBoxService();
-                    messageBoxService.ShowMessageBox("Er bevinden zich nog geen prestaties in de databank, u kunt niets wijzigen");
-                    return;
-                }
-
-                //Change the current parameters to the parameters that where active at the time the parameter was made!
-                CurrentParameters.ParameterHemden = AddPrestatie.TijdPrestaties.ParameterHemden;
-                CurrentParameters.ParameterLakens1 = AddPrestatie.TijdPrestaties.ParameterLakens1;
-                CurrentParameters.ParameterLakens2 = AddPrestatie.TijdPrestaties.ParameterLakens2;
-                CurrentParameters.ParameterAndereStrijk = AddPrestatie.TijdPrestaties.ParameterAndereStrijk;
-
-                //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
-                AddPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
-
-                CalculateStrijk();
-
-                AddPrestatie.TotaalMinuten = AddPrestatie.TijdPrestaties.TotaalHemden + AddPrestatie.TijdPrestaties.TotaalLakens1 + AddPrestatie.TijdPrestaties.TotaalLakens2 + AddPrestatie.TijdPrestaties.TotaalAndereStrijk + AddPrestatie.TijdPrestaties.TijdAdministratie;
-
-                //Recalculate the previous Tegoed of the klant
-                if (AddPrestatie.TotaalDienstenChecks > 0)
-                {
-                    AddPrestatie.TotaalBetalen = (AddPrestatie.TotaalDienstenChecks * 60) - AddPrestatie.NieuwTegoed;
-                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten - AddPrestatie.TotaalBetalen);
-                }
-                else
-                {
-                    AddPrestatie.TotaalBetalen = 0;
-                    SelectedKlant.Tegoed = Convert.ToByte(AddPrestatie.TotaalMinuten + AddPrestatie.NieuwTegoed);
-                }
-
-                ButtonBerekenContent = "Herberekenen";
-                ButtonToevoegenContent = "Aanpassen";
-                ButtonChangeContent = "Annuleren";
             }
             else
             {
@@ -168,8 +180,11 @@ namespace ISIS.ViewModels
                 ButtonToevoegenContent = "Toevoegen";
                 ButtonChangeContent = "Laatste prestatie aanpassen";
 
-                ctx.Entry(AddPrestatie).Reload();
-                ctx.Entry(SelectedKlant).Reload();
+                using (var context = new ISIS_DataEntities())
+                {
+                    context.Entry(AddPrestatie).Reload();
+                    context.Entry(SelectedKlant).Reload();
+                }
 
                 CurrentParameters = new Parameters();
                 AddPrestatie = new Prestatie();

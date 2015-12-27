@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
@@ -48,9 +49,9 @@ namespace ISIS.ViewModels
                 if (_selectedKlant != null)
                 {
                     if (_selectedKlant.SoortKlant.StukTarief)
-                        CurrentView = new StukBerekenModuleViewModel(ctx);
+                        CurrentView = new StukBerekenModuleViewModel();
                     else
-                        CurrentView = new TijdBerekenModuleViewModel(ctx);
+                        CurrentView = new TijdBerekenModuleViewModel();
                 }
                 CurrentView.SelectedKlant = value;
                 DatumViewModel.Refresh();
@@ -80,7 +81,7 @@ namespace ISIS.ViewModels
             Header = "Berekenmodule";
             ctx = new ISIS_DataEntities();
             DatumViewModel = new DatumBeheerViewModel();
-            CurrentView = new TijdBerekenModuleViewModel(ctx);
+            CurrentView = new TijdBerekenModuleViewModel();
             BerekenCommandEvent = new BerekenCommand(this);
         }
 
@@ -108,35 +109,41 @@ namespace ISIS.ViewModels
                 return;
             }
 
-            //Add prestatie to DB
-            CurrentView.SaveChanges();
-
-            //Add Dates to DB
-            foreach (var d in DatumViewModel.CurrentDates)
+            using (var context = new ISIS_DataEntities())
             {
-                d.Id = CurrentView.AddPrestatie.Id;
-                ctx.Datum.Add(d);
+                //Add prestatie to DB
+                CurrentView.SaveChanges(context);
 
-                //EF is retarded and thinks that I readded the Strijkers to the db, while I didn't.
-                //I Just use them as foreign relantionschip, I can't just use the id, because I need the name
-                //Manually said this is not true
-                //https://msdn.microsoft.com/en-us/magazine/dn166926.aspx
-                //This link explains it!
+                //Add Dates to DB
+                foreach (var d in DatumViewModel.CurrentDates)
+                {
+                    d.Id = CurrentView.AddPrestatie.Id;
+                    context.Datum.Add(d);
 
-                if (d.Strijker1 != null)
-                    ctx.Entry(d.Strijker1).State = EntityState.Unchanged;
-                if (d.Strijker2 != null)
-                    ctx.Entry(d.Strijker2).State = EntityState.Unchanged;
-                if (d.Strijker3 != null)
-                    ctx.Entry(d.Strijker3).State = EntityState.Unchanged;
-                if (d.Strijker4 != null)
-                    ctx.Entry(d.Strijker4).State = EntityState.Unchanged;
-                if (d.Strijker5 != null)
-                    ctx.Entry(d.Strijker5).State = EntityState.Unchanged;
+                    //EF is retarded and thinks that I readded the Strijkers to the db, while I didn't.
+                    //I Just use them as foreign relantionschip, I can't just use the id, because I need the name
+                    //Manually said this is not true
+                    //https://msdn.microsoft.com/en-us/magazine/dn166926.aspx
+                    //This link explains it!
+
+                    if (d.Strijker1 != null)
+                        context.Entry(d.Strijker1).State = EntityState.Unchanged;
+                    if (d.Strijker2 != null)
+                        context.Entry(d.Strijker2).State = EntityState.Unchanged;
+                    if (d.Strijker3 != null)
+                        context.Entry(d.Strijker3).State = EntityState.Unchanged;
+                    if (d.Strijker4 != null)
+                        context.Entry(d.Strijker4).State = EntityState.Unchanged;
+                    if (d.Strijker5 != null)
+                        context.Entry(d.Strijker5).State = EntityState.Unchanged;
+                }
+
+                //Save changes to DB
+                context.SaveChanges();
+
+                CurrentView.Init();                                                     //Re init CurrentView => Make new Prestatie, ...
+                DatumViewModel.CurrentDates = new ObservableCollection<Datum>();
             }
-
-            //Save changes to DB
-            ctx.SaveChanges();
 
         }
 

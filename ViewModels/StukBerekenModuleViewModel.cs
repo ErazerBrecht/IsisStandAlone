@@ -14,8 +14,14 @@ namespace ISIS.ViewModels
 {
     class StukBerekenModuleViewModel : PrestatieBerekenModuleViewModel
     {
-        public StukBerekenModuleViewModel(ISIS_DataEntities context) : base(context)
+        public StukBerekenModuleViewModel() : base()
         {
+            
+        }
+
+        public override void Init()
+        {
+            AddPrestatie = new Prestatie();
             AddPrestatie.StukPrestaties = new StukPrestatie();
         }
 
