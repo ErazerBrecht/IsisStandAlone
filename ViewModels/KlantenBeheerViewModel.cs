@@ -111,7 +111,7 @@ namespace ISIS.ViewModels
         {
             get
             {
-                if (SelectedKlant.Betalingswijze == "Elektronisch")
+                if (SelectedKlant?.Betalingswijze == "Elektronisch")
                 {
                     if (String.IsNullOrWhiteSpace(SelectedKlant.Gebruikersnummer))
                         SelectedKlant.Gebruikersnummer = null;      //Force data validation
@@ -127,7 +127,7 @@ namespace ISIS.ViewModels
         {
             get
             {
-                if (SelectedKlant.Strijkbox != null && SelectedKlant.Strijkbox > 0)
+                if (SelectedKlant?.Strijkbox != null && SelectedKlant?.Strijkbox > 0)
                 {
                     if (SelectedKlant.Waarborg == null)
                         SelectedKlant.Waarborg = null;      //Force data validation
@@ -142,7 +142,7 @@ namespace ISIS.ViewModels
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(SelectedKlant.SoortKlantType))
+                if (String.IsNullOrWhiteSpace(SelectedKlant?.SoortKlantType))
                     return false;
                 return true;
             }
@@ -168,8 +168,8 @@ namespace ISIS.ViewModels
             get
             {
                 ctx.SoortKlant.Load();
-                var temp = ctx.SoortKlant.Where(s => s.Type == SelectedKlant.SoortKlantType).ToList();       //First load the correct one before using the To String method (next statement), this will crash when you don't get the data (ToList)
-                return temp.Select(s => s.ToString()).ToList();                                          //This is the reason why I can't do it in one step!
+                var temp = ctx.SoortKlant.Where(s => s.Type == SelectedKlant.SoortKlantType).ToList();      //First load the correct one before using the To String method (next statement), this will crash when you don't get the data (ToList)
+                return temp.Select(s => s.ToString()).ToList();                                             //This is the reason why I can't do it in one step!
             }
         }
 
