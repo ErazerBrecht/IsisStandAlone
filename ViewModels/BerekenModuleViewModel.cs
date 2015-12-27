@@ -52,9 +52,10 @@ namespace ISIS.ViewModels
                         CurrentView = new StukBerekenModuleViewModel();
                     else
                         CurrentView = new TijdBerekenModuleViewModel();
+
+                    DatumViewModel.Refresh();
                 }
                 CurrentView.SelectedKlant = value;
-                DatumViewModel.Refresh();
                 NoticeMe("SelectedKlant");
                 NoticeMe("IsKlantSelected");
             }
