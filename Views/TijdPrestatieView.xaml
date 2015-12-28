@@ -14,6 +14,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -21,56 +22,55 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition MaxWidth="85"></ColumnDefinition>
-            <ColumnDefinition MaxWidth="85"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="200"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="250"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Margin="10" Text="Hemden "></TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Name="TextBoxAantalHemden" Text="{Binding AddPrestatie.TijdPrestaties.AantalHemden, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-        <TextBlock Grid.Row="0" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterHemden, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalHemden}" HorizontalAlignment="Center"></TextBlock>
 
-        <TextBlock Grid.Row="1" Margin="10" Text="Lakens 1 "></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Name="TextBoxAantalLakens1" Text="{Binding AddPrestatie.TijdPrestaties.AantalLakens1, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-        <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterLakens1, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalLakens1}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">Aantal</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="5" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">Totaal Minuten</TextBlock>
 
-        <TextBlock Grid.Row="2" Margin="10" Text="Lakens 2 "></TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Name="TextBoxAantalLakens2" Text="{Binding AddPrestatie.TijdPrestaties.AantalLakens2, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterLakens2, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalLakens2}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Margin="10" Text="Hemden "></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Name="TextBoxAantalHemden" Text="{Binding AddPrestatie.TijdPrestaties.AantalHemden, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterHemden, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalHemden}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock Grid.Row="3" Margin="10" Text="Andere strijk " VerticalAlignment="Center"></TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Name="TextBoxAantalAndereStrijk" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.AantalAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-        <TextBox Grid.Row="3" Grid.Column="2" Name="TextBoxTijdAndereStrijk" Margin="10"  Text="{Binding AddPrestatie.TijdPrestaties.TijdAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterAndereStrijk, StringFormat='X {0}'}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalAndereStrijk}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Margin="10" Text="Lakens "></TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" Name="TextBoxAantalLakens1" Text="{Binding AddPrestatie.TijdPrestaties.AantalLakens1, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterLakens1, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalLakens1}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock Grid.Row="4" Margin="10" Text="Administratie   "></TextBlock>
-        <Border BorderThickness="0,3,0,0" BorderBrush="Black"  Grid.Row="4" Grid.Column="1" Margin="10" >
-            <TextBlock Text="{Binding AddPrestatie.TijdPrestaties.TotaalStrijk}" HorizontalAlignment="Center"></TextBlock>
-        </Border>
-        <TextBlock Grid.Row="4" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TijdAdministratie}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="3" Margin="10" Text="Dekbed "></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Name="TextBoxAantalLakens2" Text="{Binding AddPrestatie.TijdPrestaties.AantalLakens2, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterLakens2, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalLakens2}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock Grid.Row="5" Grid.Column="4" Text="Totaal minuten " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="5" Text="{Binding AddPrestatie.TotaalMinuten}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="4" Margin="10" Text="Andere strijk " VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="TextBoxAantalAndereStrijk" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.AantalAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" Name="TextBoxTijdAndereStrijk" Margin="10"  Text="{Binding AddPrestatie.TijdPrestaties.TijdAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" ></TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="3" Margin="10" Text="{Binding CurrentParameters.ParameterAndereStrijk, StringFormat='X {0}'}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TotaalAndereStrijk}" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
 
+        <TextBlock Grid.Row="5" Margin="10" Text="Administratie   "></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TijdPrestaties.TijdAdministratie}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock Grid.Row="6" Grid.Column="4" Text="Tegoed " HorizontalAlignment="Right"></TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="5" Name="TextBlockTegoed" Text="{Binding SelectedKlant.Tegoed, StringFormat='- {0}'}" HorizontalAlignment="Center"></TextBlock>
-
-        <TextBlock Grid.Row="7" Grid.Column="4" Text="Te betalen minuten " HorizontalAlignment="Right"></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="5" Text="{Binding AddPrestatie.TotaalBetalen}" HorizontalAlignment="Center"></TextBlock>
-
-        <TextBlock FontWeight="Bold" Foreground="Red" Grid.Row="8" Grid.Column="4" Text="Totaal aantal DC " HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
-        <Border BorderThickness="0,3,0,0" BorderBrush="Black"  Grid.Row="8" Grid.Column="5" Width="75" Margin="10,0,10,0"/>
-        <TextBlock FontWeight="Bold" Foreground="Red" Grid.Row="8" Grid.Column="5" Margin="0,20,0,0" Text="{Binding AddPrestatie.TotaalDienstenChecks}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="4"  Margin="10" Text="Totaal minuten " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="5"  Margin="10" Text="{Binding AddPrestatie.TotaalMinuten}" HorizontalAlignment="Right"></TextBlock>
 
 
-        <TextBlock Grid.Row="9" Grid.Column="4" Text="Nieuw tegoed " HorizontalAlignment="Right"></TextBlock>
-        <TextBlock Grid.Row="9" Grid.Column="5" Text="{Binding AddPrestatie.NieuwTegoed}" Margin="0,0,0,15" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="4" Margin="10" Text="Tegoed " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="5" Margin="10" Name="TextBlockTegoed" Text="{Binding SelectedKlant.Tegoed, StringFormat='- {0}'}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="9" Grid.Column="4" Margin="10" Text="Te betalen minuten " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.TotaalBetalen}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="10" Grid.Column="4" Margin="10" FontWeight="Bold" Foreground="Red" Text="Te betalen DC " HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="5" Margin="10" FontWeight="Bold" Foreground="Red" Text="{Binding AddPrestatie.TotaalDienstenChecks}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="11" Grid.Column="4" Margin="10" Text="Nieuw tegoed " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="11" Grid.Column="5" Margin="10" Text="{Binding AddPrestatie.NieuwTegoed}"  HorizontalAlignment="Right"></TextBlock>
     </Grid>
 </UserControl>
