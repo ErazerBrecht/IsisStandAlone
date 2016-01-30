@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using ISIS.Annotations;
+using System.Runtime.CompilerServices;
+using PropertyChanged;
 
 namespace ISIS.Models
 {
+
+    [ImplementPropertyChanged]
     public class Parameters : INotifyPropertyChanged
     {
         public Parameters()
@@ -33,57 +38,20 @@ namespace ISIS.Models
             Properties.Settings.Default.Save();
         }
 
-        private decimal _parameterHemden;
-        public decimal ParameterHemden
-        {
-            get { return _parameterHemden; }
-            set
-            {
-                _parameterHemden = value;
-                NoticeMe("ParameterHemden");
-            }
-        }
+        public decimal ParameterHemden { get; set; }
+        public decimal ParameterLakens1 { get; set; }
+        public decimal ParameterLakens2 { get; set; }
+        public decimal ParameterAndereStrijk { get; set; }
 
-        private decimal _parameterLakens1;
-        public decimal ParameterLakens1
-        {
-            get { return _parameterLakens1; }
-            set
-            {
-                _parameterLakens1 = value;
-                NoticeMe("ParameterLakens1");
-            }
-        }
 
-        private decimal _parameterLakens2;
-        public decimal ParameterLakens2
-        {
-            get { return _parameterLakens2; }
-            set
-            {
-                _parameterLakens2 = value;
-                NoticeMe("ParameterLakens2");
-            }
-        }
-
-        private decimal _parameterAndereStrijk;
-        public decimal ParameterAndereStrijk
-        {
-            get { return _parameterAndereStrijk; }
-            set
-            {
-                _parameterAndereStrijk = value;
-                NoticeMe("ParameterAndereStrijk");
-            }
-        }
-
+        #region PropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NoticeMe(string property)
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
     }
 }
