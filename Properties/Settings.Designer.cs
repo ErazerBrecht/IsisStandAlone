@@ -84,57 +84,61 @@ namespace ISIS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>Rijkevorsel</string>\r\n  <string>Heist</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Winkels {
+        [global::System.Configuration.DefaultSettingValueAttribute("Hemden")]
+        public string StringHemden {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Winkels"]));
+                return ((string)(this["StringHemden"]));
             }
             set {
-                this["Winkels"] = value;
+                this["StringHemden"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>Brecht</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Ophaling {
+        [global::System.Configuration.DefaultSettingValueAttribute("Lakens")]
+        public string StringLakens1 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Ophaling"]));
+                return ((string)(this["StringLakens1"]));
             }
             set {
-                this["Ophaling"] = value;
+                this["StringLakens1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>Ecover</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Bedrijven {
+        [global::System.Configuration.DefaultSettingValueAttribute("Dekbedden")]
+        public string StringLakens2 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Bedrijven"]));
+                return ((string)(this["StringLakens2"]));
             }
             set {
-                this["Bedrijven"] = value;
+                this["StringLakens2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>Gitok</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Scholen {
+        [global::System.Configuration.DefaultSettingValueAttribute("Andere Strijk")]
+        public string StringAndere {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Scholen"]));
+                return ((string)(this["StringAndere"]));
             }
             set {
-                this["Scholen"] = value;
+                this["StringAndere"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Administratie")]
+        public string StringAdministratie {
+            get {
+                return ((string)(this["StringAdministratie"]));
+            }
+            set {
+                this["StringAdministratie"] = value;
             }
         }
     }

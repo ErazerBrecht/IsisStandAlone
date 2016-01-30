@@ -18,37 +18,80 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <GroupBox Header="Parameters" HorizontalAlignment="Left">
-                <Grid x:Name="ParameterGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Parameters" HorizontalAlignment="Left">
+                    <Grid x:Name="ParameterGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0">Hemden</TextBlock>
-                    <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterData.ParameterHemden, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        <TextBlock Grid.Column="0">Hemden</TextBlock>
+                        <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterData.ParameterHemden, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                    <TextBlock Grid.Row="1">Lakens 1</TextBlock>
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterData.ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterData.ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                    <TextBlock Grid.Row="2">Lakens 2</TextBlock>
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                    <TextBlock Grid.Row="3">Andere strijk</TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterData.ParameterAndereStrijk, Mode=TwoWay, StringFormat=N2, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        <TextBlock Grid.Row="3">Andere strijk</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterData.ParameterAndereStrijk, Mode=TwoWay, StringFormat=N2, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                    <Button Grid.Row="4" Command="{Binding SaveCommandEvent}" Content="Opslaan"/>
-                    <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshCommandEvent}" Content="Vernieuwen"/>
-                </Grid>
-            </GroupBox>
-            <Grid x:Name="SoortKlantenGrid" Grid.Row="2">
+                        <Button Grid.Row="4" Command="{Binding SaveParametersCommand}" Content="Opslaan"/>
+                        <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshParametersCommand}" Content="Vernieuwen"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" Header="Namen">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0">Hemden</TextBlock>
+                        <TextBox Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringHemden, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringLakens1, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringLakens2, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="3">Andere strijk</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringAndere, Mode=TwoWay}"/>
+
+
+                        <TextBlock Grid.Row="4">Administratie</TextBlock>
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="20,0,0,15" Text="{Binding StringsData.StringAdministratie, Mode=TwoWay}"/>
+
+                        <Button Grid.Row="5" Command="{Binding SaveStringsCommand}" Content="Opslaan"/>
+                        <Button Grid.Row="5" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshStringsCommand}" Content="Vernieuwen"/>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+            <Grid x:Name="SoortKlantenGrid" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>

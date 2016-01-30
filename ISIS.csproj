@@ -173,6 +173,7 @@
     <Compile Include="Models\ModelExtensions\SoortKlantUitbreiding.cs" />
     <Compile Include="Models\ModelExtensions\StrijkerUitbreiding.cs" />
     <Compile Include="Models\Parameters.cs" />
+    <Compile Include="Models\Strings.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\IErrorDataBaseAlert.cs" />
     <Compile Include="Services\IMessageBoxService.cs" />

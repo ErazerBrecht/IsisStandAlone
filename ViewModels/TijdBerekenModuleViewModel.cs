@@ -30,9 +30,27 @@ namespace ISIS.ViewModels
         }
         #endregion
 
+        #region  CurrentStrings full property
+        private Strings _currentStrings;
+        public Strings CurrentStrings
+        {
+            get
+            {
+                return _currentStrings;
+            }
+            private set
+            {
+                _currentStrings = value;
+                NoticeMe("CurrentStrings");
+            }
+        }
+        #endregion
+
+
         public TijdBerekenModuleViewModel() : base()
         {
             CurrentParameters = new Parameters();
+            CurrentStrings = new Strings();
             LoadData();
         }
 
@@ -46,6 +64,7 @@ namespace ISIS.ViewModels
         {
             //Load parameters from settings!
             CurrentParameters.LoadParameters();
+            CurrentStrings.LoadStrings();
         }
 
         public override void Bereken()

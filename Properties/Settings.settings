@@ -22,30 +22,20 @@
     <Setting Name="ParameterAndereStrijk" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="Winkels" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Rijkevorsel&lt;/string&gt;
-  &lt;string&gt;Heist&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
+    <Setting Name="StringHemden" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hemden</Value>
     </Setting>
-    <Setting Name="Ophaling" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Brecht&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
+    <Setting Name="StringLakens1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lakens</Value>
     </Setting>
-    <Setting Name="Bedrijven" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Ecover&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
+    <Setting Name="StringLakens2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dekbedden</Value>
     </Setting>
-    <Setting Name="Scholen" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Gitok&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
+    <Setting Name="StringAndere" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Andere Strijk</Value>
+    </Setting>
+    <Setting Name="StringAdministratie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Administratie</Value>
     </Setting>
   </Settings>
 </SettingsFile>
