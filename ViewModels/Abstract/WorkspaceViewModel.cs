@@ -8,7 +8,7 @@ using ISIS.Models;
 
 namespace ISIS.ViewModels
 {
-    abstract class WorkspaceViewModel : INotifyPropertyChanged
+    public abstract class WorkspaceViewModel : INotifyPropertyChanged
     {
         private string _header;
 

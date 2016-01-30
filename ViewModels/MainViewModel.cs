@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using ISIS.Services;
 using ISIS.Models;
+using GalaSoft.MvvmLight;
 
 namespace ISIS.ViewModels
 {
-    class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
         private WorkspaceViewModel _selectedWorkspace;
         public WorkspaceViewModel SelectedWorkspace
