@@ -46,16 +46,21 @@ namespace ISIS.ViewModels
             set
             {
                 _selectedKlant = value;
+
                 if (_selectedKlant != null)
                 {
                     if (_selectedKlant.SoortKlant.StukTarief)
                         CurrentView = new StukBerekenModuleViewModel();
                     else
+                    {
                         CurrentView = new TijdBerekenModuleViewModel();
+                    }
 
                     DatumViewModel.Refresh();
                 }
+
                 CurrentView.SelectedKlant = value;
+                CurrentView.LoadData();
                 NoticeMe("SelectedKlant");
                 NoticeMe("IsKlantSelected");
             }

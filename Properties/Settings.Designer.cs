@@ -72,18 +72,6 @@ namespace ISIS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal ParameterAndereStrijk {
-            get {
-                return ((decimal)(this["ParameterAndereStrijk"]));
-            }
-            set {
-                this["ParameterAndereStrijk"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Hemden")]
         public string StringHemden {
             get {

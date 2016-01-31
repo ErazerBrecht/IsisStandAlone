@@ -65,6 +65,17 @@ namespace ISIS.ViewModels
             //Load parameters from settings!
             CurrentParameters.LoadParameters();
             CurrentStrings.LoadStrings();
+
+            if (SelectedKlant != null)
+            {
+                using (var context = new ISIS_DataEntities())
+                {
+                    //var a = context.SoortKlant.ToList();
+                    CurrentParameters.ParameterAndereStrijk = context.SoortKlant.First(s => s.Naam == SelectedKlant.SoortKlantPlaats && s.Type == SelectedKlant.SoortKlantType ).SnelheidsCoëfficiënt;
+                }
+                    
+            }
+
         }
 
         public override void Bereken()

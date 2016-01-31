@@ -25,7 +25,7 @@ namespace ISIS.Models
             ParameterHemden = Properties.Settings.Default.ParameterHemden;
             ParameterLakens1 = Properties.Settings.Default.ParameterLakens1;
             ParameterLakens2 = Properties.Settings.Default.ParameterLakens2;
-            ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
+            //ParameterAndereStrijk = Properties.Settings.Default.ParameterAndereStrijk;
         }
 
         
@@ -34,7 +34,7 @@ namespace ISIS.Models
             Properties.Settings.Default.ParameterHemden = ParameterHemden;
             Properties.Settings.Default.ParameterLakens1 = ParameterLakens1;
             Properties.Settings.Default.ParameterLakens2 = ParameterLakens2;
-            Properties.Settings.Default.ParameterAndereStrijk = ParameterAndereStrijk;
+            //Properties.Settings.Default.ParameterAndereStrijk = ParameterAndereStrijk;
             Properties.Settings.Default.Save();
         }
 

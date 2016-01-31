@@ -44,13 +44,10 @@
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterData.ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
                         <TextBlock Grid.Row="2">Lakens 2</TextBlock>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,20" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
 
-                        <TextBlock Grid.Row="3">Andere strijk</TextBlock>
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,15" x:Name="TextBoxAndereStrijk" Text="{Binding ParameterData.ParameterAndereStrijk, Mode=TwoWay, StringFormat=N2, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
-
-                        <Button Grid.Row="4" Command="{Binding SaveParametersCommand}" Content="Opslaan"/>
-                        <Button Grid.Row="4" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshParametersCommand}" Content="Vernieuwen"/>
+                        <Button Grid.Row="3" Grid.Column="0" Command="{Binding SaveParametersCommand}" Content="Opslaan"/>
+                        <Button Grid.Row="3" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshParametersCommand}" Content="Vernieuwen"/>
                     </Grid>
                 </GroupBox>
 
@@ -83,7 +80,7 @@
 
 
                         <TextBlock Grid.Row="4">Administratie</TextBlock>
-                        <TextBox Grid.Row="4" Grid.Column="1" Margin="20,0,0,15" Text="{Binding StringsData.StringAdministratie, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="20,0,0,20" Text="{Binding StringsData.StringAdministratie, Mode=TwoWay}"/>
 
                         <Button Grid.Row="5" Command="{Binding SaveStringsCommand}" Content="Opslaan"/>
                         <Button Grid.Row="5" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshStringsCommand}" Content="Vernieuwen"/>
