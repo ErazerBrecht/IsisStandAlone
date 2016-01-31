@@ -35,16 +35,36 @@
                 <GroupBox Header="Basis informatie">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="125"></ColumnDefinition>
+                            <ColumnDefinition Width="125"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,30,10,10" Text="Zoek klant: "></TextBlock>
-                        <toolkit:AutoCompleteBox Margin="10,30,10,10" Grid.Row="0" Grid.Column="1" Width="300" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
+                        <toolkit:AutoCompleteBox Margin="10,30,10,10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Type:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" FontWeight="Bold">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="SelectedKlant.SoortKlantType"/>
+                                    <Binding Path="SelectedKlant.SoortKlantPlaats"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="10" Text="Tegoed:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" FontWeight="Bold" Text="{Binding SelectedKlant.Tegoed}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Margin="10" Text="Betalingswijze:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" FontWeight="Bold" Text="{Binding SelectedKlant.Betalingswijze}"/>
+
                     </Grid>
                 </GroupBox>
 
