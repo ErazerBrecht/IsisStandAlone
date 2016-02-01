@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ISIS.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="250" d:DesignWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -16,27 +16,27 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition MaxWidth="200"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="250"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Totaal minuten "></TextBlock>
-        <TextBox Grid.Column="1" Text="{Binding AddPrestatie.StukPrestaties.Totaal, Mode=TwoWay}" Margin="0,0,0,5"></TextBox>
+        <TextBlock Margin="10" Text="Totaal minuten "></TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding AddPrestatie.StukPrestaties.Totaal, Mode=TwoWay}" HorizontalContentAlignment="Right"></TextBox>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Tegoed "></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="1" Name="TextBlockTegoed" Text="{Binding SelectedKlant.Tegoed, StringFormat='- {0}'}"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Tegoed "></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Name="TextBlockTegoed" Text="{Binding SelectedKlant.Tegoed, StringFormat='- {0}'}" HorizontalAlignment="Right"></TextBlock>
 
-        <Border BorderThickness="0,3,0,0" BorderBrush="Black"  Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,10"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="10" Text="Te betalen minuten"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="10" Text="{Binding AddPrestatie.TotaalBetalen}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Te betalen minuten " Margin="0,0,0,15"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding AddPrestatie.TotaalBetalen}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="10" FontWeight="Bold" Foreground="Red" Text="Totaal betalen DC"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="10" FontWeight="Bold" Foreground="Red" Text="{Binding AddPrestatie.TotaalDienstenChecks}" HorizontalAlignment="Right"></TextBlock>
 
-        <TextBlock FontWeight="Bold" Foreground="Red" Grid.Row="4" Grid.Column="0" Text="Totaal aantal DC "></TextBlock>
-        <TextBlock FontWeight="Bold" Foreground="Red" Grid.Row="4" Grid.Column="1" Text="{Binding AddPrestatie.TotaalDienstenChecks}"></TextBlock>
-
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Nieuw tegoed "></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding AddPrestatie.NieuwTegoed}" Margin="0,0,0,15"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="10" Text="Nieuw tegoed"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1" Margin="10" Text="{Binding AddPrestatie.NieuwTegoed}" HorizontalAlignment="Right"></TextBlock>
     </Grid>
 </UserControl>
