@@ -47,6 +47,7 @@ namespace PL_WPF.ViewModels
         public ICommand BerekenCommandEvent { get; private set; }
         public ICommand SaveCommandEvent { get; private set; }
         public ICommand RefreshCommandEvent { get; private set; }
+        public ICommand PrintCommandEvent { get; private set; }
         #endregion
 
         #region ButtonBerekenContent full property
@@ -157,6 +158,7 @@ namespace PL_WPF.ViewModels
             BerekenCommandEvent = new RelayCommand(Bereken);
             SaveCommandEvent = new RelayCommand(Save);
             RefreshCommandEvent = new RelayCommand(Edit);
+            PrintCommandEvent = new RelayCommand(Print);
         }
 
         public void Bereken()
@@ -269,6 +271,12 @@ namespace PL_WPF.ViewModels
             //Re init CurrentView => Make new Prestatie, ...
             CurrentView.Init();
             DatumViewModel.Init();
+        }
+
+        public void Print()
+        {
+            PrintWindow print = new PrintWindow();
+            print.ShowPrintPreview(this);
         }
 
         #region Datavalidation implementation

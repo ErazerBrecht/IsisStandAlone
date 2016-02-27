@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Services\IErrorDataBaseAlert.cs" />
     <Compile Include="Services\IMessageBoxService.cs" />
+    <Compile Include="Services\IPrintWindow.cs" />
     <Compile Include="Services\OpenFileDialogService.cs" />
     <Compile Include="ViewModels\Abstract\KlantTypeViewModel.cs" />
     <Compile Include="ViewModels\Abstract\PrestatieBerekenModuleViewModel.cs" />
@@ -173,6 +174,9 @@
     </Compile>
     <Compile Include="Views\StukPrestatieView.xaml.cs">
       <DependentUpon>StukPrestatieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TijdPrestatiePrint.xaml.cs">
+      <DependentUpon>TijdPrestatiePrint.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TijdPrestatieView.xaml.cs">
       <DependentUpon>TijdPrestatieView.xaml</DependentUpon>
@@ -251,6 +255,10 @@
     <Page Include="Views\StukPrestatieView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TijdPrestatiePrint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TijdPrestatieView.xaml">
       <Generator>MSBuild:Compile</Generator>
