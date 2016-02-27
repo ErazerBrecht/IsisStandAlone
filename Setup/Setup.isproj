@@ -28,4 +28,22 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\DAL_Repository\DAL_Repository.csproj">
+			<Name>DAL_Repository</Name>
+			<Project>{06AF6C31-950E-42AC-A4C5-774B1F679BBE}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\EF_Context\EF_Context.csproj">
+			<Name>EF_Context</Name>
+			<Project>{C3ED031F-1708-4DAF-8A89-25B7C1E6C6AA}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\EF_Model\EF_Model.csproj">
+			<Name>EF_Model</Name>
+			<Project>{A2243F6A-719B-4875-9708-5D1C221FE4C4}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\PL_WPF\PL_WPF.csproj">
+			<Name>PL_WPF</Name>
+			<Project>{06E6E466-6C04-471B-8B57-EFBAA32F40D4}</Project>
+		</ProjectReference>
+	</ItemGroup>
 </Project>

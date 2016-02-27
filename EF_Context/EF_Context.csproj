@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3ED031F-1708-4DAF-8A89-25B7C1E6C6AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EF_Context</RootNamespace>
+    <AssemblyName>EF_Context</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Concurrent" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IsisContext.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Migrations\201602021126034_InitialModel.cs" />
+    <Compile Include="Migrations\201602021126034_InitialModel.Designer.cs">
+      <DependentUpon>201602021126034_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602021242385_UpdateStrijkers_Datums.cs" />
+    <Compile Include="Migrations\201602021242385_UpdateStrijkers_Datums.Designer.cs">
+      <DependentUpon>201602021242385_UpdateStrijkers_Datums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.cs" />
+    <Compile Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.Designer.cs">
+      <DependentUpon>201602021840397_StukPrestatie_TotaalMinuten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602031108055_RenameDatumAndSoortKlant.cs" />
+    <Compile Include="Migrations\201602031108055_RenameDatumAndSoortKlant.Designer.cs">
+      <DependentUpon>201602031108055_RenameDatumAndSoortKlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602031641099_RenamedFK_Klanten.cs" />
+    <Compile Include="Migrations\201602031641099_RenamedFK_Klanten.Designer.cs">
+      <DependentUpon>201602031641099_RenamedFK_Klanten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602041112121_KlantType_Snelheid.cs" />
+    <Compile Include="Migrations\201602041112121_KlantType_Snelheid.Designer.cs">
+      <DependentUpon>201602041112121_KlantType_Snelheid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051033293_PrestatiesId_Identity.cs" />
+    <Compile Include="Migrations\201602051033293_PrestatiesId_Identity.Designer.cs">
+      <DependentUpon>201602051033293_PrestatiesId_Identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.cs" />
+    <Compile Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.Designer.cs">
+      <DependentUpon>201602051242323_Datum_RenamedIdToPrestatieId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.cs" />
+    <Compile Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.Designer.cs">
+      <DependentUpon>201602052207555_StrijkerTelefoon_ChangedToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602052215087_StrijkerVoornaam_Required.cs" />
+    <Compile Include="Migrations\201602052215087_StrijkerVoornaam_Required.Designer.cs">
+      <DependentUpon>201602052215087_StrijkerVoornaam_Required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IDatumRepository.cs" />
+    <Compile Include="Repositories\IKlantRepository.cs" />
+    <Compile Include="Repositories\IKlantTypeRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IStrijkerRepository.cs" />
+    <Compile Include="Repositories\IStukPrestatieRepository.cs" />
+    <Compile Include="Repositories\ITijdPrestatieRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EF_Model\EF_Model.csproj">
+      <Project>{a2243f6a-719b-4875-9708-5d1c221fe4c4}</Project>
+      <Name>EF_Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602021126034_InitialModel.resx">
+      <DependentUpon>201602021126034_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602021242385_UpdateStrijkers_Datums.resx">
+      <DependentUpon>201602021242385_UpdateStrijkers_Datums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.resx">
+      <DependentUpon>201602021840397_StukPrestatie_TotaalMinuten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031108055_RenameDatumAndSoortKlant.resx">
+      <DependentUpon>201602031108055_RenameDatumAndSoortKlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031641099_RenamedFK_Klanten.resx">
+      <DependentUpon>201602031641099_RenamedFK_Klanten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602041112121_KlantType_Snelheid.resx">
+      <DependentUpon>201602041112121_KlantType_Snelheid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051033293_PrestatiesId_Identity.resx">
+      <DependentUpon>201602051033293_PrestatiesId_Identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.resx">
+      <DependentUpon>201602051242323_Datum_RenamedIdToPrestatieId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.resx">
+      <DependentUpon>201602052207555_StrijkerTelefoon_ChangedToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602052215087_StrijkerVoornaam_Required.resx">
+      <DependentUpon>201602052215087_StrijkerVoornaam_Required.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

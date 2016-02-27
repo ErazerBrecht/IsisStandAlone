@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EF_Model.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ParameterHemden" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="ParameterLakens1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ParameterLakens2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="StringHemden" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hemden</Value>
+    </Setting>
+    <Setting Name="StringLakens1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lakens</Value>
+    </Setting>
+    <Setting Name="StringLakens2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dekbedden</Value>
+    </Setting>
+    <Setting Name="StringAndere" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Andere strijk</Value>
+    </Setting>
+    <Setting Name="StringAdministratie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Administratie</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

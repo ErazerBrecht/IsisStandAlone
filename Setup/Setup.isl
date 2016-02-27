@@ -339,15 +339,12 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>EntityFramework.SqlServer.dll</td><td>{84A45176-85FC-4CE6-9788-BEAE651583F8}</td><td>INSTALLDIR</td><td>2</td><td/><td>entityframework.sqlserver.dl</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>EntityFramework.dll</td><td>{8DA3B16E-C937-4B5E-8BF0-5DAAA62B240F}</td><td>INSTALLDIR</td><td>2</td><td/><td>entityframework.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISIS.exe</td><td>{D0E1B342-81DB-463D-B82F-F25635BDCE30}</td><td>INSTALLDIR</td><td>2</td><td/><td>isis.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISIS.vshost.exe</td><td>{241C9C32-7020-4D06-B8BA-762617613A63}</td><td>INSTALLDIR</td><td>2</td><td/><td>isis.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>DAL_Repository.Primary_output</td><td>{00836B91-241F-4B42-97A5-F42BE2CD3CAA}</td><td>INSTALLDIR</td><td>2</td><td/><td>dal_repository.primary_outpu</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>EF_Context.Primary_output</td><td>{A970F011-43A9-4ED4-AA85-A5E9BE367FAA}</td><td>INSTALLDIR</td><td>2</td><td/><td>ef_context.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>EF_Model.Primary_output</td><td>{F6DDBFF0-4795-4406-AF6B-7154DFA09422}</td><td>INSTALLDIR</td><td>2</td><td/><td>ef_model.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{9AAF4EBC-632D-4DB0-8B71-2231F532BD0C}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{7B41810E-19C1-4378-9C6F-6DFE50C50D83}</td><td>AppDataFolder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{0DE24402-611D-43D7-8945-B22AFC0F7AE8}</td><td>ISIS_RIJKEVORSEL1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>MahApps.Metro.dll</td><td>{D8B23EC6-6E77-4162-859D-D2C84412BD6D}</td><td>INSTALLDIR</td><td>2</td><td/><td>mahapps.metro.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>System.Windows.Interactivity.dll</td><td>{751DC512-857A-4339-8AAD-0408A6F1F22C}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.windows.interactivity</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>PL_WPF.Primary_output</td><td>{A109BF96-911C-4C65-A94C-74B2E958D8A2}</td><td>INSTALLDIR</td><td>2</td><td/><td>pl_wpf.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1057,16 +1054,12 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AppDataFolder</td><td>ISX_DEFAULTCOMPONENT1</td></row>
-		<row><td>INSTALLDIR</td><td>EntityFramework.SqlServer.dll</td></row>
-		<row><td>INSTALLDIR</td><td>EntityFramework.dll</td></row>
-		<row><td>INSTALLDIR</td><td>ISIS.exe</td></row>
-		<row><td>INSTALLDIR</td><td>ISIS.vshost.exe</td></row>
+		<row><td>INSTALLDIR</td><td>DAL_Repository.Primary_output</td></row>
+		<row><td>INSTALLDIR</td><td>EF_Context.Primary_output</td></row>
+		<row><td>INSTALLDIR</td><td>EF_Model.Primary_output</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
-		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
-		<row><td>INSTALLDIR</td><td>MahApps.Metro.dll</td></row>
-		<row><td>INSTALLDIR</td><td>System.Windows.Interactivity.dll</td></row>
-		<row><td>ISIS_RIJKEVORSEL1</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>INSTALLDIR</td><td>PL_WPF.Primary_output</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1160,7 +1153,6 @@
 		<row><td>INSTALLDIR</td><td>STANDELONE_APPLICATION</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISIS_RIJKEVORSEL</td><td>ProgramFilesFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>0</td><td/></row>
-		<row><td>ISIS_RIJKEVORSEL1</td><td>AppDataFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
@@ -1882,15 +1874,12 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>AlwaysInstall</td><td>EntityFramework.SqlServer.dll</td></row>
-		<row><td>AlwaysInstall</td><td>EntityFramework.dll</td></row>
-		<row><td>AlwaysInstall</td><td>ISIS.exe</td></row>
-		<row><td>AlwaysInstall</td><td>ISIS.vshost.exe</td></row>
+		<row><td>AlwaysInstall</td><td>DAL_Repository.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>EF_Context.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>EF_Model.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
-		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
-		<row><td>AlwaysInstall</td><td>MahApps.Metro.dll</td></row>
-		<row><td>AlwaysInstall</td><td>System.Windows.Interactivity.dll</td></row>
+		<row><td>AlwaysInstall</td><td>PL_WPF.Primary_output</td></row>
 	</table>
 
 	<table name="File">
@@ -1905,20 +1894,10 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>entityframework.dll</td><td>EntityFramework.dll</td><td>ENTITY~1.DLL|EntityFramework.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\EntityFramework.dll</td><td>1</td><td/></row>
-		<row><td>entityframework.sqlserver.dl</td><td>EntityFramework.SqlServer.dll</td><td>ENTITY~1.DLL|EntityFramework.SqlServer.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\EntityFramework.SqlServer.dll</td><td>1</td><td/></row>
-		<row><td>entityframework.sqlserver.xm</td><td>ISX_DEFAULTCOMPONENT</td><td>ENTITY~1.XML|EntityFramework.SqlServer.xml</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\EntityFramework.SqlServer.xml</td><td>1</td><td/></row>
-		<row><td>entityframework.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>ENTITY~1.XML|EntityFramework.xml</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\EntityFramework.xml</td><td>1</td><td/></row>
-		<row><td>isis.exe</td><td>ISIS.exe</td><td>ISIS.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.exe</td><td>1</td><td/></row>
-		<row><td>isis.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>ISISEX~1.CON|ISIS.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.exe.config</td><td>1</td><td/></row>
-		<row><td>isis.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>ISIS.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.pdb</td><td>1</td><td/></row>
-		<row><td>isis.vshost.exe</td><td>ISIS.vshost.exe</td><td>ISISVS~1.EXE|ISIS.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.vshost.exe</td><td>1</td><td/></row>
-		<row><td>isis.vshost.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>ISISVS~1.CON|ISIS.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\ISIS.vshost.exe.config</td><td>1</td><td/></row>
-		<row><td>isis_data.mdf2</td><td>ISX_DEFAULTCOMPONENT2</td><td>ISIS_D~1.MDF|ISIS_Data.mdf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\ISIS_Data.mdf</td><td>1</td><td/></row>
-		<row><td>isis_data_log.ldf2</td><td>ISX_DEFAULTCOMPONENT2</td><td>ISIS_D~1.LDF|ISIS_Data_log.ldf</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\ISIS_Data_log.ldf</td><td>1</td><td/></row>
-		<row><td>mahapps.metro.dll</td><td>MahApps.Metro.dll</td><td>MAHAPP~1.DLL|MahApps.Metro.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\MahApps.Metro.dll</td><td>1</td><td/></row>
-		<row><td>mahapps.metro.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MAHAPP~1.XML|MahApps.Metro.xml</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\MahApps.Metro.xml</td><td>1</td><td/></row>
-		<row><td>system.windows.interactivity</td><td>System.Windows.Interactivity.dll</td><td>SYSTEM~1.DLL|System.Windows.Interactivity.dll</td><td>0</td><td/><td/><td/><td>1</td><td>F:\Dropbox\ISIS Rijkevorsel\ISIS\bin\Debug\System.Windows.Interactivity.dll</td><td>1</td><td/></row>
+		<row><td>dal_repository.primary_outpu</td><td>DAL_Repository.Primary_output</td><td>DAL_Repository.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;DAL_Repository&gt;|Built</td><td>3</td><td/></row>
+		<row><td>ef_context.primary_output</td><td>EF_Context.Primary_output</td><td>EF_Context.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;EF_Context&gt;|Built</td><td>3</td><td/></row>
+		<row><td>ef_model.primary_output</td><td>EF_Model.Primary_output</td><td>EF_Model.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;EF_Model&gt;|Built</td><td>3</td><td/></row>
+		<row><td>pl_wpf.primary_output</td><td>PL_WPF.Primary_output</td><td>PL_WPF.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PL_WPF&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2060,15 +2039,12 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>EntityFramework.SqlServer.dll</td><td/><td/><td>_58767C28_5E90_485E_AE9F_82CEA52CEA1A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>EntityFramework.dll</td><td/><td/><td>_7F1E69DF_4EA6_4934_92DD_BCDE55912311_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISIS.exe</td><td/><td/><td>_553BDE45_4FDA_4F47_9850_2517BE0B9120_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISIS.vshost.exe</td><td/><td/><td>_84EBA0D0_F4AF_4830_B01B_DFD51F56BD6A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>DAL_Repository.Primary_output</td><td/><td/><td>_2207E14F_FBAA_4232_AD7E_C40121EE553A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>EF_Context.Primary_output</td><td/><td/><td>_75592074_399F_46D1_87EC_D1B6166E0D6F_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>EF_Model.Primary_output</td><td/><td/><td>_8937D8E7_B913_438C_BF4E_2055719BA6DA_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_DE785F30_7BB0_4C3C_9644_08DAD30D5492_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_CD581931_3543_4F39_AFBA_E8B2C9DF5A08_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_02C4458B_7258_4BDE_84E0_B07FF0385549_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>MahApps.Metro.dll</td><td/><td/><td>_1DC16DB9_5988_4BB7_91B2_CC6A87789D99_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>System.Windows.Interactivity.dll</td><td/><td/><td>_0C7685E8_151B_451F_971D_0850CD1AAF0A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>PL_WPF.Primary_output</td><td/><td/><td>_9B500C07_38E1_41B2_98DF_681649DA51C7_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2347,10 +2323,14 @@
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
+		<row><td>DAL_Repository</td><td>DAL_Repository\DAL_Repository.csproj</td><td/><td>2</td></row>
+		<row><td>EF_Context</td><td>EF_Context\EF_Context.csproj</td><td/><td>2</td></row>
+		<row><td>EF_Model</td><td>EF_Model\EF_Model.csproj</td><td/><td>2</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
+		<row><td>PL_WPF</td><td>PL_WPF\PL_WPF.csproj</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
@@ -4252,7 +4232,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">Shortcut_</col>
 		<col def="s0">PropertyKey</col>
 		<col def="s0">PropVariantValue</col>
-		<row><td>ShortcutProperty1</td><td>ISIS.vshost.exe</td><td>{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 12</td><td>1</td></row>
 	</table>
 
 	<table name="ODBCAttribute">
@@ -4390,7 +4369,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{7CD8F804-5DA6-4C7A-9186-6E991FBC1E11}</td><td/></row>
 		<row><td>ProductName</td><td>Standelone Application</td><td/></row>
-		<row><td>ProductVersion</td><td>0.00.1501</td><td/></row>
+		<row><td>ProductVersion</td><td>0.00.2000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4465,10 +4444,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>ISIS.exe</td><td/><td>isisri_1_isis_rijkevorsel</td><td>2</td></row>
-		<row><td>FileKey2</td><td>ISIS.exe</td><td/><td>stande_1_standelone_application</td><td>2</td></row>
-		<row><td>ISIS.exe</td><td>ISIS.exe</td><td/><td>stande_1_standelone_application</td><td>2</td></row>
-		<row><td>ISIS.vshost.exe</td><td>ISIS.vshost.exe</td><td/><td>stande_1_standelone_application</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4554,9 +4529,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>ISIS.exe</td><td>stande_1_standelone_application</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>ISIS.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>ISIS.exe_B75F15FB7216428CB7CD16D8521ED7CC.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>ISIS.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>ISIS.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>ISIS.exe1_4B77FAA282CC477299051C1762B4D50D.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>ISIS.vshost.exe</td><td>stande_1_standelone_application</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>ISIS.vshost.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>ISIS.vshost.exe_908E2E6786EA4B58850A76392FF23A73.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
