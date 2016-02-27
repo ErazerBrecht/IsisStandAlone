@@ -1,0 +1,313 @@
+﻿<UserControl x:Class="PL_WPF.Views.ParameterBeheer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:PL_WPF.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             FontSize="16">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+        <Style TargetType="{x:Type xctk:MaskedTextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource errorTemplateSilverlightStyle}" />
+        </Style>
+        <Style x:Key="TransparantButton"  TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Margin="15" x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Parameters" HorizontalAlignment="Left">
+                    <Grid x:Name="ParameterGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0">Hemden</TextBlock>
+                        <TextBox Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxHemden" Text="{Binding ParameterData.ParameterHemden, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}"/>
+
+                        <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" x:Name="TextBoxLakens1" Text="{Binding ParameterData.ParameterLakens1, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                        <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,20" x:Name="TextBoxLakens2" Text="{Binding ParameterData.ParameterLakens2, Mode=TwoWay, StringFormat=N1, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+
+                        <Button Grid.Row="3" Grid.Column="0" Command="{Binding SaveParametersCommand}" Content="Opslaan"/>
+                        <Button Grid.Row="3" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshParametersCommand}" Content="Vernieuwen"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" Header="Namen">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0">Hemden</TextBlock>
+                        <TextBox Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringHemden, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="1">Lakens 1</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringLakens1, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="2">Lakens 2</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringLakens2, Mode=TwoWay}"/>
+
+                        <TextBlock Grid.Row="3">Andere strijk</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringAndere, Mode=TwoWay}"/>
+
+
+                        <TextBlock Grid.Row="4">Administratie</TextBlock>
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="20,0,0,20" Text="{Binding StringsData.StringAdministratie, Mode=TwoWay}"/>
+
+                        <Button Grid.Row="5" Command="{Binding SaveStringsCommand}" Content="Opslaan"/>
+                        <Button Grid.Row="5" Grid.Column="1" Margin="20,0,0,0" Command="{Binding RefreshStringsCommand}" Content="Vernieuwen"/>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+            <Grid x:Name="SoortKlantenGrid" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GroupBox DataContext="{Binding WinkelData}" Header="Winkels">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddType.Naam, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"></TextBox>
+                            <xctk:MaskedTextBox Grid.Column="1" Mask="0.##" Value="{Binding AddType.SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <xctk:MaskedTextBox Grid.Column="2" Mask="0.##" Value="{Binding AddType.Euro, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddType.StukTarief, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" IsEnabled="{Binding IsValid}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+
+                </GroupBox>
+
+                <GroupBox Grid.Column="0" Grid.Row="1" DataContext="{Binding SchoolData}" Header="Scholen">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddType.Naam, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"></TextBox>
+                            <xctk:MaskedTextBox Grid.Column="1" Mask="0.##" Value="{Binding AddType.SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <xctk:MaskedTextBox Grid.Column="2" Mask="0.##" Value="{Binding AddType.Euro, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddType.StukTarief, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" IsEnabled="{Binding IsValid}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+
+
+
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" DataContext="{Binding BedrijfData}" Header="Bedrijven">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddType.Naam, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"></TextBox>
+                            <xctk:MaskedTextBox Grid.Column="1" Mask="0.##" Value="{Binding AddType.SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <xctk:MaskedTextBox Grid.Column="2" Mask="0.##" Value="{Binding AddType.Euro, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddType.StukTarief, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" IsEnabled="{Binding IsValid}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Row="1" Grid.Column="1" DataContext="{Binding OphalingData}" Header="Ophalingen">
+                    <StackPanel>
+                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
+                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+                                <DataGridTemplateColumn Header="Stuk tarief" Width="115">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox  IsChecked="{Binding StukTarief, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
+                                                <Image Source="Resources/Cancel.png" Width="24"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,15,0,10">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" >TOEVOEGEN</TextBlock>
+                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="75"></ColumnDefinition>
+                                <ColumnDefinition Width="115"></ColumnDefinition>
+                                <ColumnDefinition Width="125"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Text="{Binding AddType.Naam, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"></TextBox>
+                            <xctk:MaskedTextBox Grid.Column="1" Mask="0.##" Value="{Binding AddType.SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <xctk:MaskedTextBox Grid.Column="2" Mask="0.##" Value="{Binding AddType.Euro, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}" Margin="0,0,10,0"/>
+                            <CheckBox Grid.Column="3" IsChecked="{Binding AddType.StukTarief, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"></CheckBox>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding SaveCommandEvent}" IsEnabled="{Binding IsValid}" Padding="10,0,10,0"></Button>
+                        </Grid>
+
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

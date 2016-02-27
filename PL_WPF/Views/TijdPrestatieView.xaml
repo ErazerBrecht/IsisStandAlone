@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="PL_WPF.Views.TijdPrestatieView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL_WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="42"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="250"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="250"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="150" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center">Aantal</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="2" Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center">Minuten</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="3" Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center">Tarief</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="5" Margin="7" HorizontalAlignment="Right" VerticalAlignment="Center">Totaal Minuten</TextBlock>
+
+        <TextBlock Grid.Row="1" Margin="7" Text="{Binding CurrentStrings.StringHemden, FallbackValue=Hemden}"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.AantalHemden, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
+        <TextBlock Grid.Row="1" Grid.Column="3" Margin="7" Text="{Binding CurrentParameters.ParameterHemden, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TotaalHemden}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="2" Margin="7" Text="{Binding CurrentStrings.StringLakens1, FallbackValue=Lakens1}"></TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.AantalLakens1, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="7" Text="{Binding CurrentParameters.ParameterLakens1, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TotaalLakens1}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="3" Margin="7" Text="{Binding CurrentStrings.StringLakens2, FallbackValue=Lakens2}"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.AantalLakens2, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Margin="7" Text="{Binding CurrentParameters.ParameterLakens2, StringFormat='X {0}'}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TotaalLakens2}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="4" Margin="7" Text="{Binding CurrentStrings.StringAndere, FallbackValue=Andere}" VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.AantalAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
+        <TextBox Grid.Row="4" Grid.Column="2" Margin="7"  Text="{Binding AddTijdPrestatie.TijdAndereStrijk, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
+        <TextBlock Grid.Row="4" Grid.Column="3" Margin="7" Text="{Binding CurrentParameters.ParameterAndereStrijk, StringFormat='X {0}'}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TotaalAndereStrijk}" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="5" Margin="7" Text="{Binding CurrentStrings.StringAdministratie, FallbackValue=Administratie}"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TijdAdministratie}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="7" Text="Totaal stuks"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.TotaalStrijk}" HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="4"  Margin="7" Text="Totaal minuten " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="5"  Margin="7" Text="{Binding AddTijdPrestatie.TotaalMinuten}" HorizontalAlignment="Right"></TextBlock>
+
+
+        <TextBlock Grid.Row="8" Grid.Column="4" Margin="7" Text="Tegoed " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="5" Margin="7" Text="{Binding SelectedKlant.Tegoed, StringFormat='- {0}'}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="9" Grid.Column="4" Margin="7" Text="Te betalen minuten " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TotaalBetalen}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="10" Grid.Column="4" Margin="7" FontWeight="Bold" Foreground="Red" Text="Te betalen DC " HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="5" Margin="7" FontWeight="Bold" Foreground="Red" Text="{Binding AddTijdPrestatie.TotaalDienstenChecks}" HorizontalAlignment="Right"></TextBlock>
+
+        <TextBlock Grid.Row="11" Grid.Column="4" Margin="7" Text="Nieuw tegoed " HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="11" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.NieuwTegoed}"  HorizontalAlignment="Right"></TextBlock>
+    </Grid>
+</UserControl>
