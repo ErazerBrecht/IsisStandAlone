@@ -73,7 +73,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0">Hemden</TextBlock>
-                        <TextBox Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringHemden, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Margin="20,0,0,5"  MaxLength="40" Width="300" Text="{Binding StringsData.StringHemden, Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="1">Lakens 1</TextBlock>
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="20,0,0,5" Text="{Binding StringsData.StringLakens1, Mode=TwoWay}"/>

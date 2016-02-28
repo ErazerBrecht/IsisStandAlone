@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TijdPrestatiePrint"
         Height="800" 
-        Width="565"
+        Width="570"
         ResizeMode="NoResize"
         FontSize="14"
         >
@@ -45,7 +45,7 @@
 
                 <Label Grid.Column="0" Grid.Row="0">AFREKENING</Label>
                 <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom"></Border>
-                
+
                 <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
                     <Label FontSize="18" FontWeight="Bold" Content="{Binding SelectedKlant.Naam, FallbackValue=Carlier}"></Label>
                     <Label FontSize="18" FontWeight="Bold" Content="{Binding SelectedKlant.Voornaam, FallbackValue=Brecht}"></Label>
@@ -70,7 +70,7 @@
                 </TextBlock>
                 <Label Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" FontSize="12">minuten</Label>
 
-                <Label Grid.Column="0" Grid.Row="5">Hemden</Label>
+                <Label Grid.Column="0" Grid.Row="5" Content="{Binding CurrentView.CurrentStrings.StringHemden, FallbackValue=Hemden}"></Label>
                 <Label Grid.Column="1" Grid.Row="5" Content="{Binding CurrentView.AddTijdPrestatie.AantalHemden , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="5" VerticalAlignment="Center">
                     <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterHemden, FallbackValue=0}"></Run>
@@ -78,7 +78,7 @@
                 </TextBlock>
                 <Label Grid.Column="3" Grid.Row="5" Content="{Binding CurrentView.AddTijdPrestatie.TotaalHemden, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="6">(Hoes)laken / Dekbed 1 psn</Label>
+                <Label Grid.Column="0" Grid.Row="6" Content="{Binding CurrentView.CurrentStrings.StringLakens1, FallbackValue=(Hoes)laken / Dekbed 1 psn}"></Label>
                 <Label Grid.Column="1" Grid.Row="6" Content="{Binding CurrentView.AddTijdPrestatie.AantalLakens1 , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="6" VerticalAlignment="Center">
                     <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterLakens1, FallbackValue=0}"></Run>
@@ -86,7 +86,7 @@
                 </TextBlock>
                 <Label Grid.Column="3" Grid.Row="6" Content="{Binding CurrentView.AddTijdPrestatie.TotaalLakens1, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="7">Dekbed 2 psn</Label>
+                <Label Grid.Column="0" Grid.Row="7" Content="{Binding CurrentView.CurrentStrings.StringLakens2, FallbackValue=Dekbed 2 psn}"></Label>
                 <Label Grid.Column="1" Grid.Row="7" Content="{Binding CurrentView.AddTijdPrestatie.AantalLakens2 , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="7" VerticalAlignment="Center">
                     <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterLakens2, FallbackValue=0}"></Run>
@@ -94,12 +94,12 @@
                 </TextBlock>
                 <Label Grid.Column="3" Grid.Row="7" Content="{Binding CurrentView.AddTijdPrestatie.TotaalLakens2, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="8">Andere strijk</Label>
+                <Label Grid.Column="0" Grid.Row="8" Content="{Binding CurrentView.CurrentStrings.StringAndere, FallbackValue='Andere strijk'}"></Label>
                 <Label Grid.Column="1" Grid.Row="8" Content="{Binding CurrentView.AddTijdPrestatie.AantalAndereStrijk , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="8" VerticalAlignment="Center">effectieve strijktijd</TextBlock>
                 <Label Grid.Column="3" Grid.Row="8" Content="{Binding CurrentView.AddTijdPrestatie.TotaalAndereStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="9">Sorteren, controle, verpakken, ...</Label>
+                <Label Grid.Column="0" Grid.Row="9"  Content="{Binding CurrentView.CurrentStrings.StringAdministratie, FallbackValue='Sorteren, controle, verpakken, ...'}"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="9" VerticalAlignment="Center">volgens aantal stuks</TextBlock>
                 <Label Grid.Column="3" Grid.Row="9" Content="{Binding CurrentView.AddTijdPrestatie.TijdAdministratie, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
