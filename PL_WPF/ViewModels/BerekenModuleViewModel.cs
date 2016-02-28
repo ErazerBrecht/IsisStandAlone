@@ -40,8 +40,26 @@ namespace PL_WPF.ViewModels
         }
         #endregion
         public DatumBeheerViewModel DatumViewModel { get; set; }
+        
+        public bool IsValid
+        {
+            get
+            {
+                //TODO: Denk hier nog eens over na...
+                NoticeMe("IsPrintAble");
+                return CurrentView.IsValid;
+            }
+        }
 
-        public bool IsValid => CurrentView.IsValid;
+        public bool IsPrintAble
+        {
+            get
+            {
+                if (CurrentView is TijdBerekenModuleViewModel)
+                    return CurrentView.IsValid;
+                return false;
+            }
+        }
 
         #region Commands
         public ICommand BerekenCommandEvent { get; private set; }
@@ -273,8 +291,21 @@ namespace PL_WPF.ViewModels
             DatumViewModel.Init();
         }
 
+        public override void LoadData()
+        {
+            CurrentView.IsValid = false;
+            CurrentView.LoadData();
+        }
+
         public void Print()
         {
+            if (!DatumViewModel.HasDates)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowMessageBox("Je hebt nog geen datum gekozen!");
+                return;
+            }
+
             PrintWindow print = new PrintWindow();
             print.ShowPrintPreview(this);
         }
