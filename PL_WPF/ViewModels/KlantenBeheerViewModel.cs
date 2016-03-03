@@ -347,9 +347,11 @@ namespace PL_WPF.ViewModels
             //I cache the items in seperate lists
             //Don't know why, but this solves my problem
             _winkels = Ctx.KlantTypes.Find(t => t.Type == "Winkel").Select(s => s.ToString()).ToList();
-            _ophalingen = Ctx.KlantTypes.Find(t => t.Type == "Ophaling").Select(s => s.ToString()).ToList(); ;
-            _bedrijven = Ctx.KlantTypes.Find(t => t.Type == "Bedrijf").Select(s => s.ToString()).ToList(); ;
-            _scholen = Ctx.KlantTypes.Find(t => t.Type == "School").Select(s => s.ToString()).ToList(); ;
+            _ophalingen = Ctx.KlantTypes.Find(t => t.Type == "Ophaling").Select(s => s.ToString()).ToList(); 
+            _bedrijven = Ctx.KlantTypes.Find(t => t.Type == "Bedrijf").Select(s => s.ToString()).ToList(); 
+            _scholen = Ctx.KlantTypes.Find(t => t.Type == "School").Select(s => s.ToString()).ToList();
+
+            SelectedKlant = ViewSource.View.CurrentItem as Klant;
         }
 
         #region Searchbox Klant LOGIC
