@@ -149,6 +149,7 @@
     <Compile Include="ViewModels\OphalingBeheerViewModel.cs" />
     <Compile Include="ViewModels\ParameterBeheerViewModel.cs" />
     <Compile Include="ViewModels\PersoneelBeheerViewModel.cs" />
+    <Compile Include="ViewModels\PrestatieBeheerViewModel.cs" />
     <Compile Include="ViewModels\SchoolBeheerViewModel.cs" />
     <Compile Include="ViewModels\StukBerekenModuleViewModel.cs" />
     <Compile Include="ViewModels\TijdBerekenModuleViewModel.cs" />

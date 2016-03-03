@@ -98,6 +98,7 @@
     <Compile Include="Repositories\IDatumRepository.cs" />
     <Compile Include="Repositories\IKlantRepository.cs" />
     <Compile Include="Repositories\IKlantTypeRepository.cs" />
+    <Compile Include="Repositories\IPrestatieRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IStrijkerRepository.cs" />
     <Compile Include="Repositories\IStukPrestatieRepository.cs" />

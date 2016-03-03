@@ -27,9 +27,6 @@ namespace DAL_Repository.Repositories
             return IsisContext.StukPrestaties.Local.Where(p => p.Klant.Id == klant.Id).OrderByDescending(p => p.Id).FirstOrDefault();
         }
 
-        public IsisContext IsisContext
-        {
-            get { return Context as IsisContext; }
-        }
+        public IsisContext IsisContext => Context as IsisContext;
     }
 }

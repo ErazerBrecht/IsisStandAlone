@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:PL_WPF.ViewModels"
         xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        mc:Ignorable="d"
         x:Class="PL_WPF.Views.PrestatieBeheer"
+        d:DesignWidth="1500"
         FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
@@ -23,18 +27,44 @@
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateFirst, Mode=OneWayToSource}" Margin="20,0,10,0" Height="10px"></DatePicker>
             <DatePicker IsEnabled="{Binding FilterOpDag}" SelectedDate="{Binding DateSecond, Mode=OneWayToSource}" Height="10px"></DatePicker>
         </StackPanel>
+
+
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding Datum}" Header="Datum" Width="SizeToCells"/>
-                <DataGridTextColumn Binding="{Binding Prestaties.KlantenNummer}" Header="KlNr." Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding AantalHemden}" Header="#Hemden" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding AantalLakens1}" Header="#Lakens 1" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding AantalLakens2}" Header="#Lakens 2" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding AantalAndereStrijk}" Header="#Andere Strijk" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding TijdAndereStrijk}" Header="Tijd Andere Strijk" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding TijdAdministratie}" Header="Tijd Administratie" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding Prestaties.TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
+                <DataGridTemplateColumn Header="Klant Naam" MinWidth="200" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="7,0,0,0">
+                              <Run Text="{Binding Klant.Naam}"/>
+                              <Run Text="{Binding Klant.Voornaam}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TotaalTijd}" Header="Totale tijd" Width="SizeToHeader"/>
+                <DataGridTemplateColumn Header="Datum(s)">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Datum}">
+                                <!--
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                -->
+                                
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Date,  StringFormat='{}{0:dd/MM/yyyy}'}"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

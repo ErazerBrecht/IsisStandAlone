@@ -17,6 +17,7 @@ namespace DAL_Repository
             Klanten = new KlantRepository(context);
             KlantTypes = new KlantTypeRepository(context);
             Strijkers = new StrijkerRepository(context);
+            Prestaties = new PrestatieRepository(context);
             StukPrestaties = new StukPrestatieRepository(context);
             TijdPrestaties = new TijdPrestatieRepository(context);
         }
@@ -25,6 +26,7 @@ namespace DAL_Repository
         public IKlantRepository Klanten { get; private set; }
         public IKlantTypeRepository KlantTypes { get; private set; }
         public IStrijkerRepository Strijkers { get; private set; }
+        public IPrestatieRepository Prestaties { get; private set; }
         public IStukPrestatieRepository StukPrestaties { get; private set; }
         public ITijdPrestatieRepository TijdPrestaties { get; private set; }
 

@@ -56,7 +56,7 @@ namespace PL_WPF.ViewModels
 
                 Workspaces = new ObservableCollection<WorkspaceViewModel>();
                 Workspaces.Add(new BerekenModuleViewModel(_ctx));
-                //Workspaces.Add(new PrestatieBeheerViewModel());
+                Workspaces.Add(new PrestatieBeheerViewModel(_ctx));
                 Workspaces.Add(new KlantenBeheerViewModel(_ctx));
                 Workspaces.Add(new PersoneelBeheerViewModel(_ctx));
                 Workspaces.Add(new ParameterBeheerViewModel(_ctx));
