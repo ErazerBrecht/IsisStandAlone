@@ -34,6 +34,27 @@ namespace EF_Model
         [NotMapped]
         public int TotaalAndereStrijk { get; set; }
 
+        public void CalculateStrijk()
+        {
+            TotaalHemden = (int)Math.Ceiling(Convert.ToByte(AantalHemden) * ParameterHemden);
+            TotaalLakens1 = (int)Math.Ceiling(Convert.ToByte(AantalLakens1) * ParameterLakens1);
+            TotaalLakens2 = (int)Math.Ceiling(Convert.ToByte(AantalLakens2) * ParameterLakens2);
+            TotaalAndereStrijk = (int)Math.Ceiling(Convert.ToByte(TijdAndereStrijk) * ParameterAndereStrijk);
+            TotaalStrijk = Convert.ToInt32(AantalHemden + AantalLakens1 + AantalLakens2 + AantalAndereStrijk);
+
+            //Calculate the "administratie" time
+            if (TotaalStrijk < 20)
+                TijdAdministratie = 5;
+            else if (TotaalStrijk < 40)
+                TijdAdministratie = 10;
+            else if (TotaalStrijk < 80)
+                TijdAdministratie = 15;
+            else
+                TijdAdministratie = 20;
+
+            TotaalMinuten = Convert.ToInt32(TotaalHemden + TotaalLakens1 + TotaalLakens2 + TotaalAndereStrijk + TijdAdministratie);
+        }
+
         public bool CanSave
         {
             get

@@ -107,19 +107,7 @@ namespace PL_WPF.ViewModels
             AddTijdPrestatie.AddParameters(CurrentParameters);
 
             //Calculate how long every part takes
-            CalculateStrijk();
-
-            //Calculate the "administratie" time
-            if (AddTijdPrestatie.TotaalStrijk < 20)
-                AddTijdPrestatie.TijdAdministratie = 5;
-            else if (AddTijdPrestatie.TotaalStrijk < 40)
-                AddTijdPrestatie.TijdAdministratie = 10;
-            else if (AddTijdPrestatie.TotaalStrijk < 80)
-                AddTijdPrestatie.TijdAdministratie = 15;
-            else
-                AddTijdPrestatie.TijdAdministratie = 20;
-
-            AddTijdPrestatie.TotaalMinuten = Convert.ToInt32(AddTijdPrestatie.TotaalHemden + AddTijdPrestatie.TotaalLakens1 + AddTijdPrestatie.TotaalLakens2 + AddTijdPrestatie.TotaalAndereStrijk + AddTijdPrestatie.TijdAdministratie);
+            AddTijdPrestatie.CalculateStrijk();
 
             AddTijdPrestatie.TotaalBetalen = AddTijdPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
             AddTijdPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddTijdPrestatie.TotaalBetalen / 60.0));
@@ -132,15 +120,6 @@ namespace PL_WPF.ViewModels
             //But first check if there where validation errors
             if (AddTijdPrestatie.CanSave)
                 IsValid = true;
-        }
-
-        private void CalculateStrijk()
-        {
-            AddTijdPrestatie.TotaalHemden = (int)Math.Ceiling(Convert.ToByte(AddTijdPrestatie.AantalHemden) * AddTijdPrestatie.ParameterHemden);
-            AddTijdPrestatie.TotaalLakens1 = (int)Math.Ceiling(Convert.ToByte(AddTijdPrestatie.AantalLakens1) * AddTijdPrestatie.ParameterLakens1);
-            AddTijdPrestatie.TotaalLakens2 = (int)Math.Ceiling(Convert.ToByte(AddTijdPrestatie.AantalLakens2) * AddTijdPrestatie.ParameterLakens2);
-            AddTijdPrestatie.TotaalAndereStrijk = (int)Math.Ceiling(Convert.ToByte(AddTijdPrestatie.TijdAndereStrijk) * AddTijdPrestatie.ParameterAndereStrijk);
-            AddTijdPrestatie.TotaalStrijk = Convert.ToInt32(AddTijdPrestatie.AantalHemden + AddTijdPrestatie.AantalLakens1 + AddTijdPrestatie.AantalLakens2 + AddTijdPrestatie.AantalAndereStrijk);
         }
 
         public override void EditLast(DatumBeheerViewModel vm)
@@ -175,13 +154,7 @@ namespace PL_WPF.ViewModels
             //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
             AddTijdPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
 
-            CalculateStrijk();
-
-            AddTijdPrestatie.TotaalMinuten = AddTijdPrestatie.TotaalHemden +
-                                         AddTijdPrestatie.TotaalLakens1 +
-                                         AddTijdPrestatie.TotaalLakens2 +
-                                         AddTijdPrestatie.TotaalAndereStrijk +
-                                         AddTijdPrestatie.TijdAdministratie;
+            AddTijdPrestatie.CalculateStrijk();
 
             //Recalculate the previous Tegoed of the klant
             if (AddTijdPrestatie.TotaalDienstenChecks > 0)
