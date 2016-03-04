@@ -28,8 +28,10 @@ namespace EF_Model
                 return 0;
             }
         }
+
         [NotMapped]
-        public int TotaalBetalen { get; set; }
+        public byte TotaalDienstenChecks => Convert.ToByte(Math.Ceiling(TotaalBetalen / 60.0));
+
         [NotMapped]
         public int NieuwTegoed { get; set; }
     }

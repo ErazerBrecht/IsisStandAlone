@@ -53,45 +53,9 @@
   <ItemGroup>
     <Compile Include="IsisContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Migrations\201602021126034_InitialModel.cs" />
-    <Compile Include="Migrations\201602021126034_InitialModel.Designer.cs">
-      <DependentUpon>201602021126034_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602021242385_UpdateStrijkers_Datums.cs" />
-    <Compile Include="Migrations\201602021242385_UpdateStrijkers_Datums.Designer.cs">
-      <DependentUpon>201602021242385_UpdateStrijkers_Datums.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.cs" />
-    <Compile Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.Designer.cs">
-      <DependentUpon>201602021840397_StukPrestatie_TotaalMinuten.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602031108055_RenameDatumAndSoortKlant.cs" />
-    <Compile Include="Migrations\201602031108055_RenameDatumAndSoortKlant.Designer.cs">
-      <DependentUpon>201602031108055_RenameDatumAndSoortKlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602031641099_RenamedFK_Klanten.cs" />
-    <Compile Include="Migrations\201602031641099_RenamedFK_Klanten.Designer.cs">
-      <DependentUpon>201602031641099_RenamedFK_Klanten.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602041112121_KlantType_Snelheid.cs" />
-    <Compile Include="Migrations\201602041112121_KlantType_Snelheid.Designer.cs">
-      <DependentUpon>201602041112121_KlantType_Snelheid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602051033293_PrestatiesId_Identity.cs" />
-    <Compile Include="Migrations\201602051033293_PrestatiesId_Identity.Designer.cs">
-      <DependentUpon>201602051033293_PrestatiesId_Identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.cs" />
-    <Compile Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.Designer.cs">
-      <DependentUpon>201602051242323_Datum_RenamedIdToPrestatieId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.cs" />
-    <Compile Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.Designer.cs">
-      <DependentUpon>201602052207555_StrijkerTelefoon_ChangedToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602052215087_StrijkerVoornaam_Required.cs" />
-    <Compile Include="Migrations\201602052215087_StrijkerVoornaam_Required.Designer.cs">
-      <DependentUpon>201602052215087_StrijkerVoornaam_Required.cs</DependentUpon>
+    <Compile Include="Migrations\201603042036026_Initial.cs" />
+    <Compile Include="Migrations\201603042036026_Initial.Designer.cs">
+      <DependentUpon>201603042036026_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,35 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602021126034_InitialModel.resx">
-      <DependentUpon>201602021126034_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602021242385_UpdateStrijkers_Datums.resx">
-      <DependentUpon>201602021242385_UpdateStrijkers_Datums.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602021840397_StukPrestatie_TotaalMinuten.resx">
-      <DependentUpon>201602021840397_StukPrestatie_TotaalMinuten.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602031108055_RenameDatumAndSoortKlant.resx">
-      <DependentUpon>201602031108055_RenameDatumAndSoortKlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602031641099_RenamedFK_Klanten.resx">
-      <DependentUpon>201602031641099_RenamedFK_Klanten.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602041112121_KlantType_Snelheid.resx">
-      <DependentUpon>201602041112121_KlantType_Snelheid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602051033293_PrestatiesId_Identity.resx">
-      <DependentUpon>201602051033293_PrestatiesId_Identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602051242323_Datum_RenamedIdToPrestatieId.resx">
-      <DependentUpon>201602051242323_Datum_RenamedIdToPrestatieId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602052207555_StrijkerTelefoon_ChangedToString.resx">
-      <DependentUpon>201602052207555_StrijkerTelefoon_ChangedToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602052215087_StrijkerVoornaam_Required.resx">
-      <DependentUpon>201602052215087_StrijkerVoornaam_Required.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603042036026_Initial.resx">
+      <DependentUpon>201603042036026_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -110,7 +110,6 @@ namespace PL_WPF.ViewModels
             AddTijdPrestatie.CalculateStrijk();
 
             AddTijdPrestatie.TotaalBetalen = AddTijdPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
-            AddTijdPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddTijdPrestatie.TotaalBetalen / 60.0));
             if (AddTijdPrestatie.TotaalDienstenChecks == 0)
                 AddTijdPrestatie.NieuwTegoed = SelectedKlant.Tegoed - AddTijdPrestatie.TotaalMinuten;
             else

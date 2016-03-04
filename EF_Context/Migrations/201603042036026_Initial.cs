@@ -3,58 +3,28 @@ namespace EF_Context.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialModel : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Datum",
+                "dbo.Datums",
                 c => new
                     {
                         Date = c.DateTime(nullable: false),
-                        Id = c.Int(nullable: false),
-                        Strijker_Id = c.Int(),
-                        Strijker_Id1 = c.Int(),
-                        Strijker_Id2 = c.Int(),
-                        Strijker_Id3 = c.Int(),
-                        Strijker_Id4 = c.Int(),
-                        Strijker1_Id = c.Int(),
-                        Strijker2_Id = c.Int(),
-                        Strijker3_Id = c.Int(),
-                        Strijker4_Id = c.Int(),
-                        Strijker5_Id = c.Int(),
+                        PrestatieId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Date, t.Id })
-                .ForeignKey("dbo.Prestaties", t => t.Id, cascadeDelete: true)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id1)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id2)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id3)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id4)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker1_Id)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker2_Id)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker3_Id)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker4_Id)
-                .ForeignKey("dbo.Strijkers", t => t.Strijker5_Id)
-                .Index(t => t.Id)
-                .Index(t => t.Strijker_Id)
-                .Index(t => t.Strijker_Id1)
-                .Index(t => t.Strijker_Id2)
-                .Index(t => t.Strijker_Id3)
-                .Index(t => t.Strijker_Id4)
-                .Index(t => t.Strijker1_Id)
-                .Index(t => t.Strijker2_Id)
-                .Index(t => t.Strijker3_Id)
-                .Index(t => t.Strijker4_Id)
-                .Index(t => t.Strijker5_Id);
+                .PrimaryKey(t => new { t.Date, t.PrestatieId })
+                .ForeignKey("dbo.Prestaties", t => t.PrestatieId, cascadeDelete: true)
+                .Index(t => t.PrestatieId);
             
             CreateTable(
                 "dbo.Prestaties",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
-                        TotaalDienstenChecks = c.Byte(nullable: false),
-                        Totaal = c.Int(),
+                        Id = c.Int(nullable: false, identity: true),
+                        TotaalBetalen = c.Int(nullable: false),
+                        TotaalMinuten = c.Int(),
                         AantalHemden = c.Byte(),
                         ParameterHemden = c.Decimal(precision: 18, scale: 2),
                         AantalLakens1 = c.Byte(),
@@ -76,6 +46,8 @@ namespace EF_Context.Migrations
                 "dbo.Klanten",
                 c => new
                     {
+                        TypeNaam = c.String(nullable: false, maxLength: 10),
+                        TypePlaats = c.String(nullable: false, maxLength: 50),
                         Id = c.Int(nullable: false),
                         Gebruikersnummer = c.String(maxLength: 13),
                         Naam = c.String(nullable: false, maxLength: 50),
@@ -96,20 +68,18 @@ namespace EF_Context.Migrations
                         Datum = c.DateTime(storeType: "date"),
                         LaatsteActiviteit = c.DateTime(storeType: "date"),
                         Tegoed = c.Byte(nullable: false),
-                        SoortKlant_Type = c.String(maxLength: 10),
-                        SoortKlant_Naam = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.SoortKlant", t => new { t.SoortKlant_Type, t.SoortKlant_Naam })
-                .Index(t => new { t.SoortKlant_Type, t.SoortKlant_Naam });
+                .ForeignKey("dbo.KlantType", t => new { t.TypeNaam, t.TypePlaats }, cascadeDelete: true)
+                .Index(t => new { t.TypeNaam, t.TypePlaats });
             
             CreateTable(
-                "dbo.SoortKlant",
+                "dbo.KlantType",
                 c => new
                     {
                         Type = c.String(nullable: false, maxLength: 10),
                         Naam = c.String(nullable: false, maxLength: 50),
-                        SnelheidsCoëfficiënt = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SnelheidsCoëfficiënt = c.Decimal(nullable: false, precision: 3, scale: 2),
                         Euro = c.Decimal(nullable: false, storeType: "money"),
                         StukTarief = c.Boolean(nullable: false),
                     })
@@ -121,12 +91,12 @@ namespace EF_Context.Migrations
                     {
                         Id = c.Int(nullable: false),
                         Naam = c.String(nullable: false, maxLength: 50),
-                        Voornaam = c.String(maxLength: 50),
+                        Voornaam = c.String(nullable: false, maxLength: 50),
                         Straat = c.String(nullable: false, maxLength: 50),
                         Nummer = c.Int(nullable: false),
                         Postcode = c.Int(nullable: false),
                         Gemeente = c.String(nullable: false, maxLength: 50),
-                        Tel = c.Int(),
+                        Tel = c.String(maxLength: 20),
                         RNSZ = c.String(nullable: false, maxLength: 20),
                         Email = c.String(maxLength: 50),
                         Login = c.String(nullable: false, maxLength: 6),
@@ -136,41 +106,40 @@ namespace EF_Context.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.StrijkerDatums",
+                c => new
+                    {
+                        Strijker_Id = c.Int(nullable: false),
+                        Datum_Date = c.DateTime(nullable: false),
+                        Datum_PrestatieId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Strijker_Id, t.Datum_Date, t.Datum_PrestatieId })
+                .ForeignKey("dbo.Strijkers", t => t.Strijker_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Datums", t => new { t.Datum_Date, t.Datum_PrestatieId }, cascadeDelete: true)
+                .Index(t => t.Strijker_Id)
+                .Index(t => new { t.Datum_Date, t.Datum_PrestatieId });
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Datum", "Strijker5_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker4_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker3_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker2_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker1_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker_Id4", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker_Id3", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker_Id2", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker_Id1", "dbo.Strijkers");
-            DropForeignKey("dbo.Datum", "Strijker_Id", "dbo.Strijkers");
-            DropForeignKey("dbo.Klanten", new[] { "SoortKlant_Type", "SoortKlant_Naam" }, "dbo.SoortKlant");
+            DropForeignKey("dbo.StrijkerDatums", new[] { "Datum_Date", "Datum_PrestatieId" }, "dbo.Datums");
+            DropForeignKey("dbo.StrijkerDatums", "Strijker_Id", "dbo.Strijkers");
+            DropForeignKey("dbo.Datums", "PrestatieId", "dbo.Prestaties");
             DropForeignKey("dbo.Prestaties", "Klant_Id", "dbo.Klanten");
-            DropForeignKey("dbo.Datum", "Id", "dbo.Prestaties");
-            DropIndex("dbo.Klanten", new[] { "SoortKlant_Type", "SoortKlant_Naam" });
+            DropForeignKey("dbo.Klanten", new[] { "TypeNaam", "TypePlaats" }, "dbo.KlantType");
+            DropIndex("dbo.StrijkerDatums", new[] { "Datum_Date", "Datum_PrestatieId" });
+            DropIndex("dbo.StrijkerDatums", new[] { "Strijker_Id" });
+            DropIndex("dbo.Klanten", new[] { "TypeNaam", "TypePlaats" });
             DropIndex("dbo.Prestaties", new[] { "Klant_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker5_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker4_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker3_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker2_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker1_Id" });
-            DropIndex("dbo.Datum", new[] { "Strijker_Id4" });
-            DropIndex("dbo.Datum", new[] { "Strijker_Id3" });
-            DropIndex("dbo.Datum", new[] { "Strijker_Id2" });
-            DropIndex("dbo.Datum", new[] { "Strijker_Id1" });
-            DropIndex("dbo.Datum", new[] { "Strijker_Id" });
-            DropIndex("dbo.Datum", new[] { "Id" });
+            DropIndex("dbo.Datums", new[] { "PrestatieId" });
+            DropTable("dbo.StrijkerDatums");
             DropTable("dbo.Strijkers");
-            DropTable("dbo.SoortKlant");
+            DropTable("dbo.KlantType");
             DropTable("dbo.Klanten");
             DropTable("dbo.Prestaties");
-            DropTable("dbo.Datum");
+            DropTable("dbo.Datums");
         }
     }
 }

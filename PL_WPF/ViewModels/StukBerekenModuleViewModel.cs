@@ -49,7 +49,6 @@ namespace PL_WPF.ViewModels
         {
             //Calculate...
             AddStukPrestatie.TotaalBetalen = AddStukPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
-            AddStukPrestatie.TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(AddStukPrestatie.TotaalBetalen / 60.0));
             if (AddStukPrestatie.TotaalDienstenChecks == 0)
                 AddStukPrestatie.NieuwTegoed = SelectedKlant.Tegoed - AddStukPrestatie.TotaalMinuten;
             else

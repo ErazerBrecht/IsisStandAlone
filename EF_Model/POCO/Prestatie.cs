@@ -14,11 +14,13 @@ namespace EF_Model
             Datum = new ObservableCollection<Datum>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required]
-        public byte TotaalDienstenChecks { get; set; }
+        public int TotaalBetalen { get; set; }
 
+        //Relationships
         public virtual ObservableCollection<Datum> Datum { get; set; }
         public virtual Klant Klant { get; set; }
 

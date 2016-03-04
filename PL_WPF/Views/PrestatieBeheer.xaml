@@ -42,8 +42,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
                 <DataGridTextColumn Binding="{Binding TotaalTijd}" Header="Totale tijd" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TotaalBetalen}" Header="Totaal betalen" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
                 <DataGridTemplateColumn Header="Datum(s)">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
