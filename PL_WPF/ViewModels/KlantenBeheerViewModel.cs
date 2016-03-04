@@ -28,21 +28,21 @@ namespace PL_WPF.ViewModels
             set
             {
                 ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
+                _selectedKlant = value;
+                NoticeMe("SelectedKlant");
+                NoticeMe("SoortKlantPlaatsItems");
+                NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
+                NoticeMe("ElektronischBetalenVisibility");
+
                 if (value != null)
-                {
-                    _selectedKlant = value;
-                    NoticeMe("SelectedKlant");
-                    NoticeMe("SoortKlantPlaatsItems");
-                    NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
-                    NoticeMe("ElektronischBetalenVisibility");
                     _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
-                }
             }
         }
 
         private void _selectedKlant_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             NoticeMe("IsValid");                                    //Everytime a propertychanges IsValid could change!
+            NoticeMe("IsAddable");
 
             if (e.PropertyName == "Id")
             {
@@ -72,8 +72,7 @@ namespace PL_WPF.ViewModels
         private Klant _errorKlant;
 
         public CollectionViewSource ViewSource { get; private set; }
-        //public SearchBoxKlantViewModel SearchBoxViewModel { get; private set; }
- 
+
         #region Commands
         public ICommand NextButton { get; private set; }
         public ICommand PreviousButton { get; private set; }
@@ -125,6 +124,16 @@ namespace PL_WPF.ViewModels
             get
             {
                 if (ButtonToevoegenContent == "Annuleren")
+                    return false;
+                return true;
+            }
+        }
+
+        public bool IsAddable
+        {
+            get
+            {
+                if (ButtonToevoegenContent == "Toevoegen" && !IsValid)
                     return false;
                 return true;
             }
@@ -247,7 +256,6 @@ namespace PL_WPF.ViewModels
         public KlantenBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
             Header = "KlantenBeheer";
-            ViewSource = new CollectionViewSource();
             GetData();
             ButtonToevoegenContent = "Toevoegen";
 
@@ -267,7 +275,7 @@ namespace PL_WPF.ViewModels
 
         private void GetData()
         {
-            ViewSource.Source = Ctx.Klanten.GetAll();
+            ViewSource = new CollectionViewSource {Source = Ctx.Klanten.GetAll()};
             ViewSource.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));            //Zorgt ervoor dat de DataGrid geordend is op ID!!
             SelectedKlant = ViewSource.View.CurrentItem as Klant;
         }
@@ -321,7 +329,8 @@ namespace PL_WPF.ViewModels
 
         public void Delete()
         {
-            Ctx.Klanten.Remove(SelectedKlant);
+            if (SelectedKlant != null)
+                Ctx.Klanten.Remove(SelectedKlant);
         }
 
         public void Save()
@@ -347,8 +356,8 @@ namespace PL_WPF.ViewModels
             //I cache the items in seperate lists
             //Don't know why, but this solves my problem
             _winkels = Ctx.KlantTypes.Find(t => t.Type == "Winkel").Select(s => s.ToString()).ToList();
-            _ophalingen = Ctx.KlantTypes.Find(t => t.Type == "Ophaling").Select(s => s.ToString()).ToList(); 
-            _bedrijven = Ctx.KlantTypes.Find(t => t.Type == "Bedrijf").Select(s => s.ToString()).ToList(); 
+            _ophalingen = Ctx.KlantTypes.Find(t => t.Type == "Ophaling").Select(s => s.ToString()).ToList();
+            _bedrijven = Ctx.KlantTypes.Find(t => t.Type == "Bedrijf").Select(s => s.ToString()).ToList();
             _scholen = Ctx.KlantTypes.Find(t => t.Type == "School").Select(s => s.ToString()).ToList();
 
             SelectedKlant = ViewSource.View.CurrentItem as Klant;

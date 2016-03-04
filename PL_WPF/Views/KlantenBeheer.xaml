@@ -177,9 +177,9 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
                     <Button Grid.Row="0" HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Command="{Binding DeleteButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
-                    <Button Grid.Row="0" HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddButton}"></Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddButton}" IsEnabled="{Binding IsAddable}"></Button>
                     <Button Grid.Row="1" Margin="0,10,0,0" Content="Opslaan" Command="{Binding SaveButton}" IsEnabled="{Binding IsValid}"></Button>
-                    <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorButton}"></Button>
+                    <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
                 </Grid>
                 
                 <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
@@ -189,7 +189,7 @@
             </Grid>
 
         </Grid>
-        <DataGrid x:Name="klantenDataGrid" BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlant}"  IsReadOnly="True" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedKlant, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ViewSource.View}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToCells"/>
