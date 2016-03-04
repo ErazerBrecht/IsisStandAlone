@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using DAL_Repository;
 using PL_WPF.Services;
@@ -33,9 +34,9 @@ namespace PL_WPF.ViewModels
             //Make abstract?
         }
 
-        public virtual bool Leave()
+        public virtual bool Leave(bool changes = false, bool errors = false)
         {
-            if(Ctx.HasChanges())
+            if(Ctx.HasChanges() || changes)
             {
                 MessageBoxService messageService = new MessageBoxService();
 
@@ -45,6 +46,8 @@ namespace PL_WPF.ViewModels
                     //Check if there are validation errors!!!
                     try
                     {
+                        if (errors)
+                            throw new Exception("There is a specific validation error");
                         Ctx.Complete();
                     }
                     catch
