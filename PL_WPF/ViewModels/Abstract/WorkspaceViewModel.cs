@@ -23,7 +23,7 @@ namespace PL_WPF.ViewModels
 
         protected UnitOfWork Ctx;
 
-        public WorkspaceViewModel(UnitOfWork ctx)
+        protected WorkspaceViewModel(UnitOfWork ctx)
         {
             Ctx = ctx;
         }
