@@ -45,7 +45,10 @@
                 <DataGridTextColumn Binding="{Binding TotaalTijd}" Header="Totale tijd" Width="SizeToHeader"/>
                 <DataGridTextColumn Binding="{Binding TotaalBetalen}" Header="Totaal betalen" Width="SizeToHeader"/>
                 <DataGridTextColumn Binding="{Binding TotaalDienstenChecks}" Header="# DC" Width="SizeToHeader"/>
-                <DataGridTemplateColumn Header="Datum(s)">
+                <DataGridTextColumn Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding NieuwTegoed}" Header="Nieuw Tegoed" Width="SizeToHeader"/>
+
+                <DataGridTemplateColumn Header="Datum(s) + Strijkster(s)">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ItemsControl ItemsSource="{Binding Datum}">
@@ -56,18 +59,30 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 -->
-                                
+
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Date,  StringFormat='{}{0:dd/MM/yyyy}'}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Date,  StringFormat='{}{0:dd/MM/yyyy}'}"></TextBlock>
+                                            <ItemsControl ItemsSource="{Binding Strijkers}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Voornaam}" Margin="5,0,0,0"></TextBlock>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding NieuwTegoed}" Header="Nieuw Tegoed" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
 
