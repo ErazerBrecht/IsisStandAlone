@@ -57,5 +57,8 @@ namespace EF_Model
             }
             set { _nieuwTegoed = value; }
         }
+
+        [NotMapped]
+        public bool IsTijdPrestatie => this is TijdPrestatie;
     }
 }

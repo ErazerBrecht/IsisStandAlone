@@ -7,14 +7,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using DAL_Repository;
 using EF_Model;
+using GalaSoft.MvvmLight.Command;
+using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
     class PrestatieBeheerViewModel : WorkspaceViewModel
     {
         public CollectionViewSource ViewSource { get; private set; }
+
+        public ICommand PrintCommandEvent { get; private set; }
+
+        #region SelectedPrestatie full - property
+
+        private Prestatie _selectedPrestatie;
+        public Prestatie SelectedPrestatie {
+            get { return _selectedPrestatie; }
+            set
+            {
+                _selectedPrestatie = value;
+                NoticeMe("SelectedPrestatie");
+            }
+        }
+        #endregion
 
         #region Klanten Searchbox
         #region SelectedKlant full property
@@ -181,6 +199,7 @@ namespace PL_WPF.ViewModels
             ViewSource.View.Filter = Filter;
             Klanten = Ctx.Klanten.GetAll();
 
+            PrintCommandEvent = new RelayCommand(Print);
             BoolIedereen = true;
             BoolDag = true;
         }
@@ -207,6 +226,12 @@ namespace PL_WPF.ViewModels
 
             return true;
 
+        }
+
+        public void Print()
+        {
+            PrintWindow print = new PrintWindow();
+            print.ShowPrintPreview(SelectedPrestatie);
         }
     }
 }
