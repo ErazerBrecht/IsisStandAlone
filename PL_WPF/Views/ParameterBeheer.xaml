@@ -108,8 +108,23 @@
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
-                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+
+                                <DataGridTemplateColumn  Header="Snelheids Coëfficiënt" Width="210">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn  Header="Euro" Width="75">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding Euro, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTemplateColumn Header="Stuk tarief" Width="115">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -134,7 +149,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="210"></ColumnDefinition>
                                 <ColumnDefinition Width="75"></ColumnDefinition>
                                 <ColumnDefinition Width="115"></ColumnDefinition>
                                 <ColumnDefinition Width="125"></ColumnDefinition>
@@ -159,8 +174,23 @@
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
-                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+
+                                <DataGridTemplateColumn  Header="Snelheids Coëfficiënt" Width="210">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn  Header="Euro" Width="75">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding Euro, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
                                 <DataGridTemplateColumn Header="Stuk tarief" Width="115">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -185,7 +215,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="210"></ColumnDefinition>
                                 <ColumnDefinition Width="75"></ColumnDefinition>
                                 <ColumnDefinition Width="115"></ColumnDefinition>
                                 <ColumnDefinition Width="125"></ColumnDefinition>
@@ -212,8 +242,23 @@
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
-                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+
+                                <DataGridTemplateColumn  Header="Snelheids Coëfficiënt" Width="210">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn  Header="Euro" Width="75">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding Euro, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
                                 <DataGridTemplateColumn Header="Stuk tarief" Width="115">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -238,7 +283,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="210"></ColumnDefinition>
                                 <ColumnDefinition Width="75"></ColumnDefinition>
                                 <ColumnDefinition Width="115"></ColumnDefinition>
                                 <ColumnDefinition Width="125"></ColumnDefinition>
@@ -262,8 +307,23 @@
                         <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedType}" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Naam}" Header="Naam"  Width="100"/>
-                                <DataGridTextColumn Binding="{Binding SnelheidsCoëfficiënt, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Snelheids Coëfficiënt" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding Euro, StringFormat=N2, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Header="Euro" Width="75"/>
+
+                                <DataGridTemplateColumn  Header="Snelheids Coëfficiënt" Width="210">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding SnelheidsCoëfficiënt, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn  Header="Euro" Width="75">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:MaskedTextBox Mask="0.##" Value="{Binding Euro, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ValueDataType="{x:Type sys:Decimal}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTemplateColumn Header="Stuk tarief" Width="115">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -288,7 +348,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="210"></ColumnDefinition>
                                 <ColumnDefinition Width="75"></ColumnDefinition>
                                 <ColumnDefinition Width="115"></ColumnDefinition>
                                 <ColumnDefinition Width="125"></ColumnDefinition>

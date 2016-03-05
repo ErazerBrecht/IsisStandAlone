@@ -76,13 +76,7 @@ namespace PL_WPF.ViewModels
         public ICommand DeleteCommandEvent { get; private set; }
         #endregion
 
-        public bool IsValid
-        {
-            get
-            {
-                return AddType.CanSave;
-            }
-        }
+        public bool IsValid => AddType.CanSave;
 
         protected KlantTypeViewModel(UnitOfWork ctx)
         {
