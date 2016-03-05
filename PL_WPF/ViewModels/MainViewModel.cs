@@ -46,12 +46,7 @@ namespace PL_WPF.ViewModels
         public MainViewModel()
         {
             Application.Current.MainWindow.Closing += MainWindow_Closing;
-            //var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ISIS Rijkevorsel");
-
-            //try
-            //{
-            //AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            //TestConnection();
+            Application.Current.MainWindow.Closed += MainWindow_Closed;
 
             try
             {
@@ -69,41 +64,22 @@ namespace PL_WPF.ViewModels
             catch (Exception ex)
             {
                 MessageBoxService messageService = new MessageBoxService();
-                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het ophalen van de data \n\nError: " + ex.Message);
+                messageService.ShowMessageBox("ERROR");      //Hack: The first Messagebox closes automatically
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het ophalen van de data \n\nError: " + ex);
+                Application.Current.Shutdown(-1);
             }
-
-            //}
-            //catch
-            //{
-                //var errorWindow = new ErrorDataBaseWindowService();
-                //errorWindow.Show(new ErrorWindowViewModel());
-                //Application.Current.MainWindow.Close();
-            //}
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (SelectedWorkspace != null)
-            {
                 e.Cancel = !(SelectedWorkspace.Leave());
-
-                //The program is actual going to close when e.Cancel is false
-                if(!e.Cancel)
-                    _ctx.Dispose();
-            }
-            else
-                _ctx.Dispose();
-
         }
 
-        private void TestConnection()
+        private void MainWindow_Closed(object sender, EventArgs e)
         {
-            //using (var db = new ISIS_DataEntities())
-            //{
-            //    DbConnection conn = db.Database.Connection;
-            //    conn.Open();   // check the database connection
-            //}
+            if(_ctx != null)
+                _ctx.Dispose();
         }
-
     }
 }
