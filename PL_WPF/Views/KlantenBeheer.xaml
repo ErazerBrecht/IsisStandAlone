@@ -184,12 +184,12 @@
                 
                 <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
                     <Label Margin="0,0,10,0">Zoeken:</Label>
-                    <controls:AutoCompleteBox Margin="10,0,0,0" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlant, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
+                    <controls:AutoCompleteBox Margin="10,0,0,0" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedKlantSearch, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
                 </DockPanel>
             </Grid>
 
         </Grid>
-        <DataGrid BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedKlant, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ViewSource.View}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid BorderBrush="Black" BorderThickness="2" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedKlant}" ItemsSource="{Binding ViewSource.View}" IsReadOnly="True" EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Klnr." Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToCells"/>

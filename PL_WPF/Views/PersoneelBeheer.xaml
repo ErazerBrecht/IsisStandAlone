@@ -152,7 +152,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <DataGrid x:Name="strijkersDataGrid" BorderBrush="Black" BorderThickness="2" Grid.Row="2" AutoGenerateColumns="False" FontSize="16" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedPersoneel}" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid BorderBrush="Black" BorderThickness="2" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedPersoneel}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="iDColumn" Binding="{Binding Id, ValidatesOnDataErrors=True}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToHeader"/>

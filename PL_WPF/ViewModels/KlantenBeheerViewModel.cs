@@ -29,13 +29,15 @@ namespace PL_WPF.ViewModels
             {
                 ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
                 _selectedKlant = value;
-                NoticeMe("SelectedKlant");
-                NoticeMe("SoortKlantPlaatsItems");
-                NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
-                NoticeMe("ElektronischBetalenVisibility");
 
                 if (value != null)
+                {
+                    NoticeMe("SelectedKlant");
+                    NoticeMe("SoortKlantPlaatsItems");
+                    NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
+                    NoticeMe("ElektronischBetalenVisibility");
                     _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
+                }
             }
         }
 
@@ -359,11 +361,22 @@ namespace PL_WPF.ViewModels
             _ophalingen = Ctx.KlantTypes.Find(t => t.Type == "Ophaling").Select(s => s.ToString()).ToList();
             _bedrijven = Ctx.KlantTypes.Find(t => t.Type == "Bedrijf").Select(s => s.ToString()).ToList();
             _scholen = Ctx.KlantTypes.Find(t => t.Type == "School").Select(s => s.ToString()).ToList();
-
-            SelectedKlant = ViewSource.View.CurrentItem as Klant;
         }
 
         #region Searchbox Klant LOGIC
+
+        public Klant SelectedKlantSearch
+        {
+            set
+            {
+                if (value != null)
+                {
+                    //The user searched for a klant and found a result
+                    //Set this result as the SelectedKlant
+                    SelectedKlant = value;
+                }
+            }
+        }
         public AutoCompleteFilterPredicate<object> KlantenFilter
         {
             get

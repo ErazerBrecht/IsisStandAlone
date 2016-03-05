@@ -25,8 +25,9 @@ namespace PL_WPF.ViewModels
             get { return _selectedPersoneel; }
             set
             {
-                _selectedPersoneel = value;
                 ButtonToevoegenContent = "Toevoegen";               //Reset button back to original content, otherwise it keeps on annuleren...
+                _selectedPersoneel = value;
+
                 if (value != null)
                 {
                     NoticeMe("SelectedPersoneel");
