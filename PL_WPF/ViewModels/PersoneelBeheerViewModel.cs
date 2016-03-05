@@ -40,6 +40,7 @@ namespace PL_WPF.ViewModels
         private void _selectedPersoneel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             NoticeMe("IsValid");                                    //Everytime a propertychanges IsValid could change!
+            NoticeMe("IsAddable");
 
             if (e.PropertyName == "Id")
             {
@@ -104,6 +105,16 @@ namespace PL_WPF.ViewModels
             get
             {
                 if (ButtonToevoegenContent == "Annuleren")
+                    return false;
+                return true;
+            }
+        }
+
+        public bool IsAddable
+        {
+            get
+            {
+                if (ButtonToevoegenContent == "Toevoegen" && !IsValid)
                     return false;
                 return true;
             }
