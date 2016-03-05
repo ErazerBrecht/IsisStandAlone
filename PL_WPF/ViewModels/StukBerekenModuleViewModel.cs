@@ -49,10 +49,6 @@ namespace PL_WPF.ViewModels
         {
             //Calculate...
             AddStukPrestatie.TotaalBetalen = AddStukPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
-            if (AddStukPrestatie.TotaalDienstenChecks == 0)
-                AddStukPrestatie.NieuwTegoed = SelectedKlant.Tegoed - AddStukPrestatie.TotaalMinuten;
-            else
-                AddStukPrestatie.NieuwTegoed = (AddStukPrestatie.TotaalDienstenChecks * 60) - AddStukPrestatie.TotaalBetalen;
 
             //The "prestatie" is calculated you're know able to save it!
             //But first check if there where validation errors
@@ -87,15 +83,12 @@ namespace PL_WPF.ViewModels
             //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
             AddStukPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
 
-            if (AddStukPrestatie.TotaalDienstenChecks > 0)
+            if (AddStukPrestatie.TotaalBetalen > 0)
             {
-                AddStukPrestatie.TotaalBetalen = (AddStukPrestatie.TotaalDienstenChecks*60) -
-                                                 AddStukPrestatie.NieuwTegoed;
                 SelectedKlant.Tegoed = Convert.ToByte(AddStukPrestatie.TotaalMinuten - AddStukPrestatie.TotaalBetalen);
             }
             else
             {
-                AddStukPrestatie.TotaalBetalen = 0;
                 SelectedKlant.Tegoed = Convert.ToByte(AddStukPrestatie.TotaalMinuten + AddStukPrestatie.NieuwTegoed);
             }
         }

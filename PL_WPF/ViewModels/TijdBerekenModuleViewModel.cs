@@ -110,10 +110,6 @@ namespace PL_WPF.ViewModels
             AddTijdPrestatie.CalculateStrijk();
 
             AddTijdPrestatie.TotaalBetalen = AddTijdPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
-            if (AddTijdPrestatie.TotaalDienstenChecks == 0)
-                AddTijdPrestatie.NieuwTegoed = SelectedKlant.Tegoed - AddTijdPrestatie.TotaalMinuten;
-            else
-                AddTijdPrestatie.NieuwTegoed = (AddTijdPrestatie.TotaalDienstenChecks * 60) - AddTijdPrestatie.TotaalBetalen;
 
             //The "prestatie" is calculated you're know able to save it!
             //But first check if there where validation errors
@@ -156,14 +152,12 @@ namespace PL_WPF.ViewModels
             AddTijdPrestatie.CalculateStrijk();
 
             //Recalculate the previous Tegoed of the klant
-            if (AddTijdPrestatie.TotaalDienstenChecks > 0)
+            if (AddTijdPrestatie.TotaalBetalen > 0)
             {
-                AddTijdPrestatie.TotaalBetalen = (AddTijdPrestatie.TotaalDienstenChecks * 60) - AddTijdPrestatie.NieuwTegoed;
                 SelectedKlant.Tegoed = Convert.ToByte(AddTijdPrestatie.TotaalMinuten - AddTijdPrestatie.TotaalBetalen);
             }
             else
             {
-                AddTijdPrestatie.TotaalBetalen = 0;
                 SelectedKlant.Tegoed = Convert.ToByte(AddTijdPrestatie.TotaalMinuten + AddTijdPrestatie.NieuwTegoed);
             }
         }

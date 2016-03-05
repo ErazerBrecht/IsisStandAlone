@@ -33,6 +33,29 @@ namespace EF_Model
         public byte TotaalDienstenChecks => Convert.ToByte(Math.Ceiling(TotaalBetalen / 60.0));
 
         [NotMapped]
-        public int NieuwTegoed { get; set; }
+        public int Tegoed => TotaalBetalen - TotaalTijd;
+
+        [NotMapped]
+        private int _nieuwTegoed;
+        
+        [NotMapped]
+        public int NieuwTegoed {
+            get
+            {
+                //If we edit the last prestatie we set NiewTegoed manually (equals current Tegoed of Klant)
+                //We want to get that value instead of newly calculate
+                if (TotaalTijd > 0 || TotaalBetalen > 0)
+                {
+                    if (TotaalDienstenChecks == 0)
+                        _nieuwTegoed = Tegoed + TotaalTijd;
+                    else
+                        _nieuwTegoed = (TotaalDienstenChecks*60) - TotaalBetalen;
+                }
+
+                return _nieuwTegoed;
+
+            }
+            set { _nieuwTegoed = value; }
+        }
     }
 }
