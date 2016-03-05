@@ -10,6 +10,7 @@ using System.Windows.Input;
 using DAL_Repository;
 using EF_Model;
 using GalaSoft.MvvmLight.Command;
+using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
@@ -190,7 +191,16 @@ namespace PL_WPF.ViewModels
                 Ctx.Strijkers.Add(SelectedPersoneel);
             }
 
-            Ctx.Complete();
+            try
+            {
+                Ctx.Complete();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het opslaan van de strijksters \n\nError: " + ex.Message);
+            }
+
             ButtonToevoegenContent = "Toevoegen";
         }
 

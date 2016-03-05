@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DAL_Repository;
 using EF_Model;
 using GalaSoft.MvvmLight.Command;
+using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
@@ -60,10 +61,18 @@ namespace PL_WPF.ViewModels
 
         private void SelectedTypePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //TODO: ADD Datavalidation
-            //SelectedOphaling.Check();
+            var changed = sender as KlantType;
 
-            Ctx.Complete();
+            try
+            {
+                Ctx.Complete();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het opslaan van een bestaande 'Klant Type' ("+ changed.Type + " " + changed.Naam + ")\n\nError: " + ex.Message);
+            }
+
         }
 
         #endregion
@@ -95,17 +104,36 @@ namespace PL_WPF.ViewModels
 
         public void Delete()
         {
-            Ctx.KlantTypes.Remove(SelectedType);
-            Ctx.Complete();
+            try
+            {
+                Ctx.KlantTypes.Remove(SelectedType);
+                Ctx.Complete();
+            }
+            catch (Exception ex)
+            {
+                Ctx.DiscardChanges();
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het verwijderen van een bestaande 'Klant Type' (" + SelectedType.Type + " " + SelectedType.Naam + ")\n\nError: " + ex.Message);
+            }
+
             GetData();
         }
 
         public virtual void Add()
         {
-            Ctx.KlantTypes.Add(AddType);
-            Ctx.Complete();
-            GetData();
+            try
+            {
+                Ctx.KlantTypes.Add(AddType);
+                Ctx.Complete();
+            }
+            catch (Exception ex)
+            {
+                Ctx.DiscardChanges();
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het toevoegen van een nieuwe 'Klant Type' (" + AddType.Type + " " + AddType.Naam + ")\n\nError: " + ex.Message);
+            }
 
+            GetData();
             AddType = new KlantType();
         }
 

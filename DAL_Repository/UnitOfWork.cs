@@ -1,8 +1,10 @@
-﻿using EF_Context;
+﻿using System;
+using EF_Context;
 using EF_Context.Repositories;
 using DAL_Repository.Repositories;
 using System.Linq;
 using System.Data.Entity;
+using System.Diagnostics;
 
 namespace DAL_Repository
 {
@@ -37,28 +39,36 @@ namespace DAL_Repository
 
         public bool HasChanges()
         {
-            return _context.ChangeTracker.HasChanges();
+            //return _context.ChangeTracker.HasChanges();
+
+            var changedEntries = _context.ChangeTracker.Entries();
+            return changedEntries.Any(x => x.State == EntityState.Modified || x.State == EntityState.Added || x.State == EntityState.Deleted);
         }
 
         public void DiscardChanges()
         {
-            var changedEntries = _context.ChangeTracker.Entries();
-
-            //Reset changes made to those entries
-            foreach (var entry in changedEntries.Where(x => x.State == EntityState.Modified))
+            try
             {
-                //entry.CurrentValues.SetValues(entry.OriginalValues);
-                entry.State = EntityState.Unchanged;
+                //Reset changes made to those entries
+                foreach (var entry in _context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified))
+                {
+                    //entry.CurrentValues.SetValues(entry.OriginalValues);
+                    entry.State = EntityState.Unchanged;
+                }
+
+                foreach (var entry in _context.ChangeTracker.Entries().Where(x => x.State == EntityState.Added))
+                {
+                    entry.State = EntityState.Detached;
+                }
+
+                foreach (var entry in _context.ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted))
+                {
+                    entry.State = EntityState.Unchanged;
+                }
             }
-
-            foreach (var entry in changedEntries.Where(x => x.State == EntityState.Added))
+            catch (Exception ex)
             {
-                entry.State = EntityState.Detached;
-            }
-
-            foreach (var entry in changedEntries.Where(x => x.State == EntityState.Deleted))
-            {
-                entry.State = EntityState.Unchanged;
+                Debug.WriteLine(ex.Message);
             }
         }
 

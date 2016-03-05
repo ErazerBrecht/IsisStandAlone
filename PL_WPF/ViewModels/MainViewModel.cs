@@ -10,6 +10,7 @@ using System.Windows;
 using DAL_Repository;
 using EF_Context;
 using GalaSoft.MvvmLight;
+using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
@@ -49,18 +50,28 @@ namespace PL_WPF.ViewModels
 
             //try
             //{
-                //AppDomain.CurrentDomain.SetData("DataDirectory", path);
-                //TestConnection();
+            //AppDomain.CurrentDomain.SetData("DataDirectory", path);
+            //TestConnection();
 
+            try
+            {
                 _ctx = new UnitOfWork(new IsisContext());
-
-                Workspaces = new ObservableCollection<WorkspaceViewModel>();
-                Workspaces.Add(new BerekenModuleViewModel(_ctx));
-                Workspaces.Add(new PrestatieBeheerViewModel(_ctx));
-                Workspaces.Add(new KlantenBeheerViewModel(_ctx));
-                Workspaces.Add(new PersoneelBeheerViewModel(_ctx));
-                Workspaces.Add(new ParameterBeheerViewModel(_ctx));
+                Workspaces = new ObservableCollection<WorkspaceViewModel>
+                {
+                    new BerekenModuleViewModel(_ctx),
+                    new PrestatieBeheerViewModel(_ctx),
+                    new KlantenBeheerViewModel(_ctx),
+                    new PersoneelBeheerViewModel(_ctx),
+                    new ParameterBeheerViewModel(_ctx)
+                };
                 SelectedWorkspace = Workspaces.First();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het ophalen van de data \n\nError: " + ex.Message);
+            }
+
             //}
             //catch
             //{

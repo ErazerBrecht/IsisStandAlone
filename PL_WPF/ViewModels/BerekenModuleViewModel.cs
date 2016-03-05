@@ -236,55 +236,64 @@ namespace PL_WPF.ViewModels
                 return;
             }
 
-            //Add prestatie + dates to DB
-            if (ButtonToevoegenContent == "Toevoegen")
+            try
             {
-                //Add date(s) to DB
-                Ctx.Datums.AddRange(DatumViewModel.NewDates);
-                //Add prestatie to DB (parameter needs to be last date)
-                CurrentView.Save(DatumViewModel.NewDates.Last().Date);
+                //Add prestatie + dates to DB
+                if (ButtonToevoegenContent == "Toevoegen")
+                {
+                    //Add date(s) to DB
+                    Ctx.Datums.AddRange(DatumViewModel.NewDates);
+                    //Add prestatie to DB (parameter needs to be last date)
+                    CurrentView.Save(DatumViewModel.NewDates.Last().Date);
 
-                #region Legacy code
+                    #region Legacy code
 
-                ////Add Dates to DB
-                //foreach (var d in DatumViewModel.NewDates)
-                //{
-                //    d.Id = CurrentView.AddPrestatie.Id;
-                //    context.Datum.Add(d);
+                    ////Add Dates to DB
+                    //foreach (var d in DatumViewModel.NewDates)
+                    //{
+                    //    d.Id = CurrentView.AddPrestatie.Id;
+                    //    context.Datum.Add(d);
 
-                //    //EF is retarded and thinks that I readded the Strijkers to the db, while I didn't.
-                //    //I Just use them as foreign relantionschip, I can't just use the id, because I need the name
-                //    //Manually said this is not true
-                //    //https://msdn.microsoft.com/en-us/magazine/dn166926.aspx
-                //    //This link explains it!
+                    //    //EF is retarded and thinks that I readded the Strijkers to the db, while I didn't.
+                    //    //I Just use them as foreign relantionschip, I can't just use the id, because I need the name
+                    //    //Manually said this is not true
+                    //    //https://msdn.microsoft.com/en-us/magazine/dn166926.aspx
+                    //    //This link explains it!
 
-                //    if (d.Strijker1 != null)
-                //        context.Entry(d.Strijker1).State = EntityState.Unchanged;
-                //    if (d.Strijker2 != null)
-                //        context.Entry(d.Strijker2).State = EntityState.Unchanged;
-                //    if (d.Strijker3 != null)
-                //        context.Entry(d.Strijker3).State = EntityState.Unchanged;
-                //    if (d.Strijker4 != null)
-                //        context.Entry(d.Strijker4).State = EntityState.Unchanged;
-                //    if (d.Strijker5 != null)
-                //        context.Entry(d.Strijker5).State = EntityState.Unchanged;
-                //}
+                    //    if (d.Strijker1 != null)
+                    //        context.Entry(d.Strijker1).State = EntityState.Unchanged;
+                    //    if (d.Strijker2 != null)
+                    //        context.Entry(d.Strijker2).State = EntityState.Unchanged;
+                    //    if (d.Strijker3 != null)
+                    //        context.Entry(d.Strijker3).State = EntityState.Unchanged;
+                    //    if (d.Strijker4 != null)
+                    //        context.Entry(d.Strijker4).State = EntityState.Unchanged;
+                    //    if (d.Strijker5 != null)
+                    //        context.Entry(d.Strijker5).State = EntityState.Unchanged;
+                    //}
 
-                #endregion
+                    #endregion
+                }
+                //Update (edit) last prestatie + dates
+                else
+                {
+                    CurrentView.UpdateLast();
+
+                    ButtonBerekenContent = "Berekenen";
+                    ButtonToevoegenContent = "Toevoegen";
+                    ButtonChangeContent = "Laatste prestatie aanpassen";
+                }
+
+
+                //Save changes to DB
+                Ctx.Complete();
             }
-            //Update (edit) last prestatie + dates
-            else
+            catch (Exception ex)
             {
-                CurrentView.UpdateLast();
-
-                ButtonBerekenContent = "Berekenen";
-                ButtonToevoegenContent = "Toevoegen";
-                ButtonChangeContent = "Laatste prestatie aanpassen";
+                Ctx.DiscardChanges();
+                MessageBoxService messageService = new MessageBoxService();
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het opslaan van een prestatie \n\nError: " + ex.Message);
             }
-
-
-            //Save changes to DB
-            Ctx.Complete();
 
             //Re init CurrentView => Make new Prestatie, ...
             CurrentView.Init();
