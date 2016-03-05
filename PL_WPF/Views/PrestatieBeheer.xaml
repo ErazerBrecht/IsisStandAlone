@@ -29,7 +29,7 @@
         </StackPanel>
 
 
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding Prestaties}" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTemplateColumn Header="Klant Naam" MinWidth="200" Width="SizeToCells">

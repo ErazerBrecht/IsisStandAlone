@@ -14,20 +14,7 @@ namespace PL_WPF.ViewModels
 {
     class PrestatieBeheerViewModel : WorkspaceViewModel
     {
-        private List<Prestatie> _originalPrestaties;
-
-        #region Prestaties full - property
-        private List<Prestatie> _prestaties;
-        public List<Prestatie> Prestaties
-        {
-            get { return _prestaties ?? (_prestaties = _originalPrestaties); }
-            private set
-            {
-                _prestaties = value;
-                NoticeMe("Prestaties");
-            }
-        }
-        #endregion
+        public CollectionViewSource ViewSource { get; private set; }
 
         #region Klanten Searchbox
         #region SelectedKlant full property
@@ -42,7 +29,8 @@ namespace PL_WPF.ViewModels
             set
             {
                 _selectedKlant = value;
-                Filter();
+                ViewSource.View.Refresh();
+
             }
         }
         #endregion
@@ -73,6 +61,7 @@ namespace PL_WPF.ViewModels
         #endregion
 
         #region FilterOnName
+        //Bool to make Searbox Enabled or Disabled
         private bool _enableSearch;
         public bool EnableSearch
         {
@@ -87,6 +76,7 @@ namespace PL_WPF.ViewModels
             }
         }
 
+        //Bool to ignore SelectedKlant and show every prestatie
         private bool _boolIedereen;
         public bool BoolIedereen
         {
@@ -99,129 +89,123 @@ namespace PL_WPF.ViewModels
                 _boolIedereen = value;
                 NoticeMe("BoolIedereen");
 
-                if (value == true)
-                {
-                    EnableSearch = false;
-                }
-                else
-                {
-                    EnableSearch = true;
-                }
+                EnableSearch = !value;
 
-                Filter();
+                ViewSource.View.Refresh();
             }
         }
         #endregion
 
-        //#region FilterOnDate
+        #region FilterOnDate
+        //Bool to indicate you want to filter on dates
+        private bool _filterOpDag;
 
-        //private bool _filterOpDag;
+        public bool FilterOpDag
+        {
+            get { return _filterOpDag; }
+            set
+            {
+                _filterOpDag = value;
+                NoticeMe("FilterOpDag");
+                ViewSource.View.Refresh();
+            }
+        }
 
-        //public bool FilterOpDag
-        //{
-        //    get { return _filterOpDag; }
-        //    set
-        //    {
-        //        _filterOpDag = value;
-        //        Filter();
-        //        NoticeMe("FilterOpDag");
-        //    }
-        //}
+        //Bool to indicate if you want to filter on a single day or between a range of dates
+        private bool _boolDag;
 
+        public bool BoolDag
+        {
+            get
+            {
+                return _boolDag;
+            }
+            set
+            {
+                _boolDag = value;
+                NoticeMe("BoolDag");
+                ViewSource.View.Refresh();
+            }
+        }
 
-        //private bool _boolDag;
+        //Date that will be used when we filter on a single day
+        private DateTime _dateSingle;
+        public DateTime DateSingle
+        {
+            get
+            {
+                return _dateSingle;
+            }
+            set
+            {
+                _dateSingle = value;
+                ViewSource.View.Refresh();
+            }
+        }
 
-        //public bool BoolDag
-        //{
-        //    get
-        //    {
-        //        return _boolDag;
-        //    }
-        //    set
-        //    {
-        //        _boolDag = value;
-        //        Filter();
-        //        NoticeMe ("BoolDag");
-        //    }
-        //}
+        //Date we use as first date in our range of dates
+        private DateTime _dateFirst;
 
-        //private DateTime _dateSingle;
-        //public DateTime DateSingle
-        //{
-        //    get
-        //    {
-        //        return _dateSingle;
-        //    }
-        //    set
-        //    {
-        //        _dateSingle = value;
-        //        Filter();
-        //    }
-        //}
+        public DateTime DateFirst
+        {
+            get { return _dateFirst; }
+            set
+            {
+                _dateFirst = value;
+                NoticeMe("DateFirst");
+                ViewSource.View.Refresh();
+            }
+        }
 
-        //private DateTime? _dateFirst;
+        //Date we use as last date in our range of dates
+        private DateTime _dateSecond;
 
-        //public DateTime? DateFirst
-        //{
-        //    get { return _dateFirst; }
-        //    set
-        //    {
-        //        _dateFirst = value;
-        //        NoticeMe("DateFirst");
+        public DateTime DateSecond
+        {
+            get { return _dateSecond; }
+            set
+            {
+                _dateSecond = value;
+                NoticeMe("DateSecond");
+                ViewSource.View.Refresh();
+            }
+        }
 
-        //        Filter();    
-        //    }
-        //}
-
-
-        //private DateTime? _dateSecond;
-
-        //public DateTime? DateSecond
-        //{
-        //    get { return _dateSecond; }
-        //    set { _dateSecond = value; Filter(); NoticeMe("DateSecond"); }
-        //}
-
-        //#endregion
+        #endregion
 
         public PrestatieBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
             Header = "PrestatieBeheer";
 
+            ViewSource = new CollectionViewSource { Source = Ctx.Prestaties.GetAll() };
+            ViewSource.View.Filter = Filter;
+            Klanten = Ctx.Klanten.GetAll();
+
             BoolIedereen = true;
-            //BoolDag = true;
+            BoolDag = true;
         }
 
-        public override void LoadData()
+        public bool Filter(object item)
         {
-            _originalPrestaties = Ctx.Prestaties.GetAll().ToList();
-            Klanten = Ctx.Klanten.GetAll().ToList();
-        }
+            Prestatie prestatie = item as Prestatie;
 
-        public void Filter()
-        {
-            if (BoolIedereen)
-                Prestaties = _originalPrestaties;
-            else
+            if (!BoolIedereen)
             {
                 if (SelectedKlant != null)
-                    Prestaties = _originalPrestaties.Where(p => p.Klant.Id == _selectedKlant.Id).ToList();
+                    return prestatie.Klant.Id == SelectedKlant.Id;
             }
 
-            //if(FilterOpDag)
-            //{
-            //    if (BoolDag)
-            //    {
-            //        if (DateSingle != null)
-            //            Prestaties = Prestaties.Where(p => p.Datum.Date == DateSingle.Date).ToList();
-            //    }
-            //    else
-            //    {
-            //        if (DateSecond != null && DateFirst != null)
-            //            Prestaties = Prestaties.Where(p => p.Datum.Date >= DateFirst.GetValueOrDefault() && p.Datum.Date <= DateSecond.GetValueOrDefault()).ToList();
-            //    }
+            if (FilterOpDag)
+            {
+                if (BoolDag)
+                {
+                    return prestatie.Datum.Any(p => p.Date.Date == DateSingle);
+                }
 
-            //}
+                return prestatie.Datum[0].Date.Date >= DateFirst && prestatie.Datum[prestatie.Datum.Count - 1].Date.Date <= DateSecond;
+            }
+
+            return true;
 
         }
     }
