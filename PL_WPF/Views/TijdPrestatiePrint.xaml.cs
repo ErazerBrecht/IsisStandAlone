@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EF_Model;
 
 namespace PL_WPF.Views
 {
@@ -19,9 +20,26 @@ namespace PL_WPF.Views
     /// </summary>
     public partial class TijdPrestatiePrint : Window
     {
-        public TijdPrestatiePrint()
+        public TijdPrestatiePrint(object datacontext)
         {
             InitializeComponent();
+
+            var prestatie = datacontext as Prestatie;
+            Strings currentStrings = new Strings();
+
+            LabelHemden.Content = currentStrings.StringHemden;
+            LabelLakens1.Content = currentStrings.StringLakens1;
+            LabelLakens2.Content = currentStrings.StringLakens2;
+            LabelAndereStrijk.Content = currentStrings.StringAndere;
+            LabelAdministratie.Content = currentStrings.StringAdministratie;
+
+            if (prestatie.Klant.Betalingswijze == "Elektronisch")
+            {
+                LabelGebruikersnummer.Visibility = Visibility.Visible;
+                LabelDienstenChecks.Text = "aantal dienstencheques te betalen (elektronisch)";
+            }
+
+            this.DataContext = datacontext;
         }
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
@@ -30,6 +48,7 @@ namespace PL_WPF.Views
             if (printDialog.ShowDialog() == true)
             {
                 printDialog.PrintVisual(PrintZone, "My First Print Job");
+                this.Close();
             }
         }
     }

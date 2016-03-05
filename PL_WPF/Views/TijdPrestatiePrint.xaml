@@ -35,7 +35,8 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -43,20 +44,30 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0">AFREKENING</Label>
+                <Label Grid.Column="0" Grid.Row="0" Margin="0" >AFREKENING</Label>
                 <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom"></Border>
 
-                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label FontSize="18" FontWeight="Bold" Content="{Binding SelectedKlant.Naam, FallbackValue=Carlier}"></Label>
-                    <Label FontSize="18" FontWeight="Bold" Content="{Binding SelectedKlant.Voornaam, FallbackValue=Brecht}"></Label>
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                    <Label FontSize="18" FontWeight="Bold" Content="{Binding Klant.Naam, FallbackValue=Carlier}"></Label>
+                    <Label FontSize="18" FontWeight="Bold" Content="{Binding Klant.Voornaam, FallbackValue=Brecht}"></Label>
                 </StackPanel>
+                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Run Text="{Binding Klant.TypeNaam, FallbackValue=Winkel}"></Run><Run>:</Run>
+                </TextBlock>
+                <Label Grid.Column="3" Grid.Row="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding Klant.TypePlaats, FallbackValue=Rijkevorsel}"></Label>
 
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="{Binding SelectedKlant.Gsm, FallbackValue=0476847943}"></Label>
-                <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Klantnummer:"></Label>
-                <Label Grid.Column="3" Grid.Row="2" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding SelectedKlant.Id, FallbackValue=Id}"></Label>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="{Binding SelectedKlant.Gsm, FallbackValue=0476847943}" Padding="5,5,0,0"></Label>
+                <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Klantnummer:" Padding="5,5,0,0"></Label>
+                <Label Grid.Column="3" Grid.Row="2" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding Klant.Id, FallbackValue=Id}" Padding="5,5,0,0"></Label>
 
-                <Border Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" Margin="0,20,0,0"></Border>
-                <ItemsControl Grid.Column="0" Grid.Row="3" ItemsSource="{Binding DatumViewModel.NewDates}" Margin="0,25,0,25">
+                <TextBlock FontSize="12" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Visibility="Visible" Name="LabelGebruikersnummer" Padding="5,0,0,0">
+                    <Run>Gebruikersnr.</Run>
+                    <Run Text="{Binding Klant.Gebruikersnummer, FallbackValue=000 123456789}"></Run>
+                </TextBlock>
+                <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Prestatienummer:" Padding="0"></Label>
+                <Label Grid.Column="3" Grid.Row="3" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding Id, FallbackValue=Id}" Padding="5,0,0,0"></Label>
+                <Border Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0"></Border>
+                <ItemsControl Grid.Column="0" Grid.Row="4" ItemsSource="{Binding Datum}" Margin="0,25,0,15">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Label Content="{Binding Date}" ContentStringFormat="dd MMM yyyy"></Label>
@@ -64,65 +75,65 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <Label Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" FontSize="12">stuks</Label>
-                <TextBlock Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" FontSize="12">
+                <Label Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontSize="12">stuks</Label>
+                <TextBlock Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" FontSize="12">
                     <Run Text="tarief"></Run>
                 </TextBlock>
-                <Label Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" FontSize="12">minuten</Label>
+                <Label Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" FontSize="12">minuten</Label>
 
-                <Label Grid.Column="0" Grid.Row="5" Content="{Binding CurrentView.CurrentStrings.StringHemden, FallbackValue=Hemden}"></Label>
-                <Label Grid.Column="1" Grid.Row="5" Content="{Binding CurrentView.AddTijdPrestatie.AantalHemden , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
-                <TextBlock Grid.Column="2" Grid.Row="5" VerticalAlignment="Center">
-                    <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterHemden, FallbackValue=0}"></Run>
-                    <Run Text="min./stuk"></Run>
-                </TextBlock>
-                <Label Grid.Column="3" Grid.Row="5" Content="{Binding CurrentView.AddTijdPrestatie.TotaalHemden, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
-
-                <Label Grid.Column="0" Grid.Row="6" Content="{Binding CurrentView.CurrentStrings.StringLakens1, FallbackValue=(Hoes)laken / Dekbed 1 psn}"></Label>
-                <Label Grid.Column="1" Grid.Row="6" Content="{Binding CurrentView.AddTijdPrestatie.AantalLakens1 , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="0" Grid.Row="6" Content="Hemden" Name="LabelHemden"></Label>
+                <Label Grid.Column="1" Grid.Row="6" Content="{Binding AantalHemden, FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="6" VerticalAlignment="Center">
-                    <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterLakens1, FallbackValue=0}"></Run>
+                    <Run Text="{Binding ParameterHemden, StringFormat={}{0:#.##}, FallbackValue=0}"></Run>
                     <Run Text="min./stuk"></Run>
                 </TextBlock>
-                <Label Grid.Column="3" Grid.Row="6" Content="{Binding CurrentView.AddTijdPrestatie.TotaalLakens1, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="3" Grid.Row="6" Content="{Binding TotaalHemden, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="7" Content="{Binding CurrentView.CurrentStrings.StringLakens2, FallbackValue=Dekbed 2 psn}"></Label>
-                <Label Grid.Column="1" Grid.Row="7" Content="{Binding CurrentView.AddTijdPrestatie.AantalLakens2 , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="0" Grid.Row="7" Content="(Hoes)laken / Dekbed 1 psn" Name="LabelLakens1"></Label>
+                <Label Grid.Column="1" Grid.Row="7" Content="{Binding AantalLakens1, FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="7" VerticalAlignment="Center">
-                    <Run Text="{Binding CurrentView.AddTijdPrestatie.ParameterLakens2, FallbackValue=0}"></Run>
+                    <Run Text="{Binding ParameterLakens1, StringFormat={}{0:#.##}, FallbackValue=0}"></Run>
                     <Run Text="min./stuk"></Run>
                 </TextBlock>
-                <Label Grid.Column="3" Grid.Row="7" Content="{Binding CurrentView.AddTijdPrestatie.TotaalLakens2, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="3" Grid.Row="7" Content="{Binding TotaalLakens1, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="8" Content="{Binding CurrentView.CurrentStrings.StringAndere, FallbackValue='Andere strijk'}"></Label>
-                <Label Grid.Column="1" Grid.Row="8" Content="{Binding CurrentView.AddTijdPrestatie.AantalAndereStrijk , FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
-                <TextBlock Grid.Column="2" Grid.Row="8" VerticalAlignment="Center">effectieve strijktijd</TextBlock>
-                <Label Grid.Column="3" Grid.Row="8" Content="{Binding CurrentView.AddTijdPrestatie.TotaalAndereStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="0" Grid.Row="8" Content="Dekbed 2 psn" Name="LabelLakens2"></Label>
+                <Label Grid.Column="1" Grid.Row="8" Content="{Binding AantalLakens2, FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="8" VerticalAlignment="Center">
+                    <Run Text="{Binding ParameterLakens2, StringFormat={}{0:#.##}, FallbackValue=0}"></Run>
+                    <Run Text="min./stuk"></Run>
+                </TextBlock>
+                <Label Grid.Column="3" Grid.Row="8" Content="{Binding TotaalLakens2, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="9"  Content="{Binding CurrentView.CurrentStrings.StringAdministratie, FallbackValue='Sorteren, controle, verpakken, ...'}"></Label>
-                <TextBlock Grid.Column="2" Grid.Row="9" VerticalAlignment="Center">volgens aantal stuks</TextBlock>
-                <Label Grid.Column="3" Grid.Row="9" Content="{Binding CurrentView.AddTijdPrestatie.TijdAdministratie, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="0" Grid.Row="9" Content="FallbackValue='Andere strijk" Name="LabelAndereStrijk"></Label>
+                <Label Grid.Column="1" Grid.Row="9" Content="{Binding AantalAndereStrijk, FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="9" VerticalAlignment="Center">effectieve strijktijd</TextBlock>
+                <Label Grid.Column="3" Grid.Row="9" Content="{Binding TotaalAndereStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Border Grid.Column="0" Grid.Row="11" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1"></Border>
-                <Label Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right">totaal stuks</Label>
-                <Label Grid.Column="1" Grid.Row="11" Content="{Binding CurrentView.AddTijdPrestatie.TotaalStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
-                <TextBlock Grid.Column="2" Grid.Row="11" VerticalAlignment="Center" HorizontalAlignment="Right">totaal tijd</TextBlock>
-                <Label Grid.Column="3" Grid.Row="11" Content="{Binding CurrentView.AddTijdPrestatie.TotaalMinuten, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Label Grid.Column="0" Grid.Row="10"  Content="Sorteren, controle, verpakken, ..." Name="LabelAdministratie"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="10" VerticalAlignment="Center">volgens aantal stuks</TextBlock>
+                <Label Grid.Column="3" Grid.Row="10" Content="{Binding TijdAdministratie, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <TextBlock Grid.Column="2" Grid.Row="12" VerticalAlignment="Center" HorizontalAlignment="Right">tegoed vorige keer</TextBlock>
-                <Label Grid.Column="3" Grid.Row="12" Content="{Binding SelectedKlant.Tegoed, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <Border Grid.Column="0" Grid.Row="12" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1"></Border>
+                <Label Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right">totaal stuks</Label>
+                <Label Grid.Column="1" Grid.Row="12" Content="{Binding TotaalStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="12" VerticalAlignment="Center" HorizontalAlignment="Right">totaal tijd</TextBlock>
+                <Label Grid.Column="3" Grid.Row="12" Content="{Binding TotaalMinuten, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <TextBlock Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalAlignment="Right">te betalen tijd</TextBlock>
-                <Label Grid.Column="3" Grid.Row="13" Content="{Binding CurrentView.AddTijdPrestatie.TotaalBetalen, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="13" VerticalAlignment="Center" HorizontalAlignment="Right">tegoed vorige keer</TextBlock>
+                <Label Grid.Column="3" Grid.Row="13" Content="{Binding Tegoed, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <TextBlock Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold">aantal dienstencheques te betalen</TextBlock>
-                <Border Grid.Column="3" Grid.Row="14" BorderBrush="Black" BorderThickness="2" Margin="5,0,0,0">
-                    <Label Content="{Binding CurrentView.AddTijdPrestatie.TotaalDienstenChecks, FallbackValue=0}"  HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+                <TextBlock Grid.Column="2" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Right">te betalen tijd</TextBlock>
+                <Label Grid.Column="3" Grid.Row="14" Content="{Binding TotaalBetalen, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+
+                <TextBlock Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" Name="LabelDienstenChecks">aantal dienstencheques te betalen</TextBlock>
+                <Border Grid.Column="3" Grid.Row="15" BorderBrush="Black" BorderThickness="2" Margin="5,0,0,0">
+                    <Label Content="{Binding TotaalDienstenChecks, FallbackValue=0}"  HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
                 </Border>
 
 
-                <TextBlock Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">minuten tegoed volgende keer</TextBlock>
-                <Label Grid.Column="3" Grid.Row="15" Content="{Binding CurrentView.AddTijdPrestatie.NieuwTegoed, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+                <TextBlock Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">minuten tegoed volgende keer</TextBlock>
+                <Label Grid.Column="3" Grid.Row="16" Content="{Binding NieuwTegoed, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
             </Grid>
 
         </StackPanel>

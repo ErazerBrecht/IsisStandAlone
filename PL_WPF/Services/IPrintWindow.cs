@@ -16,8 +16,7 @@ namespace PL_WPF.Services
     {
         public void ShowPrintPreview(object datacontext)
         {
-            TijdPrestatiePrint window = new TijdPrestatiePrint();
-            window.DataContext = datacontext;
+            TijdPrestatiePrint window = new TijdPrestatiePrint(datacontext);
             window.Show();
         }
     }

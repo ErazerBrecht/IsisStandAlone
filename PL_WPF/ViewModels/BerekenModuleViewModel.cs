@@ -51,15 +51,7 @@ namespace PL_WPF.ViewModels
             }
         }
 
-        public bool IsPrintAble
-        {
-            get
-            {
-                if (CurrentView is TijdBerekenModuleViewModel)
-                    return CurrentView.IsValid;
-                return false;
-            }
-        }
+        public bool IsPrintAble => CurrentView is TijdBerekenModuleViewModel;
 
         #region Commands
         public ICommand BerekenCommandEvent { get; private set; }
@@ -308,15 +300,25 @@ namespace PL_WPF.ViewModels
 
         public void Print()
         {
-            if (!DatumViewModel.HasDates)
+            MessageBoxService messageService = new MessageBoxService();
+            if (Ctx.TijdPrestaties.Any())
             {
-                MessageBoxService messageService = new MessageBoxService();
-                messageService.ShowMessageBox("Je hebt nog geen datum gekozen!");
-                return;
+                //Get all previous TijdPrestaties of the selected klant
+                var tempPrestatie = Ctx.TijdPrestaties.GetLatestPrestatie(SelectedKlant);
+                if (tempPrestatie == null)
+                {
+                    messageService.ShowMessageBox("Deze klant heeft geen vorige prestaties, u kunt niets printen");
+                }
+                else
+                {
+                    PrintWindow print = new PrintWindow();
+                    print.ShowPrintPreview(tempPrestatie);
+                }
             }
-
-            PrintWindow print = new PrintWindow();
-            print.ShowPrintPreview(this);
+            else
+            {
+                messageService.ShowMessageBox("Er bevinden zich nog geen prestaties in de databank, u kunt niets printen");
+            }
         }
 
         #region Datavalidation implementation
