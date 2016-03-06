@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201603042036026_Initial.Designer.cs">
       <DependentUpon>201603042036026_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603061610268_Prestatie_Tegoed.cs" />
+    <Compile Include="Migrations\201603061610268_Prestatie_Tegoed.Designer.cs">
+      <DependentUpon>201603061610268_Prestatie_Tegoed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.cs" />
+    <Compile Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.Designer.cs">
+      <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IDatumRepository.cs" />
@@ -81,6 +89,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603042036026_Initial.resx">
       <DependentUpon>201603042036026_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603061610268_Prestatie_Tegoed.resx">
+      <DependentUpon>201603061610268_Prestatie_Tegoed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.resx">
+      <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

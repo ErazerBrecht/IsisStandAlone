@@ -10,6 +10,31 @@ namespace EF_Model
 {
     partial class StukPrestatie : IDataErrorInfo
     {
+        public override void CalculatePrestatie()
+        {
+            CalculateStrijk();
+
+            if (TotaalDienstenChecks == 0)
+                NieuwTegoed = Tegoed - TotaalMinuten;
+            else
+                NieuwTegoed = (TotaalDienstenChecks * 60) - TotaalBetalen;
+        }
+
+        public override byte RecalculatePrestatie(byte newTegoed)
+        {
+            NieuwTegoed = newTegoed;
+            CalculateStrijk();
+            return Tegoed;
+        }
+
+        private void CalculateStrijk()
+        {
+            if (TotaalMinuten > Tegoed)
+            {
+                TotaalBetalen = TotaalMinuten - Tegoed;
+                TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(TotaalBetalen / 60.0));
+            }
+        }
 
         public bool CanSave
         {

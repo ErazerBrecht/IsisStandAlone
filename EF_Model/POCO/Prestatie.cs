@@ -18,7 +18,7 @@ namespace EF_Model
         public int Id { get; set; }
 
         [Required]
-        public int TotaalBetalen { get; set; }
+        public byte Tegoed { get; set; }
 
         //Relationships
         public virtual ObservableCollection<Datum> Datum { get; set; }

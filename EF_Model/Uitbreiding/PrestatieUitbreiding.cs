@@ -14,51 +14,26 @@ namespace EF_Model
             get
             {
                 if (this is StukPrestatie)
-                    return ((StukPrestatie) this).TotaalMinuten;
+                    return ((StukPrestatie)this).TotaalMinuten;
                 if (this is TijdPrestatie)
-                {
-                    var tijdPrestatie = (TijdPrestatie) this;
-
-                    if (tijdPrestatie.TotaalMinuten > 0)
-                        return tijdPrestatie.TotaalMinuten;
-
-                    tijdPrestatie.CalculateStrijk();
-                    return tijdPrestatie.TotaalMinuten;
-                }
+                    return ((TijdPrestatie)this).TotaalMinuten;
                 return 0;
             }
         }
 
         [NotMapped]
-        public byte TotaalDienstenChecks => Convert.ToByte(Math.Ceiling(TotaalBetalen / 60.0));
+        public byte TotaalDienstenChecks { get; set; }
 
         [NotMapped]
-        public int Tegoed => TotaalBetalen - TotaalTijd;
+        public int TotaalBetalen { get; set; }
 
         [NotMapped]
-        private int _nieuwTegoed;
-        
-        [NotMapped]
-        public int NieuwTegoed {
-            get
-            {
-                //If we edit the last prestatie we set NiewTegoed manually (equals current Tegoed of Klant)
-                //We want to get that value instead of newly calculate
-                if (TotaalTijd > 0 || TotaalBetalen > 0)
-                {
-                    if (TotaalDienstenChecks == 0)
-                        _nieuwTegoed = Tegoed + TotaalTijd;
-                    else
-                        _nieuwTegoed = (TotaalDienstenChecks*60) - TotaalBetalen;
-                }
-
-                return _nieuwTegoed;
-
-            }
-            set { _nieuwTegoed = value; }
-        }
+        public int NieuwTegoed { get; set; }
 
         [NotMapped]
         public bool IsTijdPrestatie => this is TijdPrestatie;
+
+        public abstract void CalculatePrestatie();
+        public abstract byte RecalculatePrestatie(byte newTegoed);
     }
 }

@@ -15,6 +15,12 @@ namespace DAL_Repository.Repositories
         public PrestatieRepository(IsisContext context) : base(context)
         {
             context.Prestaties.Load();
+
+            //After every prestatie is loaded, recalculate the 'missing fields'
+            foreach (var c in context.Prestaties.Local)
+            {
+                c.CalculatePrestatie();
+            }
         }
 
         public IsisContext IsisContext => Context as IsisContext;

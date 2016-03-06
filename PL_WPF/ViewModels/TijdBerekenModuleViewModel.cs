@@ -105,11 +105,11 @@ namespace PL_WPF.ViewModels
         {
             //Add current parameter values into the prestatie!
             AddTijdPrestatie.AddParameters(CurrentParameters);
+            //Tegoed of current prestatie is equal to the current 'tegoed' of the client
+            AddTijdPrestatie.Tegoed = SelectedKlant.Tegoed;
 
             //Calculate how long every part takes
-            AddTijdPrestatie.CalculateStrijk();
-
-            AddTijdPrestatie.TotaalBetalen = AddTijdPrestatie.TotaalMinuten - SelectedKlant.Tegoed;
+            AddTijdPrestatie.CalculatePrestatie();
 
             //The "prestatie" is calculated you're know able to save it!
             //But first check if there where validation errors
@@ -147,19 +147,7 @@ namespace PL_WPF.ViewModels
             CurrentParameters.ParameterAndereStrijk = AddTijdPrestatie.ParameterAndereStrijk;
 
             //Thinking reverse => The current Tegoed of the Klant was the NiewTegoed of the last prestatie
-            AddTijdPrestatie.NieuwTegoed = SelectedKlant.Tegoed;
-
-            AddTijdPrestatie.CalculateStrijk();
-
-            //Recalculate the previous Tegoed of the klant
-            if (AddTijdPrestatie.TotaalBetalen > 0)
-            {
-                SelectedKlant.Tegoed = Convert.ToByte(AddTijdPrestatie.TotaalMinuten - AddTijdPrestatie.TotaalBetalen);
-            }
-            else
-            {
-                SelectedKlant.Tegoed = Convert.ToByte(AddTijdPrestatie.TotaalMinuten + AddTijdPrestatie.NieuwTegoed);
-            }
+            SelectedKlant.Tegoed = AddTijdPrestatie.RecalculatePrestatie(SelectedKlant.Tegoed);
         }
 
         public override void Cancel()

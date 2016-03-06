@@ -9,9 +9,6 @@ namespace EF_Model
 {
     public partial class TijdPrestatie : IDataErrorInfo
     {
-        //Here I'll add properties that doesn't need to be saved in the database!
-        //Because the value of these properties can be calculated out of the existing fields in the db!
-
         public void AddParameters(Parameters p)
         {
             ParameterHemden = Convert.ToDecimal(p.ParameterHemden);
@@ -20,7 +17,8 @@ namespace EF_Model
             ParameterAndereStrijk = p.ParameterAndereStrijk;
         }
 
-
+        //Here I'll add properties that doesn't need to be saved in the database!
+        //Because the value of these properties can be calculated out of the existing fields in the db!
         [NotMapped]
         public int TotaalMinuten { get; set; }
         [NotMapped]
@@ -34,7 +32,25 @@ namespace EF_Model
         [NotMapped]
         public int TotaalAndereStrijk { get; set; }
 
-        public void CalculateStrijk()
+        //Funtions to calculate the 'prestatie'
+        public override void CalculatePrestatie()
+        {
+            CalculateStrijk();
+
+            if (TotaalDienstenChecks == 0)
+                NieuwTegoed = Tegoed - TotaalMinuten;
+            else
+                NieuwTegoed = (TotaalDienstenChecks * 60) - TotaalBetalen;
+        }
+
+        public override byte RecalculatePrestatie(byte newTegoed)
+        {
+            NieuwTegoed = newTegoed;
+            CalculateStrijk();
+            return Tegoed;
+        }
+
+        private void CalculateStrijk()
         {
             TotaalHemden = (int)Math.Ceiling(Convert.ToByte(AantalHemden) * ParameterHemden);
             TotaalLakens1 = (int)Math.Ceiling(Convert.ToByte(AantalLakens1) * ParameterLakens1);
@@ -53,8 +69,15 @@ namespace EF_Model
                 TijdAdministratie = 20;
 
             TotaalMinuten = Convert.ToInt32(TotaalHemden + TotaalLakens1 + TotaalLakens2 + TotaalAndereStrijk + TijdAdministratie);
+
+            if (TotaalMinuten > Tegoed)
+            {
+                TotaalBetalen = TotaalMinuten - Tegoed;
+                TotaalDienstenChecks = Convert.ToByte(Math.Ceiling(TotaalBetalen/60.0));
+            }
         }
 
+        //Function to check if this prestatie has no validation errors
         public bool CanSave
         {
             get
