@@ -15,6 +15,7 @@ namespace PL_WPF.ViewModels
     {
         public Parameters ParameterData { get; set; }
         public Strings StringsData { get; set; }
+        public BegroetingPrint BegroetingPrintData { get; set; }
         public WinkelTypeViewModel WinkelData { get; private set; }
         public SchoolTypeViewModel SchoolData { get; private set; }
         public BedrijfTypeViewModel BedrijfData { get; private set; }
@@ -25,12 +26,15 @@ namespace PL_WPF.ViewModels
         public ICommand RefreshParametersCommand { get; set; }
         public ICommand SaveStringsCommand { get; set; }
         public ICommand RefreshStringsCommand { get; set; }
+        public ICommand SaveBegroetingCommand { get; set; }
+        public ICommand RefreshBegroetingCommand { get; set; }
 
         public ParameterBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
             Header = "ParameterBeheer";
             ParameterData = new Parameters();
             StringsData = new Strings();
+            BegroetingPrintData = new BegroetingPrint();
 
             WinkelData = new WinkelTypeViewModel(Ctx);
             SchoolData = new SchoolTypeViewModel(Ctx);
@@ -57,6 +61,10 @@ namespace PL_WPF.ViewModels
                 () => LoadStrings(),
                 () => true
             );
+
+            SaveBegroetingCommand = new RelayCommand(SaveBegroetingPrint);
+            RefreshBegroetingCommand = new RelayCommand(LoadBegroetingPrint);
+
             #endregion
         }
 
@@ -78,6 +86,16 @@ namespace PL_WPF.ViewModels
         public void SaveStrings()
         {
             StringsData.SaveStrings();
+        }
+
+        public void LoadBegroetingPrint()
+        {
+            BegroetingPrintData.LoadStrings();
+        }
+
+        public void SaveBegroetingPrint()
+        {
+            BegroetingPrintData.SaveStrings();
         }
     }
 }

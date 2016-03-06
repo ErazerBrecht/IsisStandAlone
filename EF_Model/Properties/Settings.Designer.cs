@@ -118,5 +118,29 @@ namespace EF_Model.Properties {
                 this["StringAdministratie"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StringRegel1 {
+            get {
+                return ((string)(this["StringRegel1"]));
+            }
+            set {
+                this["StringRegel1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StringRegel2 {
+            get {
+                return ((string)(this["StringRegel2"]));
+            }
+            set {
+                this["StringRegel2"] = value;
+            }
+        }
     }
 }

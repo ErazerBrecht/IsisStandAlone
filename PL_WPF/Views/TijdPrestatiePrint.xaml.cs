@@ -24,14 +24,18 @@ namespace PL_WPF.Views
         {
             InitializeComponent();
 
+            //TODO: MVVM??
             var prestatie = datacontext as Prestatie;
             Strings currentStrings = new Strings();
+            BegroetingPrint currentBegroeting = new BegroetingPrint();
 
             LabelHemden.Content = currentStrings.StringHemden;
             LabelLakens1.Content = currentStrings.StringLakens1;
             LabelLakens2.Content = currentStrings.StringLakens2;
             LabelAndereStrijk.Content = currentStrings.StringAndere;
             LabelAdministratie.Content = currentStrings.StringAdministratie;
+            LabelBegroetingRegel1.Content = currentBegroeting.StringRegel1;
+            LabelBegroetingRegel2.Content = currentBegroeting.StringRegel2;
 
             if (prestatie.Klant.Betalingswijze == "Elektronisch")
             {

@@ -53,6 +53,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="BegroetingPrint.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="Uitbreiding\DatumUitbreiding.cs" />
     <Compile Include="Uitbreiding\KlantUitbreiding.cs" />

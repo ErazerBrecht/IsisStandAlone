@@ -6,18 +6,14 @@
         xmlns:local="clr-namespace:PL_WPF.Views"
         mc:Ignorable="d"
         Title="TijdPrestatiePrint"
-        Height="800" 
+        Height="875" 
         Width="570"
         ResizeMode="NoResize"
         FontSize="14"
         >
     <StackPanel>
         <StackPanel Name="PrintZone">
-            <StackPanel Name="Logo" Margin="0,15,0,0">
-                <Image Source="Resources/SplatchScreen_ISIS.png"></Image>
-            </StackPanel>
-
-            <Grid Margin="20,20,15,0">
+            <Grid Margin="20,180,15,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220"></ColumnDefinition>
                     <ColumnDefinition Width="60"></ColumnDefinition>
@@ -42,35 +38,52 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Margin="0" >AFREKENING</Label>
+                <Label Grid.Column="0" Grid.Row="0">AFREKENING</Label>
                 <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom"></Border>
 
-                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-                    <Label FontSize="18" FontWeight="Bold" Content="{Binding Klant.Naam, FallbackValue=Carlier}"></Label>
-                    <Label FontSize="18" FontWeight="Bold" Content="{Binding Klant.Voornaam, FallbackValue=Brecht}"></Label>
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="5,5,0,0">
+                    <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding Klant.Naam, FallbackValue=Carlier}"></TextBlock>
+                    <TextBlock FontSize="18" FontWeight="Bold" Margin="5,0,0,0" Text="{Binding Klant.Voornaam, FallbackValue=Brecht}"/>
                 </StackPanel>
-                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Run Text="{Binding Klant.TypeNaam, FallbackValue=Winkel}"></Run><Run>:</Run>
                 </TextBlock>
-                <Label Grid.Column="3" Grid.Row="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding Klant.TypePlaats, FallbackValue=Rijkevorsel}"></Label>
+                <TextBlock Grid.Column="3" Grid.Row="1" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="{Binding Klant.TypePlaats, FallbackValue=Rijkevorsel}"></TextBlock>
 
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Content="{Binding SelectedKlant.Gsm, FallbackValue=0476847943}" Padding="5,5,0,0"></Label>
                 <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Klantnummer:" Padding="5,5,0,0"></Label>
                 <Label Grid.Column="3" Grid.Row="2" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding Klant.Id, FallbackValue=Id}" Padding="5,5,0,0"></Label>
 
-                <TextBlock FontSize="12" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Visibility="Visible" Name="LabelGebruikersnummer" Padding="5,0,0,0">
+                <TextBlock FontSize="12" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Visibility="Hidden" Name="LabelGebruikersnummer" Padding="5,0,0,0">
                     <Run>Gebruikersnr.</Run>
                     <Run Text="{Binding Klant.Gebruikersnummer, FallbackValue=000 123456789}"></Run>
                 </TextBlock>
-                <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Prestatienummer:" Padding="0"></Label>
+                <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Prestatienummer:" Padding="0"></Label>
                 <Label Grid.Column="3" Grid.Row="3" FontWeight="Bold" HorizontalContentAlignment="Center" Content="{Binding Id, FallbackValue=Id}" Padding="5,0,0,0"></Label>
-                <Border Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0"></Border>
-                <ItemsControl Grid.Column="0" Grid.Row="4" ItemsSource="{Binding Datum}" Margin="0,25,0,15">
+                <Border Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" Margin="0,15,0,0"></Border>
+                <ItemsControl Grid.Column="0" Grid.Row="4" ItemsSource="{Binding Datum}" Margin="0,25,0,5">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Date}" ContentStringFormat="dd MMM yyyy"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Padding="5,0,0,0" Content="{Binding Date}" ContentStringFormat="dd MMM yyyy"></Label>
+
+                                <ItemsControl ItemsSource="{Binding Strijkers}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Voornaam}" Margin="5,0,0,0" Padding="5,0,0,0"></Label>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -105,7 +118,7 @@
                 </TextBlock>
                 <Label Grid.Column="3" Grid.Row="8" Content="{Binding TotaalLakens2, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
 
-                <Label Grid.Column="0" Grid.Row="9" Content="FallbackValue='Andere strijk" Name="LabelAndereStrijk"></Label>
+                <Label Grid.Column="0" Grid.Row="9" Content="Andere strijk" Name="LabelAndereStrijk"></Label>
                 <Label Grid.Column="1" Grid.Row="9" Content="{Binding AantalAndereStrijk, FallbackValue=0}" HorizontalContentAlignment="Center"></Label>
                 <TextBlock Grid.Column="2" Grid.Row="9" VerticalAlignment="Center">effectieve strijktijd</TextBlock>
                 <Label Grid.Column="3" Grid.Row="9" Content="{Binding TotaalAndereStrijk, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
@@ -134,11 +147,15 @@
 
                 <TextBlock Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">minuten tegoed volgende keer</TextBlock>
                 <Label Grid.Column="3" Grid.Row="16" Content="{Binding NieuwTegoed, FallbackValue=0}"  HorizontalContentAlignment="Center"></Label>
+
+                <Label Grid.Column="0" FontSize="16" Grid.Row="17" Grid.ColumnSpan="4" Margin="0,15,0,0" Padding="5,0,0,0" Name="LabelBegroetingRegel1">Hier komt zin één van de begroeting</Label>
+                <Label Grid.Column="0" FontSize="16" Grid.Row="18" Grid.ColumnSpan="4" Padding="5,0,0,0" Name="LabelBegroetingRegel2">Hier komt zin twee van de begroeting</Label>
+
             </Grid>
 
         </StackPanel>
 
-        <Button Name="PrintButton" Click="PrintButton_Click" FontSize="14" Margin="10,40,10,10">PRINT</Button>
+        <Button Name="PrintButton" Click="PrintButton_Click" FontSize="14" Margin="10,45,10,10">PRINT</Button>
 
     </StackPanel>
 

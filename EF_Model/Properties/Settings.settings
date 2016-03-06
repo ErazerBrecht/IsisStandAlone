@@ -26,5 +26,11 @@
     <Setting Name="StringAdministratie" Type="System.String" Scope="User">
       <Value Profile="(Default)">Administratie</Value>
     </Setting>
+    <Setting Name="StringRegel1" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="StringRegel2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
