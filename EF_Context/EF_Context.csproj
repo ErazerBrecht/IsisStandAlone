@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.Designer.cs">
       <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603071948184_Klant_Actief.cs" />
+    <Compile Include="Migrations\201603071948184_Klant_Actief.Designer.cs">
+      <DependentUpon>201603071948184_Klant_Actief.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IDatumRepository.cs" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.resx">
       <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603071948184_Klant_Actief.resx">
+      <DependentUpon>201603071948184_Klant_Actief.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

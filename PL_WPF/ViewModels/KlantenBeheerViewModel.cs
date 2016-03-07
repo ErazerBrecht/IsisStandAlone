@@ -37,6 +37,7 @@ namespace PL_WPF.ViewModels
                     NoticeMe("SoortKlantPlaatsItems");
                     NoticeMe("IsComboBoxSoortKlantPlaatsEnabled");
                     NoticeMe("ElektronischBetalenVisibility");
+                    NoticeMe("ButtonDeleteContent");
                     _selectedKlant.PropertyChanged += _selectedKlant_PropertyChanged;
                 }
             }
@@ -67,6 +68,8 @@ namespace PL_WPF.ViewModels
                 //If klant doesn't have any strijkboxes, he can't have Waarborg anymore!
                 NoticeMe("WaarborgVisibility");
             }
+            else if (e.PropertyName == "Actief")
+                NoticeMe("ButtonDeleteContent");           
         }
 
         #endregion
@@ -107,7 +110,7 @@ namespace PL_WPF.ViewModels
         }
         #endregion
 
-        #region ButtonToevoegenContent
+        #region Button Content
         private string _buttonToevoegenContent;
         public string ButtonToevoegenContent
         {
@@ -119,6 +122,9 @@ namespace PL_WPF.ViewModels
                 NoticeMe("ButtonToevoegenContent");
             }
         }
+
+        public string ButtonDeleteContent => SelectedKlant?.Actief == 0 ? "Activeer" : "Deactiveer";
+
         #endregion
 
         #region Convertor properties
@@ -330,10 +336,17 @@ namespace PL_WPF.ViewModels
             }
         }
 
+        //Delete changed to deactivate
         public void Delete()
         {
             if (SelectedKlant != null)
-                Ctx.Klanten.Remove(SelectedKlant);
+            {
+                if (SelectedKlant.Actief == 0)
+                    SelectedKlant.Actief = 1;
+                else
+                    SelectedKlant.Actief = 0;         
+            }
+
         }
 
         public void Save()

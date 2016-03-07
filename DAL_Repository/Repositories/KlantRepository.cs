@@ -22,6 +22,11 @@ namespace DAL_Repository.Repositories
             return IsisContext.Klanten.Local.Any(k => k.Id == id);
         }
 
+        public IEnumerable<Klant> GetEnabledClients()
+        {
+            return IsisContext.Klanten.Local.Where(k => k.Actief != 0);
+        }
+
         public IsisContext IsisContext
         {
             get { return Context as IsisContext; }

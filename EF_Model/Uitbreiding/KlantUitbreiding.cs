@@ -122,6 +122,24 @@ namespace EF_Model
         [NotMapped]
         public bool InvalidId { get; set; }
 
+        //Convert 'Actief' number into text
+        public string ActiefString
+        {
+            get
+            {
+                switch (Actief)
+                {
+                    case 0:
+                        return "Gedeactiveerd";
+                    case 1:
+                        return "Actief";
+                    case 2:
+                        return "Slapend inactief";
+                }
+                return "";
+            }
+        }
+
         public override string ToString()
         {
             return Naam + "  " + Voornaam + "\t\t" + Id;

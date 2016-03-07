@@ -10,5 +10,6 @@ namespace EF_Context.Repositories
     public interface IKlantRepository : IRepository<Klant>
     {
         bool Exists(int id);
+        IEnumerable<Klant> GetEnabledClients();
     }
 }

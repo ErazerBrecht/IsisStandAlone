@@ -56,9 +56,9 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Klnr:  "></TextBlock>
-                        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding SelectedKlant.Id, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" IsReadOnly="{Binding IsIdReadOnly}"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding SelectedKlant.Id, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" IsReadOnly="{Binding IsIdReadOnly}"/>
 
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Naam:  "/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Text="Naam:  "/>
                         <TextBox Grid.Row="1" Margin="0,10,0,0" Grid.Column="1" Text="{Binding SelectedKlant.Naam, Mode=TwoWay,  ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"/>
                         <TextBlock Grid.Row="1" Margin="15,10,0,0" Grid.Column="2" Text="Voornaam:  "/>
                         <TextBox  Grid.Row="1" Margin="0,10,0,0" Grid.Column="3" Text="{Binding SelectedKlant.Voornaam, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
@@ -78,15 +78,15 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Straat:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Straat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
-                        <DockPanel Grid.Column="3">
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedKlant.Straat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" Text="Huisnr:  "></TextBlock>
+                        <DockPanel Grid.Row="0" Grid.Column="3">
                             <TextBox Width="60"  Text="{Binding SelectedKlant.Nummer, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, TargetNullValue=''}"></TextBox>
                             <TextBlock Margin="10,0,10,0">Bus:</TextBlock>
                             <TextBox></TextBox>
                         </DockPanel>
 
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Gemeente, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Postcode:  "></TextBlock>
                         <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Postcode, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
@@ -107,10 +107,10 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Telefoon:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding SelectedKlant.Telefoon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding SelectedKlant.Gsm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedKlant.Telefoon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" Text="GSM:  "></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding SelectedKlant.Gsm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Text="Andere naam:  "></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.AndereNaam, Mode=TwoWay}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="E-mail:  "></TextBlock>
                         <TextBox Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedKlant.Email, Mode=TwoWay}"></TextBox>
@@ -157,13 +157,13 @@
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="15,10,0,0" Visibility="{Binding WaarborgVisibility}" Text="Waarborg: "></TextBlock>
                         <TextBox Grid.Row="1" Grid.Column="3" Margin="0,10,0,0" Visibility="{Binding WaarborgVisibility}" Text="{Binding SelectedKlant.Waarborg, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"></TextBox>
 
-                        <TextBlock Grid.Row="2" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" Text="Tegoed: "></TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Tegoed}"></TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="15,10,0,0" Text="Datum toegevoegd:  "></TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.Datum, StringFormat=dd-MM-yyyy}"></TextBlock>
 
-                        <TextBlock Grid.Row="3" Margin="0,10,0,0" Text="Actief?:  "></TextBlock>
-                        <TextBlock Grid.Row="3"  Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.Actief, Mode=TwoWay}"></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" Text="Actief:  "></TextBlock>
+                        <TextBlock Grid.Row="3"  Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedKlant.ActiefString}"></TextBlock>
                         <TextBlock Grid.Row="3" Grid.Column="2"  Margin="15,10,0,0" Text="Laatste activiteit:  "></TextBlock>
                         <TextBlock Grid.Row="3" Grid.Column="3" Margin="0,10,0,0" Text="{Binding SelectedKlant.LaatsteActiviteit, StringFormat=dd-MM-yyyy}"></TextBlock>
                     </Grid>
@@ -176,8 +176,8 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
-                    <Button Grid.Row="0" HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Command="{Binding DeleteButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
-                    <Button Grid.Row="0" HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddButton}" IsEnabled="{Binding IsAddable}"></Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Center"   Width="125" Content="{Binding ButtonDeleteContent, FallbackValue=Deactiveer}" Command="{Binding DeleteButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent, FallbackValue=Toevoegen}" Command="{Binding AddButton}" IsEnabled="{Binding IsAddable}"></Button>
                     <Button Grid.Row="1" Margin="0,10,0,0" Content="Opslaan" Command="{Binding SaveButton}" IsEnabled="{Binding IsValid}"></Button>
                     <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
                 </Grid>
@@ -211,8 +211,9 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn x:Name="laatsteActiviteitColumn" Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="tegoedColumn" Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding LaatsteActiviteit , StringFormat=dd-MM-yyyy}" Header="Laatste Activiteit" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding ActiefString}" Header="Actief" MinWidth="75" Width="SizeToCells"/>
+                <DataGridTextColumn Binding="{Binding Tegoed}" Header="Tegoed" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

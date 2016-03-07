@@ -140,7 +140,7 @@ namespace PL_WPF.ViewModels
 
         #region Searchbox Klant LOGIC
 
-        public IEnumerable<Klant> Klanten => Ctx.Klanten.GetAll();
+        public IEnumerable<Klant> Klanten => Ctx.Klanten.GetEnabledClients();
 
         public AutoCompleteFilterPredicate<object> KlantenFilter
         {

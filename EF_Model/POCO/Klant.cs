@@ -14,6 +14,7 @@ namespace EF_Model
         public Klant()
         {
             Prestaties = new ObservableCollection<Prestatie>();
+            Actief = 1;
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -61,9 +62,10 @@ namespace EF_Model
         [AlsoNotifyFor("Gebruikersnummer")]
         public string Betalingswijze { get; set; }
 
-        public int? Actief { get; set; }
+        [AlsoNotifyFor("ActiefString")]
+        public byte Actief { get; set; }
 
-        public int? Strijkbox { get; set; }
+        public byte? Strijkbox { get; set; }
 
         public int? Waarborg { get; set; }
 
