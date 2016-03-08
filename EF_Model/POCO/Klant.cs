@@ -37,6 +37,9 @@ namespace EF_Model
         [Required]
         public int? Nummer { get; set; }
 
+        [StringLength(5)]
+        public string  Bus { get; set; }
+
         [Required]
         public int? Postcode { get; set; }
 

@@ -83,7 +83,7 @@
                         <DockPanel Grid.Row="0" Grid.Column="3">
                             <TextBox Width="60"  Text="{Binding SelectedKlant.Nummer, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, TargetNullValue=''}"></TextBox>
                             <TextBlock Margin="10,0,10,0">Bus:</TextBlock>
-                            <TextBox></TextBox>
+                            <TextBox Text="{Binding SelectedKlant.Bus, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, TargetNullValue=''}"></TextBox>
                         </DockPanel>
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Text="Gemeente:  "></TextBlock>
@@ -195,7 +195,14 @@
                 <DataGridTextColumn x:Name="naamColumn" Binding="{Binding Naam, ValidatesOnDataErrors=True}" Header="Naam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="voornaamColumn" Binding="{Binding Voornaam, ValidatesOnDataErrors=True}" Header="Voornaam" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="andereNaamColumn" Binding="{Binding AndereNaam, ValidatesOnDataErrors=True}" Header="2de naam" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="straatColumn" Binding="{Binding Straat, ValidatesOnDataErrors=True}" Header="Straat" Width="SizeToCells"/>
+                <DataGridTextColumn  Header="Straat" Width="SizeToCells">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat=" {0} {1}">
+                            <Binding Path="Nummer" />
+                            <Binding Path="Bus" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer, ValidatesOnDataErrors=True}" Header="Nr." Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode, ValidatesOnDataErrors=True}" Header="Postcode" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente, ValidatesOnDataErrors=True}" Header="Gemeente" Width="SizeToCells"/>
