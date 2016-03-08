@@ -47,6 +47,8 @@ namespace PL_WPF.ViewModels
                 if(SelectedPersoneel.Id != null)
                 SelectedPersoneel.InvalidId = Ctx.Strijkers.Exists(Convert.ToInt32(SelectedPersoneel.Id));
             }
+            else if (e.PropertyName == "IndienstTot")
+                NoticeMe("ButtonDeleteContent");
         }
 
         #endregion
@@ -98,6 +100,8 @@ namespace PL_WPF.ViewModels
             }
         }
         #endregion
+
+        public string ButtonDeleteContent => SelectedPersoneel?.ActiefBool == false ? "Activeer" : "Deactiveer";
 
         #region Convertor properties
         public bool IsIdReadOnly
@@ -190,9 +194,14 @@ namespace PL_WPF.ViewModels
                 SelectedPersoneel = ViewSource.View.CurrentItem as Strijker;
         }
 
+        //Does deactivate the 'Strijker' now. No more deleting
         public void Delete()
         {
-            Ctx.Strijkers.Remove(SelectedPersoneel);
+            //Ctx.Strijkers.Remove(SelectedPersoneel);
+            if (SelectedPersoneel.ActiefBool)
+                SelectedPersoneel.IndienstTot = DateTime.Now;
+            else
+                SelectedPersoneel.IndienstTot = null;
         }
 
         public void Save()

@@ -73,6 +73,9 @@ namespace EF_Model
         [NotMapped]
         public bool InvalidId { get; set; }
 
+        [NotMapped]
+        public bool ActiefBool => IndienstTot == null;
+
         public override string ToString() => Voornaam;
     }
 }

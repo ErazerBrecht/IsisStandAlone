@@ -100,10 +100,10 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Telefoon:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding SelectedPersoneel.Tel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="E-mail:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding SelectedPersoneel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" Text="Bankrekening:  "></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedPersoneel.Tel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" Text="E-mail:  "></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding SelectedPersoneel.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Margin="0,10,0,0" Text="Bankrekening:  "></TextBlock>
                         <TextBox Grid.Column="2" Grid.ColumnSpan="2" Margin="15,10,0,0" Grid.Row="1" Text="{Binding SelectedPersoneel.Bankrekening, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                     </Grid>
                 </GroupBox>
@@ -126,15 +126,40 @@
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Login:  "></TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding SelectedPersoneel.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
-                        <TextBlock Grid.Column="2" Margin="15,0,0,0" Text="Uren tewerkstelling:  "></TextBlock>
-                        <TextBox Grid.Column="3" Text="{Binding SelectedPersoneel.UrenTewerkstelling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}"></TextBox>
-                        <TextBlock Grid.Row="1" Margin="0,10,0,0" Text="RNSZ:"></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedPersoneel.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Margin="15,0,0,0" Text="Uren tewerkstelling:  "></TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding SelectedPersoneel.UrenTewerkstelling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, TargetNullValue=''}"></TextBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Text="RNSZ:"></TextBlock>
                         <TextBox Grid.Column="1" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedPersoneel.RNSZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"></TextBox>
                         <TextBlock Grid.Column="2" Margin="15,10,0,0" Grid.Row="1" Text="Indienst vanaf:"></TextBlock>
                         <TextBlock Grid.Column="3" Margin="0,10,0,0" Grid.Row="1" Text="{Binding SelectedPersoneel.IndienstVanaf, StringFormat=dd-MM-yyyy}"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,10,10,0" Text="Indienst tot: ">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedPersoneel.ActiefBool}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" Text="{Binding SelectedPersoneel.IndienstTot, StringFormat=dd-MM-yyyy}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedPersoneel.ActiefBool}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
                 </GroupBox>
 
@@ -145,8 +170,8 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Button HorizontalAlignment="Left"  Width="125" Content="Vernieuwen" Command="{Binding RefreshButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
-                    <Button HorizontalAlignment="Center"   Width="125" Content="Verwijderen" Command="{Binding DeleteButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
-                    <Button HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent}" Command="{Binding AddButton}" IsEnabled="{Binding IsAddable}"></Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Center"   Width="125" Content="{Binding ButtonDeleteContent, FallbackValue=Deactiveren}" Command="{Binding DeleteButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Right"  Width="125" Content="{Binding ButtonToevoegenContent, FallbackValue=Toevoegen}" Command="{Binding AddButton}" IsEnabled="{Binding IsAddable}"></Button>
                     <Button Grid.Row="1" Margin="0,10,0,0" Content="Opslaan" Command="{Binding SaveButton}" IsEnabled="{Binding IsValid}"></Button>
                     <Button Grid.Row="2" Margin="0,10,0,0" Content="Volgende error" Command="{Binding NextErrorButton}" IsEnabled="{Binding IsIdReadOnly}"></Button>
                 </Grid>
@@ -161,13 +186,14 @@
                 <DataGridTextColumn x:Name="nummerColumn" Binding="{Binding Nummer, ValidatesOnDataErrors=True}" Header="Nummer" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="postcodeColumn" Binding="{Binding Postcode, ValidatesOnDataErrors=True}" Header="Postcode" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="gemeenteColumn" Binding="{Binding Gemeente, ValidatesOnDataErrors=True}" Header="Gemeente" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel, ValidatesOnDataErrors=True}" Header="Tel" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="telColumn" Binding="{Binding Tel, ValidatesOnDataErrors=True}" Header="Tel" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="rNSZColumn" Binding="{Binding RNSZ, ValidatesOnDataErrors=True}" Header="RNSZ" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email, ValidatesOnDataErrors=True}" Header="Email" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email, ValidatesOnDataErrors=True}" Header="Email" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login, ValidatesOnDataErrors=True}" Header="Login" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="bankrekeningColumn" Binding="{Binding Bankrekening, ValidatesOnDataErrors=True}" Header="Bankrekening" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="indienst_VanafColumn" Binding="{Binding IndienstVanaf, StringFormat=dd-MM-yyyy}" Header="Indienst Vanaf" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="urenTewerkstellingColumn" Binding="{Binding UrenTewerkstelling, ValidatesOnDataErrors=True}" Header="Uren Tewerkstelling" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="indienst_VanafColumn" Binding="{Binding IndienstVanaf, StringFormat=dd-MM-yyyy}" Header="Indienst Vanaf" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn Binding="{Binding ActiefBool, Mode=OneWay}" Header="Actief" Width="SizeToHeader"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

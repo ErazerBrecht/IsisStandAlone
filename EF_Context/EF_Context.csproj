@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201603081856072_Klant_Bus.Designer.cs">
       <DependentUpon>201603081856072_Klant_Bus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603082030262_Strijker_IndienstTot.cs" />
+    <Compile Include="Migrations\201603082030262_Strijker_IndienstTot.Designer.cs">
+      <DependentUpon>201603082030262_Strijker_IndienstTot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IDatumRepository.cs" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603081856072_Klant_Bus.resx">
       <DependentUpon>201603081856072_Klant_Bus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603082030262_Strijker_IndienstTot.resx">
+      <DependentUpon>201603082030262_Strijker_IndienstTot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

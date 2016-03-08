@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PropertyChanged;
 
 namespace EF_Model
 {
@@ -60,6 +61,10 @@ namespace EF_Model
 
         [Column(TypeName = "date")]
         public DateTime? IndienstVanaf { get; set; }
+
+        [Column(TypeName = "date")]
+        [AlsoNotifyFor("ActiefBool")]
+        public DateTime? IndienstTot { get; set; }
 
         [Required]
         [Range(0, 38)]
