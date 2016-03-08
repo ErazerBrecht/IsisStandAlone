@@ -21,35 +21,8 @@ namespace PL_WPF.ViewModels
     [ImplementPropertyChanged]
     class BerekenModuleViewModel : WorkspaceViewModel, IDataErrorInfo
     {
-        #region CurrentView full - property
-        private PrestatieBerekenModuleViewModel _currentView;
-        public PrestatieBerekenModuleViewModel CurrentView
-        {
-            get { return _currentView; }
-            set
-            {
-                _currentView = value;
-                _currentView.PropertyChanged += _currentView_PropertyChanged;
-            }
-        }
-
-        private void _currentView_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsValid")
-                NoticeMe("IsValid");
-        }
-        #endregion
         public DatumBeheerViewModel DatumViewModel { get; set; }
-        
-        public bool IsValid
-        {
-            get
-            {
-                //TODO: Denk hier nog eens over na...
-                NoticeMe("IsPrintAble");
-                return CurrentView.IsValid;
-            }
-        }
+        public PrestatieBerekenModuleViewModel CurrentView { get; set; }
 
         public bool IsPrintAble => CurrentView is TijdBerekenModuleViewModel;
 
