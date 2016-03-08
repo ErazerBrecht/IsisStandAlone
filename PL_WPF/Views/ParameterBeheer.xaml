@@ -381,10 +381,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0">Regel 1</TextBlock>
-                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,0,0,5" MaxLength="65" Width="600" Text="{Binding BegroetingPrintData.StringRegel1, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,0,0,5" MaxLength="55" Width="550" Text="{Binding BegroetingPrintData.StringRegel1, Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="0">Regel 2</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,0,0,5" MaxLength="65" Width="600" Text="{Binding BegroetingPrintData.StringRegel2, Mode=TwoWay}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,0,0,5" MaxLength="55" Width="550" Text="{Binding BegroetingPrintData.StringRegel2, Mode=TwoWay}"/>
 
                         <Button Grid.Row="2" Grid.Column="0" Command="{Binding SaveBegroetingCommand}" Content="Opslaan" Margin="0,20,0,0" Padding="15,0,15,0"/>
                         <Button Grid.Row="2" Grid.Column="1" Command="{Binding RefreshBegroetingCommand}" Content="Vernieuwen" Margin="20,20,0,0" Padding="25,0,25,0"/>
