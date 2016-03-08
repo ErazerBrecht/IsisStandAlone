@@ -21,9 +21,11 @@ namespace DAL_Repository.Repositories
             return IsisContext.Strijkers.Local.Any(s => s.Id == id);
         }
 
-        public IsisContext IsisContext
+        public IEnumerable<Strijker> GetEnabledStrijkers()
         {
-            get { return Context as IsisContext; }
+            return IsisContext.Strijkers.Local.Where(s => s.ActiefBool);
         }
+
+        public IsisContext IsisContext => Context as IsisContext;
     }
 }

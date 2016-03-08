@@ -10,5 +10,6 @@ namespace EF_Context.Repositories
     public interface IStrijkerRepository : IRepository<Strijker>
     {
         bool Exists(int id);
+        IEnumerable<Strijker> GetEnabledStrijkers();
     }
 }

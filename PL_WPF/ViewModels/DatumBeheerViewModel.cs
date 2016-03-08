@@ -63,7 +63,7 @@ namespace PL_WPF.ViewModels
 
         public ObservableCollection<Datum> NewDates { get; set; }
 
-        public IEnumerable<Strijker> Strijkers => _ctx.Strijkers.GetAll();
+        public IEnumerable<Strijker> Strijkers => _ctx.Strijkers.GetEnabledStrijkers();
 
         #region Commands
         public ICommand AddCommandEvent { get; private set; }
@@ -73,13 +73,7 @@ namespace PL_WPF.ViewModels
         //Used to disable or Enable Toevoegen button
         public bool IsValid => AddDatum.CanSave;
 
-        public bool HasDates
-        {
-            get
-            {
-                return ViewSource.View.Cast<Datum>().Any();
-            }
-        }
+        public bool HasDates => ViewSource.View.Cast<Datum>().Any();
 
         public DatumBeheerViewModel(UnitOfWork ctx)
         {
@@ -150,10 +144,7 @@ namespace PL_WPF.ViewModels
         private void ViewSource_Filter(object sender, FilterEventArgs e)
         {
             Datum datum = e.Item as Datum;
-            if (datum.PrestatieId == _id)
-                e.Accepted = true;
-            else
-                e.Accepted = false;
+            e.Accepted = datum.PrestatieId == _id;
         }
 
         #region INotifyPropertyChanged
