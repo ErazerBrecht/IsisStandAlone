@@ -22,6 +22,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -393,6 +394,15 @@
 
             </Grid>
 
+            <Grid Grid.Row="2" Grid.Column="0" Width="Auto">
+                <GroupBox Header="Back Up">
+                    <UniformGrid Rows="1">
+                        <Button Margin="0,0,5,0" Command="{Binding BackupDatabaseCommand}">Backup Databank</Button>
+                        <Button Margin="5,0,0,0" Command="{Binding RestoreDatabaseCommand}">Restore Databank</Button>
+                    </UniformGrid>
+                </GroupBox>
+            </Grid>
+            
         </Grid>
     </ScrollViewer>
 </UserControl>

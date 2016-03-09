@@ -8,6 +8,7 @@ using System.Windows.Input;
 using DAL_Repository;
 using EF_Model;
 using GalaSoft.MvvmLight.Command;
+using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
@@ -21,13 +22,16 @@ namespace PL_WPF.ViewModels
         public BedrijfTypeViewModel BedrijfData { get; private set; }
         public OphalingBeheerViewModel OphalingData { get; private set; }
 
-        //Commands
+        #region Commands
         public ICommand SaveParametersCommand { get; set; }
         public ICommand RefreshParametersCommand { get; set; }
         public ICommand SaveStringsCommand { get; set; }
         public ICommand RefreshStringsCommand { get; set; }
         public ICommand SaveBegroetingCommand { get; set; }
         public ICommand RefreshBegroetingCommand { get; set; }
+        public ICommand BackupDatabaseCommand { get; set; }
+        public ICommand RestoreDatabaseCommand { get; set; }
+        #endregion
 
         public ParameterBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
@@ -64,7 +68,8 @@ namespace PL_WPF.ViewModels
 
             SaveBegroetingCommand = new RelayCommand(SaveBegroetingPrint);
             RefreshBegroetingCommand = new RelayCommand(LoadBegroetingPrint);
-
+            BackupDatabaseCommand = new RelayCommand(BackupDatabase);
+            RestoreDatabaseCommand = new RelayCommand(RestoreDatabase);
             #endregion
         }
 
@@ -96,6 +101,20 @@ namespace PL_WPF.ViewModels
         public void SaveBegroetingPrint()
         {
             BegroetingPrintData.SaveStrings();
+        }
+
+        public void RestoreDatabase()
+        {
+            OpenFileDialogService openFileDialogService = new OpenFileDialogService();
+            string path = openFileDialogService.Open();
+        }
+
+        public void BackupDatabase()
+        {
+            OpenFolderDialogService openFolderDialogService = new OpenFolderDialogService();
+            string path = openFolderDialogService.Open();
+            if(!String.IsNullOrWhiteSpace(path))
+                Ctx.BackupDatabase(path);
         }
     }
 }

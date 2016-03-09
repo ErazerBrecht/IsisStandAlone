@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:PL_WPF.ViewModels"
         xmlns:views="clr-namespace:PL_WPF.Views"
-        Title="MainWindow" WindowState="Maximized">
+        Title="Strijkdienst Conny" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="MaxLines" Value="1" />

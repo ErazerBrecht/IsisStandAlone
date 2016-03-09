@@ -72,6 +72,27 @@ namespace DAL_Repository
             }
         }
 
+        public void BackupDatabase(string path)
+        {
+            //TODO Fix Exeption handling
+            //TODO Get DataBaseName
+            //TODO Use path string
+            try
+            {
+                _context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, $@"
+                BACKUP DATABASE ISIS
+                    TO DISK = '{path}\Backup ISIS Databank {DateTime.Now.ToString("ddMMyyyy HHmmss")}.bak'
+                        WITH FORMAT,
+                        MEDIANAME = 'Z_SQLServerBackups',
+                        NAME = 'Full Backup of ISIS';");
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+        }
+
         public void Dispose()
         {
             _context.Dispose();
