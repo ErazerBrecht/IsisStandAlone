@@ -3,7 +3,7 @@ namespace EF_Context.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Initial_DataBase : DbMigration
     {
         public override void Up()
         {
@@ -23,7 +23,7 @@ namespace EF_Context.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        TotaalBetalen = c.Int(nullable: false),
+                        Tegoed = c.Byte(nullable: false),
                         TotaalMinuten = c.Int(),
                         AantalHemden = c.Byte(),
                         ParameterHemden = c.Decimal(precision: 18, scale: 2),
@@ -54,6 +54,7 @@ namespace EF_Context.Migrations
                         Voornaam = c.String(maxLength: 50),
                         Straat = c.String(nullable: false, maxLength: 50),
                         Nummer = c.Int(nullable: false),
+                        Bus = c.String(maxLength: 5),
                         Postcode = c.Int(nullable: false),
                         Gemeente = c.String(nullable: false, maxLength: 50),
                         Telefoon = c.String(maxLength: 15),
@@ -61,8 +62,8 @@ namespace EF_Context.Migrations
                         Email = c.String(maxLength: 50),
                         AndereNaam = c.String(maxLength: 50),
                         Betalingswijze = c.String(nullable: false, maxLength: 12),
-                        Actief = c.Int(),
-                        Strijkbox = c.Int(),
+                        Actief = c.Byte(nullable: false),
+                        Strijkbox = c.Byte(),
                         Waarborg = c.Int(),
                         Bericht = c.String(maxLength: 4),
                         Datum = c.DateTime(storeType: "date"),
@@ -102,6 +103,7 @@ namespace EF_Context.Migrations
                         Login = c.String(nullable: false, maxLength: 6),
                         Bankrekening = c.String(maxLength: 19),
                         IndienstVanaf = c.DateTime(storeType: "date"),
+                        IndienstTot = c.DateTime(storeType: "date"),
                         UrenTewerkstelling = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

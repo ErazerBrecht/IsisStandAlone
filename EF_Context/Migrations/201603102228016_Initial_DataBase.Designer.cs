@@ -7,13 +7,13 @@ namespace EF_Context.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Klant_Actief : IMigrationMetadata
+    public sealed partial class Initial_DataBase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Klant_Actief));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_DataBase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603071948184_Klant_Actief"; }
+            get { return "201603102228016_Initial_DataBase"; }
         }
         
         string IMigrationMetadata.Source

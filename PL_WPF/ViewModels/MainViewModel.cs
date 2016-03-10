@@ -10,12 +10,17 @@ using System.Windows;
 using DAL_Repository;
 using EF_Context;
 using GalaSoft.MvvmLight;
+using log4net;
 using PL_WPF.Services;
 
 namespace PL_WPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly UnitOfWork _ctx;
+        ILog logger = LogManager.GetLogger(typeof(MainViewModel));
+
+        #region SelectedWorkspace logic
         private WorkspaceViewModel _selectedWorkspace;
         public WorkspaceViewModel SelectedWorkspace
         {
@@ -38,10 +43,9 @@ namespace PL_WPF.ViewModels
                 }
             }
         }
-
-        private UnitOfWork _ctx;
-
+        #endregion
         public ObservableCollection<WorkspaceViewModel> Workspaces { get; }
+
 
         public MainViewModel()
         {
@@ -65,7 +69,9 @@ namespace PL_WPF.ViewModels
             {
                 MessageBoxService messageService = new MessageBoxService();
                 messageService.ShowMessageBox("ERROR");      //Hack: The first Messagebox closes automatically
-                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het ophalen van de data \n\nError: " + ex);
+                //TODO: Add possiblity to restore database from backup!
+                messageService.ShowErrorBox("Er heeft zich een probleem voorgedaan bij het ophalen van de data \n\nError: " + ex.Message);
+                logger.Error("Loading Database (startup)", ex);
                 Application.Current.Shutdown(-1);
             }
         }

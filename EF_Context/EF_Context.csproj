@@ -53,29 +53,9 @@
   <ItemGroup>
     <Compile Include="IsisContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Migrations\201603042036026_Initial.cs" />
-    <Compile Include="Migrations\201603042036026_Initial.Designer.cs">
-      <DependentUpon>201603042036026_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603061610268_Prestatie_Tegoed.cs" />
-    <Compile Include="Migrations\201603061610268_Prestatie_Tegoed.Designer.cs">
-      <DependentUpon>201603061610268_Prestatie_Tegoed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.cs" />
-    <Compile Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.Designer.cs">
-      <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603071948184_Klant_Actief.cs" />
-    <Compile Include="Migrations\201603071948184_Klant_Actief.Designer.cs">
-      <DependentUpon>201603071948184_Klant_Actief.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603081856072_Klant_Bus.cs" />
-    <Compile Include="Migrations\201603081856072_Klant_Bus.Designer.cs">
-      <DependentUpon>201603081856072_Klant_Bus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603082030262_Strijker_IndienstTot.cs" />
-    <Compile Include="Migrations\201603082030262_Strijker_IndienstTot.Designer.cs">
-      <DependentUpon>201603082030262_Strijker_IndienstTot.cs</DependentUpon>
+    <Compile Include="Migrations\201603102228016_Initial_DataBase.cs" />
+    <Compile Include="Migrations\201603102228016_Initial_DataBase.Designer.cs">
+      <DependentUpon>201603102228016_Initial_DataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,23 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603042036026_Initial.resx">
-      <DependentUpon>201603042036026_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603061610268_Prestatie_Tegoed.resx">
-      <DependentUpon>201603061610268_Prestatie_Tegoed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603061643251_Prestatie_Tegoed_ToByte.resx">
-      <DependentUpon>201603061643251_Prestatie_Tegoed_ToByte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603071948184_Klant_Actief.resx">
-      <DependentUpon>201603071948184_Klant_Actief.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603081856072_Klant_Bus.resx">
-      <DependentUpon>201603081856072_Klant_Bus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603082030262_Strijker_IndienstTot.resx">
-      <DependentUpon>201603082030262_Strijker_IndienstTot.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603102228016_Initial_DataBase.resx">
+      <DependentUpon>201603102228016_Initial_DataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

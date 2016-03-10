@@ -1150,7 +1150,7 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>STANDELONE_APPLICATION</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>STRIJKDIENST_CONNY_APPLICATION</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISIS_RIJKEVORSEL</td><td>ProgramFilesFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
@@ -1169,6 +1169,8 @@
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>RecentFolder</td><td>TARGETDIR</td><td>.:Recent</td><td/><td>0</td><td/></row>
 		<row><td>STANDELONE_APPLICATION</td><td>ISIS_RIJKEVORSEL</td><td>STANDE~1|Standelone Application</td><td/><td>0</td><td/></row>
+		<row><td>STRIJKDIENST_CONNY_APPLICATION</td><td>ProgramFilesFolder</td><td>STRIJK~1|Strijkdienst Conny Application</td><td/><td>0</td><td/></row>
+		<row><td>STRIJKDIENST_CONNY_APPLICATIONL</td><td>ProgramFilesFolder</td><td>STRIJK~1|Strijkdienst Conny Applicationl</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
 		<row><td>StartupFolder</td><td>TARGETDIR</td><td>.:StartUp</td><td/><td>3</td><td/></row>
@@ -1181,8 +1183,7 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
-		<row><td>isisri_1_isis_rijkevorsel</td><td>ProgramMenuFolder</td><td>ISISRI~1|ISIS Rijkevorsel</td><td/><td>1</td><td/></row>
-		<row><td>stande_1_standelone_application</td><td>isisri_1_isis_rijkevorsel</td><td>STANDE~1|Standelone Application</td><td/><td>1</td><td/></row>
+		<row><td>isisri_1_isis_rijkevorsel</td><td>ProgramMenuFolder</td><td>STRIJK~1|Strijkdienst Conny Application</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -2639,7 +2640,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>ISIS Rijkevorsel</td><td>0</td><td/><td>-199031114</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Brecht Carlier</td><td>0</td><td/><td>698670642</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-199007050</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-199007050</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-199007050</td></row>
@@ -3741,9 +3742,11 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-199007050</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-199007050</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-199007050</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.droogkuisisis.be/</td><td>0</td><td/><td>-198981962</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>https://erazerbrecht.wordpress.com/</td><td>0</td><td/><td>698635858</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>ISIS Rijkevorsel</td><td>0</td><td/><td>-199031114</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>LAUNCH~1.EXE|Launch ISIS.exe</td><td>0</td><td/><td>-198983978</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>STRIJK~1|Strijkdienst Conny</td><td>0</td><td/><td>698674802</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>STRIJK~1|Strijkdienst Conny</td><td>0</td><td/><td>698644114</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-199007050</td></row>
 	</table>
 
@@ -3862,6 +3865,8 @@
 		<row><td>ISIS.exe1_4B77FAA282CC477299051C1762B4D50D.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>ISIS.exe_B75F15FB7216428CB7CD16D8521ED7CC.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>ISIS.vshost.exe_908E2E6786EA4B58850A76392FF23A73.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_9FE9B28BAD164B2EB082CA19BD4602C3.exe</td><td/><td>&lt;VSSolutionFolder&gt;\PL_WPF\icon.ico</td><td>0</td></row>
+		<row><td>NewShortcut2_6854CEC0097148F9936020A7B03FF1C2.exe</td><td/><td>&lt;VSSolutionFolder&gt;\PL_WPF\icon.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3976,8 +3981,8 @@
 		<col def="S0">Value</col>
 		<row><td>ActiveLanguage</td><td>1033</td></row>
 		<row><td>Comments</td><td/></row>
-		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="a4f66fafb30885f14d732b73e196bba0">
-RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
+		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="de9f554a3bc05c12be9c31b998217995">
+UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 			</td></row>
 		<row><td>DefaultProductConfiguration</td><td>Express</td></row>
 		<row><td>EnableSwidtag</td><td>1</td></row>
@@ -4368,8 +4373,8 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{7CD8F804-5DA6-4C7A-9186-6E991FBC1E11}</td><td/></row>
-		<row><td>ProductName</td><td>Standelone Application</td><td/></row>
-		<row><td>ProductVersion</td><td>0.00.2000</td><td/></row>
+		<row><td>ProductName</td><td>Strijkdienst Conny</td><td/></row>
+		<row><td>ProductVersion</td><td>0.01.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4444,6 +4449,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>NewShortcut1</td><td>PL_WPF.Primary_output</td><td/><td>isisri_1_isis_rijkevorsel</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4529,6 +4535,8 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>NewShortcut1</td><td>isisri_1_isis_rijkevorsel</td><td>##ID_STRING4##</td><td>PL_WPF.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_9FE9B28BAD164B2EB082CA19BD4602C3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut2</td><td>DesktopFolder</td><td>##ID_STRING5##</td><td>PL_WPF.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut2_6854CEC0097148F9936020A7B03FF1C2.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
