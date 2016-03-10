@@ -9,7 +9,7 @@ namespace PL_WPF.Services
 {
     public interface IMessageBoxService
     {
-        MessageBoxResult AskForConfirmation(string message, string title);
+        MessageBoxResult AskForConfirmation(string message, string title, MessageBoxButton buttons);
         void ShowMessageBox(string message);
         void ShowErrorBox(string message);
 
@@ -17,9 +17,9 @@ namespace PL_WPF.Services
 
     public class MessageBoxService : IMessageBoxService
     {
-        public MessageBoxResult AskForConfirmation(string message, string title)
+        public MessageBoxResult AskForConfirmation(string message, string title, MessageBoxButton buttons = MessageBoxButton.YesNoCancel)
         {
-            MessageBoxResult result = MessageBox.Show(message, title, MessageBoxButton.YesNoCancel);
+            MessageBoxResult result = MessageBox.Show(message, title, buttons);
             return result;
         }
 

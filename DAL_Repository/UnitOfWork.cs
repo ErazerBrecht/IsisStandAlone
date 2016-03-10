@@ -10,7 +10,7 @@ namespace DAL_Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IsisContext _context;
+        private IsisContext _context;
 
         public UnitOfWork(IsisContext context)
         {
@@ -74,23 +74,25 @@ namespace DAL_Repository
 
         public void BackupDatabase(string path)
         {
-            //TODO Fix Exeption handling
-            //TODO Get DataBaseName
-            //TODO Use path string
-            try
-            {
-                _context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, $@"
-                BACKUP DATABASE ISIS
-                    TO DISK = '{path}\Backup ISIS Databank {DateTime.Now.ToString("ddMMyyyy HHmmss")}.bak'
+            var dbname = _context.Database.Connection.Database;
+            _context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, $@"
+                BACKUP DATABASE {dbname}
+                    TO DISK = '{path}\Backup ISIS Databank {DateTime.Now.ToString("dd_MM_yyyy HH-mm-ss")}.bak'
                         WITH FORMAT,
                         MEDIANAME = 'Z_SQLServerBackups',
                         NAME = 'Full Backup of ISIS';");
-            }
-            catch (Exception ex)
-            {
-                
-            }
+        }
 
+        public void RestoreDatabase(string path)
+        {
+            var dbname = _context.Database.Connection.Database;
+            _context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, $@"
+                USE master;
+                ALTER DATABASE {dbname} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                RESTORE DATABASE {dbname}
+                    FROM DISK = '{path}';
+                ALTER DATABASE {dbname} SET Multi_User
+                ");
         }
 
         public void Dispose()

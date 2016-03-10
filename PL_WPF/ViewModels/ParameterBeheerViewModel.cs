@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using DAL_Repository;
 using EF_Model;
@@ -107,14 +109,42 @@ namespace PL_WPF.ViewModels
         {
             OpenFileDialogService openFileDialogService = new OpenFileDialogService();
             string path = openFileDialogService.Open();
+            if (!String.IsNullOrWhiteSpace(path))
+            {
+                try
+                {
+                    Ctx.RestoreDatabase(path);
+                    var message = new MessageBoxService();
+                    var result = message.AskForConfirmation("Restore van backup van databank is geslaagd. Om effect te hebben moet u de applicatie herstarten! \nWilt u de applicatie nu herstarten?","Strijkdienst Conny Restore Database", System.Windows.MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        System.Windows.Forms.Application.Restart();
+                        Process.GetCurrentProcess().Kill();
+                    }
+
+                }
+                catch
+                {
+                    //TODO
+                }
+            }
         }
 
         public void BackupDatabase()
         {
             OpenFolderDialogService openFolderDialogService = new OpenFolderDialogService();
             string path = openFolderDialogService.Open();
-            if(!String.IsNullOrWhiteSpace(path))
-                Ctx.BackupDatabase(path);
+            if (!String.IsNullOrWhiteSpace(path))
+            {
+                try
+                {
+                    Ctx.BackupDatabase(path);
+                }
+                catch
+                {
+                    //TODO
+                }
+            }
         }
     }
 }
