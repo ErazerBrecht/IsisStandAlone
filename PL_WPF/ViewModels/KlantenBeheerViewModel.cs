@@ -246,14 +246,15 @@ namespace PL_WPF.ViewModels
             }
         }
 
-        public List<int> StrijkboxItems
+        public List<byte> StrijkboxItems
         {
             get
             {
-                List<int> data = new List<int>();
+                List<byte> data = new List<byte>();
                 data.Add(0);
                 data.Add(1);
                 data.Add(2);
+                data.Add(3);
                 data.Add(4);
                 data.Add(5);
                 data.Add(6);
