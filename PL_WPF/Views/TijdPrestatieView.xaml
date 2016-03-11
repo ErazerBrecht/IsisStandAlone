@@ -60,7 +60,7 @@
         <TextBlock Grid.Row="5" Grid.Column="5" Margin="7" Text="{Binding AddTijdPrestatie.TijdAdministratie}" HorizontalAlignment="Right"></TextBlock>
 
         <TextBlock Grid.Row="7" Grid.Column="0" Margin="7" Text="Totaal stuks"></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.TotaalStrijk}" HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="1" Margin="7" Text="{Binding AddTijdPrestatie.TotaalStrijk, FallbackValue=0}" HorizontalAlignment="Left"></TextBlock>
         <TextBlock Grid.Row="7" Grid.Column="4"  Margin="7" Text="Totaal minuten " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
         <TextBlock Grid.Row="7" Grid.Column="5"  Margin="7" Text="{Binding AddTijdPrestatie.TotaalMinuten}" HorizontalAlignment="Right"></TextBlock>
 
