@@ -12,6 +12,7 @@ namespace EF_Model
         public KlantType()
         {
             Klanten = new ObservableCollection<Klant>();
+            SnelheidsCoëfficiënt = 1;
         }
 
         [Key]
