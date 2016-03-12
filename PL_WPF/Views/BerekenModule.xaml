@@ -32,17 +32,17 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="410" Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <GroupBox Header="Basis informatie">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="125"></ColumnDefinition>
-                            <ColumnDefinition Width="125"></ColumnDefinition>
+                            <ColumnDefinition MinWidth="100"></ColumnDefinition>
+                            <ColumnDefinition MinWidth="50"></ColumnDefinition>
+                            <ColumnDefinition MinWidth="125"></ColumnDefinition>
+                            <ColumnDefinition MinWidth="135"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -52,7 +52,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,30,10,10" Text="Zoek klant: "></TextBlock>
-                        <toolkit:AutoCompleteBox Margin="10,30,10,10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
+                        <toolkit:AutoCompleteBox Margin="10,30,25,10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Klanten}" SelectedItem="{Binding SelectedKlant, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" ItemFilter="{Binding KlantenFilter}"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" Text="Type:"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" FontWeight="Bold">
@@ -63,7 +63,7 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-                        
+
                         <TextBlock Grid.Row="2" Grid.Column="0" Margin="10" Text="Tegoed:"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" FontWeight="Bold" Text="{Binding SelectedKlant.Tegoed}"/>
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="10" Text="Betalingswijze:"/>
@@ -72,54 +72,60 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" Header="Datums toevoegen" IsEnabled="{Binding IsKlantSelected}">
-                    <StackPanel Name="DatumView" DataContext="{Binding DatumViewModel}">
-                        <DataGrid AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedDatum}" CanUserAddRows="False" HorizontalAlignment="Left" >
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Datums toevoegen" IsEnabled="{Binding IsKlantSelected}">
+                    <Grid DataContext="{Binding DatumViewModel}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <DataGrid Grid.Row="0" AutoGenerateColumns="False"  EnableRowVirtualization="True" ItemsSource="{Binding ViewSource.View}" SelectedItem="{Binding SelectedDatum}" CanUserAddRows="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Date, StringFormat='dd/MM/yyyy'}" Header="Datum" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Date, StringFormat='dd/MM/yyyy'}" Header="Datum" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker1}" Header="Strijkster 1" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Strijker1}" Header="Strijkster 1" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker2}" Header="Strijkster 2" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Strijker2}" Header="Strijkster 2" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker3}" Header="Strijkster 3" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Strijker3}" Header="Strijkster 3" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker4}" Header="Strijkster 4" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Strijker4}" Header="Strijkster 4" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Strijker5}" Header="Strijkster 5" Width="150" IsReadOnly="True">
+                                <DataGridTextColumn Binding="{Binding Strijker5}" Header="Strijkster 5" MinWidth="100" Width="*" IsReadOnly="True">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Margin" Value="5,0,0,0" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                
-                                <DataGridTemplateColumn Width="125">
+
+                                <DataGridTemplateColumn MinWidth="100" Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Style="{StaticResource TransparantButton}" HorizontalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommandEvent}">
@@ -131,19 +137,19 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <Border BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,35,0,10">
+                        <Border Grid.Row="1" BorderThickness="0,0,0,5" BorderBrush="LightGray" Margin="0,35,0,10">
                             <TextBlock FontWeight="DemiBold" ><Run Text="TOEVOEGEN"/></TextBlock>
                         </Border>
 
-                        <Grid>
+                        <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
+                                <ColumnDefinition MinWidth="100" Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -157,8 +163,7 @@
                             <ComboBox FontSize="16" Grid.Column="5" Margin="0,0,5,0" controls:TextBoxHelper.ClearTextButton="True" IsEnabled="{Binding AddDatum.Strijker4, Converter={StaticResource NullToBooleanConverter}}" ItemsSource="{Binding Strijkers}" SelectedItem="{Binding AddDatum.Strijker5, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
                             <Button Grid.Column="6" HorizontalAlignment="Center" Content="Toevoegen" Command="{Binding AddCommandEvent}" IsEnabled="{Binding IsValid}" Padding="10,0,10,0"/>
                         </Grid>
-
-                    </StackPanel>
+                    </Grid>
                 </GroupBox>
 
                 <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="Strijk" IsEnabled="{Binding IsKlantSelected}">
