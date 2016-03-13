@@ -37,7 +37,7 @@ namespace PL_WPF.ViewModels
 
         public ParameterBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
-            Header = "ParameterBeheer";
+            Header = "Parameterbeheer";
             ParameterData = new Parameters();
             StringsData = new Strings();
             BegroetingPrintData = new BegroetingPrint();

@@ -265,7 +265,7 @@ namespace PL_WPF.ViewModels
 
         public KlantenBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
-            Header = "KlantenBeheer";
+            Header = "Klantenbeheer";
             GetData();
             ButtonToevoegenContent = "Toevoegen";
 

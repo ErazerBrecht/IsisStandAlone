@@ -127,7 +127,7 @@ namespace PL_WPF.ViewModels
 
         public PersoneelBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
-            Header = "PersoneelBeheer";
+            Header = "Personeelbeheer";
             ViewSource = new CollectionViewSource();
             GetData();
             ButtonToevoegenContent = "Toevoegen";

@@ -72,7 +72,7 @@
                                 X
                             </TextBlock>
                         </Grid>
-                        <TextBlock Foreground="Red" FontWeight="12" Margin="2,0,0,0" Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                        <TextBlock Foreground="Red" FontWeight="12" Margin="5,0,0,0" Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
                     </StackPanel>
                     <Border BorderThickness="3" BorderBrush="Red" CornerRadius="0.7" VerticalAlignment="Top">
                         <Grid>

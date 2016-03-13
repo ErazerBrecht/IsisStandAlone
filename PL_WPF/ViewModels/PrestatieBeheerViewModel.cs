@@ -193,7 +193,7 @@ namespace PL_WPF.ViewModels
 
         public PrestatieBeheerViewModel(UnitOfWork ctx) : base(ctx)
         {
-            Header = "PrestatieBeheer";
+            Header = "Prestatiebeheer";
 
             ViewSource = new CollectionViewSource { Source = Ctx.Prestaties.GetAll() };
             ViewSource.View.Filter = Filter;
